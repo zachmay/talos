@@ -14,16 +14,22 @@ A running, secure Postgres+pgvector database inside a Docker Compose topology wh
 ## Implementation Decisions
 
 ### Schema Design
-- Single `entries` table with: id (UUIDv4), content (TEXT), embedding (VECTOR), metadata (JSONB), agent_id (TEXT), created_at, updated_at
-- Freeform metadata JSONB — no enforced keys, GIN-indexed for any-key filtering
-- Agent identity via session variable: MCP sets `app.agent_id` before each query, RLS policies check `current_setting('app.agent_id')`
+- Two-table model: `entries` (content/metadata) + `chunks` (windowed embeddings)
+  - `entries`: id (UUIDv4), content (TEXT, full document), metadata (JSONB), agent_id (TEXT), created_at, updated_at
+  - `chunks`: id (UUIDv4), entry_id (FK → entries), chunk_idx (INT), chunk_text (TEXT), embedding (VECTOR), agent_id (TEXT, denormalized for RLS)
+- MCP auto-chunks large content into overlapping windows, each chunk gets its own embedding row
+- Small documents still get chunked (single chunk) — uniform model, no special cases
+- Freeform metadata JSONB on entries — no enforced keys, GIN-indexed for any-key filtering
+- Agent identity via session variable: MCP sets `app.agent_id` before each query, RLS policies check `current_setting('app.agent_id')` — applied to BOTH tables
 - Path array in metadata for filesystem-like hierarchy: `path: ['tasks', 'home', 'mow the yard.md']`
   - Path is optional — docs without it are flat, searchable by content/metadata only
   - Supported operations: exact path match, prefix/subtree listing, depth-limited listing (direct children only)
 - Cosine similarity only for distance metric
 - Containment (`@>`) for general metadata filtering + array operators for path hierarchy queries
-- Semantic search function supports path-scoped queries (narrow by subtree, then rank by similarity)
-- Table name: `entries`, DB function: `match_entries`
+- Semantic search function searches chunks, joins to entries to return full content
+- Semantic search supports path-scoped queries (narrow by subtree via entries metadata, then rank chunks by similarity)
+- Table names: `entries` + `chunks`, DB function: `match_entries` (searches chunks, returns entries)
+- HNSW index on chunks.embedding, GIN index on entries.metadata
 - MCP tool names should be minimal to save tokens (e.g., `search`, `insert`, `update`, `delete`) — Phase 2 concern but noted here
 
 ### Init & Bootstrap
