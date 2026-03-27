@@ -30,12 +30,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. A connection using the MCP (non-superuser) role cannot read rows belonging to a different agent, even with direct SQL
   4. Agent container network cannot reach the Postgres container (connection refused / timeout), while MCP container can reach both networks
   5. No API keys or secrets appear in Docker image layers, environment variable dumps, or `docker inspect` output -- all credentials are injected via Docker secrets
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md — Project scaffolding: .gitignore, setup.sh secret generation, stub Dockerfiles
+- [ ] 01-02-PLAN.md — Database init scripts: schema, indexes, RLS, match_entries function
+- [ ] 01-03-PLAN.md — Docker Compose topology and integration test suite
 
 ### Phase 2: MCP Server
 **Goal**: A working MCP server that agents can call to insert, search, update, and delete semantic data, with embedding handled transparently
@@ -46,7 +46,7 @@ Plans:
   2. Switching embedding provider (e.g., OpenAI to Ollama) requires only environment variable changes -- no code changes, no redeployment
   3. Updating content via MCP produces a new embedding automatically; searching for the updated meaning returns the updated row
   4. Each agent identity can only access its own data through MCP -- cross-agent data access is rejected
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 02-01: TBD
@@ -60,7 +60,7 @@ Plans:
   1. Agent container runs with sandbox isolation (Nono or gVisor) -- attempting to escape the sandbox (e.g., accessing host filesystem, spawning privileged processes) fails
   2. `npm install` inside the agent container installs all skill dependencies without errors
   3. Agent prompt loads with skill library references injected, and agent can execute a skill script that calls MCP tools successfully
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 03-01: TBD
@@ -74,7 +74,7 @@ Plans:
   1. Every write operation (insert, update, delete) through MCP produces an audit log entry with agent identity, operation type, and timestamp
   2. A full backup-and-restore cycle produces an identical, working database -- semantic search returns the same results before and after restore
   3. Docker images build and run on Linux without Docker-for-Mac-only assumptions (no host.docker.internal, no Mac-only volume behavior)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 04-01: TBD
@@ -88,7 +88,7 @@ Plans:
   1. All external network callouts (embedding APIs, any cloud service) are documented in a single, discoverable location that operators can review before deployment
   2. The platform provides a clear runtime indication of whether any container is exposed to public or uncontrolled networks
   3. Any security or privacy assumption that is unresolved is tracked as a blocking issue in project documentation
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 05-01: TBD
