@@ -8,5 +8,7 @@ export function loadSystemPrompt(
   agentMdPath: string,
   skillIndex: string
 ): string {
-  throw new Error("Not implemented");
+  const content = fs.readFileSync(agentMdPath, "utf8");
+  const effectiveIndex = skillIndex || "(no repo skills loaded)";
+  return content.replace("{{SKILL_INDEX}}", effectiveIndex);
 }
