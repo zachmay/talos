@@ -5,3 +5,4 @@ db/init/03-schema.sql
 *.log
 node_modules/
 .DS_Store
+backups/*.dump
