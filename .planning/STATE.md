@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-04-PLAN.md (Phase 3 complete)
-last_updated: "2026-03-28T19:42:54.391Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-28T19:47:10.610Z"
 last_activity: 2026-03-28 -- Completed 03-04 Agent Wiring (Phase 3 complete)
 progress:
   total_phases: 5
   completed_phases: 3
   total_plans: 17
-  completed_plans: 14
+  completed_plans: 15
   percent: 82
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 4 of 5 (Operations)
-Plan: 0 of 3 in current phase
+Plan: 1 of 3 in current phase
 Status: In Progress
-Last activity: 2026-03-28 -- Completed 03-04 Agent Wiring (Phase 3 complete)
+Last activity: 2026-03-28 -- Completed 04-02 Backup & Restore
 
 Progress: [████████░░] 82%
 
@@ -64,6 +64,7 @@ Progress: [████████░░] 82%
 | Phase 03 P02 | 4min | 2 tasks | 8 files |
 | Phase 03 P03 | 5min | 2 tasks | 7 files |
 | Phase 03 P04 | 15min | 3 tasks | 17 files |
+| Phase 04 P02 | 2min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,7 @@ Recent decisions affecting current work:
 - [Phase 02]: Path-only search uses direct SQL, not match_entries, to skip embedding
 - [Phase 02]: Per-session McpServer instance (createServer takes agentId) for tool registration compatibility
 - [Phase 02]: Added ToolResult index signatures for MCP SDK type compatibility
+- [Phase 04]: Trust auth for pg_dump — no PGPASSWORD needed with default pg_hba.conf
 
 ### Pending Todos
 
@@ -102,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T18:00:00Z
-Stopped at: Completed 03-04-PLAN.md (Phase 3 complete)
+Last session: 2026-03-28T19:47:10.607Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
