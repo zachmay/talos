@@ -2,8 +2,8 @@
 phase: 7
 slug: subagent-capability
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-28
 ---
 
@@ -38,10 +38,15 @@ created: 2026-03-28
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 7-01-01 | 01 | 0 | subagent-core | unit | `npx jest --testPathPattern=subagent` | ❌ W0 | ⬜ pending |
-| 7-01-02 | 01 | 1 | subagent-core | unit | `npx jest --testPathPattern=subagent` | ❌ W0 | ⬜ pending |
-| 7-02-01 | 02 | 2 | subagent-collect | unit | `npx jest --testPathPattern=collect` | ❌ W0 | ⬜ pending |
-| 7-03-01 | 03 | 3 | subagent-profile | unit | `npx jest --testPathPattern=profile` | ❌ W0 | ⬜ pending |
+| 7-01-01 | 01 | 0 | SUB-01 | unit | `cd agent && npm test -- --testPathPattern=local-tools` | ✅ W0 | ⬜ pending |
+| 7-01-02 | 01 | 0 | SUB-03 | unit | `cd agent && npm test -- --testPathPattern="conversation-manager\|prompt"` | ✅ W0 | ⬜ pending |
+| 7-02-01 | 02 | 2 | SUB-01 | unit | `cd agent && npm test -- --testPathPattern=local-tools` | ✅ W0 | ⬜ pending |
+| 7-02-02 | 02 | 2 | SUB-02 | unit | `cd agent && npm test -- --testPathPattern=local-tools` | ✅ W0 | ⬜ pending |
+| 7-03-01 | 03 | 3 | SUB-04 | unit | `cd agent && npm test -- --testPathPattern=prompt` | ✅ W0 | ⬜ pending |
+| 7-04-01 | 04 | 3 | SUB-01 | unit | `cd agent && npm test` | ✅ W0 | ⬜ pending |
+| 7-05-01 | 05 | 4 | SUB-03 | unit | `cd agent && npm test -- --testPathPattern=conversation-manager` | ✅ W0 | ⬜ pending |
+| 7-06-01 | 06 | 5 | SUB-03 | compile | `cd agent && npx tsc --noEmit` | n/a | ⬜ pending |
+| 7-07-01 | 07 | 5 | SUB-05 | functional | `./talos profiles 2>&1 \| grep -c 'agent'` | n/a | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -49,9 +54,11 @@ created: 2026-03-28
 
 ## Wave 0 Requirements
 
-- [ ] `src/__tests__/subagent.test.ts` — stubs for subagent spawn/coordinate
-- [ ] `src/__tests__/collect_results.test.ts` — stubs for parallel result collection
-- [ ] `src/__tests__/profiles.test.ts` — stubs for profile discovery
+Wave 0 test stubs are created by Plan 07-01. Actual test files:
+
+- [x] `agent/src/__tests__/local-tools.test.ts` — stubs for LocalToolRegistry + spawn_subagent + collect_results handlers
+- [x] `agent/src/__tests__/conversation-manager.test.ts` — stubs for ConversationManager
+- [x] `agent/src/__tests__/prompt.test.ts` (extended) — stubs for discoverProfiles() and buildSubagentGuidance()
 
 *Existing ts-jest infrastructure covers all phase requirements; only test stubs needed.*
 
@@ -67,11 +74,11 @@ created: 2026-03-28
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references
+- [x] No watch-mode flags
+- [x] Feedback latency < 30s
+- [x] `nyquist_compliant: true` set in frontmatter
 
-**Approval:** pending
+**Approval:** reconciled 2026-03-28
