@@ -33,7 +33,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **AGT-01**: Sandboxed container with strong isolation (Nono/gVisor)
 - [x] **AGT-02**: Main agent prompt definition
-- [x] **AGT-03**: Skill library — declarative references plus executable scripts
+- [x] **AGT-03**: Skill library — declarative SKILL.md index (name + description in system prompt); agent reads full SKILL.md and runs scripts directly via bash. Container-level safety (read-only fs, non-root, seccomp, resource limits). Future: application-level `executeSkill` wrapper with `execFile`, timeout, and output cap
 - [x] **AGT-04**: NPM project — `npm install` bootstraps all agent dependencies
 
 ### Infrastructure
