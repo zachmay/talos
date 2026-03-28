@@ -21,13 +21,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### MCP Server
 
-- [ ] **MCP-01**: Insert operation with automatic embedding generation
-- [ ] **MCP-02**: Similarity search with threshold, count, and metadata filtering
-- [ ] **MCP-03**: Update operation (content + re-embed)
-- [ ] **MCP-04**: Delete operation
-- [ ] **MCP-05**: Provider-agnostic embedding interface — swap provider via env vars
-- [ ] **MCP-06**: Embedding generation owned by MCP server (agents never call providers directly)
-- [ ] **MCP-07**: Multi-agent support — MCP authenticates each agent and passes identity to DB for RLS
+- [x] **MCP-01**: Insert operation with automatic embedding generation
+- [x] **MCP-02**: Similarity search with threshold, count, and metadata filtering
+- [x] **MCP-03**: Update operation (content + re-embed)
+- [x] **MCP-04**: Delete operation
+- [x] **MCP-05**: Provider-agnostic embedding interface — swap provider via env vars
+- [x] **MCP-06**: Embedding generation owned by MCP server (agents never call providers directly)
+- [x] **MCP-07**: Multi-agent support — MCP authenticates each agent and passes identity to DB for RLS
 
 ### Agent Harness
 
@@ -85,13 +85,13 @@ Requirements for initial release. Each maps to roadmap phases.
 | DB-07 | Phase 1 | Pending |
 | DB-08 | Phase 1 | Pending |
 | DB-09 | Phase 1 | Pending |
-| MCP-01 | Phase 2 | Pending |
-| MCP-02 | Phase 2 | Pending |
-| MCP-03 | Phase 2 | Pending |
-| MCP-04 | Phase 2 | Pending |
-| MCP-05 | Phase 2 | Pending |
-| MCP-06 | Phase 2 | Pending |
-| MCP-07 | Phase 2 | Pending |
+| MCP-01 | Phase 2 | Complete |
+| MCP-02 | Phase 2 | Complete |
+| MCP-03 | Phase 2 | Complete |
+| MCP-04 | Phase 2 | Complete |
+| MCP-05 | Phase 2 | Complete |
+| MCP-06 | Phase 2 | Complete |
+| MCP-07 | Phase 2 | Complete |
 | AGT-01 | Phase 3 | Pending |
 | AGT-02 | Phase 3 | Pending |
 | AGT-03 | Phase 3 | Pending |
