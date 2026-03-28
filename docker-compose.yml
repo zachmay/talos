@@ -24,6 +24,7 @@ services:
   mcp:
     build:
       context: ./mcp
+    restart: unless-stopped
     networks:
       - backend
       - frontend
@@ -34,6 +35,22 @@ services:
       - mcp_password
       - agent_keys
       - embedding_api_key
+    environment:
+      DATABASE_URL: "postgresql://mcp_service:${MCP_SERVICE_PASSWORD}@db:5432/talos"
+      EMBEDDING_PROVIDER: "${EMBEDDING_PROVIDER:-openrouter}"
+      EMBEDDING_MODEL: "${EMBEDDING_MODEL:-openai/text-embedding-3-small}"
+      EMBEDDING_API_KEY: "${EMBEDDING_API_KEY}"
+      VECTOR_DIMENSIONS: "${VECTOR_DIMENSIONS:-1536}"
+      CHUNK_SIZE: "${CHUNK_SIZE:-2000}"
+      CHUNK_OVERLAP: "${CHUNK_OVERLAP:-200}"
+      ALLOWED_ORIGINS: "${ALLOWED_ORIGINS:-}"
+      PORT: "3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
 
   agent:
     build:
