@@ -80,8 +80,8 @@ describe("MCP-01: Insert Tool", () => {
     expect(createEmbeddingProvider).toHaveBeenCalled();
     expect(chunkText).toHaveBeenCalled();
     expect(mockProvider.embed).toHaveBeenCalled();
-    // Three queries: INSERT entries, INSERT chunks, INSERT audit_log
-    expect(mockClient.query).toHaveBeenCalledTimes(3);
+    // Two queries: INSERT entries, INSERT chunks (audit is now DB-trigger-based)
+    expect(mockClient.query).toHaveBeenCalledTimes(2);
   });
 
   it("returns {id, content, path} on success by default", async () => {

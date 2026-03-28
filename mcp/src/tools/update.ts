@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { withAgent } from "../db.js";
-import { withAudit } from "../audit.js";
+
 import { chunkText } from "../chunker.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -60,37 +60,35 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     let row: any;
     try {
       row = await withAgent(agentId, async (client) => {
-        return withAudit(client, agentId, "update", id, {}, async () => {
-          // Delete old chunks
-          await client.query("DELETE FROM chunks WHERE entry_id = $1", [id]);
+        // Delete old chunks
+        await client.query("DELETE FROM chunks WHERE entry_id = $1", [id]);
 
-          // Update entry content (+ metadata if provided)
-          const updateFields = metadata
-            ? "content = $2, metadata = $3, updated_at = NOW()"
-            : "content = $2, updated_at = NOW()";
-          const updateParams = metadata ? [id, content, JSON.stringify(metadata)] : [id, content];
-          const returning = verbose
-            ? "id, content, path, metadata, updated_at"
-            : "id, content, path";
-          const updateResult = await client.query(
-            `UPDATE entries SET ${updateFields} WHERE id = $1 RETURNING ${returning}`,
-            updateParams
+        // Update entry content (+ metadata if provided)
+        const updateFields = metadata
+          ? "content = $2, metadata = $3, updated_at = NOW()"
+          : "content = $2, updated_at = NOW()";
+        const updateParams = metadata ? [id, content, JSON.stringify(metadata)] : [id, content];
+        const returning = verbose
+          ? "id, content, path, metadata, updated_at"
+          : "id, content, path";
+        const updateResult = await client.query(
+          `UPDATE entries SET ${updateFields} WHERE id = $1 RETURNING ${returning}`,
+          updateParams
+        );
+
+        if (updateResult.rowCount === 0) {
+          throw new Error("NOT_FOUND");
+        }
+
+        // Insert new chunks
+        for (let i = 0; i < chunks.length; i++) {
+          await client.query(
+            "INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ($1, $2, $3, $4, $5)",
+            [id, i, chunks[i], JSON.stringify(embeddings[i]), agentId]
           );
+        }
 
-          if (updateResult.rowCount === 0) {
-            throw new Error("NOT_FOUND");
-          }
-
-          // Insert new chunks
-          for (let i = 0; i < chunks.length; i++) {
-            await client.query(
-              "INSERT INTO chunks (entry_id, chunk_index, embedding) VALUES ($1, $2, $3)",
-              [id, i, JSON.stringify(embeddings[i])]
-            );
-          }
-
-          return updateResult.rows[0];
-        });
+        return updateResult.rows[0];
       });
     } catch (err) {
       if (err instanceof Error && err.message === "NOT_FOUND") {
@@ -119,19 +117,17 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
   let row: any;
   try {
     row = await withAgent(agentId, async (client) => {
-      return withAudit(client, agentId, "update", id, {}, async () => {
-        const returning = verbose
-          ? "id, content, path, metadata, updated_at"
-          : "id, content, path";
-        const result = await client.query(
-          `UPDATE entries SET metadata = $2, updated_at = NOW() WHERE id = $1 RETURNING ${returning}`,
-          [id, JSON.stringify(metadata)]
-        );
-        if (result.rowCount === 0) {
-          throw new Error("NOT_FOUND");
-        }
-        return result.rows[0];
-      });
+      const returning = verbose
+        ? "id, content, path, metadata, updated_at"
+        : "id, content, path";
+      const result = await client.query(
+        `UPDATE entries SET metadata = $2, updated_at = NOW() WHERE id = $1 RETURNING ${returning}`,
+        [id, JSON.stringify(metadata)]
+      );
+      if (result.rowCount === 0) {
+        throw new Error("NOT_FOUND");
+      }
+      return result.rows[0];
     });
   } catch (err) {
     if (err instanceof Error && err.message === "NOT_FOUND") {
