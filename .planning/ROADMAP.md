@@ -105,6 +105,29 @@ Plans:
 - [ ] 05-02-PLAN.md — scripts/security-audit.sh: 12 CHECK tag functions + ./talos security-audit routing
 - [ ] 05-03-PLAN.md — scripts/network-audit.sh + health.sh Network Posture section + ./talos network-audit routing
 
+### Phase 6: Text UI Client
+**Goal**: Terminal-based text UI for interactive agent conversations — chat view, input area, and status indicators replacing raw CLI prompt
+**Depends on**: Phase 5
+**Requirements**: TUI-01 through TUI-10
+**Plans**: 6 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — shared/types.ts SSE contract + tui/ package scaffold with SSE parser and tests
+- [ ] 06-02-PLAN.md — claude.ts streaming refactor: AsyncGenerator AgentEvent stream + backward-compat wrapper
+- [ ] 06-03-PLAN.md — Agent HTTP server: Express SSE endpoint, auth, session guard, /btw queue
+- [ ] 06-04-PLAN.md — Ink TUI components: full app.tsx + 7 components + 3 hooks + markdown lib
+- [ ] 06-05-PLAN.md — Infrastructure wiring: docker-compose port 3001, tui_token secret, setup.sh
+- [ ] 06-06-PLAN.md — ./talos chat subcommand + human end-to-end verification
+
+### Phase 7: Subagent Capability
+**Goal**: Enable agents to spawn and coordinate subagents for parallel and delegated task execution
+**Depends on**: Phase 6
+**Requirements**: TBD
+**Plans**: 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 7 to break down)
+
 ## Progress
 
 **Execution Order:**
@@ -117,23 +140,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Agent Harness | 4/4 | Complete   | 2026-03-28 |
 | 4. Operations | 3/3 | Complete   | 2026-03-28 |
 | 5. Privacy and Compliance | 0/3 | Not started | - |
-| 6. Text UI Client | 0/0 | Not started | - |
+| 6. Text UI Client | 0/6 | Not started | - |
 | 7. Subagent Capability | 0/0 | Not started | - |
-
-### Phase 6: Text UI Client
-**Goal**: Terminal-based text UI for interactive agent conversations — chat view, input area, and status indicators replacing raw CLI prompt
-**Depends on**: Phase 5
-**Requirements**: TBD
-**Plans**: 0 plans
-
-Plans:
-- [ ] TBD (run /gsd:plan-phase 6 to break down)
-
-### Phase 7: Subagent Capability
-**Goal**: Enable agents to spawn and coordinate subagents for parallel and delegated task execution
-**Depends on**: Phase 6
-**Requirements**: TBD
-**Plans**: 0 plans
-
-Plans:
-- [ ] TBD (run /gsd:plan-phase 7 to break down)
