@@ -16,6 +16,7 @@ Commands:
   health                 Run end-to-end health check
   status                 Show service status
   add-agent <name>       Provision a new agent identity
+  network-audit          Analyze network exposure: ports, memberships, outbound reachability
 
 Run './talos <command> --help' for command-specific options.
 EOF
@@ -31,6 +32,7 @@ case "$COMMAND" in
   audit)     exec "$SCRIPTS/audit.sh"     "$@" ;;
   health)    exec "$SCRIPTS/health.sh"    "$@" ;;
   status)    exec "$SCRIPTS/status.sh"    "$@" ;;
-  add-agent) exec "$SCRIPTS/add-agent.sh" "$@" ;;
+  add-agent)       exec "$SCRIPTS/add-agent.sh"       "$@" ;;
+  network-audit)   exec "$SCRIPTS/network-audit.sh"   "$@" ;;
   *)         usage ;;
 esac

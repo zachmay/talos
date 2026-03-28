@@ -49,6 +49,13 @@ if [[ -d "$BACKUPS_DIR" ]]; then
   fi
 fi
 
+# Network posture summary (lightweight — full analysis: ./talos network-audit)
+echo ""
+echo "=== Network Posture ==="
+check "Agent cannot reach DB directly" \
+  bash -c "! $COMPOSE exec -T agent sh -c 'nc -z db 5432 2>/dev/null'"
+echo "    (run './talos network-audit' for full exposure analysis)"
+
 echo ""
 echo "Result: $PASS passed, $FAIL failed"
 [[ $FAIL -eq 0 ]]
