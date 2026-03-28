@@ -40,7 +40,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **INF-01**: docker-compose for one-command local startup
 - [ ] **INF-02**: Dual-network topology — agent↔MCP and MCP↔DB, agent cannot reach DB
-- [ ] **INF-03**: Credential injection via Docker secrets or env vars (no baked-in secrets)
+- [x] **INF-03**: Credential injection via Docker secrets or env vars (no baked-in secrets)
 - [ ] **INF-04**: Audit logging for all write operations
 - [ ] **INF-05**: Backup and restore tooling for the DB
 - [ ] **INF-06**: Cloud-ready portable Docker images
@@ -98,7 +98,7 @@ Requirements for initial release. Each maps to roadmap phases.
 | AGT-04 | Phase 3 | Pending |
 | INF-01 | Phase 1 | Pending |
 | INF-02 | Phase 1 | Pending |
-| INF-03 | Phase 1 | Pending |
+| INF-03 | Phase 1 | Complete |
 | INF-04 | Phase 4 | Pending |
 | INF-05 | Phase 4 | Pending |
 | INF-06 | Phase 4 | Pending |
