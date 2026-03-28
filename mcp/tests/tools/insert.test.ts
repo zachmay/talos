@@ -110,7 +110,7 @@ describe("MCP-01: Insert Tool", () => {
 
     const insertCall = mockClient.query.mock.calls[0];
     expect(insertCall[0]).toContain("INSERT INTO entries");
-    expect(insertCall[1]).toContain("tasks");
+    expect(insertCall[1][1]).toEqual(["tasks", "home"]);
   });
 
   it("stores metadata JSONB on entry row", async () => {
