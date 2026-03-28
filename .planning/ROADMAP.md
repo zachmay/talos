@@ -17,6 +17,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Agent Harness** - Sandboxed agent container with skill library and NPM project bootstrapping
 - [x] **Phase 4: Operations** - Audit logging, backup/restore tooling, and cloud-ready images (completed 2026-03-28)
 - [ ] **Phase 5: Privacy and Compliance** - Explicit documentation and enforcement of privacy and security posture
+- [ ] **Phase 6: Text UI Client** - Terminal-based TUI for interactive agent conversations with chat view, input area, and status indicators
+- [ ] **Phase 7: Subagent Capability** - Enable agents to spawn and coordinate subagents for parallel and delegated task execution
 
 ## Phase Details
 
@@ -104,7 +106,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -113,3 +115,23 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 3. Agent Harness | 4/4 | Complete   | 2026-03-28 |
 | 4. Operations | 3/3 | Complete   | 2026-03-28 |
 | 5. Privacy and Compliance | 0/1 | Not started | - |
+| 6. Text UI Client | 0/0 | Not started | - |
+| 7. Subagent Capability | 0/0 | Not started | - |
+
+### Phase 6: Text UI Client
+**Goal**: Terminal-based text UI for interactive agent conversations — chat view, input area, and status indicators replacing raw CLI prompt
+**Depends on**: Phase 5
+**Requirements**: TBD
+**Plans**: 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 6 to break down)
+
+### Phase 7: Subagent Capability
+**Goal**: Enable agents to spawn and coordinate subagents for parallel and delegated task execution
+**Depends on**: Phase 6
+**Requirements**: TBD
+**Plans**: 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 7 to break down)
