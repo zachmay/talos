@@ -4,7 +4,13 @@ import { chunkText } from "../chunker.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-function toolError(code: string, message: string) {
+interface ToolResult {
+  [key: string]: unknown;
+  content: Array<{ type: "text"; text: string }>;
+  isError?: true;
+}
+
+function toolError(code: string, message: string): ToolResult {
   return {
     content: [{ type: "text" as const, text: JSON.stringify({ error: code, message }) }],
     isError: true,
@@ -21,7 +27,7 @@ interface UpdateParams {
   verbose?: boolean;
 }
 
-export async function handleUpdate(params: UpdateParams) {
+export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
   const { agentId, id, content, metadata, verbose } = params;
 
   // Validate: at least one of content or metadata

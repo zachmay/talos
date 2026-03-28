@@ -2,7 +2,13 @@ import { z } from "zod";
 import { withAgent } from "../db.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-function toolError(code: string, message: string) {
+interface ToolResult {
+  [key: string]: unknown;
+  content: Array<{ type: "text"; text: string }>;
+  isError?: true;
+}
+
+function toolError(code: string, message: string): ToolResult {
   return {
     content: [{ type: "text" as const, text: JSON.stringify({ error: code, message }) }],
     isError: true,
@@ -14,7 +20,7 @@ interface DeleteParams {
   id: string;
 }
 
-export async function handleDelete(params: DeleteParams) {
+export async function handleDelete(params: DeleteParams): Promise<ToolResult> {
   const { agentId, id } = params;
 
   try {
