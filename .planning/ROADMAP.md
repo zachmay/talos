@@ -83,8 +83,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md — Audit log schema (db/init/05-audit.sql) and MCP withAudit() middleware for insert/update/delete
+- [ ] 04-02-PLAN.md — Backup and restore scripts (backup.sh, restore.sh) with auto-verification
+- [ ] 04-03-PLAN.md — talos CLI wrapper, audit/health/status scripts, and compose portability audit
 
 ### Phase 5: Privacy and Compliance
 **Goal**: Operators have full visibility into the platform's external communications and security posture
@@ -108,6 +109,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Database and Docker Foundation | 0/3 | Not started | - |
 | 2. MCP Server | 0/6 | Not started | - |
-| 3. Agent Harness | 0/2 | Not started | - |
-| 4. Operations | 0/2 | Not started | - |
+| 3. Agent Harness | 0/4 | Not started | - |
+| 4. Operations | 0/3 | Not started | - |
 | 5. Privacy and Compliance | 0/1 | Not started | - |
