@@ -1,3 +1,7 @@
+# Phase 4 portability audit (2026-03-28):
+# - No Docker Desktop host-only networking references in default/prod profile
+# - Safe to deploy on Linux Docker Engine without modification
+
 services:
   db:
     image: pgvector/pgvector:pg17
