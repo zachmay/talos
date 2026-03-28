@@ -1,0 +1,7 @@
+# docker-compose.override.yml — auto-merged in development.
+# Exposes db port 5432 to host for direct psql access during development.
+# Do NOT use in production — keep this file out of CI/CD environments.
+services:
+  db:
+    ports:
+      - "5432:5432"

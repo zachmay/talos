@@ -1,0 +1,53 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: talos
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+      VECTOR_DIMENSIONS: "${VECTOR_DIMENSIONS:-1536}"
+    secrets:
+      - db_password
+      - mcp_password
+    networks:
+      - backend
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d talos"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  mcp:
+    build:
+      context: ./mcp
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      db:
+        condition: service_healthy
+    secrets:
+      - mcp_password
+
+  agent:
+    build:
+      context: ./agent
+    networks:
+      - frontend
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  pgdata:
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  mcp_password:
+    file: ./secrets/mcp_password.txt
