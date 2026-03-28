@@ -43,7 +43,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INF-03**: Credential injection via Docker secrets or env vars (no baked-in secrets)
 - [x] **INF-04**: Audit logging for all write operations
 - [x] **INF-05**: Backup and restore tooling for the DB
-- [ ] **INF-06**: Cloud-ready portable Docker images
+- [x] **INF-06**: Cloud-ready portable Docker images
 
 ### Privacy & Security
 
@@ -101,7 +101,7 @@ Requirements for initial release. Each maps to roadmap phases.
 | INF-03 | Phase 1 | Complete |
 | INF-04 | Phase 4 | Complete |
 | INF-05 | Phase 4 | Complete |
-| INF-06 | Phase 4 | Pending |
+| INF-06 | Phase 4 | Complete |
 | PRV-01 | Phase 5 | Pending |
 | PRV-02 | Phase 5 | Pending |
 | PRV-03 | Phase 5 | Pending |
