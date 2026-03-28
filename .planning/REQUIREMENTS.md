@@ -51,6 +51,14 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **PRV-02**: Any assumption impacting privacy or security is a blocking issue until documented and resolved
 - [ ] **PRV-03**: Operator knows at all times whether infrastructure is exposed to public/uncontrolled resources
 
+### Subagent Capability
+
+- [ ] **SUB-01**: Provider-agnostic local tool interface — spawn_subagent and collect_results registered as local tools, intercepted before MCP dispatch
+- [ ] **SUB-02**: Fire-and-collect coordination — parent spawns N subagents, collect_results blocks until all complete with batch-level timeout; failed subagents return individual errors without canceling siblings
+- [ ] **SUB-03**: Conversation manager — entrypoint delegates all state to ConversationManager; both readline and HTTP interfaces call handleInput() as I/O adapters
+- [ ] **SUB-04**: Profile-based capability control — AGENT.md frontmatter declares model, max_tokens, tool allowlist, can_spawn; conversation manager enforces per-subagent
+- [ ] **SUB-05**: Bundled profiles — base-agent (full access, can_spawn: true), research-agent (haiku, read-only), worker-agent (sonnet, read-only); ./talos profiles CLI command displays all profiles
+
 ## v2 Requirements
 
 ### Database
@@ -105,12 +113,17 @@ Requirements for initial release. Each maps to roadmap phases.
 | PRV-01 | Phase 5 | Pending |
 | PRV-02 | Phase 5 | Pending |
 | PRV-03 | Phase 5 | Pending |
+| SUB-01 | Phase 7 | Pending |
+| SUB-02 | Phase 7 | Pending |
+| SUB-03 | Phase 7 | Pending |
+| SUB-04 | Phase 7 | Pending |
+| SUB-05 | Phase 7 | Pending |
 
 **Coverage:**
-- v1 requirements: 29 total
-- Mapped to phases: 29
+- v1 requirements: 34 total
+- Mapped to phases: 34
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-27*
-*Last updated: 2026-03-27 after roadmap creation*
+*Last updated: 2026-03-28 after Phase 7 planning — added SUB-01 through SUB-05*

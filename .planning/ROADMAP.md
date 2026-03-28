@@ -122,11 +122,23 @@ Plans:
 ### Phase 7: Subagent Capability
 **Goal**: Enable agents to spawn and coordinate subagents for parallel and delegated task execution
 **Depends on**: Phase 6
-**Requirements**: TBD
-**Plans**: 0 plans
+**Requirements**: SUB-01, SUB-02, SUB-03, SUB-04, SUB-05
+**Success Criteria** (what must be TRUE):
+  1. Parent agent can call spawn_subagent with a profile name and task; subagent executes independently and returns a result
+  2. collect_results blocks until all active subagents complete (or batch timeout); partial failures return per-subagent errors without canceling siblings
+  3. Profile AGENT.md frontmatter controls model, token budget, and tool allowlist per subagent — subagents cannot exceed their declared capability
+  4. Subagents do not have spawn_subagent available (no nesting by default)
+  5. ./talos profiles displays a table of all discoverable profiles with model, token budget, and tool access
+**Plans**: 7 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 7 to break down)
+- [ ] 07-01-PLAN.md — Wave 0 test scaffold: failing stubs for local-tools, conversation-manager, prompt.ts extensions
+- [ ] 07-02-PLAN.md — local-tools.ts: LocalToolRegistry + createSpawnHandler + createCollectHandler
+- [ ] 07-03-PLAN.md — prompt.ts extension: discoverProfiles, buildSubagentGuidance, ProfileDef; base-agent frontmatter
+- [ ] 07-04-PLAN.md — agent.ts + claude.ts: AgentLoopOptions, local tool intercept, model/token/allowlist overrides
+- [ ] 07-05-PLAN.md — conversation-manager.ts: ConversationManager with profile registry, subagent batch, token rollup
+- [ ] 07-06-PLAN.md — entrypoint.ts refactor: delegates all state to ConversationManager
+- [ ] 07-07-PLAN.md — Bundled profiles (research-agent, worker-agent) + compose mounts + ./talos profiles CLI
 
 ## Progress
 
@@ -141,4 +153,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 4. Operations | 3/3 | Complete   | 2026-03-28 |
 | 5. Privacy and Compliance | 0/3 | Not started | - |
 | 6. Text UI Client | 0/6 | Not started | - |
-| 7. Subagent Capability | 0/0 | Not started | - |
+| 7. Subagent Capability | 0/7 | Not started | - |
