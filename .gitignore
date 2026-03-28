@@ -4,5 +4,7 @@ db/init/03-schema.sql
 .env
 *.log
 node_modules/
+dist/
+.test-tmp/
 .DS_Store
 backups/*.dump
