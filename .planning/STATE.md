@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-28T04:06:50.173Z"
-last_activity: 2026-03-28 -- Completed 03-01 Agent Project Scaffold
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-28T04:08:32Z"
+last_activity: 2026-03-28 -- Completed 03-02 Sandboxed Agent Container
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 17
-  completed_plans: 11
-  percent: 65
+  completed_plans: 12
+  percent: 71
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 3 of 5 (Agent Harness)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In Progress
-Last activity: 2026-03-28 -- Completed 03-01 Agent Project Scaffold
+Last activity: 2026-03-28 -- Completed 03-02 Sandboxed Agent Container
 
-Progress: [███████░░░] 65%
+Progress: [████████░░] 71%
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [███████░░░] 65%
 | Phase 02 P06 | 3min | 2 tasks | 7 files |
 | Phase 02 P07 | 2min | 2 tasks | 6 files |
 | Phase 03 P01 | 2min | 3 tasks | 7 files |
+| Phase 03 P02 | 4min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Progress: [███████░░░] 65%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
+- [Phase 03]: Self-contained provider Dockerfiles to avoid local image tag build-order coupling
+- [Phase 03]: Docker default seccomp v28.0.1 as standard sandbox profile
 - [Phase 03]: ts-jest ESM preset with node --experimental-vm-modules for Jest ESM support
 - [Phase 01]: Embedding API key uses plain text placeholder, deferred to Phase 2
 - [Phase 02]: Used dynamic await import().catch() pattern for RED test stubs
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T04:06:11Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-28T04:08:32Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
