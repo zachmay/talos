@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# ./talos — Talos operational CLI
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS="$SCRIPT_DIR/scripts"
+
+usage() {
+  cat <<EOF
+Usage: ./talos <command> [options]
+
+Commands:
+  backup                 Create a database backup
+  restore <file>         Restore from a backup file
+  audit                  Query audit log (--agent, --operation, --since, --until, --format, --limit)
+  health                 Run end-to-end health check
+  status                 Show service status
+  add-agent <name>       Provision a new agent identity
+
+Run './talos <command> --help' for command-specific options.
+EOF
+  exit 1
+}
+
+COMMAND="${1:-}"
+shift || true
+
+case "$COMMAND" in
+  backup)    exec "$SCRIPTS/backup.sh"    "$@" ;;
+  restore)   exec "$SCRIPTS/restore.sh"   "$@" ;;
+  audit)     exec "$SCRIPTS/audit.sh"     "$@" ;;
+  health)    exec "$SCRIPTS/health.sh"    "$@" ;;
+  status)    exec "$SCRIPTS/status.sh"    "$@" ;;
+  add-agent) exec "$SCRIPTS/add-agent.sh" "$@" ;;
+  *)         usage ;;
+esac
