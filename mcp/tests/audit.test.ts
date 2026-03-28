@@ -19,7 +19,7 @@ describe("Phase 4: withAudit middleware", () => {
     const fn = vi.fn().mockResolvedValue(fnResult);
 
     const result = await withAudit!(
-      mockClient,
+      mockClient as any,
       "agent-1",
       "insert",
       "00000000-0000-0000-0000-000000000001",
@@ -47,7 +47,7 @@ describe("Phase 4: withAudit middleware", () => {
     const fn = vi.fn().mockRejectedValue(new Error("DB_ERROR"));
 
     await expect(
-      withAudit!(mockClient, "agent-1", "delete", null, {}, fn)
+      withAudit!(mockClient as any, "agent-1", "delete", null, {}, fn)
     ).rejects.toThrow("DB_ERROR");
 
     // No audit insert
@@ -61,7 +61,7 @@ describe("Phase 4: withAudit middleware", () => {
 
     const details = { table: "entries" };
     await withAudit!(
-      mockClient,
+      mockClient as any,
       "agent-1",
       "update",
       "00000000-0000-0000-0000-000000000002",

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { withAgent } from "../db.js";
+import { withAudit } from "../audit.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 import { chunkText } from "../chunker.js";
 
@@ -57,6 +58,7 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
   // Write atomically
   const startMs = Date.now();
   const row = await withAgent(agentId, async (client) => {
+    // Insert entry first to get ID for audit trail
     const entryResult = await client.query(
       `INSERT INTO entries (agent_id, content, path, metadata)
        VALUES (current_setting('app.agent_id'), $1, $2, $3)
@@ -65,19 +67,23 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
     );
     const entry = entryResult.rows[0];
 
-    if (chunks.length > 0) {
-      const values: any[] = [];
-      const placeholders: string[] = [];
-      chunks.forEach((_, i) => {
-        const offset = i * 5;
-        placeholders.push(`($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5})`);
-        values.push(entry.id, i, chunks[i], JSON.stringify(vectors[i]), agentId);
-      });
-      await client.query(
-        `INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ${placeholders.join(", ")}`,
-        values
-      );
-    }
+    // Wrap chunk inserts + audit in withAudit (same transaction)
+    await withAudit(client, agentId, "insert", entry.id, {}, async () => {
+      if (chunks.length > 0) {
+        const values: any[] = [];
+        const placeholders: string[] = [];
+        chunks.forEach((_, i) => {
+          const offset = i * 5;
+          placeholders.push(`($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5})`);
+          values.push(entry.id, i, chunks[i], JSON.stringify(vectors[i]), agentId);
+        });
+        await client.query(
+          `INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ${placeholders.join(", ")}`,
+          values
+        );
+      }
+      return null;
+    });
 
     return entry;
   });

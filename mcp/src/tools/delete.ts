@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { withAgent } from "../db.js";
+import { withAudit } from "../audit.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 interface ToolResult {
@@ -25,14 +26,16 @@ export async function handleDelete(params: DeleteParams): Promise<ToolResult> {
 
   try {
     const deletedId = await withAgent(agentId, async (client) => {
-      const result = await client.query(
-        "DELETE FROM entries WHERE id = $1 RETURNING id",
-        [id]
-      );
-      if (result.rowCount === 0) {
-        throw new Error("NOT_FOUND");
-      }
-      return result.rows[0].id;
+      return withAudit(client, agentId, "delete", id, {}, async () => {
+        const result = await client.query(
+          "DELETE FROM entries WHERE id = $1 RETURNING id",
+          [id]
+        );
+        if (result.rowCount === 0) {
+          throw new Error("NOT_FOUND");
+        }
+        return result.rows[0].id;
+      });
     });
 
     return {
