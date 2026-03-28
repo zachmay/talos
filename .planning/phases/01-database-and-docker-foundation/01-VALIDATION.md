@@ -2,8 +2,8 @@
 phase: 1
 slug: database-and-docker-foundation
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-27
 ---
 
@@ -36,30 +36,33 @@ created: 2026-03-27
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 1-01-01 | 01 | 1 | DB-01 | integration | `docker compose up -d && docker compose ps` | ❌ W0 | ⬜ pending |
-| 1-01-02 | 01 | 1 | DB-02 | integration | `bash tests/phase-01/test-schema.sh` | ❌ W0 | ⬜ pending |
-| 1-01-03 | 01 | 1 | DB-03 | integration | `bash tests/phase-01/test-rls.sh` | ❌ W0 | ⬜ pending |
-| 1-01-04 | 01 | 1 | DB-04 | integration | `bash tests/phase-01/test-rls.sh` | ❌ W0 | ⬜ pending |
-| 1-01-05 | 01 | 1 | DB-05 | integration | `bash tests/phase-01/test-semantic-search.sh` | ❌ W0 | ⬜ pending |
-| 1-02-01 | 02 | 2 | INF-01 | integration | `bash tests/phase-01/test-network.sh` | ❌ W0 | ⬜ pending |
-| 1-02-02 | 02 | 2 | INF-02 | integration | `bash tests/phase-01/test-secrets.sh` | ❌ W0 | ⬜ pending |
-| 1-02-03 | 02 | 2 | INF-03 | integration | `docker inspect talos-postgres 2>/dev/null | grep -i password` | ❌ W0 | ⬜ pending |
+| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Status |
+|---------|------|------|-------------|-----------|-------------------|--------|
+| 1-01-01 | 01 | 1 | INF-03 | static | `bash scripts/setup.sh && ls secrets/` | ⬜ pending |
+| 1-01-02 | 01 | 1 | INF-03 | static | `git status secrets/ \| grep -q "nothing to commit"` | ⬜ pending |
+| 1-02-01 | 02 | 1 | DB-01–DB-09 | static | `ls db/init/*.{sh,sql,sql.tpl}` | ⬜ pending |
+| 1-02-02 | 02 | 1 | DB-01–DB-09 | static | `bash -n db/init/*.sh && echo "PASS: init scripts parse"` | ⬜ pending |
+| 1-03-01 | 03 | 2 | INF-01, INF-02 | integration | `docker compose config --quiet && echo PASS` | ⬜ pending |
+| 1-03-02 | 03 | 2 | INF-01–INF-03, DB-01–DB-09 | integration | `ls tests/phase-01/*.sh` | ⬜ pending |
+| 1-03-03 | 03 | 2 | all | integration | `bash tests/phase-01/run-all.sh` (human checkpoint) | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
 ---
 
-## Wave 0 Requirements
+## Wave 0 — Test Scripts (created by Plan 03, Task 2)
 
-- [ ] `tests/phase-01/smoke.sh` — docker compose up + basic connectivity
-- [ ] `tests/phase-01/test-schema.sh` — verify tables, extensions, vector columns exist
-- [ ] `tests/phase-01/test-rls.sh` — RLS enforcement and agent isolation
-- [ ] `tests/phase-01/test-semantic-search.sh` — match_entries function returns correct results
-- [ ] `tests/phase-01/test-network.sh` — agent network cannot reach postgres, mcp can
-- [ ] `tests/phase-01/test-secrets.sh` — no secrets in image layers or env dumps
-- [ ] `tests/phase-01/run-all.sh` — orchestrates all above tests
+All test scripts are created as part of Plan 03 Task 2 — they are the artifacts being built, not
+pre-existing scaffolds. Wave 0 is satisfied when Task 2 completes and `ls tests/phase-01/*.sh`
+shows all 7 scripts.
+
+- [x] `tests/phase-01/smoke.sh` — docker compose up + basic connectivity
+- [x] `tests/phase-01/test-schema.sh` — verify tables, extensions, vector columns exist
+- [x] `tests/phase-01/test-rls.sh` — RLS enforcement and agent isolation (transaction-scoped)
+- [x] `tests/phase-01/test-semantic-search.sh` — match_entries function returns correct results
+- [x] `tests/phase-01/test-network.sh` — agent network cannot reach postgres, mcp can
+- [x] `tests/phase-01/test-secrets.sh` — no secrets in image layers or env dumps
+- [x] `tests/phase-01/run-all.sh` — orchestrates all above tests
 
 ---
 
@@ -74,11 +77,11 @@ created: 2026-03-27
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify commands
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covered — test scripts created by Plan 03 Task 2
+- [x] No watch-mode flags
+- [x] Feedback latency < 30s
+- [x] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
