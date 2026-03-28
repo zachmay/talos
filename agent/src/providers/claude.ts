@@ -1,95 +1,237 @@
+import fs from "node:fs";
 import Anthropic from "@anthropic-ai/sdk";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 
 const MAX_TURNS = 50;
+// Context limits by model family (input tokens)
+const MODEL_CONTEXT_LIMITS: Record<string, number> = {
+  "claude-opus-4-6": 200_000,
+  "claude-sonnet-4-6": 200_000,
+  "claude-haiku-4-5-20251001": 200_000,
+};
+const DEFAULT_CONTEXT_LIMIT = 200_000;
+const COMPRESS_THRESHOLD = 0.8; // compress at 80% of context limit
+
+export interface LoopResult {
+  text: string;
+  inputTokens: number;
+  outputTokens: number;
+  contextLimit: number;
+  turns: number;
+}
+
+interface McpToolDef {
+  name: string;
+  description?: string;
+  inputSchema: Record<string, unknown>;
+}
+
+function loadApiKey(): string {
+  try {
+    return fs.readFileSync("/run/secrets/agent_llm_key", "utf8").trim();
+  } catch {
+    return "";
+  }
+}
+
+async function connectMcp(mcpServerUrl: string, apiKey: string): Promise<Client> {
+  const transport = new StreamableHTTPClientTransport(new URL(mcpServerUrl), {
+    requestInit: {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+    },
+  });
+  const client = new Client({ name: "talos-agent", version: "0.1.0" });
+  await client.connect(transport);
+  return client;
+}
+
+async function listMcpTools(mcp: Client): Promise<McpToolDef[]> {
+  const result = await mcp.listTools();
+  return result.tools.map((t) => ({
+    name: t.name,
+    description: t.description,
+    inputSchema: t.inputSchema as Record<string, unknown>,
+  }));
+}
+
+async function callMcpTool(
+  mcp: Client,
+  name: string,
+  args: Record<string, unknown>
+): Promise<string> {
+  const result = await mcp.callTool({ name, arguments: args });
+  const parts = (result.content as Array<{ type: string; text?: string }>)
+    .filter((c) => c.type === "text" && c.text)
+    .map((c) => c.text!);
+  return parts.join("\n") || JSON.stringify(result.content);
+}
+
+async function compressHistory(
+  anthropic: Anthropic,
+  history: Anthropic.MessageParam[],
+  model: string
+): Promise<void> {
+  // Take the first half of history for summarization, keep recent turns intact
+  const splitPoint = Math.floor(history.length / 2);
+  if (splitPoint < 2) return; // not enough to compress
+
+  const oldMessages = history.slice(0, splitPoint);
+
+  // Extract text content from old messages for summarization
+  const transcript = oldMessages.map((msg) => {
+    const content = typeof msg.content === "string"
+      ? msg.content
+      : (msg.content as Array<{ type: string; text?: string }>)
+          .filter((b) => b.type === "text" && b.text)
+          .map((b) => b.text)
+          .join("");
+    return `${msg.role}: ${content}`;
+  }).filter((line) => line.length > 6).join("\n");
+
+  if (!transcript.trim()) return;
+
+  const summaryResponse = await anthropic.messages.create({
+    model,
+    max_tokens: 2048,
+    system: "Summarize this conversation excerpt concisely. Preserve: key decisions, current task state, important facts learned, and any commitments made. Omit pleasantries and redundant detail.",
+    messages: [{ role: "user", content: transcript }],
+  });
+
+  const summary = summaryResponse.content
+    .filter((b): b is Anthropic.TextBlock => b.type === "text")
+    .map((b) => b.text)
+    .join("");
+
+  // Replace old messages with summary, keep recent messages
+  const recentMessages = history.slice(splitPoint);
+  history.length = 0;
+  history.push(
+    { role: "user", content: `[Prior conversation summary]: ${summary}` },
+    { role: "assistant", content: "Understood, I have the context from our previous conversation. Let's continue." },
+    ...recentMessages
+  );
+
+  process.stderr.write(`[context] Compressed ${splitPoint} messages into summary. ${history.length} messages remain.\n`);
+}
 
 /**
- * Agentic loop using Anthropic SDK MCP connector beta.
- * The connector handles MCP tool calls server-side.
- *
- * NOTE: The MCP connector may require HTTPS URLs. If mcpServerUrl starts with
- * http://, the connector may reject it with a 400 validation error. If this
- * occurs at runtime, switch to @modelcontextprotocol/sdk StreamableHttpClientTransport.
+ * Agentic loop using local MCP client. The agent connects directly to MCP
+ * servers on the Docker network. Only text and tool results go to the Anthropic API.
  */
 export async function runClaudeLoop(
   systemPrompt: string,
   userInput: string,
   mcpServerUrl: string,
-  agentApiKey: string
-): Promise<string> {
-  const anthropic = new Anthropic({
-    apiKey: process.env.AGENT_LLM_API_KEY,
-  });
-
-  if (mcpServerUrl.startsWith("http://")) {
-    process.stderr.write(
-      `[warn] MCP server URL is HTTP (${mcpServerUrl}). The Anthropic MCP connector may require HTTPS.\n`
-    );
+  agentApiKey: string,
+  conversationHistory: Anthropic.MessageParam[]
+): Promise<LoopResult> {
+  const apiKey = loadApiKey();
+  if (!apiKey) {
+    return { text: "[error]: No API key found. Mount agent_llm_key secret.", inputTokens: 0, outputTokens: 0, contextLimit: 0, turns: 0 };
   }
 
-  const messages: Anthropic.MessageParam[] = [
-    { role: "user", content: userInput },
-  ];
+  const anthropic = new Anthropic({ apiKey });
+  const model = process.env.AGENT_LLM_MODEL ?? "claude-sonnet-4-6";
 
-  for (let turn = 0; turn < MAX_TURNS; turn++) {
-    const response = await (anthropic.beta.messages.create as Function)({
-      model: process.env.AGENT_LLM_MODEL ?? "claude-sonnet-4-6",
-      max_tokens: 8192,
-      system: systemPrompt,
-      messages,
-      mcp_servers: [
-        {
-          type: "url",
-          url: mcpServerUrl,
-          name: "talos-mcp",
-          authorization_token: agentApiKey,
-        },
-      ],
-      tools: [{ type: "mcp_toolset", mcp_server_name: "talos-mcp" }],
-      betas: ["mcp-client-2025-11-20"],
-    });
+  // Connect to MCP and discover tools
+  let mcp: Client;
+  let mcpTools: McpToolDef[];
+  const contextLimit = MODEL_CONTEXT_LIMITS[model] ?? DEFAULT_CONTEXT_LIMIT;
+  let lastInputTokens = 0;
+  let totalOutputTokens = 0;
+  let turnCount = 0;
 
-    // Push assistant response to conversation
-    messages.push({ role: "assistant", content: response.content });
-
-    if (response.stop_reason === "end_turn") {
-      // Extract text blocks and return
-      const text = response.content
-        .filter((b: { type: string }) => b.type === "text")
-        .map((b: { type: string; text: string }) => b.text)
-        .join("");
-      return text;
-    }
-
-    if (response.stop_reason === "max_tokens") {
-      const text = response.content
-        .filter((b: { type: string }) => b.type === "text")
-        .map((b: { type: string; text: string }) => b.text)
-        .join("");
-      return text + "\n[warn]: max_tokens reached";
-    }
-
-    // For tool_use: construct tool_result blocks BEFORE any text (Pitfall 5)
-    const toolUseBlocks = response.content.filter(
-      (b: { type: string }) => b.type === "tool_use"
-    );
-
-    if (toolUseBlocks.length > 0) {
-      // MCP connector handles tool execution server-side
-      // The next API call will automatically include tool results
-      // We just need to continue the loop
-      continue;
-    }
-
-    // Unknown stop reason - break to avoid infinite loop
-    process.stderr.write(
-      `[warn] Unexpected stop_reason: ${response.stop_reason}, ending loop.\n`
-    );
-    const fallbackText = response.content
-      .filter((b: { type: string }) => b.type === "text")
-      .map((b: { type: string; text: string }) => b.text)
-      .join("");
-    return fallbackText || "[error]: Agent loop ended unexpectedly.";
+  try {
+    mcp = await connectMcp(mcpServerUrl, agentApiKey);
+    mcpTools = await listMcpTools(mcp);
+    process.stderr.write(`[mcp] Connected. ${mcpTools.length} tools available.\n`);
+  } catch (err) {
+    return { text: `[error]: Failed to connect to MCP server at ${mcpServerUrl}: ${err}`, inputTokens: 0, outputTokens: 0, contextLimit, turns: 0 };
   }
 
-  return "[error]: Agent loop exceeded maximum turns (50).";
+  // Convert MCP tools to Anthropic tool format
+  const tools: Anthropic.Tool[] = mcpTools.map((t) => ({
+    name: t.name,
+    description: t.description ?? "",
+    input_schema: t.inputSchema as Anthropic.Tool.InputSchema,
+  }));
+
+  // Append user message to shared conversation history
+  conversationHistory.push({ role: "user", content: userInput });
+
+  try {
+    for (let turn = 0; turn < MAX_TURNS; turn++) {
+      const response = await anthropic.messages.create({
+        model,
+        max_tokens: parseInt(process.env.AGENT_MAX_TOKENS ?? "16384", 10),
+        system: systemPrompt,
+        messages: conversationHistory,
+        tools: tools.length > 0 ? tools : undefined,
+      });
+
+      conversationHistory.push({ role: "assistant", content: response.content });
+
+      lastInputTokens = response.usage.input_tokens;
+      totalOutputTokens += response.usage.output_tokens;
+      turnCount++;
+      if (response.usage.input_tokens > contextLimit * COMPRESS_THRESHOLD) {
+        process.stderr.write(
+          `[context] ${response.usage.input_tokens}/${contextLimit} tokens used (${Math.round(response.usage.input_tokens / contextLimit * 100)}%). Compressing...\n`
+        );
+        await compressHistory(anthropic, conversationHistory, model);
+      }
+
+      if (response.stop_reason === "end_turn") {
+        const text = response.content
+          .filter((b): b is Anthropic.TextBlock => b.type === "text")
+          .map((b) => b.text)
+          .join("");
+        return { text, inputTokens: lastInputTokens, outputTokens: totalOutputTokens, contextLimit, turns: turnCount };
+      }
+
+      if (response.stop_reason === "max_tokens") {
+        // Continue the conversation — ask the model to keep going
+        conversationHistory.push({ role: "user", content: "Continue from where you left off." });
+        continue;
+      }
+
+      if (response.stop_reason === "tool_use") {
+        const toolUseBlocks = response.content.filter(
+          (b): b is Anthropic.ToolUseBlock => b.type === "tool_use"
+        );
+
+        const toolResults: Anthropic.ToolResultBlockParam[] = [];
+        for (const block of toolUseBlocks) {
+          try {
+            const result = await callMcpTool(mcp, block.name, block.input as Record<string, unknown>);
+            toolResults.push({ type: "tool_result", tool_use_id: block.id, content: result });
+          } catch (err) {
+            toolResults.push({
+              type: "tool_result",
+              tool_use_id: block.id,
+              content: `[error]: ${err}`,
+              is_error: true,
+            });
+          }
+        }
+
+        conversationHistory.push({ role: "user", content: toolResults });
+        continue;
+      }
+
+      process.stderr.write(`[warn] Unexpected stop_reason: ${response.stop_reason}, ending loop.\n`);
+      const fallbackText = response.content
+        .filter((b): b is Anthropic.TextBlock => b.type === "text")
+        .map((b) => b.text)
+        .join("");
+      return { text: fallbackText || "[error]: Agent loop ended unexpectedly.", inputTokens: lastInputTokens, outputTokens: totalOutputTokens, contextLimit, turns: turnCount };
+    }
+
+    return { text: "[error]: Agent loop exceeded maximum turns (50).", inputTokens: lastInputTokens, outputTokens: totalOutputTokens, contextLimit, turns: turnCount };
+  } finally {
+    await mcp.close().catch(() => {});
+  }
 }

@@ -9,6 +9,8 @@ services:
     secrets:
       - db_password
       - mcp_password
+    ports:
+      - "${DB_PORT:-5432}:5432"
     networks:
       - backend
     volumes:
@@ -74,9 +76,10 @@ services:
       - AGENT_LLM_PROVIDER=${AGENT_LLM_PROVIDER:-claude}
       - AGENT_LLM_MODEL=${AGENT_LLM_MODEL:-claude-sonnet-4-6}
       - MCP_SERVER_URL=${MCP_SERVER_URL:-http://mcp:3000/mcp}
+      - AGENT_MAX_TOKENS=${AGENT_MAX_TOKENS:-16384}
     secrets:
       - agent_llm_key
-      - agent_api_key
+      - agent_keys
     deploy:
       resources:
         limits:
@@ -120,5 +123,3 @@ secrets:
     file: ./secrets/embedding_api_key.txt
   agent_llm_key:
     file: ./secrets/agent_llm_key.txt
-  agent_api_key:
-    file: ./secrets/agent_api_key.txt

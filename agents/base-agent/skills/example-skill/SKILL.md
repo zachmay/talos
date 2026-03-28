@@ -7,10 +7,14 @@ description: Demonstrates the skill system by echoing arguments back to the call
 
 This skill demonstrates the Talos skill system. It echoes its arguments.
 
-## Usage
+## Scripts
 
-`node /app/agent/skills/example-skill/run.js <message>`
+### run.js
+Echoes the provided arguments back to stdout.
 
-## Output
+```bash
+node /app/agent/skills/example-skill/run.js <message>
+```
 
-Prints: `[example-skill]: <message>`
+**Args:** Any text to echo back
+**Output:** `[example-skill]: <message>`

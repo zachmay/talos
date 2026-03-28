@@ -1,11 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { fileURLToPath } from "node:url";
-import { buildSkillIndex, executeSkill } from "../skills.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { buildSkillIndex } from "../skills.js";
 
 function makeTmpDir(): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), "skills-test-"));
@@ -76,59 +72,3 @@ describe("skills: skill index building", () => {
   });
 });
 
-describe("skills: skill execution", () => {
-  test("executeSkill runs node run.js and returns stdout", async () => {
-    const dir = makeTmpDir();
-    const skillDir = path.join(dir, "echo-skill");
-    fs.mkdirSync(skillDir);
-    fs.writeFileSync(
-      path.join(skillDir, "run.js"),
-      'process.stdout.write("hello world");',
-      "utf8"
-    );
-    const result = await executeSkill("echo-skill", [], dir);
-    expect(result).toBe("hello world");
-  });
-
-  test("executeSkill returns error message when script exits non-zero", async () => {
-    const dir = makeTmpDir();
-    const skillDir = path.join(dir, "fail-skill");
-    fs.mkdirSync(skillDir);
-    fs.writeFileSync(
-      path.join(skillDir, "run.js"),
-      "process.exit(1);",
-      "utf8"
-    );
-    const result = await executeSkill("fail-skill", [], dir);
-    expect(result).toMatch(/^\[error\]:/);
-  });
-
-  test("executeSkill enforces 30s timeout and returns timeout error message", async () => {
-    const dir = makeTmpDir();
-    const skillDir = path.join(dir, "slow-skill");
-    fs.mkdirSync(skillDir);
-    fs.writeFileSync(
-      path.join(skillDir, "run.js"),
-      "setTimeout(() => {}, 60000);",
-      "utf8"
-    );
-    // Override timeout to 1s for test speed
-    const result = await executeSkill("slow-skill", [], dir, 1000);
-    expect(result).toMatch(/\[error\]:.*timed out/i);
-  }, 10000);
-
-  test("executeSkill does not use shell:true (uses execFile, not exec)", () => {
-    const src = fs.readFileSync(
-      path.join(__dirname, "..", "skills.ts"),
-      "utf8"
-    );
-    expect(src).toContain("execFile");
-    // Ensure no standalone 'exec(' that isn't 'execFile('
-    const lines = src.split("\n");
-    for (const line of lines) {
-      if (line.includes("exec(") && !line.includes("execFile")) {
-        fail("Found 'exec(' without 'execFile' — potential shell injection risk");
-      }
-    }
-  });
-});

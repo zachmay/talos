@@ -12,6 +12,9 @@ COPY package*.json ./
 RUN npm ci --ignore-scripts --cache /tmp/npm-cache && rm -rf /tmp/npm-cache
 
 COPY src/ ./src/
+COPY tsconfig.json ./
+
+RUN npx tsc && rm -rf src/ tsconfig.json
 
 RUN mkdir -p /app/agent /app/workspace /tmp && chown agent:agent /app/agent /app/workspace
 
@@ -19,4 +22,4 @@ ENV AGENT_LLM_PROVIDER=openrouter
 
 USER agent
 
-ENTRYPOINT ["node", "src/entrypoint.js"]
+ENTRYPOINT ["node", "dist/entrypoint.js"]

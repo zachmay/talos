@@ -53,19 +53,6 @@ else
     echo "  Created agent_llm_key.txt"
 fi
 
-# Agent API key (for MCP authentication)
-if [[ -f "$SECRETS_DIR/agent_api_key.txt" ]]; then
-    echo "  Skipping agent_api_key.txt (already exists)"
-else
-    AGENT_API_KEY=$(openssl rand -hex 32)
-    printf '%s' "$AGENT_API_KEY" > "$SECRETS_DIR/agent_api_key.txt"
-    chmod 600 "$SECRETS_DIR/agent_api_key.txt"
-    echo "  Generated agent_api_key.txt"
-    echo ""
-    echo "  NOTE: Add the agent_api_key value to mcp/config/agent_keys.json"
-    echo "        as a new entry for the 'base-agent' identity."
-fi
-
 echo ""
 echo "Done. Run 'docker compose up' to start services."
-echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json, agent_llm_key.txt, agent_api_key.txt"
+echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json, agent_llm_key.txt"

@@ -16,7 +16,7 @@ echo ""
 
 # Test 1 — Read-only rootfs
 echo -n "Test 1: Read-only rootfs... "
-OUTPUT=$(docker compose run --rm agent sh -c "touch /test-rw 2>&1 || true" 2>/dev/null)
+OUTPUT=$(docker compose run --rm --no-deps --entrypoint sh agent -c "touch /test-rw 2>&1 || true" 2>/dev/null)
 if echo "$OUTPUT" | grep -q "Read-only\|Permission denied"; then
   echo "PASS: rootfs is read-only"
 else
@@ -26,7 +26,7 @@ fi
 
 # Test 2 — tmpfs workspace is writable
 echo -n "Test 2: Writable workspace... "
-if docker compose run --rm agent sh -c "touch /app/workspace/test-w && echo OK" 2>/dev/null | grep -q "OK"; then
+if docker compose run --rm --no-deps --entrypoint sh agent -c "touch /app/workspace/test-w && echo OK" 2>/dev/null | grep -q "OK"; then
   echo "PASS: workspace writable"
 else
   echo "FAIL: workspace not writable"
@@ -35,16 +35,26 @@ fi
 
 # Test 3 — No privilege escalation
 echo -n "Test 3: su blocked... "
-OUTPUT=$(docker compose run --rm agent sh -c "su root 2>&1 || true" 2>/dev/null)
+OUTPUT=$(docker compose run --rm --no-deps --entrypoint sh agent -c "su root 2>&1 || true" 2>/dev/null)
 if echo "$OUTPUT" | grep -q "Permission\|not found\|su:\|appuser"; then
   echo "PASS: su blocked"
 else
   echo "WARN: su may be available"
 fi
 
-# Test 4 — Non-root user
-echo -n "Test 4: Non-root user... "
-if docker compose run --rm agent id 2>/dev/null | grep -q "uid=0"; then
+# Test 4 — Agent profile mount is read-only
+echo -n "Test 4: Agent profile read-only... "
+OUTPUT=$(docker compose run --rm --no-deps --entrypoint sh agent -c "touch /app/agent/test-rw 2>&1 || true" 2>/dev/null)
+if echo "$OUTPUT" | grep -q "Read-only\|Permission denied"; then
+  echo "PASS: agent profile is read-only"
+else
+  echo "FAIL: agent profile is writable"
+  FAILURES=$((FAILURES + 1))
+fi
+
+# Test 5 — Non-root user
+echo -n "Test 5: Non-root user... "
+if docker compose run --rm --no-deps --entrypoint sh agent -c "id" 2>/dev/null | grep -q "uid=0"; then
   echo "FAIL: running as root"
   FAILURES=$((FAILURES + 1))
 else

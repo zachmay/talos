@@ -1,10 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 import yaml from "js-yaml";
-
-const execFileAsync = promisify(execFile);
 
 interface SkillMeta {
   name: string;
@@ -36,37 +32,4 @@ export function buildSkillIndex(skillsDir: string): string {
   }
 
   return skills.map((s) => `- ${s.name}: ${s.description}`).join("\n");
-}
-
-/**
- * Execute a skill script as a child process with timeout and output capture.
- * Uses execFile (not exec) to avoid shell injection.
- *
- * @param skillName - Name of the skill directory
- * @param args - Arguments to pass to the script
- * @param skillsBaseDir - Base directory containing skill directories (default: /app/agent/skills)
- * @param timeout - Timeout in ms (default: 30000)
- */
-export async function executeSkill(
-  skillName: string,
-  args: string[],
-  skillsBaseDir: string = "/app/agent/skills",
-  timeout: number = 30_000
-): Promise<string> {
-  const scriptPath = path.join(skillsBaseDir, skillName, "run.js");
-
-  try {
-    const { stdout, stderr } = await execFileAsync(
-      "node",
-      [scriptPath, ...args],
-      { timeout, maxBuffer: 1024 * 512 }
-    );
-    return stdout + (stderr ? `\n[stderr]: ${stderr}` : "");
-  } catch (err: unknown) {
-    const e = err as { killed?: boolean; signal?: string; message?: string };
-    if (e.killed || e.signal === "SIGTERM") {
-      return `[error]: Skill ${skillName} timed out after 30s`;
-    }
-    return `[error]: ${e.message ?? "Unknown error"}`;
-  }
 }
