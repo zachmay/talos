@@ -123,3 +123,79 @@ Talos uses two Docker networks to enforce isolation:
 The MCP container bridges both networks: it receives tool calls from the agent on the frontend network and executes queries against Postgres on the backend network, using the restricted `mcp_service` role with RLS enforced.
 
 **Finding:** The database port is published to the host via `"${DB_PORT:-5432}:5432"`. Docker binds this to `0.0.0.0` by default, making Postgres accessible on all host interfaces. For production deployments, bind to `127.0.0.1:5432:5432` or remove the port mapping entirely.
+
+---
+
+## 3. Security Guarantees
+
+Each guarantee below is annotated with a `[CHECK: tag]` that maps to a verification function in `scripts/security-audit.sh`.
+
+| Guarantee | CHECK Tag | How Verified |
+|-----------|-----------|--------------|
+| RLS enforced on entries table | `[CHECK: rls-entries]` | `SELECT rowsecurity FROM pg_tables WHERE tablename='entries'` returns `t` |
+| RLS enforced on audit_log table | `[CHECK: rls-audit-log]` | `SELECT rowsecurity FROM pg_tables WHERE tablename='audit_log'` returns `t` |
+| Non-superuser DB role for MCP | `[CHECK: mcp-role]` | `SELECT rolsuper FROM pg_roles WHERE rolname='mcp_service'` returns `f` |
+| Agent cannot reach DB network | `[CHECK: agent-network-isolation]` | Agent container is not connected to the backend network |
+| Agent rootfs is read-only | `[CHECK: agent-readonly-fs]` | `docker inspect` agent `HostConfig.ReadonlyRootfs` = `true` |
+| Agent has no-new-privileges | `[CHECK: agent-no-new-privs]` | `docker inspect` agent `SecurityOpt` contains `no-new-privileges:true` |
+| Agent has seccomp profile | `[CHECK: agent-seccomp]` | `docker inspect` agent `SecurityOpt` contains seccomp profile path |
+| Agent capabilities dropped | `[CHECK: agent-cap-drop]` | `docker inspect` agent `CapDrop` contains `ALL` |
+| Credentials as Docker secrets | `[CHECK: secrets-as-files]` | `/run/secrets/` directory exists inside mcp and agent containers |
+| Agent resource limits enforced | `[CHECK: agent-resource-limits]` | `docker inspect` agent `HostConfig` `NanoCpus > 0` and `Memory > 0` |
+| Audit trigger active | `[CHECK: audit-trigger]` | `audit_log` table exists and has rows after a write operation |
+| MCP requires bearer token | `[CHECK: mcp-bearer-auth]` | Request without `Authorization` header returns HTTP 401 |
+
+---
+
+## 4. External Callout Inventory
+
+Every network call that leaves a container is documented below. Operators can use this table to configure firewalls, evaluate data exposure, and plan air-gapped deployments.
+
+| Container | Destination | Host | Port | Protocol | Purpose | Trigger | Data Sent | Optional | How to Disable |
+|-----------|-------------|------|------|----------|---------|---------|-----------|----------|----------------|
+| mcp | OpenRouter embedding | openrouter.ai | 443 | HTTPS | Embedding generation | Any insert or update tool call | Text content to embed (chunks <= CHUNK_SIZE chars) | Yes | Set `EMBEDDING_PROVIDER=ollama` |
+| mcp | OpenAI embedding | api.openai.com | 443 | HTTPS | Embedding generation | Any insert or update tool call | Text content to embed (chunks <= CHUNK_SIZE chars) | Yes | Set `EMBEDDING_PROVIDER=ollama` |
+| mcp | Ollama (local) | OLLAMA_BASE_URL (configurable) | configurable | HTTP | Local embedding generation | Any insert or update tool call | Text content to embed | No (self-hosted) | N/A -- this IS the local option |
+| agent | Anthropic LLM | api.anthropic.com | 443 | HTTPS | LLM inference (reasoning + tool selection) | Every agent turn | Full conversation history, system prompt, tool definitions | Partial -- only Claude implemented; other providers could be added | No drop-in replacement implemented; requires code changes |
+| agent | MCP server (internal) | mcp (Docker DNS) | 3000 | HTTP | Tool execution | Agent tool use blocks | Tool name + arguments | No -- required for agent function | N/A |
+
+### What Is NOT Sent Externally
+
+- Raw Postgres query results
+- Database contents (only the text-to-embed is sent to embedding providers)
+- Agent API keys or secrets
+- Audit log data
+- Conversation metadata outside the LLM API call
+
+### Air-Gapped Operation
+
+Set `EMBEDDING_PROVIDER=ollama` and configure `OLLAMA_BASE_URL` to point to a local Ollama instance. This eliminates all embedding-related external calls.
+
+**Caveat:** No local LLM provider is implemented for the agent container. Only Anthropic (cloud) is available today. Fully air-gapped LLM inference requires a code addition to support a local provider.
+
+---
+
+## 5. Open Security Questions
+
+These are unresolved assumptions. Deploy at your own risk until each is addressed. Resolved items are removed from this section.
+
+**[BLOCKING] 1. DB port exposure**
+The `docker-compose.yml` ports mapping `"${DB_PORT:-5432}:5432"` binds Postgres to `0.0.0.0` by default. Any host on the network can connect to the database if no firewall is in place. Recommend binding to `127.0.0.1:${DB_PORT:-5432}:5432` for production deployments.
+
+**[BLOCKING] 2. Seccomp profile strength**
+The seccomp profile (`agent/seccomp-standard.json`) is described as the Docker default v28.0.1 profile but has not been independently verified against a hardened or minimal profile. An audit comparing the allowed syscalls against actual agent requirements is needed.
+
+**[BLOCKING] 3. gVisor availability**
+The `agent-strict` sandbox profile specifies `runtime: runsc`, which requires gVisor to be installed on the host. No installation check or startup verification exists. If gVisor is absent, Docker will fail to start the container with an opaque error.
+
+**[BLOCKING] 4. Anthropic embedding stub not disabled**
+The file `mcp/src/providers/anthropic.ts` throws at runtime. An operator setting `EMBEDDING_PROVIDER=anthropic` will get a silent failure on the first embed call, not a startup error. This should either be removed or converted to a startup-time validation error.
+
+**[BLOCKING] 5. Agent outbound not restricted**
+The frontend Docker network has no egress filtering. The agent container can reach any internet host, not just `api.anthropic.com`. A compromised agent could exfiltrate data to arbitrary endpoints. Network policies or firewall rules should restrict outbound traffic to known API hosts.
+
+**[BLOCKING] 6. MCP not TLS-terminated**
+Communication between the agent and MCP containers uses plain HTTP on the frontend Docker network. This is acceptable for Docker-internal traffic under normal conditions, but if network segmentation fails or the frontend network is bridged to an external interface, traffic is unencrypted.
+
+**[BLOCKING] 7. DB authentication state**
+The `pg_hba.conf` configuration uses trust authentication for local connections. The exact final state of `pg_hba.conf` after all init scripts run has not been fully audited. An explicit audit of the authentication configuration is needed to confirm no unintended access paths exist.
