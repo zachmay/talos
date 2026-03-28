@@ -21,11 +21,13 @@ CREATE OR REPLACE FUNCTION match_entries(
     query_embedding   VECTOR,
     match_threshold   FLOAT   DEFAULT 0.7,
     match_count       INT     DEFAULT 10,
-    filter_metadata   JSONB   DEFAULT NULL
+    filter_metadata   JSONB   DEFAULT NULL,
+    filter_path       TEXT[]  DEFAULT NULL
 )
 RETURNS TABLE (
     id          UUID,
     content     TEXT,
+    path        TEXT[],
     metadata    JSONB,
     agent_id    TEXT,
     similarity  FLOAT
@@ -37,6 +39,7 @@ BEGIN
     SELECT DISTINCT ON (e.id)
         e.id,
         e.content,
+        e.path,
         e.metadata,
         e.agent_id,
         (1 - (c.embedding <=> query_embedding))::FLOAT AS similarity
@@ -44,6 +47,7 @@ BEGIN
     JOIN entries e ON c.entry_id = e.id
     WHERE (1 - (c.embedding <=> query_embedding)) >= match_threshold
       AND (filter_metadata IS NULL OR e.metadata @> filter_metadata)
+      AND (filter_path IS NULL OR e.path @> filter_path)
     ORDER BY e.id, c.embedding <=> query_embedding
     LIMIT match_count;
 END;

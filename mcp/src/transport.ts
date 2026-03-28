@@ -65,8 +65,9 @@ app.post("/mcp", originGuard, authMiddleware, async (req: Request, res: Response
 
   const server = createServer(agentId);
   await server.connect(transport);
+  await transport.handleRequest(req, res, req.body);
 
-  // Store session after connect so sessionId is assigned
+  // Store session after handleRequest — sessionId is assigned during first request
   const newSessionId = transport.sessionId!;
   sessions.set(newSessionId, { transport });
 
@@ -76,7 +77,6 @@ app.post("/mcp", originGuard, authMiddleware, async (req: Request, res: Response
     log("info", "session-closed", { agentId, sessionId: newSessionId });
   };
 
-  await transport.handleRequest(req, res, req.body);
   log("info", "session-created", { agentId, sessionId: newSessionId });
 });
 

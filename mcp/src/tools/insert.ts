@@ -61,7 +61,7 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
       `INSERT INTO entries (agent_id, content, path, metadata)
        VALUES (current_setting('app.agent_id'), $1, $2, $3)
        RETURNING id, content, path, metadata, created_at`,
-      [content, path ?? [], metadata ? JSON.stringify(metadata) : null]
+      [content, path ?? [], metadata ? JSON.stringify(metadata) : '{}']
     );
     const entry = entryResult.rows[0];
 
@@ -69,12 +69,12 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
       const values: any[] = [];
       const placeholders: string[] = [];
       chunks.forEach((_, i) => {
-        const offset = i * 3;
-        placeholders.push(`($${offset + 1}, $${offset + 2}, $${offset + 3})`);
-        values.push(entry.id, i, JSON.stringify(vectors[i]));
+        const offset = i * 5;
+        placeholders.push(`($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5})`);
+        values.push(entry.id, i, chunks[i], JSON.stringify(vectors[i]), agentId);
       });
       await client.query(
-        `INSERT INTO chunks (entry_id, chunk_index, embedding) VALUES ${placeholders.join(", ")}`,
+        `INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ${placeholders.join(", ")}`,
         values
       );
     }
