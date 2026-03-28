@@ -49,7 +49,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **PRV-01**: All external callouts (embedding APIs, cloud services) explicitly documented and visible to operator
 - [ ] **PRV-02**: Any assumption impacting privacy or security is a blocking issue until documented and resolved
-- [ ] **PRV-03**: Operator knows at all times whether infrastructure is exposed to public/uncontrolled resources
+- [x] **PRV-03**: Operator knows at all times whether infrastructure is exposed to public/uncontrolled resources
 
 ### Subagent Capability
 
@@ -112,7 +112,7 @@ Requirements for initial release. Each maps to roadmap phases.
 | INF-06 | Phase 4 | Complete |
 | PRV-01 | Phase 5 | Pending |
 | PRV-02 | Phase 5 | Pending |
-| PRV-03 | Phase 5 | Pending |
+| PRV-03 | Phase 5 | Complete |
 | SUB-01 | Phase 7 | Pending |
 | SUB-02 | Phase 7 | Pending |
 | SUB-03 | Phase 7 | Pending |

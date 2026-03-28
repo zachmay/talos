@@ -151,6 +151,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. MCP Server | 7/7 | Complete   | 2026-03-28 |
 | 3. Agent Harness | 4/4 | Complete   | 2026-03-28 |
 | 4. Operations | 3/3 | Complete   | 2026-03-28 |
-| 5. Privacy and Compliance | 0/3 | Not started | - |
+| 5. Privacy and Compliance | 1/3 | In Progress|  |
 | 6. Text UI Client | 0/6 | Not started | - |
 | 7. Subagent Capability | 0/7 | Not started | - |
