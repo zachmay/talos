@@ -39,6 +39,33 @@ else
     echo "  Generated agent_keys.json with default agent key"
 fi
 
+# Agent LLM API key
+if [[ -f "$SECRETS_DIR/agent_llm_key.txt" ]]; then
+    echo "  Skipping agent_llm_key.txt (already exists)"
+else
+    read -rp "Enter AGENT_LLM_API_KEY (Anthropic/OpenRouter/Ollama key, or press Enter to set later): " LLM_KEY
+    if [[ -z "$LLM_KEY" ]]; then
+        LLM_KEY="CHANGEME_AGENT_LLM_KEY"
+        echo "  WARNING: agent_llm_key.txt set to placeholder — update before running agent"
+    fi
+    printf '%s' "$LLM_KEY" > "$SECRETS_DIR/agent_llm_key.txt"
+    chmod 600 "$SECRETS_DIR/agent_llm_key.txt"
+    echo "  Created agent_llm_key.txt"
+fi
+
+# Agent API key (for MCP authentication)
+if [[ -f "$SECRETS_DIR/agent_api_key.txt" ]]; then
+    echo "  Skipping agent_api_key.txt (already exists)"
+else
+    AGENT_API_KEY=$(openssl rand -hex 32)
+    printf '%s' "$AGENT_API_KEY" > "$SECRETS_DIR/agent_api_key.txt"
+    chmod 600 "$SECRETS_DIR/agent_api_key.txt"
+    echo "  Generated agent_api_key.txt"
+    echo ""
+    echo "  NOTE: Add the agent_api_key value to mcp/config/agent_keys.json"
+    echo "        as a new entry for the 'base-agent' identity."
+fi
+
 echo ""
 echo "Done. Run 'docker compose up' to start services."
-echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json"
+echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json, agent_llm_key.txt, agent_api_key.txt"
