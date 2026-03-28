@@ -105,8 +105,8 @@ describe("MCP-02: Search Tool", () => {
     await _handleSearch({ query: "hello", path: ["tasks"] }, "agent-1");
 
     const params = mockClient.query.mock.calls[0][1];
-    // path should be passed as a parameter
-    expect(params).toContain("tasks");
+    // path should be passed as a parameter (as array)
+    expect(params[4]).toEqual(["tasks"]);
   });
 
   it("returns empty array when no results", async () => {
