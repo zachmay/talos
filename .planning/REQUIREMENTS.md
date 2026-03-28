@@ -31,10 +31,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Agent Harness
 
-- [ ] **AGT-01**: Sandboxed container with strong isolation (Nono/gVisor)
-- [ ] **AGT-02**: Main agent prompt definition
-- [ ] **AGT-03**: Skill library — declarative references plus executable scripts
-- [ ] **AGT-04**: NPM project — `npm install` bootstraps all agent dependencies
+- [x] **AGT-01**: Sandboxed container with strong isolation (Nono/gVisor)
+- [x] **AGT-02**: Main agent prompt definition
+- [x] **AGT-03**: Skill library — declarative references plus executable scripts
+- [x] **AGT-04**: NPM project — `npm install` bootstraps all agent dependencies
 
 ### Infrastructure
 
@@ -92,10 +92,10 @@ Requirements for initial release. Each maps to roadmap phases.
 | MCP-05 | Phase 2 | Complete |
 | MCP-06 | Phase 2 | Complete |
 | MCP-07 | Phase 2 | Complete |
-| AGT-01 | Phase 3 | Pending |
-| AGT-02 | Phase 3 | Pending |
-| AGT-03 | Phase 3 | Pending |
-| AGT-04 | Phase 3 | Pending |
+| AGT-01 | Phase 3 | Complete |
+| AGT-02 | Phase 3 | Complete |
+| AGT-03 | Phase 3 | Complete |
+| AGT-04 | Phase 3 | Complete |
 | INF-01 | Phase 1 | Pending |
 | INF-02 | Phase 1 | Pending |
 | INF-03 | Phase 1 | Complete |

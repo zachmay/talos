@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-07-PLAN.md
-last_updated: "2026-03-28T03:58:23.913Z"
-last_activity: 2026-03-27 -- Completed 02-07 Gap Closure (agentId fix + tsconfig)
+status: in_progress
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-28T04:06:50.173Z"
+last_activity: 2026-03-28 -- Completed 03-01 Agent Project Scaffold
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 17
-  completed_plans: 10
-  percent: 56
+  completed_plans: 11
+  percent: 65
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Agents can semantically search, insert, update, and delete data in a secure, self-hosted Postgres database -- with zero vendor lock-in and strong isolation between components.
-**Current focus:** Phase 2: MCP Server
+**Current focus:** Phase 3: Agent Harness
 
 ## Current Position
 
-Phase: 2 of 5 (MCP Server)
-Plan: 7 of 7 in current phase
-Status: Phase Complete
-Last activity: 2026-03-27 -- Completed 02-07 Gap Closure (agentId fix + tsconfig)
+Phase: 3 of 5 (Agent Harness)
+Plan: 1 of 4 in current phase
+Status: In Progress
+Last activity: 2026-03-28 -- Completed 03-01 Agent Project Scaffold
 
-Progress: [██████░░░░] 56%
+Progress: [███████░░░] 65%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [██████░░░░] 56%
 | Phase 02 P05 | 3min | 2 tasks | 4 files |
 | Phase 02 P06 | 3min | 2 tasks | 7 files |
 | Phase 02 P07 | 2min | 2 tasks | 6 files |
+| Phase 03 P01 | 2min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -68,7 +69,7 @@ Progress: [██████░░░░] 56%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
--
+- [Phase 03]: ts-jest ESM preset with node --experimental-vm-modules for Jest ESM support
 - [Phase 01]: Embedding API key uses plain text placeholder, deferred to Phase 2
 - [Phase 02]: Used dynamic await import().catch() pattern for RED test stubs
 - [Phase 02]: Anthropic provider is runtime stub; Ollama defaults 768 dims, cloud providers 1536
@@ -90,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T03:05:27.135Z
-Stopped at: Completed 02-07-PLAN.md
+Last session: 2026-03-28T04:06:11Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
