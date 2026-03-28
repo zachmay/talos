@@ -43,6 +43,9 @@ echo "[OK] Backup written: $BACKUP_FILE ($(du -sh "$BACKUP_FILE" | cut -f1))"
 # Run AFTER confirming new backup is good
 EXCESS=$(ls -t "$BACKUPS_DIR"/talos_*.dump 2>/dev/null | tail -n +$((RETENTION + 1)))
 if [[ -n "$EXCESS" ]]; then
-  echo "$EXCESS" | xargs rm --
+  while IFS= read -r f; do
+    echo "  removed: $(basename "$f")"
+    rm -- "$f"
+  done <<< "$EXCESS"
   echo "[OK] Retention enforced: kept last $RETENTION backups"
 fi

@@ -13,10 +13,10 @@ check() {
   local label="$1"; shift
   if "$@" &>/dev/null; then
     echo "[PASS] $label"
-    ((PASS++))
+    PASS=$((PASS + 1))
   else
     echo "[FAIL] $label"
-    ((FAIL++))
+    FAIL=$((FAIL + 1))
   fi
 }
 
@@ -31,7 +31,7 @@ check "match_entries function"  bash -c "$COMPOSE exec -T db psql -U postgres -d
 check "audit_log table"        bash -c "$COMPOSE exec -T db psql -U postgres -d talos -tAc \"SELECT 1 FROM information_schema.tables WHERE table_name='audit_log'\" | grep -q 1"
 
 # MCP checks
-check "MCP container running"  bash -c "$COMPOSE ps mcp | grep -q running"
+check "MCP container running"  bash -c "$COMPOSE ps mcp | grep -qE 'Up|running'"
 
 # Compose portability (static check — does not require running stack)
 check "No host.docker.internal in default compose" \
