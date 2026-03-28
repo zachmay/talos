@@ -2,8 +2,8 @@
 phase: 5
 slug: privacy-and-compliance
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-28
 ---
 
@@ -38,9 +38,9 @@ created: 2026-03-28
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 5-01-01 | 01 | 1 | PRV-01 | manual | `cat docs/SECURITY.md` | ❌ W0 | ⬜ pending |
-| 5-01-02 | 01 | 1 | PRV-03 | manual | `cat docs/SECURITY.md \| grep "Open Security"` | ❌ W0 | ⬜ pending |
-| 5-02-01 | 02 | 1 | PRV-02 | automated | `bash scripts/security-audit.sh --json` | ❌ W0 | ⬜ pending |
+| 5-01-01 | 01 | 1 | PRV-01 | manual | `cat SECURITY.md` | ❌ W0 | ⬜ pending |
+| 5-01-02 | 01 | 1 | PRV-02 | manual | `cat SECURITY.md | grep "Open Security"` | ❌ W0 | ⬜ pending |
+| 5-02-01 | 02 | 2 | PRV-02 | automated | `bash scripts/security-audit.sh --json` | ❌ W0 | ⬜ pending |
 | 5-03-01 | 03 | 2 | PRV-02 | automated | `bash scripts/network-audit.sh` | ❌ W0 | ⬜ pending |
 | 5-03-02 | 03 | 2 | PRV-02 | automated | `bash scripts/network-audit.sh --json` | ❌ W0 | ⬜ pending |
 
@@ -50,9 +50,9 @@ created: 2026-03-28
 
 ## Wave 0 Requirements
 
-- [ ] `docs/SECURITY.md` — stub with section headers for callout inventory + open questions
-- [ ] `scripts/security-audit.sh` — stub with `check()` pattern and `--json` flag
-- [ ] `scripts/network-audit.sh` — stub with port-binding detection and `--json` flag
+- [x] `SECURITY.md` — stub with section headers for callout inventory + open questions
+- [x] `scripts/security-audit.sh` — created fully by plan 05-02 (no stub needed)
+- [x] `scripts/network-audit.sh` — created fully by plan 05-03 (no stub needed)
 
 *Wave 0 creates empty/stub files so later tasks can verify existence and populate content.*
 
@@ -62,8 +62,8 @@ created: 2026-03-28
 
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
-| SECURITY.md callout inventory is accurate | PRV-01 | Requires human review of listed APIs | Read `docs/SECURITY.md` and confirm all 3 callouts (OpenRouter, OpenAI, Anthropic) are listed with host, port, purpose |
-| Open security questions are tracked | PRV-03 | Subjective completeness check | Verify `docs/SECURITY.md` Open Questions section has ≥5 unresolved items with BLOCKING tags |
+| SECURITY.md callout inventory is accurate | PRV-01 | Requires human review of listed APIs | Read `SECURITY.md` and confirm all 3 callouts (OpenRouter, OpenAI, Anthropic) are listed with host, port, purpose |
+| Open security questions are tracked | PRV-03 | Subjective completeness check | Verify `SECURITY.md` Open Questions section has ≥5 unresolved items with BLOCKING tags |
 | DB port exposure warning shown | PRV-02 | Runtime behavior needs live stack | Run `bash scripts/network-audit.sh` against running stack; confirm `DB_PORT` binding warning appears |
 
 ---
