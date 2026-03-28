@@ -1,4 +1,5 @@
 secrets/
+db/init/03-schema.sql
 
 .env
 *.log
