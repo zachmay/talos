@@ -12,8 +12,8 @@ export function createServer(agentId: string): McpServer {
 
   registerInsertTool(server, agentId);
   registerSearchTool(server, agentId);
-  registerUpdateTool(server);
-  registerDeleteTool(server);
+  registerUpdateTool(server, agentId);
+  registerDeleteTool(server, agentId);
 
   registerPathOperationsPrompt(server);
   registerAdvancedSearchPrompt(server);

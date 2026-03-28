@@ -153,13 +153,12 @@ const updateSchema = {
   verbose: z.boolean().optional(),
 };
 
-export function registerUpdateTool(server: McpServer): void {
+export function registerUpdateTool(server: McpServer, agentId: string): void {
   server.tool(
     "update",
     "Update an entry's content (with re-embedding) and/or metadata",
     updateSchema,
-    async (params, extra) => {
-      const agentId = (extra as any).agentId;
+    async (params) => {
       return handleUpdate({ agentId, ...params });
     }
   );

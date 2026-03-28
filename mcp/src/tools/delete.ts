@@ -44,13 +44,12 @@ const deleteSchema = {
   id: z.string().uuid("Entry ID must be a valid UUID"),
 };
 
-export function registerDeleteTool(server: McpServer): void {
+export function registerDeleteTool(server: McpServer, agentId: string): void {
   server.tool(
     "delete",
     "Delete an entry and its chunks",
     deleteSchema,
-    async (params, extra) => {
-      const agentId = (extra as any).agentId;
+    async (params) => {
       return handleDelete({ agentId, ...params });
     }
   );
