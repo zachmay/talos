@@ -46,7 +46,7 @@ Plans:
   2. Switching embedding provider (e.g., OpenAI to Ollama) requires only environment variable changes -- no code changes, no redeployment
   3. Updating content via MCP produces a new embedding automatically; searching for the updated meaning returns the updated row
   4. Each agent identity can only access its own data through MCP -- cross-agent data access is rejected
-**Plans**: 6 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 02-01-PLAN.md — Project scaffold: package.json, tsconfig, vitest config, and 7 failing test stubs (Wave 0)
@@ -55,6 +55,7 @@ Plans:
 - [ ] 02-04-PLAN.md — Insert and search tool handlers (MCP-01, MCP-02)
 - [ ] 02-05-PLAN.md — Update and delete tool handlers (MCP-03, MCP-04)
 - [ ] 02-06-PLAN.md — MCP server wiring, prompts, Dockerfile, docker-compose integration
+- [ ] 02-07-PLAN.md — Gap closure: fix agentId for update/delete tools, fix tsconfig rootDir conflict
 
 ### Phase 3: Agent Harness
 **Goal**: Agents run in a sandboxed container with a skill library and can interact with the database exclusively through MCP
@@ -108,7 +109,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Database and Docker Foundation | 0/3 | Not started | - |
-| 2. MCP Server | 6/6 | Complete   | 2026-03-28 |
+| 2. MCP Server | 6/7 | Gap closure | - |
 | 3. Agent Harness | 0/4 | Not started | - |
 | 4. Operations | 0/3 | Not started | - |
 | 5. Privacy and Compliance | 0/1 | Not started | - |
