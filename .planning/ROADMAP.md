@@ -64,11 +64,13 @@ Plans:
   1. Agent container runs with sandbox isolation (Nono or gVisor) -- attempting to escape the sandbox (e.g., accessing host filesystem, spawning privileged processes) fails
   2. `npm install` inside the agent container installs all skill dependencies without errors
   3. Agent prompt loads with skill library references injected, and agent can execute a skill script that calls MCP tools successfully
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Wave 0 scaffold: npm project, jest config, failing test stubs, sandbox smoke test
+- [ ] 03-02-PLAN.md — Agent Dockerfiles (base + providers), seccomp profile, compose service with standard sandbox
+- [ ] 03-03-PLAN.md — Agent runtime: skill loading, entrypoint, Claude agentic loop with MCP connector
+- [ ] 03-04-PLAN.md — MCP fetch tool, base-agent profile (AGENT.md + example-skill), setup.sh agent secrets
 
 ### Phase 4: Operations
 **Goal**: The platform is production-ready with audit trails, reliable backups, and portable images
