@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+echo "=========================================="
+echo "Phase 01: Database and Docker Foundation"
+echo "Full Test Suite"
+echo "=========================================="
+bash "$SCRIPT_DIR/smoke.sh"
+bash "$SCRIPT_DIR/test-schema.sh"
+bash "$SCRIPT_DIR/test-rls.sh"
+bash "$SCRIPT_DIR/test-semantic-search.sh"
+bash "$SCRIPT_DIR/test-network.sh"
+bash "$SCRIPT_DIR/test-secrets.sh"
+echo ""
+echo "=========================================="
+echo "ALL TESTS PASSED — Phase 01 complete"
+echo "=========================================="
