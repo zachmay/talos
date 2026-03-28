@@ -55,8 +55,50 @@ services:
   agent:
     build:
       context: ./agent
+      dockerfile: Dockerfile.${AGENT_PROVIDER:-claude}
+    read_only: true
+    tmpfs:
+      - /app/workspace:mode=755,uid=1000,gid=1000
+      - /tmp:mode=1777
+    security_opt:
+      - no-new-privileges:true
+      - seccomp:./agent/seccomp-standard.json
+    cap_drop:
+      - ALL
     networks:
       - frontend
+    environment:
+      - AGENT_PROFILE=${AGENT_PROFILE:-base-agent}
+      - AGENT_LLM_PROVIDER=${AGENT_LLM_PROVIDER:-claude}
+      - AGENT_LLM_MODEL=${AGENT_LLM_MODEL:-claude-sonnet-4-6}
+      - MCP_SERVER_URL=${MCP_SERVER_URL:-http://mcp:3000/mcp}
+    secrets:
+      - agent_llm_key
+      - agent_api_key
+    deploy:
+      resources:
+        limits:
+          cpus: '${AGENT_CPU_LIMIT:-1.0}'
+          memory: '${AGENT_MEMORY_LIMIT:-512M}'
+    restart: on-failure:5
+    volumes:
+      - type: bind
+        source: ./agents/${AGENT_PROFILE:-base-agent}
+        target: /app/agent
+        read_only: true
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mcp
+
+  # Strict sandbox profile — requires gVisor (runsc) installed on Linux host
+  # Activate with: docker compose --profile strict up agent-strict
+  agent-strict:
+    extends:
+      service: agent
+    runtime: runsc
+    profiles:
+      - strict
 
 networks:
   backend:
@@ -74,3 +116,7 @@ secrets:
     file: ./secrets/agent_keys.json
   embedding_api_key:
     file: ./secrets/embedding_api_key.txt
+  agent_llm_key:
+    file: ./secrets/agent_llm_key.txt
+  agent_api_key:
+    file: ./secrets/agent_api_key.txt
