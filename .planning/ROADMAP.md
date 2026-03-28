@@ -13,7 +13,7 @@ Talos delivers a self-hosted agentic AI platform in five phases: first a secure 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Database and Docker Foundation** - Postgres with pgvector, RLS, dual-network Docker Compose topology, and credential injection
-- [ ] **Phase 2: MCP Server** - Semantic CRUD API with provider-agnostic embedding and multi-agent authentication
+- [x] **Phase 2: MCP Server** - Semantic CRUD API with provider-agnostic embedding and multi-agent authentication (completed 2026-03-28)
 - [ ] **Phase 3: Agent Harness** - Sandboxed agent container with skill library and NPM project bootstrapping
 - [ ] **Phase 4: Operations** - Audit logging, backup/restore tooling, and cloud-ready images
 - [ ] **Phase 5: Privacy and Compliance** - Explicit documentation and enforcement of privacy and security posture
@@ -108,7 +108,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Database and Docker Foundation | 0/3 | Not started | - |
-| 2. MCP Server | 5/6 | In Progress|  |
+| 2. MCP Server | 6/6 | Complete   | 2026-03-28 |
 | 3. Agent Harness | 0/4 | Not started | - |
 | 4. Operations | 0/3 | Not started | - |
 | 5. Privacy and Compliance | 0/1 | Not started | - |
