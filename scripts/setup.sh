@@ -29,6 +29,16 @@ else
     echo "  Created embedding_api_key.txt placeholder — update before Phase 2"
 fi
 
+# Agent keys for MCP authentication
+if [[ -f "$SECRETS_DIR/agent_keys.json" ]]; then
+    echo "  Skipping agent_keys.json (already exists)"
+else
+    DEFAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
+    printf '{\n  "%s": "default-agent"\n}\n' "$DEFAULT_KEY" > "$SECRETS_DIR/agent_keys.json"
+    chmod 600 "$SECRETS_DIR/agent_keys.json"
+    echo "  Generated agent_keys.json with default agent key"
+fi
+
 echo ""
 echo "Done. Run 'docker compose up' to start services."
-echo "Note: Update secrets/embedding_api_key.txt before Phase 2 work."
+echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json"

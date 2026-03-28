@@ -32,6 +32,8 @@ services:
         condition: service_healthy
     secrets:
       - mcp_password
+      - agent_keys
+      - embedding_api_key
 
   agent:
     build:
@@ -51,3 +53,7 @@ secrets:
     file: ./secrets/db_password.txt
   mcp_password:
     file: ./secrets/mcp_password.txt
+  agent_keys:
+    file: ./secrets/agent_keys.json
+  embedding_api_key:
+    file: ./secrets/embedding_api_key.txt
