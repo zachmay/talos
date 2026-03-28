@@ -101,7 +101,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: TBD
+- [ ] 05-01-PLAN.md — SECURITY.md: threat model, data flow diagram, security guarantees (CHECK tags), callout inventory, open questions
+- [ ] 05-02-PLAN.md — scripts/security-audit.sh: 12 CHECK tag functions + ./talos security-audit routing
+- [ ] 05-03-PLAN.md — scripts/network-audit.sh + health.sh Network Posture section + ./talos network-audit routing
 
 ## Progress
 
@@ -114,7 +116,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. MCP Server | 7/7 | Complete   | 2026-03-28 |
 | 3. Agent Harness | 4/4 | Complete   | 2026-03-28 |
 | 4. Operations | 3/3 | Complete   | 2026-03-28 |
-| 5. Privacy and Compliance | 0/1 | Not started | - |
+| 5. Privacy and Compliance | 0/3 | Not started | - |
 | 6. Text UI Client | 0/0 | Not started | - |
 | 7. Subagent Capability | 0/0 | Not started | - |
 
