@@ -1,0 +1,7 @@
+{
+  "name": "talos-base-agent",
+  "version": "0.1.0",
+  "description": "Base agent profile for Talos",
+  "private": true,
+  "dependencies": {}
+}

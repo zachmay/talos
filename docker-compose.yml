@@ -44,6 +44,8 @@ services:
       CHUNK_SIZE: "${CHUNK_SIZE:-2000}"
       CHUNK_OVERLAP: "${CHUNK_OVERLAP:-200}"
       ALLOWED_ORIGINS: "${ALLOWED_ORIGINS:-}"
+      ALLOWED_DOMAINS: "${ALLOWED_DOMAINS:-}"
+      ALLOW_ALL_DOMAINS: "${ALLOW_ALL_DOMAINS:-false}"
       PORT: "3000"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
