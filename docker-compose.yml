@@ -73,6 +73,8 @@ services:
       - seccomp:./agent/seccomp-standard.json
     cap_drop:
       - ALL
+    ports:
+      - "${AGENT_API_PORT:-3001}:3001"
     networks:
       - frontend
     environment:
@@ -81,9 +83,12 @@ services:
       - AGENT_LLM_MODEL=${AGENT_LLM_MODEL:-claude-sonnet-4-6}
       - MCP_SERVER_URL=${MCP_SERVER_URL:-http://mcp:3000/mcp}
       - AGENT_MAX_TOKENS=${AGENT_MAX_TOKENS:-16384}
+      - AGENT_API_PORT=${AGENT_API_PORT:-3001}
+      - AGENT_API_HOST=${AGENT_API_HOST:-0.0.0.0}
     secrets:
       - agent_llm_key
       - agent_keys
+      - tui_token
     deploy:
       resources:
         limits:
@@ -127,3 +132,5 @@ secrets:
     file: ./secrets/embedding_api_key.txt
   agent_llm_key:
     file: ./secrets/agent_llm_key.txt
+  tui_token:
+    file: ./secrets/tui_token
