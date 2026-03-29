@@ -10,8 +10,8 @@ progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 33
-  completed_plans: 22
-  percent: 67
+  completed_plans: 23
+  percent: 70
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 6 of 7 (Text UI Client)
-Plan: 2 of 6 in current phase
+Plan: 3 of 6 in current phase
 Status: In Progress
-Last activity: 2026-03-28 -- Completed 06-02 Streaming Provider Refactor
+Last activity: 2026-03-29 -- Completed 06-03 Agent HTTP Server
 
-Progress: [██████░░░░] 67%
+Progress: [███████░░░] 70%
 
 ## Performance Metrics
 
@@ -70,6 +70,7 @@ Progress: [██████░░░░] 67%
 | Phase 05 P03 | 2min | 2 tasks | 3 files |
 | Phase 06 P01 | 2min | 2 tasks | 7 files |
 | Phase 06 P02 | 6min | 2 tasks | 4 files |
+| Phase 06 P03 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -105,6 +106,7 @@ Recent decisions affecting current work:
 - [Phase 06]: SSE parser split into testable parseSSELines helper and streamSSE async generator
 - [Phase 06]: Widened agent tsconfig rootDir to '..' for shared/types.ts imports
 - [Phase 06]: onEvent callback pattern for streaming agent events to HTTP server
+- [Phase 06]: createApp factory pattern separating testable Express app from listen() binding
 
 ### Pending Todos
 
@@ -117,6 +119,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T02:51:18Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-03-29T02:56:00Z
+Stopped at: Completed 06-03-PLAN.md
 Resume file: None
