@@ -39,6 +39,15 @@ else
     echo "  Generated agent_keys.json with default agent key"
 fi
 
+# TUI access token
+if [[ -f "$SECRETS_DIR/tui_token" ]]; then
+    echo "  Skipping tui_token (already exists)"
+else
+    openssl rand -hex 32 > "$SECRETS_DIR/tui_token"
+    chmod 600 "$SECRETS_DIR/tui_token"
+    echo "  Generated TUI access token"
+fi
+
 # Agent LLM API key
 if [[ -f "$SECRETS_DIR/agent_llm_key.txt" ]]; then
     echo "  Skipping agent_llm_key.txt (already exists)"
@@ -55,4 +64,4 @@ fi
 
 echo ""
 echo "Done. Run 'docker compose up' to start services."
-echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json, agent_llm_key.txt"
+echo "Secrets generated: db_password.txt, mcp_password.txt, embedding_api_key.txt, agent_keys.json, agent_llm_key.txt, tui_token"
