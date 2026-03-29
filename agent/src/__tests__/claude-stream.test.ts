@@ -4,7 +4,7 @@
  */
 import { jest, describe, it, expect, beforeEach } from "@jest/globals";
 
-import type { AgentEvent } from "../../shared/types.js";
+import type { AgentEvent } from "../../../shared/types.js";
 
 // Helper: create a mock MessageStream that yields events and has finalMessage()
 function createMockStream(
@@ -27,10 +27,10 @@ function createMockStream(
 let mockAnthropicConstructor: jest.Mock;
 let mockClientConstructor: jest.Mock;
 let mockClientInstance: {
-  connect: jest.Mock;
-  listTools: jest.Mock;
-  callTool: jest.Mock;
-  close: jest.Mock;
+  connect: jest.Mock<any>;
+  listTools: jest.Mock<any>;
+  callTool: jest.Mock<any>;
+  close: jest.Mock<any>;
 };
 
 jest.unstable_mockModule("node:fs", () => ({
@@ -44,10 +44,10 @@ jest.unstable_mockModule("@anthropic-ai/sdk", () => {
 
 jest.unstable_mockModule("@modelcontextprotocol/sdk/client/index.js", () => {
   mockClientInstance = {
-    connect: jest.fn<() => Promise<void>>().mockResolvedValue(undefined),
-    listTools: jest.fn<() => Promise<{ tools: Array<{ name: string; description: string; inputSchema: Record<string, unknown> }> }>>().mockResolvedValue({ tools: [] }),
-    callTool: jest.fn<() => Promise<{ content: Array<{ type: string; text: string }> }>>().mockResolvedValue({ content: [{ type: "text", text: "tool-result" }] }),
-    close: jest.fn<() => Promise<void>>().mockResolvedValue(undefined),
+    connect: jest.fn<any>().mockResolvedValue(undefined),
+    listTools: jest.fn<any>().mockResolvedValue({ tools: [] }),
+    callTool: jest.fn<any>().mockResolvedValue({ content: [{ type: "text", text: "tool-result" }] }),
+    close: jest.fn<any>().mockResolvedValue(undefined),
   };
   mockClientConstructor = jest.fn().mockImplementation(() => mockClientInstance);
   return { Client: mockClientConstructor };
