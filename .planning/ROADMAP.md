@@ -152,5 +152,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Agent Harness | 4/4 | Complete   | 2026-03-28 |
 | 4. Operations | 3/3 | Complete   | 2026-03-28 |
 | 5. Privacy and Compliance | 1/3 | In Progress|  |
-| 6. Text UI Client | 1/6 | In Progress|  |
+| 6. Text UI Client | 2/6 | In Progress|  |
 | 7. Subagent Capability | 0/7 | Not started | - |

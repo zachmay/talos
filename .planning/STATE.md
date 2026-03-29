@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 06-01-PLAN.md
+stopped_at: Completed 06-02-PLAN.md
 last_updated: "2026-03-29T02:44:42.782Z"
 last_activity: 2026-03-28 -- Completed 04-03 Operational CLI
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 33
-  completed_plans: 21
-  percent: 100
+  completed_plans: 22
+  percent: 67
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 6 of 7 (Text UI Client)
-Plan: 1 of 6 in current phase
+Plan: 2 of 6 in current phase
 Status: In Progress
-Last activity: 2026-03-28 -- Completed 06-01 Shared Types & TUI Foundation
+Last activity: 2026-03-28 -- Completed 06-02 Streaming Provider Refactor
 
-Progress: [██████░░░░] 64%
+Progress: [██████░░░░] 67%
 
 ## Performance Metrics
 
@@ -69,6 +69,7 @@ Progress: [██████░░░░] 64%
 | Phase 04 P03 | 3min | 2 tasks | 6 files |
 | Phase 05 P03 | 2min | 2 tasks | 3 files |
 | Phase 06 P01 | 2min | 2 tasks | 7 files |
+| Phase 06 P02 | 6min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,8 @@ Recent decisions affecting current work:
 - [Phase 05]: WARN counter added to network-audit.sh (0.0.0.0 binding is warning not failure)
 - [Phase 05]: health.sh Network Posture uses nc -z for agent-to-DB isolation check
 - [Phase 06]: SSE parser split into testable parseSSELines helper and streamSSE async generator
+- [Phase 06]: Widened agent tsconfig rootDir to '..' for shared/types.ts imports
+- [Phase 06]: onEvent callback pattern for streaming agent events to HTTP server
 
 ### Pending Todos
 
@@ -114,6 +117,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T02:44:42.779Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-03-29T02:51:18Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None
