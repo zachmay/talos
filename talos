@@ -18,6 +18,7 @@ Commands:
   add-agent <name>       Provision a new agent identity
   network-audit          Analyze network exposure: ports, memberships, outbound reachability
   security-audit         Verify security guarantees against running stack (--json)
+  chat [--host <url>] [--token <token>]  Start TUI client
 
 Run './talos <command> --help' for command-specific options.
 EOF
@@ -36,5 +37,13 @@ case "$COMMAND" in
   add-agent)       exec "$SCRIPTS/add-agent.sh"       "$@" ;;
   network-audit)   exec "$SCRIPTS/network-audit.sh"   "$@" ;;
   security-audit)  exec "$SCRIPTS/security-audit.sh"  "$@" ;;
+  chat)
+    TUI_DIST="$SCRIPT_DIR/tui/dist/tui/src/app.js"
+    if [ ! -f "$TUI_DIST" ]; then
+      echo "Error: TUI not built. Run: cd tui && npm run build" >&2
+      exit 1
+    fi
+    exec node "$TUI_DIST" "$@"
+    ;;
   *)         usage ;;
 esac
