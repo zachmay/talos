@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 06-05-PLAN.md
-last_updated: "2026-03-29T03:16:27.094Z"
+stopped_at: Completed 06-04-PLAN.md
+last_updated: "2026-03-29T03:21:51.670Z"
 last_activity: 2026-03-29 -- Completed 06-05 Infrastructure Wiring
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 33
-  completed_plans: 24
+  completed_plans: 25
   percent: 73
 ---
 
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 Phase: 6 of 7 (Text UI Client)
 Plan: 5 of 6 in current phase
 Status: In Progress
-Last activity: 2026-03-29 -- Completed 06-05 Infrastructure Wiring
+Last activity: 2026-03-29 -- Completed 06-04 TUI Components & Hooks
 
 Progress: [███████░░░] 73%
 
@@ -72,6 +72,7 @@ Progress: [███████░░░] 73%
 | Phase 06 P02 | 6min | 2 tasks | 4 files |
 | Phase 06 P03 | 3min | 2 tasks | 4 files |
 | Phase 06 P05 | 1min | 2 tasks | 3 files |
+| Phase 06 P04 | 5min | 3 tasks | 18 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,7 @@ Recent decisions affecting current work:
 - [Phase 06]: onEvent callback pattern for streaming agent events to HTTP server
 - [Phase 06]: createApp factory pattern separating testable Express app from listen() binding
 - [Phase 06]: tui_token uses hex encoding (not base64) to avoid newline/encoding issues in HTTP headers
+- [Phase 06]: Widened tui tsconfig rootDir to .. for shared/types.ts imports
 
 ### Pending Todos
 
@@ -121,6 +123,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T03:16:27.092Z
-Stopped at: Completed 06-05-PLAN.md
+Last session: 2026-03-29T03:21:51.668Z
+Stopped at: Completed 06-04-PLAN.md
 Resume file: None
