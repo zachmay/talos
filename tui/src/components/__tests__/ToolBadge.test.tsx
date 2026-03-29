@@ -3,6 +3,8 @@ import React from "react";
 import { render } from "ink-testing-library";
 import { ToolBadge } from "../ToolBadge.js";
 
+const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 describe("ToolBadge", () => {
   it("collapsed shows truncated result at 60 chars", () => {
     const longResult = "a".repeat(100);
@@ -22,7 +24,7 @@ describe("ToolBadge", () => {
     expect(frame).not.toContain("a".repeat(100));
   });
 
-  it("Enter toggles expanded state showing full result", () => {
+  it("Enter toggles expanded state showing full result", async () => {
     const result = "full result text here";
     const inst = render(
       <ToolBadge
@@ -35,7 +37,10 @@ describe("ToolBadge", () => {
 
     // Press Enter to expand
     inst.stdin.write("\r");
+    await delay(100);
     const frame = inst.lastFrame();
-    expect(frame).toContain("Result: " + result);
+    // Expanded view shows full input JSON and result
+    expect(frame).toContain(result);
+    expect(frame).toContain("Input:");
   });
 });

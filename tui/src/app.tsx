@@ -6,6 +6,7 @@ import { useHealth } from "./hooks/useHealth.js";
 import { HealthBar } from "./components/HealthBar.js";
 import { ChatView } from "./components/ChatView.js";
 import { StatusBar } from "./components/StatusBar.js";
+import { InputBar } from "./components/InputBar.js";
 import type { SessionInfo } from "../../shared/types.js";
 
 // Parse CLI args
@@ -132,10 +133,49 @@ export function App() {
         contextPct={session.contextPct}
         tokens={session.tokens}
       />
-      <Box>
-        <Text dimColor>&gt; </Text>
-        <Text>{"(InputBar placeholder - see Task 3)"}</Text>
-      </Box>
+      <InputBar
+        onSend={sendMessage}
+        onCommand={(cmd, args) => {
+          switch (cmd) {
+            case "/clear":
+              clearMessages();
+              break;
+            case "/status":
+              fetch(`${host}/status`, {
+                headers: { Authorization: `Bearer ${token}` },
+              })
+                .then((r) => r.json() as Promise<SessionInfo>)
+                .then((info) => {
+                  setSession(info);
+                  addUserMessage(`Profile: ${info.profile}, Model: ${info.model}, Context: ${info.contextPct}%, Tokens: ${info.tokens}`);
+                })
+                .catch(() => addUserMessage("Failed to fetch status."));
+              break;
+            case "/help":
+              addUserMessage("Commands: /quit, /clear, /status, /help, /reconnect, /skills, /history, /btw <msg>");
+              break;
+            case "/reconnect":
+              reconnect();
+              addUserMessage("Reconnecting...");
+              break;
+            case "/btw":
+              fetch(`${host}/chat/btw`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ message: args }),
+              }).catch(() => {});
+              break;
+            case "/skills":
+            case "/history":
+              sendMessage(`${cmd} ${args}`.trim());
+              break;
+            default:
+              addUserMessage("Unknown command. Type /help for options.");
+              break;
+          }
+        }}
+        isProcessing={isProcessing}
+      />
     </Box>
   );
 }
