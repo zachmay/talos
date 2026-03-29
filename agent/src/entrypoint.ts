@@ -5,6 +5,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 import { buildSkillIndex } from "./skills.js";
 import { loadSystemPrompt } from "./prompt.js";
 import { startAgentLoop } from "./agent.js";
+import { startHttpServer } from "./http-server.js";
 import type { LoopResult } from "./providers/claude.js";
 
 const AGENT_DIR = process.env.AGENT_DIR ?? "/app/agent";
@@ -26,6 +27,16 @@ try {
 
 const conversationHistory: Anthropic.MessageParam[] = [];
 let lastResult: LoopResult | null = null;
+
+// Start HTTP server for TUI client SSE connections
+startHttpServer({
+  systemPrompt,
+  conversationHistory,
+  model: MODEL,
+  profile: AGENT_PROFILE,
+  getLastResult: () => lastResult,
+  setLastResult: (r: LoopResult) => { lastResult = r; },
+});
 
 function renderPrompt(): string {
   const parts: string[] = [];
