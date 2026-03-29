@@ -1,0 +1,29 @@
+{
+  "name": "talos-tui",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "dev": "tsx src/app.tsx"
+  },
+  "dependencies": {
+    "ink": "^6",
+    "react": "^19",
+    "ink-text-input": "^6",
+    "ink-select-input": "^6",
+    "ink-spinner": "^5",
+    "marked": "^14",
+    "marked-terminal": "^7"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/react": "^19",
+    "@types/node": "^22",
+    "vitest": "^2",
+    "tsx": "^4"
+  },
+  "overrides": {
+    "ink": "^6"
+  }
+}
