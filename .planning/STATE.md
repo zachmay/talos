@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-03-29T02:44:42.782Z"
-last_activity: 2026-03-28 -- Completed 04-03 Operational CLI
+status: executing
+stopped_at: Completed 06-05-PLAN.md
+last_updated: "2026-03-29T03:16:27.094Z"
+last_activity: 2026-03-29 -- Completed 06-05 Infrastructure Wiring
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 33
-  completed_plans: 23
-  percent: 70
+  completed_plans: 24
+  percent: 73
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 ## Current Position
 
 Phase: 6 of 7 (Text UI Client)
-Plan: 3 of 6 in current phase
+Plan: 5 of 6 in current phase
 Status: In Progress
-Last activity: 2026-03-29 -- Completed 06-03 Agent HTTP Server
+Last activity: 2026-03-29 -- Completed 06-05 Infrastructure Wiring
 
-Progress: [███████░░░] 70%
+Progress: [███████░░░] 73%
 
 ## Performance Metrics
 
@@ -71,6 +71,7 @@ Progress: [███████░░░] 70%
 | Phase 06 P01 | 2min | 2 tasks | 7 files |
 | Phase 06 P02 | 6min | 2 tasks | 4 files |
 | Phase 06 P03 | 3min | 2 tasks | 4 files |
+| Phase 06 P05 | 1min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -107,6 +108,7 @@ Recent decisions affecting current work:
 - [Phase 06]: Widened agent tsconfig rootDir to '..' for shared/types.ts imports
 - [Phase 06]: onEvent callback pattern for streaming agent events to HTTP server
 - [Phase 06]: createApp factory pattern separating testable Express app from listen() binding
+- [Phase 06]: tui_token uses hex encoding (not base64) to avoid newline/encoding issues in HTTP headers
 
 ### Pending Todos
 
@@ -119,6 +121,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T02:56:00Z
-Stopped at: Completed 06-03-PLAN.md
+Last session: 2026-03-29T03:16:27.092Z
+Stopped at: Completed 06-05-PLAN.md
 Resume file: None
