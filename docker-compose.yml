@@ -53,6 +53,7 @@ services:
       ALLOWED_DOMAINS: "${ALLOWED_DOMAINS:-}"
       ALLOW_ALL_DOMAINS: "${ALLOW_ALL_DOMAINS:-false}"
       PORT: "3000"
+      MCP_SKIP_AUTH_INTERNAL: "true"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
       interval: 15s
@@ -60,59 +61,32 @@ services:
       retries: 3
       start_period: 15s
 
-  agent:
-    build:
-      context: ./agent
-      dockerfile: Dockerfile.${AGENT_PROVIDER:-claude}
-    read_only: true
-    tmpfs:
-      - /app/workspace:mode=755,uid=1000,gid=1000
-      - /tmp:mode=1777
-    security_opt:
-      - no-new-privileges:true
-      - seccomp:./agent/seccomp-standard.json
-    cap_drop:
-      - ALL
+  mongodb:
+    image: mongo:8.0
+    networks:
+      - backend
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+
+  librechat:
+    image: ghcr.io/danny-avila/librechat:latest
     ports:
-      - "${AGENT_API_PORT:-3001}:3001"
+      - "${LIBRECHAT_PORT:-3080}:3080"
     networks:
       - frontend
-    environment:
-      - AGENT_PROFILE=${AGENT_PROFILE:-base-agent}
-      - AGENT_LLM_PROVIDER=${AGENT_LLM_PROVIDER:-claude}
-      - AGENT_LLM_MODEL=${AGENT_LLM_MODEL:-claude-sonnet-4-6}
-      - MCP_SERVER_URL=${MCP_SERVER_URL:-http://mcp:3000/mcp}
-      - AGENT_MAX_TOKENS=${AGENT_MAX_TOKENS:-16384}
-      - AGENT_API_PORT=${AGENT_API_PORT:-3001}
-      - AGENT_API_HOST=${AGENT_API_HOST:-0.0.0.0}
-    secrets:
-      - agent_llm_key
-      - agent_keys
-      - tui_token
-    deploy:
-      resources:
-        limits:
-          cpus: '${AGENT_CPU_LIMIT:-1.0}'
-          memory: '${AGENT_MEMORY_LIMIT:-512M}'
-    restart: on-failure:5
+      - backend
+    depends_on:
+      - mongodb
+      - mcp
+    env_file:
+      - ./librechat.env
     volumes:
       - type: bind
-        source: ./agents/${AGENT_PROFILE:-base-agent}
-        target: /app/agent
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
         read_only: true
-    stdin_open: true
-    tty: true
-    depends_on:
-      - mcp
-
-  # Strict sandbox profile — requires gVisor (runsc) installed on Linux host
-  # Activate with: docker compose --profile strict up agent-strict
-  agent-strict:
-    extends:
-      service: agent
-    runtime: runsc
-    profiles:
-      - strict
+    restart: unless-stopped
 
 networks:
   backend:
@@ -120,6 +94,7 @@ networks:
 
 volumes:
   pgdata:
+  mongodb_data:
 
 secrets:
   db_password:
@@ -130,7 +105,3 @@ secrets:
     file: ./secrets/agent_keys.json
   embedding_api_key:
     file: ./secrets/embedding_api_key.txt
-  agent_llm_key:
-    file: ./secrets/agent_llm_key.txt
-  tui_token:
-    file: ./secrets/tui_token

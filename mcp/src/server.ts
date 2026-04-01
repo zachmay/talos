@@ -9,7 +9,21 @@ import { registerAdvancedSearchPrompt } from "./prompts/advanced-search.js";
 import { registerBulkOperationsPrompt } from "./prompts/bulk-operations.js";
 
 export function createServer(agentId: string): McpServer {
-  const server = new McpServer({ name: "talos-mcp", version: "1.0.0" });
+  const server = new McpServer({
+    name: "talos-mcp",
+    version: "1.0.0",
+    instructions: `Talos MCP provides semantic memory backed by PostgreSQL + pgvector.
+
+Tools: insert, search, update, delete, fetch.
+
+Search uses cosine similarity with a threshold (default 0.7). If a search returns no results:
+- Try lowering the threshold (e.g. 0.3 or 0.4) for broader matching
+- Try rephrasing the query — shorter, more keyword-focused queries often match better
+- Use path-only search to list entries without semantic matching
+- Use verbose: true to see similarity scores and debug matching
+
+Data is organized by path (array of strings) and optional metadata (JSON). Use paths to scope searches to specific topics or categories.`,
+  });
 
   registerInsertTool(server, agentId);
   registerSearchTool(server, agentId);

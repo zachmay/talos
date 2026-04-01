@@ -2,6 +2,7 @@ secrets/
 db/init/03-schema.sql
 
 .env
+librechat.env
 *.log
 node_modules/
 dist/

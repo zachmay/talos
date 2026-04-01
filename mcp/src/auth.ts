@@ -23,9 +23,22 @@ function resolveKeysPath(): string {
 
 const agentKeys = loadAgentKeys(resolveKeysPath());
 
+// SECURITY: When MCP_SKIP_AUTH_INTERNAL=true, requests without auth headers
+// are allowed through with agentId "internal". This is intended ONLY for
+// trusted Docker-internal traffic (e.g. LibreChat on the same compose network).
+// Requests WITH an auth header are still validated normally.
+// TODO: Replace with proper OAuth (MCP spec) or mTLS before any network exposure.
+const skipAuthInternal = process.env.MCP_SKIP_AUTH_INTERNAL === "true";
+
 export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
   const authHeader = req.headers.authorization;
+
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (skipAuthInternal) {
+      req.agentId = process.env.MCP_INTERNAL_AGENT_ID ?? "default-agent";
+      next();
+      return;
+    }
     res.status(401).json({ error: "AUTH_REQUIRED", message: "Authorization header required" });
     return;
   }

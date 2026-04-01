@@ -1,6 +1,7 @@
 import express from "express";
 import { randomUUID } from "crypto";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { createServer } from "./server.js";
 import { authMiddleware } from "./auth.js";
 import type { Request, Response, NextFunction } from "express";
@@ -98,6 +99,46 @@ app.delete("/mcp", originGuard, authMiddleware, async (req: Request, res: Respon
   }
   const session = sessions.get(sessionId)!;
   await session.transport.handleRequest(req, res);
+});
+
+// --- Legacy SSE transport (for clients like LibreChat that don't support Streamable HTTP) ---
+
+const sseSessions = new Map<string, SSEServerTransport>();
+
+app.get("/sse", authMiddleware, async (req: Request, res: Response) => {
+  const agentId = req.agentId;
+  const transport = new SSEServerTransport("/messages", res);
+  const server = createServer(agentId);
+
+  sseSessions.set(transport.sessionId, transport);
+
+  // Send keepalive pings every 15s to prevent connection timeouts
+  const keepalive = setInterval(() => {
+    try { res.write(": ping\n\n"); } catch {}
+  }, 15000);
+
+  transport.onclose = () => {
+    clearInterval(keepalive);
+    sseSessions.delete(transport.sessionId);
+    log("info", "sse-session-closed", { agentId, sessionId: transport.sessionId });
+  };
+
+  req.on("close", () => {
+    clearInterval(keepalive);
+  });
+
+  log("info", "sse-session-created", { agentId, sessionId: transport.sessionId });
+  await server.connect(transport);
+});
+
+app.post("/messages", authMiddleware, async (req: Request, res: Response) => {
+  const sessionId = req.query.sessionId as string | undefined;
+  if (!sessionId || !sseSessions.has(sessionId)) {
+    res.status(400).json({ error: "NO_SESSION", message: "Invalid or missing session ID" });
+    return;
+  }
+  const transport = sseSessions.get(sessionId)!;
+  await transport.handlePostMessage(req, res, req.body);
 });
 
 // --- Start ---

@@ -112,7 +112,7 @@ export function registerSearchTool(server: McpServer, agentId: string): void {
         query: z.string().optional().describe("Semantic search query text"),
         path: z.array(z.string()).optional().describe("Filter by path prefix"),
         filter: z.record(z.unknown()).optional().describe("JSONB metadata filter"),
-        threshold: z.number().min(0).max(1).optional().default(0.7).describe("Similarity threshold"),
+        threshold: z.number().min(0).max(1).optional().default(0.7).describe("Cosine similarity threshold (0-1). Default 0.7. Lower to 0.3-0.5 for broader matching if no results found."),
         count: z.number().int().positive().optional().default(10).describe("Max results"),
         depth: z.number().int().positive().optional().describe("Path depth limit"),
         verbose: z.boolean().optional().describe("Include similarity, metadata, timestamps"),

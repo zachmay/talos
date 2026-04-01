@@ -1,0 +1,11 @@
+version: 1.3.6
+cache: true
+
+mcpServers:
+  talos:
+    url: http://mcp:3000/sse
+    timeout: 60000
+
+mcpSettings:
+  allowedDomains:
+    - 'mcp'
