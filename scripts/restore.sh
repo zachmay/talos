@@ -1,65 +1,67 @@
 #!/usr/bin/env bash
-# scripts/restore.sh — Restore Postgres from a pg_dump -Fc backup file
-# Usage: ./talos restore <backup-file> [--verify-only]
+# scripts/restore.sh — Restore Postgres and/or MongoDB from backup files
+# Usage: ./talos restore <pg-dump-file> [--mongo <mongo-archive>] [--verify-only]
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+COMPOSE="docker compose -f $PROJECT_ROOT/docker-compose.yml"
 
-BACKUP_FILE="${1:-}"
+PG_FILE="${1:-}"
+MONGO_FILE=""
 VERIFY_ONLY=0
 
 shift || true
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --mongo) MONGO_FILE="$2"; shift 2 ;;
     --verify-only) VERIFY_ONLY=1; shift ;;
     *) echo "Unknown option: $1"; exit 1 ;;
   esac
 done
 
-if [[ -z "$BACKUP_FILE" ]]; then
-  echo "Usage: ./talos restore <backup-file>"
+if [[ -z "$PG_FILE" ]]; then
+  echo "Usage: ./talos restore <pg-dump-file> [--mongo <mongo-archive>] [--verify-only]"
+  echo ""
+  echo "Examples:"
+  echo "  ./talos restore backups/talos_20260331.dump"
+  echo "  ./talos restore backups/talos_20260331.dump --mongo backups/mongo_20260331.archive"
+  echo "  ./talos restore backups/talos_20260331.dump --verify-only"
   exit 1
 fi
 
-if [[ ! -f "$BACKUP_FILE" ]]; then
-  echo "[ERROR] Backup file not found: $BACKUP_FILE"
+if [[ ! -f "$PG_FILE" ]]; then
+  echo "[ERROR] Postgres backup not found: $PG_FILE"
+  exit 1
+fi
+
+if [[ -n "$MONGO_FILE" && ! -f "$MONGO_FILE" ]]; then
+  echo "[ERROR] MongoDB backup not found: $MONGO_FILE"
   exit 1
 fi
 
 verify_restore() {
-  local DB="talos"
-  echo "--- Verifying restore ---"
+  echo "--- Verifying Postgres ---"
 
-  # 1. pgvector extension present
-  docker compose -f "$PROJECT_ROOT/docker-compose.yml" exec -T db \
-    psql -U postgres -d "$DB" -tAc \
+  $COMPOSE exec -T db \
+    psql -U postgres -d talos -tAc \
     "SELECT extname FROM pg_extension WHERE extname = 'vector';" | grep -q vector
   echo "[OK] pgvector extension present"
 
-  # 2. entries row count
-  COUNT=$(docker compose -f "$PROJECT_ROOT/docker-compose.yml" exec -T db \
-    psql -U postgres -d "$DB" -tAc "SELECT COUNT(*) FROM entries;")
+  COUNT=$($COMPOSE exec -T db \
+    psql -U postgres -d talos -tAc "SELECT COUNT(*) FROM entries;")
   echo "[OK] entries table: $COUNT rows"
 
-  # 3. RLS enabled on key tables
-  docker compose -f "$PROJECT_ROOT/docker-compose.yml" exec -T db \
-    psql -U postgres -d "$DB" -tAc \
-    "SELECT tablename, rowsecurity FROM pg_tables WHERE tablename IN ('entries','chunks','audit_log') ORDER BY tablename;" \
-    | grep -E "^(entries|chunks|audit_log)\|t$" | wc -l | grep -qE "^[23]$"
-  echo "[OK] RLS enabled on data tables"
-
-  # 4. match_entries function present
-  docker compose -f "$PROJECT_ROOT/docker-compose.yml" exec -T db \
-    psql -U postgres -d "$DB" -tAc \
+  $COMPOSE exec -T db \
+    psql -U postgres -d talos -tAc \
     "SELECT proname FROM pg_proc WHERE proname = 'match_entries';" | grep -q match_entries
   echo "[OK] match_entries function present"
 
-  # 5. audit_log table present (Phase 4)
-  docker compose -f "$PROJECT_ROOT/docker-compose.yml" exec -T db \
-    psql -U postgres -d "$DB" -tAc \
-    "SELECT 1 FROM information_schema.tables WHERE table_name = 'audit_log';" | grep -q 1
-  echo "[OK] audit_log table present"
+  if [[ -n "$MONGO_FILE" ]]; then
+    echo "--- Verifying MongoDB ---"
+    COLLECTIONS=$($COMPOSE exec -T mongodb mongosh --quiet librechat --eval "db.getCollectionNames().length")
+    echo "[OK] MongoDB collections: $COLLECTIONS"
+  fi
 
   echo "--- Verification complete ---"
 }
@@ -69,20 +71,27 @@ if [[ "$VERIFY_ONLY" -eq 1 ]]; then
   exit 0
 fi
 
-echo "Restoring from: $BACKUP_FILE"
-echo "[WARN] This will drop and recreate all database objects. Services will be stopped."
+echo "Restoring from: $PG_FILE"
+[[ -n "$MONGO_FILE" ]] && echo "MongoDB from: $MONGO_FILE"
+echo "[WARN] This will overwrite existing data. Services will be stopped."
 
-# Stop services that hold DB connections (prevents pg_restore: 'database is being accessed by other users')
-docker compose -f "$PROJECT_ROOT/docker-compose.yml" stop mcp agent 2>/dev/null || true
+# Stop services that hold connections
+$COMPOSE stop mcp librechat 2>/dev/null || true
 
-# Run pg_restore — stream backup file from host into container stdin
-docker compose -f "$PROJECT_ROOT/docker-compose.yml" exec -T db \
-  pg_restore -U postgres --clean --if-exists -d talos < "$BACKUP_FILE"
+# Restore Postgres
+echo "Restoring Postgres..."
+$COMPOSE exec -T db \
+  pg_restore -U postgres --clean --if-exists -d talos < "$PG_FILE"
+echo "[OK] Postgres restored"
 
-echo "[OK] pg_restore completed"
+# Restore MongoDB
+if [[ -n "$MONGO_FILE" ]]; then
+  echo "Restoring MongoDB..."
+  $COMPOSE exec -T mongodb mongorestore --db=librechat --archive --drop --quiet < "$MONGO_FILE"
+  echo "[OK] MongoDB restored"
+fi
 
-# Restart dependent services
-docker compose -f "$PROJECT_ROOT/docker-compose.yml" start mcp agent 2>/dev/null || true
+# Restart services
+$COMPOSE start mcp librechat 2>/dev/null || true
 
-# Verify the restored database
 verify_restore

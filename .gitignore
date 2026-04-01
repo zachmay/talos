@@ -9,3 +9,4 @@ dist/
 .test-tmp/
 .DS_Store
 backups/*.dump
+backups/*.archive
