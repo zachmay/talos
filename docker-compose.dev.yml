@@ -2,3 +2,5 @@ services:
   mcp:
     ports:
       - "3001:3000"
+    environment:
+      MCP_SKIP_AUTH: "true"

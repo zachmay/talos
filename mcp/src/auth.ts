@@ -29,12 +29,13 @@ const agentKeys = loadAgentKeys(resolveKeysPath());
 // Requests WITH an auth header are still validated normally.
 // TODO: Replace with proper OAuth (MCP spec) or mTLS before any network exposure.
 const skipAuthInternal = process.env.MCP_SKIP_AUTH_INTERNAL === "true";
+const skipAuthAll = process.env.MCP_SKIP_AUTH === "true";
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    if (skipAuthInternal) {
+    if (skipAuthAll || skipAuthInternal) {
       req.agentId = process.env.MCP_INTERNAL_AGENT_ID ?? "default-agent";
       next();
       return;
