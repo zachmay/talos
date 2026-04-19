@@ -2,13 +2,15 @@
 // links table consistent with each entry's content.
 //
 // Scans content for [[wikilinks]] and #tags, resolves to target entry UUIDs,
-// auto-creates tag stub entries at /tags/<name>, and replaces all outgoing
-// edges for the given source entry.
+// auto-creates concept stubs at /concepts/<name> and tag stubs at /tags/<name>,
+// and replaces all outgoing edges for the given source entry.
 //
-// In strict mode (default for live writes), throws DanglingLinkError or
-// AmbiguousLinkError on wikilinks that cannot resolve uniquely. Permissive
-// mode (used by the bulk Pass 2 resolver) stores unresolved edges with
-// target_id NULL and candidates[] populated when ambiguous.
+// Strict mode (live writes): dangling [[wikilinks]] auto-stub; ambiguous
+// [[wikilinks]] (2+ matches) throw AmbiguousLinkError to force author
+// disambiguation.
+//
+// Permissive mode (used only by internal bulk resolvers): stores unresolved
+// edges with target_id NULL for later audit.
 
 import type { PoolClient } from "pg";
 
@@ -194,7 +196,6 @@ type LinkRow = {
   targetId: string | null;
   linkText: string;
   linkType: "wikilink" | "tag";
-  candidates: string[];
 };
 
 export type ScanMode = "strict" | "permissive";
@@ -216,19 +217,19 @@ export async function scanAndStoreLinks(
   for (const text of wikilinks) {
     const { targetId, candidates } = await resolveWikilink(client, text);
     if (targetId) {
-      rows.push({ targetId, linkText: text, linkType: "wikilink", candidates: [] });
+      rows.push({ targetId, linkText: text, linkType: "wikilink" });
     } else if (candidates.length >= 2) {
       // Ambiguous — never auto-resolve
       if (mode === "strict") throw new AmbiguousLinkError(text, candidates);
-      rows.push({ targetId: null, linkText: text, linkType: "wikilink", candidates });
+      rows.push({ targetId: null, linkText: text, linkType: "wikilink" });
     } else if (mode === "strict") {
       // Dangling — auto-create stub (concept-graph philosophy)
       const stubId = await createConceptStub(client, text);
       conceptStubsCreated++;
-      rows.push({ targetId: stubId, linkText: text, linkType: "wikilink", candidates: [] });
+      rows.push({ targetId: stubId, linkText: text, linkType: "wikilink" });
     } else {
       // Permissive: leave dangling for import-time audit
-      rows.push({ targetId: null, linkText: text, linkType: "wikilink", candidates: [] });
+      rows.push({ targetId: null, linkText: text, linkType: "wikilink" });
     }
   }
 
@@ -243,7 +244,7 @@ export async function scanAndStoreLinks(
     );
     const stubId = await ensureTagStub(client, normalized);
     if (wasExisting.rows.length === 0) tagStubsCreated++;
-    rows.push({ targetId: stubId, linkText: tag, linkType: "tag", candidates: [] });
+    rows.push({ targetId: stubId, linkText: tag, linkType: "tag" });
   }
 
   // Replace all outgoing edges for this source
@@ -264,16 +265,9 @@ export async function scanAndStoreLinks(
 
   for (const row of uniqueRows) {
     await client.query(
-      `INSERT INTO links (agent_id, source_id, target_id, link_text, link_type, candidates)
-       VALUES ($1, $2, $3, $4, $5::link_type, $6)`,
-      [
-        agentId,
-        sourceId,
-        row.targetId,
-        row.linkText,
-        row.linkType,
-        row.candidates.length >= 2 ? row.candidates : null,
-      ]
+      `INSERT INTO links (agent_id, source_id, target_id, link_text, link_type)
+       VALUES ($1, $2, $3, $4, $5::link_type)`,
+      [agentId, sourceId, row.targetId, row.linkText, row.linkType]
     );
   }
 

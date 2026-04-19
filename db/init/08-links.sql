@@ -1,6 +1,6 @@
 -- Links table: typed, directional graph edges between entries.
--- Populated by Pass 2 link resolution during import; maintained by
--- insert/update tool hooks afterward.
+-- Populated by live insert/update hooks (mcp/src/links.ts) and by the
+-- Pass 2 bulk resolver during import.
 
 CREATE TYPE link_type AS ENUM ('wikilink', 'tag', 'embed', 'mention');
 
@@ -11,13 +11,8 @@ CREATE TABLE links (
     target_id   UUID        REFERENCES entries(id) ON DELETE SET NULL,
     link_text   TEXT        NOT NULL,
     link_type   link_type   NOT NULL,
-    candidates  UUID[],                          -- IMPORT-ONLY column (dropped after Pass 2)
     created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT links_resolved_no_candidates
-        CHECK (target_id IS NULL OR candidates IS NULL),
-    CONSTRAINT links_ambiguous_has_candidates
-        CHECK (target_id IS NOT NULL OR candidates IS NULL OR array_length(candidates, 1) >= 2),
     CONSTRAINT links_unique_edge
         UNIQUE (source_id, link_type, link_text)
 );

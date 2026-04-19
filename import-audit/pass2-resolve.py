@@ -5,8 +5,10 @@ Scans every entry's content for wikilinks and tags, resolves each to a
 target entry UUID, and inserts rows into the `links` table.
 
 For tags, auto-creates stub entries at /tags/<name> on demand.
-For ambiguous wikilinks, stores candidates array for manual resolution.
-For dangling wikilinks, stores row with target_id=NULL, candidates=NULL.
+For ambiguous wikilinks, writes a report file for manual resolution but
+skips inserting the DB row (the link is left unrepresented until the author
+disambiguates the source content).
+For dangling wikilinks, stores row with target_id=NULL (permissive mode).
 
 Writes audit artifacts to import-audit/:
   - pass2-report.md
@@ -329,22 +331,26 @@ def main():
 
     # Pass C: resolve wikilinks and build link rows
     print("\nResolving wikilinks and building link rows...")
-    link_rows = []          # list of (source_id, target_id, link_text, link_type, candidates)
-    ambiguous_records = []  # (source_entry, link_text, link_type, candidates)
+    link_rows = []          # list of (source_id, target_id, link_text, link_type)
+    ambiguous_records = []  # (source_entry, link_text, link_type, candidates) — report only
     dangling_records = []   # (source_entry, link_text, link_type)
 
     for source_id, wikilinks, tags, e in scan_results:
         for link_text in wikilinks:
             target_id, candidates = resolve_wikilink(link_text, by_title, by_path_title)
-            link_rows.append((source_id, target_id, link_text, "wikilink", candidates))
-            if target_id is None and candidates:
+            if target_id:
+                link_rows.append((source_id, target_id, link_text, "wikilink"))
+            elif candidates:
+                # Ambiguous — don't insert; just report for manual disambiguation
                 ambiguous_records.append((e, link_text, "wikilink", candidates))
-            elif target_id is None:
+            else:
+                # Dangling — insert with target_id NULL (permissive mode)
+                link_rows.append((source_id, None, link_text, "wikilink"))
                 dangling_records.append((e, link_text, "wikilink"))
 
         for tag_original, normalized in tags:
             tag_uuid = tag_stubs_cache[normalized]
-            link_rows.append((source_id, tag_uuid, tag_original, "tag", None))
+            link_rows.append((source_id, tag_uuid, tag_original, "tag"))
 
     print(f"\nTotal link rows to insert: {len(link_rows)}")
     print(f"Tag stubs:                  {len(tag_stubs_cache)}")
@@ -354,7 +360,7 @@ def main():
     seen_keys = set()
     unique_rows = []
     for row in link_rows:
-        source_id, target_id, link_text, link_type, candidates = row
+        source_id, target_id, link_text, link_type = row
         key = (source_id, link_type, link_text)
         if key not in seen_keys:
             seen_keys.add(key)
@@ -367,15 +373,14 @@ def main():
     for i in range(0, len(unique_rows), BATCH):
         batch = unique_rows[i : i + BATCH]
         values = []
-        for source_id, target_id, link_text, link_type, candidates in batch:
+        for source_id, target_id, link_text, link_type in batch:
             tid = f"{esc(target_id)}::uuid" if target_id else "NULL"
-            cand = esc_uuid_array(candidates) if candidates else "NULL"
             values.append(
                 f"({esc(AGENT_ID)}, {esc(source_id)}::uuid, {tid}, "
-                f"{esc(link_text)}, {esc(link_type)}::link_type, {cand})"
+                f"{esc(link_text)}, {esc(link_type)}::link_type)"
             )
         sql = (
-            "INSERT INTO links (agent_id, source_id, target_id, link_text, link_type, candidates) VALUES "
+            "INSERT INTO links (agent_id, source_id, target_id, link_text, link_type) VALUES "
             + ",".join(values)
             + " ON CONFLICT (source_id, link_type, link_text) DO NOTHING;"
         )
