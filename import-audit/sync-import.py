@@ -131,13 +131,15 @@ def delete_entry(session_id, guid, req_id=1):
 # --- Direct DB query ---
 
 def fetch_db_obsidian():
-    """Return {original_source: {id, updated}} for all obsidian DB entries,
+    """Return {original_source: {id, title, content, updated}} for all obsidian DB entries,
     excluding Roam (frozen archive — sync doesn't apply)."""
     sql = (
         "SET app.agent_id = 'default-agent'; "
         "SELECT json_build_object("
         "'id', id, "
         "'original_source', metadata->'_import'->>'original', "
+        "'title', title, "
+        "'content', content, "
         "'updated', metadata->>'updated') "
         "FROM entries WHERE metadata->'_import'->>'source' = 'obsidian' "
         "  AND (metadata->'_import'->>'original') NOT LIKE '/Roam/%';"
@@ -194,7 +196,12 @@ def diff(manifest, db_by_source):
 
         file_time = parse_time(entry["metadata"].get("updated"))
         db_time = parse_time(db_row.get("updated"))
-        if file_time and db_time and file_time > db_time:
+        time_changed = file_time and db_time and file_time > db_time
+        # Detect title or content mismatch independent of timestamps
+        # (catches changes made without bumping the 'updated' frontmatter field)
+        title_changed = entry.get("title") != db_row.get("title")
+        content_changed = entry.get("content", "") != (db_row.get("content") or "")
+        if time_changed or title_changed or content_changed:
             changed.append((db_row["id"], entry))
         else:
             unchanged.append(entry)

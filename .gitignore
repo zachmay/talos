@@ -18,3 +18,4 @@ backups/*.archive
 import-audit/*-manifest.json
 import-audit/title-guid-index.json
 import-audit/audit-report.json
+import-audit/*-before.json
