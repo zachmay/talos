@@ -73,3 +73,20 @@ Two formats in vault: ISO (`2020-03-15`) and prose (`September 9th, 2020`). Norm
 
 - One metadata mismatch: `/Roam/FLAC vs Lossy Audio Formats.md` has `tags:` as list in frontmatter; our parser didn't preserve it.
 - A few tag stubs look dubious (`await`, `b475`, `matthew`, `what`, `via`) — could delete manually if we care.
+
+### Productize the Obsidian importer
+
+The tooling in `import-audit/` is a one-shot, highly opinionated to my specific vault structure:
+- Hardcoded routing rules (Data/Films → /data/films/, Writing/Ziusudra → /writing/ziusudra/, etc.)
+- Manual reclassifications for Roam exports (reclassifications.md)
+- Vault-specific filename disambiguation (colons stripped, bracket handling)
+
+Proper importer should:
+- Accept a routing config (YAML/JSON) so users declare their own folder→path mapping
+- Handle any Obsidian vault layout, not assume Roam-legacy-quirks
+- Ship as either a Talos CLI subcommand (`./talos import <vault>`) or MCP skill
+- Provide dry-run + diff preview
+- Surface ambiguity/dangling link decisions through a structured queue, not ad-hoc SQL
+- Use a persistent DB connection (psycopg2) — not per-query subprocess
+
+The current `sync-import.py` is close to reusable once it's decoupled from our specific manifest builder. The `build-full-manifest.py` is where the opinionated logic lives.

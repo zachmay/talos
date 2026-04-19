@@ -3,6 +3,7 @@ import { withAgent } from "../db.js";
 
 import { chunkText } from "../chunker.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
+import { scanAndStoreLinks, DanglingLinkError, AmbiguousLinkError } from "../links.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 interface ToolResult {
@@ -105,11 +106,25 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
           );
         }
 
+        // Rescan content for outgoing links (strict mode: rejects dangling/ambiguous)
+        if (content.trim().length > 0) {
+          await scanAndStoreLinks(client, agentId, id, content, "strict");
+        } else {
+          // Empty content — drop any existing outgoing links
+          await client.query("DELETE FROM links WHERE source_id = $1", [id]);
+        }
+
         return updateResult.rows[0];
       });
     } catch (err) {
       if (err instanceof Error && err.message === "NOT_FOUND") {
         return toolError("NOT_FOUND", "Entry not found or access denied");
+      }
+      if (err instanceof DanglingLinkError) {
+        return toolError("DANGLING_LINK", err.message);
+      }
+      if (err instanceof AmbiguousLinkError) {
+        return toolError("AMBIGUOUS_LINK", err.message);
       }
       throw err;
     }

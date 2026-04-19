@@ -4,6 +4,7 @@ import { withAgent } from "../db.js";
 
 import { createEmbeddingProvider } from "../providers/interface.js";
 import { chunkText } from "../chunker.js";
+import { scanAndStoreLinks, DanglingLinkError, AmbiguousLinkError } from "../links.js";
 
 
 interface InsertInput {
@@ -51,39 +52,56 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
 
   // Write atomically
   const startMs = Date.now();
-  const row = await withAgent(agentId, async (client) => {
-    // Insert entry first to get ID for audit trail
-    const entryResult = await client.query(
-      `INSERT INTO entries (agent_id, content, path, title, type, mime_type, metadata)
-       VALUES (current_setting('app.agent_id'), $1, $2, $3, $4, $5, $6)
-       RETURNING id, content, path, title, type, mime_type, metadata, created_at`,
-      [
-        content,
-        path ?? [],
-        title,
-        type,
-        mime_type ?? 'text/markdown',
-        metadata ? JSON.stringify(metadata) : '{}',
-      ]
-    );
-    const entry = entryResult.rows[0];
-
-    if (chunks.length > 0) {
-      const values: any[] = [];
-      const placeholders: string[] = [];
-      chunks.forEach((_, i) => {
-        const offset = i * 5;
-        placeholders.push(`($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5})`);
-        values.push(entry.id, i, chunks[i], JSON.stringify(vectors[i]), agentId);
-      });
-      await client.query(
-        `INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ${placeholders.join(", ")}`,
-        values
+  let row: any;
+  try {
+    row = await withAgent(agentId, async (client) => {
+      // Insert entry first to get ID for audit trail
+      const entryResult = await client.query(
+        `INSERT INTO entries (agent_id, content, path, title, type, mime_type, metadata)
+         VALUES (current_setting('app.agent_id'), $1, $2, $3, $4, $5, $6)
+         RETURNING id, content, path, title, type, mime_type, metadata, created_at`,
+        [
+          content,
+          path ?? [],
+          title,
+          type,
+          mime_type ?? 'text/markdown',
+          metadata ? JSON.stringify(metadata) : '{}',
+        ]
       );
-    }
+      const entry = entryResult.rows[0];
 
-    return entry;
-  });
+      if (chunks.length > 0) {
+        const values: any[] = [];
+        const placeholders: string[] = [];
+        chunks.forEach((_, i) => {
+          const offset = i * 5;
+          placeholders.push(`($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${offset + 5})`);
+          values.push(entry.id, i, chunks[i], JSON.stringify(vectors[i]), agentId);
+        });
+        await client.query(
+          `INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ${placeholders.join(", ")}`,
+          values
+        );
+      }
+
+      // Scan content for wikilinks and tags, populate links table.
+      // Strict mode: dangling or ambiguous wikilinks throw and roll back the transaction.
+      if (content && content.trim().length > 0) {
+        await scanAndStoreLinks(client, agentId, entry.id, content, "strict");
+      }
+
+      return entry;
+    });
+  } catch (err: any) {
+    if (err instanceof DanglingLinkError) {
+      return toolError("DANGLING_LINK", err.message);
+    }
+    if (err instanceof AmbiguousLinkError) {
+      return toolError("AMBIGUOUS_LINK", err.message);
+    }
+    throw err;
+  }
 
   const durationMs = Date.now() - startMs;
 
