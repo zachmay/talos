@@ -5,11 +5,13 @@ import { withAgent } from "../db.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 import { chunkText } from "../chunker.js";
 
-const MAX_CONTENT_LENGTH = 50_000;
 
 interface InsertInput {
   content: string;
+  title: string;
+  type: string;
   path?: string[];
+  mime_type?: string;
   metadata?: Record<string, unknown>;
   chunk_size?: number;
   chunk_overlap?: number;
@@ -30,15 +32,7 @@ function toolError(code: string, message: string): ToolResult {
 }
 
 export async function _handleInsert(input: InsertInput, agentId: string): Promise<ToolResult> {
-  const { content, path, metadata, chunk_size, chunk_overlap, verbose } = input;
-
-  // Validation
-  if (!content || content.trim().length === 0) {
-    return toolError("VALIDATION_ERROR", "Content must not be empty");
-  }
-  if (content.length > MAX_CONTENT_LENGTH) {
-    return toolError("VALIDATION_ERROR", "Content exceeds maximum length");
-  }
+  const { content, title, type, path, mime_type, metadata, chunk_size, chunk_overlap, verbose } = input;
 
   // Chunk config
   const chunkSize = chunk_size ?? parseInt(process.env.CHUNK_SIZE ?? "2000", 10);
@@ -60,10 +54,17 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
   const row = await withAgent(agentId, async (client) => {
     // Insert entry first to get ID for audit trail
     const entryResult = await client.query(
-      `INSERT INTO entries (agent_id, content, path, metadata)
-       VALUES (current_setting('app.agent_id'), $1, $2, $3)
-       RETURNING id, content, path, metadata, created_at`,
-      [content, path ?? [], metadata ? JSON.stringify(metadata) : '{}']
+      `INSERT INTO entries (agent_id, content, path, title, type, mime_type, metadata)
+       VALUES (current_setting('app.agent_id'), $1, $2, $3, $4, $5, $6)
+       RETURNING id, content, path, title, type, mime_type, metadata, created_at`,
+      [
+        content,
+        path ?? [],
+        title,
+        type,
+        mime_type ?? 'text/markdown',
+        metadata ? JSON.stringify(metadata) : '{}',
+      ]
     );
     const entry = entryResult.rows[0];
 
@@ -100,6 +101,9 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
   // Build response
   const result: Record<string, unknown> = {
     id: row.id,
+    title: row.title,
+    type: row.type,
+    mime_type: row.mime_type,
     content: row.content,
     path: row.path ?? [],
   };
@@ -121,9 +125,12 @@ export function registerInsertTool(server: McpServer, agentId: string): void {
     {
       description: "Insert text content into semantic memory with automatic embedding and chunking",
       inputSchema: {
-        content: z.string().min(1, "Content must not be empty").max(MAX_CONTENT_LENGTH),
+        content: z.string(),
+        title: z.string().min(1).describe("Human-readable title of the entry"),
+        type: z.string().min(1).describe("Entry type (e.g. 'note', 'reference', 'log', 'tag')"),
         path: z.array(z.string()).optional().describe("Path hierarchy e.g. ['tasks', 'home']"),
-        metadata: z.record(z.unknown()).optional().describe("Arbitrary metadata JSONB"),
+        mime_type: z.string().optional().describe("Content mime type, defaults to 'text/markdown'"),
+        metadata: z.record(z.unknown()).optional().describe("User-supplied metadata (arbitrary JSONB). Use '_import' for provenance."),
         chunk_size: z.number().int().positive().optional().describe("Override default chunk size in chars"),
         chunk_overlap: z.number().int().min(0).optional().describe("Override default chunk overlap in chars"),
         verbose: z.boolean().optional().describe("Return full metadata in response"),

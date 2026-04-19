@@ -22,6 +22,9 @@ interface UpdateParams {
   agentId: string;
   id: string;
   content?: string;
+  title?: string;
+  type?: string;
+  mime_type?: string;
   metadata?: Record<string, unknown>;
   chunk_size?: number;
   chunk_overlap?: number;
@@ -29,11 +32,20 @@ interface UpdateParams {
 }
 
 export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
-  const { agentId, id, content, metadata, verbose } = params;
+  const { agentId, id, content, title, type, mime_type, metadata, verbose } = params;
 
-  // Validate: at least one of content or metadata
-  if (!content && !metadata) {
-    return toolError("VALIDATION_ERROR", "At least one of content or metadata must be provided");
+  // Validate: at least one updatable field
+  if (
+    content === undefined &&
+    title === undefined &&
+    type === undefined &&
+    mime_type === undefined &&
+    metadata === undefined
+  ) {
+    return toolError(
+      "VALIDATION_ERROR",
+      "At least one of content, title, type, mime_type, or metadata must be provided"
+    );
   }
 
   // Validate: content must not be empty string
@@ -44,8 +56,23 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
   const chunkSize = params.chunk_size ?? parseInt(process.env.CHUNK_SIZE ?? "2000", 10);
   const chunkOverlap = params.chunk_overlap ?? parseInt(process.env.CHUNK_OVERLAP ?? "200", 10);
 
+  // Build SET clause dynamically for whatever fields were provided
+  const setClauses: string[] = [];
+  const values: any[] = [id];
+  let p = 2;
+  if (content !== undefined) { setClauses.push(`content = $${p++}`); values.push(content); }
+  if (title !== undefined) { setClauses.push(`title = $${p++}`); values.push(title); }
+  if (type !== undefined) { setClauses.push(`type = $${p++}`); values.push(type); }
+  if (mime_type !== undefined) { setClauses.push(`mime_type = $${p++}`); values.push(mime_type); }
+  if (metadata !== undefined) { setClauses.push(`metadata = $${p++}`); values.push(JSON.stringify(metadata)); }
+  setClauses.push(`updated_at = NOW()`);
+
+  const returningCols = verbose
+    ? "id, title, type, mime_type, content, path, metadata, updated_at"
+    : "id, title, type, mime_type, content, path";
+
   // Content update path: chunk + embed BEFORE transaction
-  if (content) {
+  if (content !== undefined) {
     const provider = createEmbeddingProvider();
     const chunks = chunkText(content, chunkSize, chunkOverlap);
 
@@ -60,27 +87,17 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     let row: any;
     try {
       row = await withAgent(agentId, async (client) => {
-        // Delete old chunks
         await client.query("DELETE FROM chunks WHERE entry_id = $1", [id]);
 
-        // Update entry content (+ metadata if provided)
-        const updateFields = metadata
-          ? "content = $2, metadata = $3, updated_at = NOW()"
-          : "content = $2, updated_at = NOW()";
-        const updateParams = metadata ? [id, content, JSON.stringify(metadata)] : [id, content];
-        const returning = verbose
-          ? "id, content, path, metadata, updated_at"
-          : "id, content, path";
         const updateResult = await client.query(
-          `UPDATE entries SET ${updateFields} WHERE id = $1 RETURNING ${returning}`,
-          updateParams
+          `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}`,
+          values
         );
 
         if (updateResult.rowCount === 0) {
           throw new Error("NOT_FOUND");
         }
 
-        // Insert new chunks
         for (let i = 0; i < chunks.length; i++) {
           await client.query(
             "INSERT INTO chunks (entry_id, chunk_idx, chunk_text, embedding, agent_id) VALUES ($1, $2, $3, $4, $5)",
@@ -99,6 +116,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
 
     const response: Record<string, unknown> = {
       id: row.id,
+      title: row.title,
+      type: row.type,
+      mime_type: row.mime_type,
       content: row.content,
       path: row.path,
     };
@@ -113,16 +133,13 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     };
   }
 
-  // Metadata-only path
+  // Non-content update path (metadata/title/type/mime_type only)
   let row: any;
   try {
     row = await withAgent(agentId, async (client) => {
-      const returning = verbose
-        ? "id, content, path, metadata, updated_at"
-        : "id, content, path";
       const result = await client.query(
-        `UPDATE entries SET metadata = $2, updated_at = NOW() WHERE id = $1 RETURNING ${returning}`,
-        [id, JSON.stringify(metadata)]
+        `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}`,
+        values
       );
       if (result.rowCount === 0) {
         throw new Error("NOT_FOUND");
@@ -138,6 +155,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
 
   const response: Record<string, unknown> = {
     id: row.id,
+    title: row.title,
+    type: row.type,
+    mime_type: row.mime_type,
     content: row.content,
     path: row.path,
   };
@@ -153,7 +173,10 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
 
 const updateSchema = {
   id: z.string().uuid("Entry ID must be a valid UUID"),
-  content: z.string().min(1).max(50_000).optional(),
+  content: z.string().optional(),
+  title: z.string().min(1).optional(),
+  type: z.string().min(1).optional(),
+  mime_type: z.string().optional(),
   metadata: z.record(z.unknown()).optional(),
   chunk_size: z.number().int().positive().optional(),
   chunk_overlap: z.number().int().min(0).optional(),
@@ -163,7 +186,7 @@ const updateSchema = {
 export function registerUpdateTool(server: McpServer, agentId: string): void {
   server.tool(
     "update",
-    "Update an entry's content (with re-embedding) and/or metadata",
+    "Update an entry's content (with re-embedding), title, type, mime_type, or metadata",
     updateSchema,
     async (params) => {
       return handleUpdate({ agentId, ...params });

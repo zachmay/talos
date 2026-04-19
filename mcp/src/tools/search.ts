@@ -26,6 +26,36 @@ function toolError(code: string, message: string): ToolResult {
   };
 }
 
+// System columns that are filtered directly, not via metadata @> containment.
+const COLUMN_FILTERS = new Set(["title", "type", "mime_type"]);
+
+function splitFilter(filter: Record<string, unknown> | undefined): {
+  title: string | null;
+  type: string | null;
+  mime_type: string | null;
+  metadata: Record<string, unknown> | null;
+} {
+  if (!filter) {
+    return { title: null, type: null, mime_type: null, metadata: null };
+  }
+  const metadata: Record<string, unknown> = {};
+  let title: string | null = null;
+  let type: string | null = null;
+  let mime_type: string | null = null;
+  for (const [k, v] of Object.entries(filter)) {
+    if (k === "title") title = typeof v === "string" ? v : String(v);
+    else if (k === "type") type = typeof v === "string" ? v : String(v);
+    else if (k === "mime_type") mime_type = typeof v === "string" ? v : String(v);
+    else metadata[k] = v;
+  }
+  return {
+    title,
+    type,
+    mime_type,
+    metadata: Object.keys(metadata).length > 0 ? metadata : null,
+  };
+}
+
 export async function _handleSearch(input: SearchInput, agentId: string): Promise<ToolResult> {
   const { query, path, filter, threshold = 0.7, count = 10, verbose } = input;
 
@@ -37,31 +67,43 @@ export async function _handleSearch(input: SearchInput, agentId: string): Promis
   let rows: any[];
 
   if (!query && path) {
-    // Path-only mode: list entries by path prefix
+    // Path-only mode: list entries by path prefix (optionally filtered by columns/metadata)
+    const { title, type, mime_type, metadata } = splitFilter(filter);
     rows = await withAgent(agentId, async (client) => {
+      const conditions: string[] = ["path @> $1::text[]"];
+      const values: any[] = [path];
+      let p = 2;
+      if (title !== null) { conditions.push(`title = $${p++}`); values.push(title); }
+      if (type !== null) { conditions.push(`type = $${p++}`); values.push(type); }
+      if (mime_type !== null) { conditions.push(`mime_type = $${p++}`); values.push(mime_type); }
+      if (metadata !== null) { conditions.push(`metadata @> $${p++}::jsonb`); values.push(JSON.stringify(metadata)); }
       const result = await client.query(
-        `SELECT id, content, path FROM entries
-         WHERE agent_id = current_setting('app.agent_id')
-           AND path @> $1::text[]
+        `SELECT id, title, type, mime_type, content, path, metadata, created_at
+         FROM entries
+         WHERE ${conditions.join(" AND ")}
          ORDER BY created_at DESC`,
-        [path]
+        values
       );
       return result.rows;
     });
   } else {
-    // Semantic search (with optional path scope)
+    // Semantic search (with optional path + column + metadata filters)
     const provider = createEmbeddingProvider();
     const queryVector = await provider.embed(query!);
+    const { title, type, mime_type, metadata } = splitFilter(filter);
 
     rows = await withAgent(agentId, async (client) => {
       const result = await client.query(
-        `SELECT * FROM match_entries($1, $2, $3, $4, $5)`,
+        `SELECT * FROM match_entries($1, $2, $3, $4, $5, $6, $7, $8)`,
         [
           JSON.stringify(queryVector),
           threshold,
           count,
-          filter ? JSON.stringify(filter) : null,
+          metadata ? JSON.stringify(metadata) : null,
           path ?? null,
+          title,
+          type,
+          mime_type,
         ]
       );
       return result.rows;
@@ -84,6 +126,9 @@ export async function _handleSearch(input: SearchInput, agentId: string): Promis
   const results = rows.map((row: any) => {
     const base: Record<string, unknown> = {
       id: row.id,
+      title: row.title,
+      type: row.type,
+      mime_type: row.mime_type,
       content: row.content,
       path: row.path ?? [],
     };
@@ -111,8 +156,8 @@ export function registerSearchTool(server: McpServer, agentId: string): void {
       inputSchema: {
         query: z.string().optional().describe("Semantic search query text"),
         path: z.array(z.string()).optional().describe("Filter by path prefix"),
-        filter: z.record(z.unknown()).optional().describe("JSONB metadata filter"),
-        threshold: z.number().min(0).max(1).optional().default(0.7).describe("Cosine similarity threshold (0-1). Default 0.7. Lower to 0.3-0.5 for broader matching if no results found."),
+        filter: z.record(z.unknown()).optional().describe("Filter by title/type/mime_type (direct) or any other key (metadata containment)"),
+        threshold: z.number().min(0).max(1).optional().default(0.7).describe("Cosine similarity threshold (0-1). Default 0.7."),
         count: z.number().int().positive().optional().default(10).describe("Max results"),
         depth: z.number().int().positive().optional().describe("Path depth limit"),
         verbose: z.boolean().optional().describe("Include similarity, metadata, timestamps"),

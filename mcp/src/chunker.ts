@@ -5,6 +5,7 @@ export function chunkText(text: string, chunkSize: number, chunkOverlap: number)
     );
   }
 
+  if (!text) return [];
   if (text.length <= chunkSize) return [text];
 
   const chunks: string[] = [];

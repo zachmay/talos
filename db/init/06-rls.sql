@@ -20,4 +20,4 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON entries TO mcp_service;
 GRANT SELECT, INSERT, UPDATE, DELETE ON chunks TO mcp_service;
 
 -- EXECUTE grant on search function
-GRANT EXECUTE ON FUNCTION match_entries(VECTOR, FLOAT, INT, JSONB, TEXT[]) TO mcp_service;
+GRANT EXECUTE ON FUNCTION match_entries(VECTOR, FLOAT, INT, JSONB, TEXT[], TEXT, TEXT, TEXT) TO mcp_service;

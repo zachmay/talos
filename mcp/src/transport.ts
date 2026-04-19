@@ -36,7 +36,7 @@ function log(level: string, message: string, extra?: Record<string, unknown>): v
 // --- App setup ---
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 
 // Health check (no auth)
 app.get("/health", (_req: Request, res: Response) => {

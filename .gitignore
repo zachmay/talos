@@ -10,3 +10,11 @@ dist/
 .DS_Store
 backups/*.dump
 backups/*.archive
+
+# Claude Code settings (user-specific paths, personal permissions)
+.claude/
+
+# Generated import artifacts (re-derivable from scripts)
+import-audit/*-manifest.json
+import-audit/title-guid-index.json
+import-audit/audit-report.json
