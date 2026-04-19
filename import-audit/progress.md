@@ -27,9 +27,10 @@
   - 1,250 Roam-duplicate-export refs deleted
   - 122 date stubs auto-created, 150 date refs resolved
   - 154 Acima stubs auto-created, 641 Acima refs resolved
-- [ ] **Step 20f**: Remaining dangling links (2,337) — **deferred** (see Follow-ups)
-- [ ] **Step 20g**: Wire link scanning into insert/update tools (live hooks)
-- [ ] **Step 20h**: Drop `candidates` column once confident
+- [ ] **Step 20f**: Remaining dangling links — **deferred** (see Follow-ups)
+- [x] **Step 20g**: Wire link scanning into insert/update tools (live hooks) — 2026-04-19
+- [x] **Step 20h**: Drop `candidates` column — 2026-04-19
+- [x] **Daily note title normalization**: 577 frontmatter titles + 50 wikilinks → ISO format; sync-import extended with title/content diff detection — 2026-04-19
 
 ## Pass 3: Subagent Definitions
 
@@ -65,9 +66,9 @@ See `pass-2-plan.md` Step 6 and the hook-design notes.
 
 Post-import cleanup. Wait until live hooks are in + confidence in graph.
 
-### Normalize daily note titles
+### ~~Normalize daily note titles~~ — DONE 2026-04-19
 
-Two formats in vault: ISO (`2020-03-15`) and prose (`September 9th, 2020`). Normalize to ISO, which will also resolve prose-format dangling date links.
+Completed via `normalize-daily-titles.py` + `verify-normalization.py`. 577 prose-titled daily note frontmatter values + 50 prose-date wikilinks rewritten to ISO. As a side effect, 71 additional concept stubs were auto-created by the live-mode link hook during rescans (concept-graph philosophy working as designed).
 
 ### Minor cleanups
 
