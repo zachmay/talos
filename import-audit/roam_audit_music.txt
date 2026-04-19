@@ -1,0 +1,66 @@
+[release] Ambient I: Music for Airports (1978)
+[gear] Arturia Analog Lab V
+[gear] Arturia Midi Control Center
+[gear] Bitwig
+[release] Brown Sugar
+[release] Das Lied von der Erde
+[release] Dawn at Centered
+[gear] Dexed
+[release] Different Trains
+[release] Disintegration Loops
+[release] Disintegration Loops (2002)
+[release] Don Cherry (1975)
+[gear] Duos Eurorack
+[release] Electropraxis
+[gear] ErgoDox EZ
+[gear] FocusRite Clarett 8Pre
+[release] Folk Songs
+[gear] Frequency Central
+[gear] GearHead
+[gear] Hikari Instruments
+[release] How to write a 4-chord loop
+[release] Hymnen
+[release] In the Aeroplane Over the Sea (1998)
+[release] It's Gonna Rain
+[release] La Création du Monde
+[release] Lexman Artificial Podcast
+[release] Listening through the Noise
+[gear] Lospec
+[gear] Michigan Synthworks
+[gear] Moog Music Inc.
+[gear] Morphagene
+[release] Music Ideas
+[release] Music Practice
+[release] Music Production Software
+[release] Nada Brahma
+[release] NixOS for Music Production
+[gear] O_C
+[gear] Ornament and Crime
+[release] Project: Bandcamp Releases
+[gear] Project: Electronic Music Studio Setup
+[release] Project: More Embodied Synthesizer Music
+[release] Project: Release: 20180612 EP
+[release] Project: Release: Drone EP
+[release] Project: Release: Early Music
+[release] Project: Release: kalsa EP
+[release] Project: Streaming
+[release] Project: Streaming Setup
+[release] Project: Studio Furniture Refresh
+[release] Project: Studio Remodel
+[release] Richard D. James Album (1996)
+[gear] Sensel Morph
+[release] Song of the Jewel Mirror Samadhi (ca. 1100)
+[release] Spiritual Music Theory
+[release] Studio Notes
+[release] Studio Stuff
+[release] Study 1
+[release] Stuff to Sample
+[gear] Sweetwater
+[release] Tauhid (19XX)
+[release] The Man-Machine (1978)
+[release] Trance Mutation
+[gear] u-he
+[gear] u-he Satin
+[release] Wavelength
+[release] Where Is My Mind?
+[gear] YouLean Liveness Meter

@@ -1,0 +1,102 @@
+[band] A Tribe Called Quest
+[person] A.J. Ayer
+[artist] Al Gromer Khan
+[person] Alyssa, Massage Therapist
+[person] Antoine de Saint-Exupery
+[person] Aquinas
+[person] Aristotle
+[person] Arnold Böcklin
+[artist] Bartok
+[artist] Berio
+[band] Boards of Canada
+[artist] Boulez
+[band] Brooklyn Raga Massive
+[person] Bruce J. MacLennan
+[person] Bryan O'Sullivan
+[person] C. S. Lewis
+[person] Camus
+[person] Clark Ashton Smith
+[artist] Colin McPhee
+[person] Cormac McCarthy
+[person] D.B.
+[person] Dabrowski
+[artist] Danjel van Tijn
+[artist] Eivør Pálsdóttir
+[person] Ernst Jünger
+[person] Eshun
+[artist] Faure
+[person] FinSub Chris
+[person] Frederick P. Brooks Jr.
+[person] G.K. Chesterton
+[person] Gabriel Garcia Marquez
+[person] George R.R. Martin
+[person] George Skaff Elias
+[person] Giovanni Battista Tiepolo
+[person] H.P. Lovecraft
+[person] Hazrat Inayat Khan
+[person] Henry David Thoreau
+[artist] Hugh Le Caine
+[person] J.R.R. Tolkien
+[person] John Ajvide Lindqvist
+[person] John McCarthy
+[person] John of the Cross
+[person] John Woldemar Cowan
+[person] Jorge Luis Borges
+[person] Josiah Gilbert Holland
+[artist] Keith Fullerton Whitman
+[band] Kraftwerk
+[person] Kurt Gödel
+[artist] La Monte Young
+[person] Madeleine L'Engle
+[artist] Mahler
+[person] Malaclypse the Younger
+[person] Mark Allyn Stewart
+[person] Mavis
+[person] Melinda Hale-Hautala
+[person] Michael
+[person] Michael Andre-Driussi
+[person] Michelle Le Blanc
+[artist] Milhaud
+[band] NEU!
+[band] Neutral Milk Hotel
+[person] Newton
+[band] Nurse With Wound
+[person] Orson Scott Card
+[person] P.D. Ouspensky
+[person] Peano
+[person] Polybius
+[band] Popol Vuh
+[artist] Poulenc
+[band] Psychic TV
+[artist] Q-Tip
+[person] Rafael
+[person] Raney
+[person] Raphael
+[person] Raphael Bob-Waksberg
+[person] Rengetsu
+[person] René Daumal
+[person] Robert Anton Wilson
+[person] Robert E. Buswell, Jr.
+[person] Samael Aun Weor
+[person] Sartre
+[artist] Schoenberg
+[band] Stereolab
+[band] Sun City Girls
+[person] T. C. Boyle
+[person] T.S. Eliot
+[band] Tangerine Dream
+[person] Terence McKenna
+[band] The Mountain Goats
+[band] The Soft Pink Truth
+[band] Thinking Fellers Union Local 282
+[artist] Thomas Adès
+[person] Toh Enjoe
+[person] Tomoko Ogawa
+[artist] Trythall
+[person] Udi Dahan
+[person] Ursula K. Le Guin
+[person] Valie Export
+[person] Walter M. Miller Jr.
+[person] Wittgenstein
+[band] Yo La Tengo
+[person] Zachary May

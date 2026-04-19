@@ -1,0 +1,407 @@
+60-40 Lead Solder
+60-40 Rule
+[[anarchy]] vs [[control]]
+[[east-coast]] vs [[west-coast]]
+[[exploitation]] vs [[imploitation]]
+[[fox]] vs [[hedgehog]]
+[[Google]] [[cloud platform]]
+[[idea]] mapping
+[[knowledge]] [[work]]
+[[knowledge]] management
+[[non-strict]] taxonomy
+[[risk]] vs [[utility]]
+[[slavery]] : [[exploitation]] :: #what : [[imploitation]]
+accelerationism
+acceptable update delay
+ad hominem
+adaptive learning
+additive synthesis
+Adposition
+aesthetic systems
+agile
+algorithmic [[corruption]]
+algorithmic thinking
+algorithms
+alt-left
+alt-right
+alterity
+ambiguous
+anarchy
+annihilation
+anomie
+antithesis
+Apache
+archival
+art nouveau
+artificial intelligence
+attitudinals
+audience proxy
+audio synthesis
+augmentation
+authentic cadence
+author
+AWS CDK
+band names
+bdsm
+being human
+binary cache
+bioarchitecture
+Biological [[intelligence]]
+blindness
+blockchain
+blue screen of death
+bon ton literary language
+brko
+browser
+building products people want
+Bullhorn
+Buy-in
+CAD software
+cadential structure
+capitalism
+Chemical [[experience modulation]]
+cheshma
+Choice Framework
+chord [[progression]]
+chord function
+chord shuttle
+cloud platform
+CloudFormation
+COBOL
+collective intelligence
+colonized
+competition
+complexity budget
+comprehensibility
+connectedness
+conspiracy theories
+constructive
+constructive [[mindset]]
+content of the mind
+contracts
+Conway's Law
+corruption
+cosmopolitanism
+couldn't be worse
+covid conspiracies
+CQRS
+CQS
+cryptoart
+cryptocurrency
+cryptographic hash
+cryptography
+cultural [[remixing]]
+cybernetics
+DDD
+death of the author
+deep listening
+Deep Reinforcement Learning
+default mode network
+dependency graph
+dependency injection
+derivation
+destruction vs construction
+destructive
+deterministic
+diegetic
+digital [[memory]]
+digital media
+digital-edition
+digitalism
+disgrace
+dissatisfaction
+DLL hell
+documentation
+dominant motion
+doo-wop changes
+drone
+Dunning-Kruger
+dyad
+dyads
+east-coast
+EBS snapshot
+ecom-orc
+ecom-services
+ecotopianism
+Elastic Block Store
+electronics
+emergence
+encryption
+energy sources
+Engineering
+environment variables
+ERPNext
+esoteric programming language
+ethics
+event
+event sourcing
+eventual consistency
+everyman
+Exocortex
+Exocortex Pratice
+experience modulation
+exploitation
+expressive programming
+feedback
+Feedback Loop
+Figma
+file type
+Finder
+Firefox
+flat-structure
+Flotato
+FM synthesis
+food sources
+Formula for Planar Graphs
+fully manifested intonation
+functional harmony
+functional language
+gagaku
+Game B
+gamelan
+garbage collector
+gateway
+generative art
+generative design
+genres of fantasy
+goal
+Google
+Google Colab
+GPT-3 Conlanging
+GPT2
+granular
+GrndNtl Brands
+HackerRank
+Haskell
+Haskell Code Formatting Notes
+Haskell Testing
+hedgehog
+hokey-pokey
+holon
+home-manager
+Homebrew
+homoiconicity
+Hugo Static Site Generator
+human being
+human condition
+humidity
+hypermedia
+image [[synthesis]]
+imploitation
+imploitative
+individualism
+inflection
+information presentation
+infrastructure as code
+ingenuity
+input methodology
+insight
+intelligence [[augmentation]]
+intentional community
+intentionalism
+intonarumori
+invariant
+investment
+JavaScript
+JotForm Form Automation
+Kubernetes
+Kurdish
+KyPQC Conference
+lambda calculus
+law of associations
+leadership
+lean [[engineering]]
+librarian
+Lifecycle of an [[idea]]
+limited [[resources]]
+linear format
+linear-arithmetic synthesis
+linguistic
+Linux distribution
+liquid democracy
+Lojban
+machine [[intelligence]]
+MacOS
+magical realism
+make-them-wait-for-eventual-consistency screen
+management
+marketing
+marxism
+Maslow's Hammer
+mastic
+material design
+material reality
+memeplex
+mental behavior
+metacognition
+metadata
+metanarrative
+metaphysical principles
+milestone
+milkshake duck
+mindfulness
+mindset
+MIT Media Lab
+mitigation
+MKUltra
+Mondragon Corporation
+monetization
+monolith
+moralism
+Morphism
+music theory
+mycelium
+mythic fiction
+nation-states
+negative emotion
+Nix
+Nix expression
+Nix expressions
+Nix store
+nix-shell
+NixOS
+Nixpkgs
+non-strict
+note taking
+novelty budget
+obsession
+one of these things is not like the others
+Open Research Topics
+OpenAI
+options
+ostinato
+parametricism
+participatory culture
+permacomputing
+permissions
+Permissions Model
+phase distortion synthesis
+Phi Phenomenon
+philosophy
+photoshop
+physical-edition
+physical-modeling synthesis
+plagal cadence
+plain text accounting
+pollution mitigation
+polyamory
+POMO
+post-humanism
+postmodern literary techniques
+pretense
+principle of least-effort
+Principle of the Excluded Middle
+priority
+privacy
+Problem Description
+process philosophy
+product lifecycle
+programming
+programming language
+progression
+progressive [[summarization]]
+Project Code
+psychedelic art
+psychedelic psychotherapy
+public [[music]]
+public [[video]]
+public [[writing]]
+queue
+Quicksort
+quine
+recursion
+relational logic
+remixing
+reptilians
+Responsively
+retail politics
+reusability
+rhythmic mode
+risk [[management]]
+robot
+romantic
+root entity
+Rule of three
+sample-based syntehsis
+Screenshots
+Scrum
+search optimization
+second self
+self-application
+self-enhancement
+self-fulfilled
+self-perfecting
+selfishness
+separation of concerns
+sequel
+serialism
+service-oriented architecture
+shared [[taxonomy]]
+sharing
+shell
+shenmo xiaoshuo
+simulacra
+single-page app
+singularity
+slider
+socioeconomic [[monolith]]
+Software as Cult
+Software Tools
+Sonarr
+Sonatype
+sound design
+source deployment model
+Spacemacs
+stepwise motion
+subractive synthesis
+substrate
+summarization
+superintelligence
+superposition
+superpower
+Surrealist
+symbolic logic
+symbolism
+synonym
+synonyms
+Talon
+tanru
+tanuki
+taxonomy
+technical debt
+technocracy
+teleology
+telesterion
+television
+Tetrad
+theme park
+thieves
+Time Cube
+tinder
+tonal center
+tools
+tracking
+treasures
+tribalism
+Twig
+typesetting
+ubiquitous language
+unit of knowledge
+Unix
+user-aggregate affinity
+utility
+value communication
+value object
+value of [[archival]]
+verifiability
+video
+video synthesis
+videogame
+watchlist
+west-coast
+World War II
+World-building
+Write with Transformer
+Youtube
+zero and one
+Zettelkasten

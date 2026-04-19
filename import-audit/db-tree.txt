@@ -1,0 +1,4604 @@
+Fetching from DB...
+Total entries: 4548
+
+/ (4548)
+├── concepts (1054)
+│   · -punk
+│   · 12-tone
+│   · 2112 (1976)
+│   · 4'33" (1952)
+│   · 60-40 Lead Solder
+│   · 60-40 Rule
+│   · AI Dungeon
+│   · AI Dungeon Prompts
+│   · AI Generated Memes
+│   · AWS CDK
+│   · Absolute Reality
+│   · Actions (1971)
+│   · Adposition
+│   · Aggro Cube
+│   · Airtable
+│   · Aladdin's Problem (1983)
+│   · Albion's Isles
+│   · Alchemical Soul
+│   · Ama-terasu-Oh-mi-kami
+│   · Ambient I: Music for Airports (1978)
+│   · Amenominakanushi no kami
+│   · Analogy as the Core of Cognition
+│   · Anulom Vilom
+│   · Apache
+│   · Apocalypse in Contemporary Japanese Science Fiction (2014)
+│   · Apsara Engine (2020)
+│   · Archetypes
+│   · Arturia Analog Lab V
+│   · Arturia Midi Control Center
+│   · As above, so below
+│   · Athena
+│   · Audiobooks to Download
+│   · Avatar: The Last Airbender
+│   · Ayama
+│   · Ayarcana
+│   · Azrael
+│   · Beautiful Rat Sunset (1994)
+│   · Ben Stiller Show
+│   · Bhramri Pranayama
+│   · Biological intelligence
+│   · Bitwig
+│   · Book of the Long Sun
+│   · Book of the New Sun
+│   · Book of the Short Sun
+│   · Brown Sugar
+│   · Bullhorn
+│   · Buy-in
+│   · CAD software
+│   · COBOL
+│   · COVID mitigation
+│   · CQRS
+│   · CQS
+│   · CSS
+│   · Cage of Souls
+│   · Captive Universe (1969)
+│   · Catholicism
+│   · Caves of Qud
+│   · Caves of Qud Run Uum
+│   · Caves of Qud Screenshots
+│   · Chapel perilous
+│   · Character Resonances
+│   · Chemical experience modulation
+│   · Children of Time
+│   · Choice Framework
+│   · Christian mythology
+│   · Church of Colonia Guell
+│   · Circuits (2014)
+│   · Clock Simulator (2016)
+│   · CloudFormation
+│   · CoSM Podcast
+│   · Common LISP A Gentle Introduction to Symbolic Computation (1984)
+│   · Common Side Effects (2025)
+│   · Communicating for Influence (2000)
+│   · Conor White-Sullivan
+│   · Constructive Psychotherapy
+│   · Conway's Law
+│   · CoreaHancock: An Evening with Chick Corea and Herbie Hancock (Live) (1979)
+│   · Crypt of the NecroDancer (2015)
+│   · Crystal College
+│   · Cube Sell-Off
+│   · Cursed Princess Club
+│   · DDD
+│   · DLL hell
+│   · Dali Universal Tarot
+│   · Das Lied von der Erde
+│   · David Lynch Decoded
+│   · Dawn at Centered
+│   · Deep Reinforcement Learning
+│   · Der Wille zur Macht
+│   · Dexed
+│   · Dharma Teacher Training
+│   · Dialectic Ping-Pong
+│   · Different Trains
+│   · Discordianism
+│   · Disintegration Loops
+│   · Disintegration Loops (2002)
+│   · Divine Reason
+│   · Dogme et Rituel de la Haute Magic (1855)
+│   · Don Cherry (1975)
+│   · Downwell (2015)
+│   · Dream Caused by the Flight of a Bee around a Pomegranate
+│   · Dunning-Kruger
+│   · Duos Eurorack
+│   · EBS snapshot
+│   · ERPNext
+│   · Early Summer
+│   · Elastic Block Store
+│   · Electropraxis
+│   · Elements of Parametric Design (2010)
+│   · Eleusinian Mysteries
+│   · Eleusis
+│   · Emotional Center
+│   · Emperor Tomato Ketchup (1996)
+│   · Endymion (1996)
+│   · Engine Summer
+│   · Engineering
+│   · Enneagram Tarot Spread
+│   · ErgoDox EZ
+│   · Ethical Free Enterprise
+│   · Etudes Traditionnelles
+│   · Eumeswil (1977)
+│   · Exocortex
+│   · Exocortex Pratice
+│   · Experimental Music: Cage and Beyond (1999)
+│   · FLAC vs Lossy Audio Formats
+│   · FM synthesis
+│   · Feedback Loop
+│   · Figma
+│   · Finder
+│   · Firefox
+│   · First Face of America (2018)
+│   · Flotato
+│   · Fluxus
+│   · FocusRite Clarett 8Pre
+│   · Folk Songs
+│   · Food Dehydrator
+│   · Formalized Music (1971)
+│   · Formula for Planar Graphs
+│   · Foundation (2021)
+│   · Fountain (2020)
+│   · Frequency Central
+│   · Future Thinkers Podcast
+│   · GPT-3 Conlanging
+│   · GPT2
+│   · GTD
+│   · Game B
+│   · Game Ideas
+│   · Game Pitch: Procedural RPG Dynasty Mode Sports Game
+│   · Game: Sumo Sim
+│   · Gantz:0
+│   · GearHead
+│   · Generative Qud Art
+│   · God Hand (2006)
+│   · Goodhart's Law
+│   · Google
+│   · Google Colab
+│   · Google cloud platform
+│   · Grabontzi
+│   · Gurdjieff Movements
+│   · Gurdjieff and Reich: Sexuality and the Evolution of Consciousness (2011)
+│   · Gödel, Escher, Bach: an Eternal Golden Braid (1978)
+│   · HackerRank
+│   · Hanlon's razor
+│   · Harharkh's
+│   · Harmony Book (2002)
+│   · Harnel-miatznel
+│   · Haskell
+│   · Haskell Code Formatting Notes
+│   · Haskell Testing
+│   · Havatvernoni
+│   · Hear & Now (1976)
+│   · Heliopolis (1949)
+│   · Hero's Journey
+│   · Hierodules
+│   · Hikari Instruments
+│   · Holographic Principle
+│   · Holy Denying
+│   · Holy Reconciliation
+│   · Homebrew
+│   · Horror of Philosophy
+│   · How to Do Nothing (2019)
+│   · How to Read a Book (1940)
+│   · How to write a 4-chord loop
+│   · Hugo Static Site Generator
+│   · Human Change Processes (1991)
+│   · Hymnen
+│   · Hyperion (1989)
+│   · I'm Starting to Worry About This Black Box of Doom
+│   · Ikaruga (2001)
+│   · Illuminatus!
+│   · In C (1964)
+│   · In Green's Jungles (2000)
+│   · In Search of the Miraculous Fragments of an Unknown Teaching (1949)
+│   · In the Aeroplane Over the Sea (1998)
+│   · Inire
+│   · Initiation and Spiritual Realisation
+│   · Inner Witness (2014)
+│   · Insights into Islamic Esoterism & Taoism
+│   · Integral Theory
+│   · Intellectual Center
+│   · Introduction to the Study of the Hindu Doctrines
+│   · Invisible College
+│   · Isis Unveiled (1877)
+│   · It is by will alone that thoughts are set into motion
+│   · It's Gonna Rain
+│   · JavaScript
+│   · John Prine (1971)
+│   · JotForm Form Automation
+│   · Kamimusubi no kami
+│   · Kapalabhati
+│   · Kerkoolnonarnian-actualization
+│   · Keyboard Layout Notes
+│   · Kink
+│   · Krentonalnian-revolutions
+│   · Kubernetes
+│   · Kumbhaka
+│   · Kurdish
+│   · Kurt Gödel
+│   · KyPQC Conference
+│   · La Création du Monde
+│   · LaTeX
+│   · Laws of Thermodynamics
+│   · Legacy Site Application Server Distribution Upgrade to Ubuntu 16.04
+│   · Legend of Zelda: A Link to the Past (1991)
+│   · Lexman Artificial Podcast
+│   · Lifecycle of an idea
+│   · Linux distribution
+│   · List Quotes
+│   · List: Favorite Video Games
+│   · Listening through the Noise
+│   · Live at the Necropolis The Lords of Synth (2016)
+│   · Live in Paris (1975)
+│   · Lojban
+│   · Lord of the World
+│   · Lorwyn Eclipsed
+│   · Lospec
+│   · Lotus Island
+│   · Love on the Spectrum (2020)
+│   · Loving Compassion Meditation
+│   · Ludum
+│   · Lydian Chromatic Concept of Tonal Organization (1953)
+│   · MIT Media Lab
+│   · MKUltra
+│   · Mac OS
+│   · MacOS
+│   · Magic: the Gathering
+│   · Man and His Becoming according to the Vedanta
+│   · Mars Audiac Quintet (1994)
+│   · Maslow's Hammer
+│   · Me (2024)
+│   · Medicine Holding Back Death (1959)
+│   · Michigan Synthworks
+│   · Mindgasm
+│   · Minimalists (1996)
+│   · Mondragon Corporation
+│   · Moog Music Inc.
+│   · Morphagene
+│   · Morphism
+│   · Morse code
+│   · Motive Center
+│   · Movie Download List
+│   · Ms. Pac-Man (1982)
+│   · Mullah Nasr Eddin
+│   · Music Ideas
+│   · Music Practice
+│   · Music Production Software
+│   · Mystery Science Theater 3000
+│   · Mímir
+│   · NO THING (2016)
+│   · NUC
+│   · Nada Brahma
+│   · Neo-platonism
+│   · Neoplatonism
+│   · Newton's Three Laws of Motion
+│   · Night Trap (1992)
+│   · Nine Black Poppies (1995)
+│   · Nix
+│   · Nix Package Manager
+│   · Nix expression
+│   · Nix expressions
+│   · Nix store
+│   · NixOS
+│   · NixOS for Music Production
+│   · Nixpkgs
+│   · Nothing for Juice (1996)
+│   · O_C
+│   · One, Two, Three… Infinity (1988)
+│   · Oorth
+│   · Open Research Topics
+│   · OpenAI
+│   · Orbis Tertius
+│   · Oregon Trail
+│   · Organic Music Society (1972)
+│   · Oriental Metaphysics
+│   · Ornament and Crime
+│   · Outline of Personal Philosophy
+│   · Oyakata: Rikishi Effect - aikuchi ga ii
+│   · Oyakata: Rikishi Effect - aikuchi ga warui
+│   · Oyakata: Rikishi Effect - aka-tai
+│   · Oyakata: Rikishi Effect - ashihakobi
+│   · Oyakata: Rikishi Effect - atari
+│   · Oyakata: Rikishi Effect - banzen
+│   · Oyakata: Rikishi Effect - dokisei
+│   · POMO
+│   · Padmasana
+│   · Pageant (2008)
+│   · Pan-Pan (2016)
+│   · Pandetznokh
+│   · Paprika (Original Soundtrack) (2006)
+│   · Parametric Computation: History and Future (2016)
+│   · Patterns of Consciousness (2017)
+│   · Pending Forward References
+│   · Peng! (1992)
+│   · Perspectives on Initiation
+│   · Phi Phenomenon
+│   · Philosophical Investigations (19XX)
+│   · Photon
+│   · Photonic Order
+│   · Pluribus (2025)
+│   · Polyester Moon (1957)
+│   · Pranayama
+│   · Pranayama Mudra
+│   · Primal Virtue
+│   · Principia Discordia (1963)
+│   · Principle of the Excluded Middle
+│   · Principles and Practices of Electronic Music
+│   · Processing
+│   · Project: Bandcamp Releases
+│   · Project: Electronic Music Studio Setup
+│   · Project: Learning Unity
+│   · Project: MST3K Watch-through
+│   · Project: More Embodied Synthesizer Music
+│   · Project: Pac-Rogue
+│   · Project: Proxy Cube
+│   · Project: Release: 20180612 EP
+│   · Project: Release: Drone EP
+│   · Project: Release: Early Music
+│   · Project: Release: kalsa EP
+│   · Project: Selling Magic Cards
+│   · Project: Streaming
+│   · Project: Streaming Setup
+│   · Project: Studio Furniture Refresh
+│   · Project: Studio Remodel
+│   · Psychological Method
+│   · Pythagorean tuning
+│   · Quicksilver
+│   · Quicksort
+│   · Radioactivity (1975)
+│   · Rainbow Room
+│   · Randall Flagg
+│   · Rathana Sutta
+│   · Recipe Stuffed Pepper Soup
+│   · RenderDoc
+│   · René Guénon
+│   · Resistance, Rebellion, and Death (1960)
+│   · Responsively
+│   · Richard D. James Album (1996)
+│   · Roam Theme Roamness
+│   · Roam Theme Split Screen
+│   · Roamtext: Beelzebub's Tales to His Grandson (1950)
+│   · Rosicrucianism
+│   · Rule of three
+│   · SF Authors of Color
+│   · Saint Thecla Liberating the City of Este from the Plague (1759)
+│   · Satan
+│   · Scarfolk Council
+│   · School of Topology
+│   · Screenshots
+│   · Sea of Rust
+│   · Sekai no owari
+│   · Selected Ambient Works Volume II (1994)
+│   · Self-Reference Engine (2013)
+│   · Sensel Morph
+│   · Severian
+│   · Shakti (1976)
+│   · Shalamar, the Cat Wizard
+│   · Shall We Go On Sinning So That Grace May Increase? (2020)
+│   · Shapeshifter Aesthetic
+│   · Shiva Trilogy
+│   · Short Bus
+│   · Siddhartha
+│   · Siddhasana
+│   · Simple Headphone Mind (1997)
+│   · Sirius
+│   · Slør (2015)
+│   · Software Licenses
+│   · Software Tools
+│   · Software as Cult
+│   · Someone Who Will Love You In All Your Damaged Glory
+│   · Sonarr
+│   · Sonatype
+│   · Song of the Jewel Mirror Samadhi (ca. 1100)
+│   · Spacemacs
+│   · Spectra (1959)
+│   · Spiritual Music Theory
+│   · Sprite Art
+│   · Star Maker (1937)
+│   · Stargate SG-1
+│   · Starry Speculative Corpse (2015)
+│   · Statebox
+│   · Streets of Rogue
+│   · Studio Notes
+│   · Studio Stuff
+│   · Study 1
+│   · Stuff to Sample
+│   · Stumpfsinnschmausen
+│   · Successor
+│   · Sufi
+│   · Surrealist
+│   · Sweden (1995)
+│   · Sweetwater
+│   · Switched On (1992)
+│   · Symbols of Sacred Science
+│   · Tabu-Tabuhan (1936)
+│   · Takamimusubi no kami
+│   · Talon
+│   · Tao
+│   · Tao Te Ching
+│   · Tauhid (19XX)
+│   · Terry Riley In C (2017)
+│   · Terry Riley's In C (2009)
+│   · Tetrad
+│   · Tetris
+│   · That Mitchell and Webb Look
+│   · The Adventures of Pete and Pete
+│   · The Alchemist
+│   · The Alchemists
+│   · The Alien Shaman
+│   · The Angriest Dog in the World
+│   · The Art of Noises (1913)
+│   · The Autarch
+│   · The Bee
+│   · The Book Queue
+│   · The Calculus
+│   · The Chariot
+│   · The City of the Singing Flame
+│   · The Corrections (2001)
+│   · The Crying of Lot 49
+│   · The Crystal College
+│   · The Dark Tower
+│   · The Disquieting Sounds of David Lynch (2025)
+│   · The Dwarf
+│   · The Einstein Intersection
+│   · The Elements of Programming Style
+│   · The End of the World (2019)
+│   · The Esoterism of Dante
+│   · The Fall of Endymion (1997)
+│   · The Fall of Hyperion (1990)
+│   · The Four Noble Truths
+│   · The Four Zoas
+│   · The Futurica Trilogy
+│   · The Gateless Gate
+│   · The Glass Bees (1957)
+│   · The Gods of Pegana (1905)
+│   · The Golden Bough (1890)
+│   · The Great Triad
+│   · The Grimoire
+│   · The Groop Played Space Age Bachelor Pad Music (1993)
+│   · The Hanged Man
+│   · The Harder They Come (2015)
+│   · The Hermit
+│   · The High Place (1923)
+│   · The High Priestess
+│   · The Holy Mountain
+│   · The Holy Mountain (Original Soundtrack) (1973)
+│   · The Honey Goddess
+│   · The Hyperion Cantos
+│   · The Illuminoids
+│   · The Increate
+│   · The Invention of Morel (1940)
+│   · The Isle of the Dead (1883)
+│   · The Jargon File (2003)
+│   · The Kybalion (1908)
+│   · The LIbrary of Dune
+│   · The Law of Fives
+│   · The Law of Sevens
+│   · The Law of Threes
+│   · The Legend of Korra (2012-2014)
+│   · The Legomonism
+│   · The Lord of Bridges
+│   · The Lord of the Rings
+│   · The Lovers
+│   · The Man-Machine (1978)
+│   · The Mathematicians
+│   · The Mendicant Order
+│   · The Message (2002)
+│   · The Metaphysical Principles of the Infinitesimal Calculus
+│   · The Midnight Gospel (2020)
+│   · The Monolith
+│   · The Monster Show: A Cultural History of Horror
+│   · The Multiple States of Being
+│   · The Mythopoeic Society
+│   · The Noble Eightfold Path
+│   · The Oregon Trail (1971)
+│   · The Plague (1898)
+│   · The Plumbus
+│   · The Pole-Star
+│   · The Practice of Love (2019)
+│   · The Prosecutor
+│   · The Psychedelic Experience (1964)
+│   · The Quiet Year ()
+│   · The Quiet Year (2013)
+│   · The Raven Man
+│   · The Scroll of All Process
+│   · The Secret Doctrine (1888)
+│   · The Simpsons
+│   · The Singularity
+│   · The Solar Cycle
+│   · The Structure and Interpretation of Programming Languages (1996)
+│   · The Sunset Tree (2000)
+│   · The Symbolism of the Cross
+│   · The Tanuki
+│   · The Tower
+│   · The Tower of Babel
+│   · The Twelve-Factor App
+│   · The Uses of Enchantment: The Meaning and Importance of Fairy Tales (1976)
+│   · The Varieties of Religious Experience (1902)
+│   · The Way (2016)
+│   · The Way of Zen (1957)
+│   · The Windsor Hum
+│   · The X-Files
+│   · Theia
+│   · Thelema
+│   · Theurgy
+│   · Three Jewels
+│   · Three of Swords
+│   · Tibetan Book of the Dead
+│   · Till Eulenspiegel
+│   · Time Cube
+│   · Tlön, Uqbar, Orbis Tertius
+│   · Toynbee tiles
+│   · Tracing Back the Radiance: Chinul's Korean Way of Zen (1991)
+│   · Traditional Forms & Cosmic Cycles
+│   · Trance Mutation
+│   · Transient Random-Noise Bursts with Announcements (1993)
+│   · Triad
+│   · Triamazikamno
+│   · Trio for Strings (1958)
+│   · Trip World (1992)
+│   · True Hallucinations (1993)
+│   · Turning Pro: Tap Your Inner Power and Create Your Life's Work (2012)
+│   · Tusk (1980)
+│   · Twelve Links of Dependent Origination
+│   · Twig
+│   · Twin Peaks (1990-1991, 2017)
+│   · Twitter Screenshots
+│   · Two Stones
+│   · Two-Stones
+│   · Two-Stones' Rival
+│   · Typhon
+│   · U: Saint Jupiter
+│   · U:Anulios
+│   · U:Beelzebub
+│   · U:Cathedral
+│   · U:Dog-Star
+│   · U:Earth
+│   · U:Eightfold Order
+│   · U:Episcopeion
+│   · U:Harold
+│   · U:Inner Gate
+│   · U:Isidore
+│   · U:Joachim
+│   · U:Logos
+│   · U:Moon
+│   · U:Old Headmaster
+│   · U:Olivia
+│   · U:Ors
+│   · U:Pole Star Planet
+│   · U:Saint Mars
+│   · U:Saint Neptune
+│   · U:Saint Uranus
+│   · U:Samlios
+│   · U:Tater
+│   · U:The Dwarf
+│   · U:The Protocols
+│   · U:Unseen University
+│   · U:Western Gate
+│   · U:Yodo
+│   · U:lotus position
+│   · U:semuta music
+│   · U:solra
+│   · U:sutra
+│   · U:symbolic space
+│   · U:symbolic structure
+│   · UUID Jokes
+│   · Ultan the Master
+│   · Ultan the Student
+│   · Ultan's
+│   · Ultan's Holy Mountain
+│   · Unity Game Development
+│   · Unity: Important Packages and Assets
+│   · Unix
+│   · Unseen University
+│   · Using Roam for Software Engineering Project Management
+│   · Vajrasana
+│   · Vala
+│   · Vedanta
+│   · Verlet Swing (2018)
+│   · Video Game Development in Unity
+│   · Video Game Ideas
+│   · Visit to Godenholm (1952)
+│   · Waco (2020)
+│   · Want nothing that is not for others
+│   · Warewolves & Warehouse (2014)
+│   · Wavelength
+│   · Westworld
+│   · Wheel of Fortune
+│   · Where Is My Mind?
+│   · Why Modern Musicians Love The Four-Chord Loop
+│   · WikiWikiWeb
+│   · Wittgenstein the Elder
+│   · Wittgenstein the Younger
+│   · Wonderland
+│   · Workaround (2020)
+│   · World War II
+│   · World-building
+│   · Write with Transformer
+│   · X-Com
+│   · Yodo's Beast
+│   · YouLean Liveness Meter
+│   · Youtube
+│   · Zdzisław Beksiński
+│   · Zeitmasse (1956)
+│   · Zen Mind, Beginner's Mind (1970)
+│   · Zeno's paradox
+│   · Zettelkasten
+│   · accelerationism
+│   · acceptable update delay
+│   · ad hominem
+│   · adaptive learning
+│   · additive synthesis
+│   · aesthetic systems
+│   · agile
+│   · aikuchi ga ii
+│   · aikuchi ga warui
+│   · aka-tai
+│   · algorithmic corruption
+│   · algorithmic thinking
+│   · algorithms
+│   · alla-atapan
+│   · alt-left
+│   · alt-right
+│   · alterity
+│   · ambiguous
+│   · amodal perception
+│   · anarchy
+│   · anarchy vs control
+│   · ani-deshi
+│   · anime
+│   · annihilation
+│   · anomie
+│   · antithesis
+│   · archival
+│   · art nouveau
+│   · artificial intelligence
+│   · asana
+│   · ashihakobi
+│   · atari
+│   · attitudinals
+│   · audience proxy
+│   · audio synthesis
+│   · audio synthesis methods
+│   · augmentation
+│   · authentic cadence
+│   · author
+│   · azorius
+│   · band names
+│   · banzen
+│   · bdsm
+│   · being human
+│   · being-Impulsakri
+│   · binary cache
+│   · bintsuke
+│   · bioarchitecture
+│   · blindness
+│   · blockchain
+│   · blue screen of death
+│   · bon ton literary language
+│   · bookmarklet
+│   · boros
+│   · brko
+│   · browser
+│   · buchikamashi
+│   · building products people want
+│   · cadential structure
+│   · camelot value
+│   · capitalism
+│   · certificate service integration testing proof of concept
+│   · chanko-cho
+│   · cheshma
+│   · chord function
+│   · chord progression
+│   · chord shuttle
+│   · cloud platform
+│   · collective intelligence
+│   · colonized
+│   · common-cosmic
+│   · competition
+│   · complexity budget
+│   · comprehensibility
+│   · compute environment
+│   · connectedness
+│   · conspiracy theories
+│   · constructive
+│   · constructive mindset
+│   · contact microphone
+│   · content of the mind
+│   · contracts
+│   · corruption
+│   · cosmopolitanism
+│   · couldn't be worse
+│   · covid conspiracies
+│   · cryptoart
+│   · cryptocurrency
+│   · cryptographic hash
+│   · cryptography
+│   · cults
+│   · cultural remixing
+│   · cybernetics
+│   · dao
+│   · death of the author
+│   · deep listening
+│   · deeptime
+│   · default mode network
+│   · dependency graph
+│   · dependency injection
+│   · derivation
+│   · destruction vs construction
+│   · destructive
+│   · deterministic
+│   · dhukka
+│   · diegetic
+│   · digital media
+│   · digital memory
+│   · digital-edition
+│   · digitalism
+│   · dimir
+│   · disgrace
+│   · dissatisfaction
+│   · do-beya
+│   · documentation
+│   · dokisei
+│   · dominant motion
+│   · doo-wop changes
+│   · drone
+│   · dyad
+│   · dyads
+│   · east-coast
+│   · east-coast vs west-coast
+│   · ecotopianism
+│   · ego death
+│   · electronics
+│   · emergence
+│   · encryption
+│   · energy sources
+│   · enneagram
+│   · environment variables
+│   · eschatology
+│   · esoteric philosophy
+│   · esoteric programming language
+│   · ethics
+│   · event
+│   · event sourcing
+│   · eventual consistency
+│   · everyman
+│   · evtu
+│   · experience modulation
+│   · exploitation
+│   · exploitation vs imploitation
+│   · expressive programming
+│   · feedback
+│   · file type
+│   · film
+│   · fixed-point combinator
+│   · flat-structure
+│   · food sources
+│   · fox vs hedgehog
+│   · fully manifested intonation
+│   · functional harmony
+│   · functional language
+│   · gagaku
+│   · gamelan
+│   · garbage collector
+│   · gateway
+│   · generative art
+│   · generative design
+│   · genres of fantasy
+│   · goal
+│   · golgari
+│   · granular
+│   · gruul
+│   · healing
+│   · hedgehog
+│   · hokey-pokey
+│   · holon
+│   · holy mountain
+│   · home-manager
+│   · homoiconicity
+│   · hors d'oeuvre
+│   · human being
+│   · human condition
+│   · humidity
+│   · hypermedia
+│   · icon corner
+│   · idea mapping
+│   · image synthesis
+│   · imploitation
+│   · imploitative
+│   · independent actualizings
+│   · individualism
+│   · inflection
+│   · information presentation
+│   · infrastructure as code
+│   · ingenuity
+│   · input methodology
+│   · insight
+│   · intelligence augmentation
+│   · intentional community
+│   · intentionalism
+│   · intonarumori
+│   · invariant
+│   · investment
+│   · invocation
+│   · izzet
+│   · knowledge management
+│   · knowledge work
+│   · koan
+│   · labyrinths
+│   · lambda calculus
+│   · language
+│   · law of associations
+│   · leadership
+│   · lean engineering
+│   · legomonism
+│   · librarian
+│   · limited resources
+│   · linear format
+│   · linear-arithmetic synthesis
+│   · linguistic
+│   · liquid democracy
+│   · machine intelligence
+│   · magical realism
+│   · magnetic center
+│   · make-them-wait-for-eventual-consistency screen
+│   · management
+│   · mantra
+│   · mantra meditation
+│   · marga
+│   · marketing
+│   · marxism
+│   · mastic
+│   · material design
+│   · material reality
+│   · mathematics
+│   · memeplex
+│   · mental behavior
+│   · metacognition
+│   · metacracy
+│   · metadata
+│   · metanarrative
+│   · metaphysical principles
+│   · metta
+│   · milestone
+│   · milkshake duck
+│   · mindfulness
+│   · mindset
+│   · mitigation
+│   · modal music
+│   · modular synth system design
+│   · monetization
+│   · monism
+│   · monolith
+│   · moralism
+│   · music theory
+│   · musician
+│   · mycelium
+│   · mysticism
+│   · mysticism and software development
+│   · mythic fiction
+│   · mythology
+│   · mythopoeia
+│   · mythpunk
+│   · nation-states
+│   · negative emotion
+│   · niroda
+│   · nix-shell
+│   · non-strict
+│   · non-strict taxonomy
+│   · note taking
+│   · novelty budget
+│   · obsession
+│   · one of these things is not like the others
+│   · options
+│   · origin-myth
+│   · orzhov
+│   · ostinato
+│   · paganism
+│   · parametric design
+│   · parametricism
+│   · participatory culture
+│   · perennial philosophy
+│   · permacomputing
+│   · permissions
+│   · phase distortion synthesis
+│   · philosopher
+│   · philosophical razor
+│   · philosophy
+│   · photoshop
+│   · physical-edition
+│   · physical-modeling synthesis
+│   · plagal cadence
+│   · plague cults
+│   · plain text accounting
+│   · pollution mitigation
+│   · polyamory
+│   · post-humanism
+│   · postmodern literary techniques
+│   · prajna
+│   · pranic channels
+│   · preparatory years
+│   · pretense
+│   · primal mother
+│   · principle of least-effort
+│   · priority
+│   · privacy
+│   · process of the destruction of each other's existence
+│   · process philosophy
+│   · product lifecycle
+│   · programming
+│   · programming language
+│   · progression
+│   · progressive summarization
+│   · psychedelic art
+│   · psychedelic psychotherapy
+│   · public music
+│   · public video
+│   · public writing
+│   · queue
+│   · quine
+│   · radical monism
+│   · rakdos
+│   · rebirth
+│   · recursion
+│   · relational logic
+│   · relational model
+│   · remixing
+│   · reptilians
+│   · retail politics
+│   · reusability
+│   · rhythmic mode
+│   · risk management
+│   · risk vs utility
+│   · roam-highlighter
+│   · robot
+│   · romantic
+│   · root entity
+│   · sample-based syntehsis
+│   · samudaya
+│   · satori
+│   · search optimization
+│   · second self
+│   · selesnya
+│   · self-application
+│   · self-enhancement
+│   · self-fulfilled
+│   · self-perfecting
+│   · selfishness
+│   · separation of concerns
+│   · sequel
+│   · serialism
+│   · service-oriented architecture
+│   · shamanism
+│   · shared taxonomy
+│   · sharing
+│   · shell
+│   · shenmo xiaoshuo
+│   · simic
+│   · simulacra
+│   · single-page app
+│   · singularity
+│   · slavery : exploitation :: #what : imploitation
+│   · slider
+│   · socioeconomic monolith
+│   · sound design
+│   · source deployment model
+│   · specialized
+│   · spiritual intoxication
+│   · stained glass
+│   · stepwise motion
+│   · stillness
+│   · subractive synthesis
+│   · substrate
+│   · summarization
+│   · superintelligence
+│   · superposition
+│   · superpower
+│   · symbolic logic
+│   · symbolism
+│   · synonym
+│   · synonyms
+│   · syntheism
+│   · synthesis
+│   · synthesizer
+│   · tanha
+│   · tanru
+│   · tanuki
+│   · taxonomy
+│   · technical debt
+│   · technocracy
+│   · tegatana o kiru
+│   · teleology
+│   · telesterion
+│   · television
+│   · ten thousand things
+│   · testimony of Ultan
+│   · the Sentra
+│   · the-result-of-the-manifestation-is-proportionate-to-the-force-of-striving-received-from-the-shock
+│   · theme park
+│   · thieves
+│   · third eye
+│   · three brain-systems
+│   · three-brained beings
+│   · tiling window manager
+│   · tinder
+│   · tonal center
+│   · tools
+│   · tracking
+│   · traditionalism
+│   · treasures
+│   · tribalism
+│   · typesetting
+│   · u-he
+│   · u-he Satin
+│   · ubiquitous language
+│   · unit of knowledge
+│   · uplift
+│   · user-aggregate affinity
+│   · utility
+│   · valley spirit
+│   · value communication
+│   · value object
+│   · value of archival
+│   · verifiability
+│   · video
+│   · video synthesis
+│   · videogame
+│   · vortex math
+│   · watchlist
+│   · west-coast
+│   · yabai
+│   · yoga
+│   · zero and one
+│   · zero, one, infinity
+│   · º
+├── data (1536)
+│   ├── books (262)
+│   │   · 1984 (1949)
+│   │   · 1Q84 (2009)
+│   │   · 2001: A Space Odyssey (1968)
+│   │   · 2010: Odyssey Two (1982)
+│   │   · 2061: Odyssey Three (1987)
+│   │   · 3001: The Final Odyssey (1997)
+│   │   · 38 Basic Joseki (1973)
+│   │   · A Borrowed Man (2015)
+│   │   · A Canticle for Leibowitz (1959)
+│   │   · A Clockwork Orange (1962)
+│   │   · A History of Western Philosophy (1945)
+│   │   · A Voyage to Arcturus (1920)
+│   │   · A Wild Sheep Chase (1982)
+│   │   · A Wizard of Earthsea (1968)
+│   │   · A Wrinkle in Time (1962)
+│   │   · Advanced Language Construction (2012)
+│   │   · Advanced Programming Language Design (1995)
+│   │   · After Dark (2004)
+│   │   · After the Quake (2000)
+│   │   · Alas, Babylon (1959)
+│   │   · Aleister Crowley: The Nature of the Beast (1987)
+│   │   · Algebra: Pure and Applied (2001)
+│   │   · Algorithms in C++, Parts 1-4: Fundamentals, Data Structure, Sorting, Searching (1998)
+│   │   · All About Thickness: Understanding Moyo and Influence (1990)
+│   │   · American Gods (2001)
+│   │   · An Evil Guest (2008)
+│   │   · Analytic Philosophy: Beginnings To The Present (2000)
+│   │   · Artificial Intelligence: A Modern Approach (1994)
+│   │   · Attack and Defense (1980)
+│   │   · Bash Cookbook: Solutions and Examples for Bash Users (2007)
+│   │   · Baudolino (2000)
+│   │   · Be Here Now (1971)
+│   │   · Beelzebub's Tales to His Grandson (1950)
+│   │   · Blind Willow, Sleeping Woman (2006)
+│   │   · Brave New World (1932)
+│   │   · Calde of the Long Sun (1994)
+│   │   · Castle of Days (1992)
+│   │   · Castleview (1990)
+│   │   · Catch-22 (1961)
+│   │   · Characteristics of Games (2012)
+│   │   · Childhood's End (1953)
+│   │   · Chronicle of a Death Foretold (1981)
+│   │   · Classic Shell Scripting: Hidden Commands that Unlock the Power of Unix (2005)
+│   │   · Clear and Queer Thinking: Wittgenstein's Development and His Relevance to Modern Thought (1999)
+│   │   · Collected Fictions (1975)
+│   │   · Consciousness Explained (1991)
+│   │   · Cosmic Trigger (1977)
+│   │   · Cosmicomics (1965)
+│   │   · Cugel the Clever (1966)
+│   │   · Dance Dance Dance (1988)
+│   │   · Developing Web Apps with Haskell and Yesod: Safety-Driven Web Development (2015)
+│   │   · Diaspora (1997)
+│   │   · Digital Libido: Sex, power and violence in the network society
+│   │   · Dionysus: Myth and Cult (1995)
+│   │   · Discrete Structures, Logic, and Computability (1995)
+│   │   · Don't Sleep, There Are Snakes: Life and Language in the Amazonian Jungle (2008)
+│   │   · Dune (1965)
+│   │   · Eifelheim (2006)
+│   │   · Electronic and Experimental Music: Pioneers in Technology and Composition (Media and Popularculture) (2002)
+│   │   · Endangered Species (1989)
+│   │   · Ender's Game, (1985)
+│   │   · Esperanto: Learning and Using the International Language (1988)
+│   │   · Ethics Without Ontology (2004)
+│   │   · Exodus from the Long Sun (1996)
+│   │   · Fight Club (1996)
+│   │   · Five Hundred And One Opening Problems (2002)
+│   │   · Flatland: A Romance of Many Dimensions (1884)
+│   │   · Foucault's Pendulum (1988)
+│   │   · Free Live Free (1984)
+│   │   · Future Days: Krautrock and the Birth of a Revolutionary New Music (2014)
+│   │   · Gate of Horn, Book of Silk (2012)
+│   │   · Get Strong at Tesuji (1996)
+│   │   · Gödel, Escher, Bach: An Eternal Golden Braid (1979)
+│   │   · Graded Go Problems for Beginners (1990)
+│   │   · Gurdjieff and Hypnosis: A Hermeneutic Study (2009)
+│   │   · Hamlet's Mill: An Essay Investigating the Origins of Human Knowledge And Its Transmission Through Myth (2015)
+│   │   · Hard-Boiled Wonderland and the End of the World (1985)
+│   │   · High Weirdness: Drugs, Esoterica, and Visionary Experience in the Seventies (2019)
+│   │   · Home Fires (2011)
+│   │   · How Music Works (2012)
+│   │   · How to Change Your Mind (2018)
+│   │   · I Am a Strange Loop (2007)
+│   │   · I'm Not Stiller (1954)
+│   │   · If on a Winter's Night a Traveler (1979)
+│   │   · In The Dust of This Planet (2011)
+│   │   · In the Beginning (1973)
+│   │   · In the Land of Invented Languages: Esperanto Rock Stars, Klingon Poets, Loglan Lovers, and the Mad Dreamers Who Tried to Build A Perfect Language (2009)
+│   │   · Innocents Aboard (2004)
+│   │   · Introduction to Gnosis (2013)
+│   │   · Introduction to Mathematical Philosophy (1918)
+│   │   · Introduction to The New Existentialism (1966)
+│   │   · Introduction to the Theory of Computation (1996)
+│   │   · Invincible, the Game of Shusaku (1982)
+│   │   · Invisible Cities (1972)
+│   │   · Jerusalem (2018)
+│   │   · Kafka on the Shore (2002)
+│   │   · Lake of the Long Sun (1994)
+│   │   · Language, Truth, and Logic (1936)
+│   │   · Learn to Play Go: Battle Strategies (1997)
+│   │   · Learn to Play Go: The Dragon Style (1996)
+│   │   · Learn to Play Go: The Palace of Memory (2003)
+│   │   · Learn to Play Go: The Way of the Moving Horse (1995)
+│   │   · Learning the vi and Vim Editors (1987)
+│   │   · Lectures On Computation (1996)
+│   │   · Lessons in the Fundamentals of Go (1978)
+│   │   · Let the Right One In (2004)
+│   │   · Lexicon Urthus, Second Edition (1994)
+│   │   · Liber Null & Psychonaut (1987)
+│   │   · Life and Death (1975)
+│   │   · Light Moving in Time: Studies in the Visual Aesthetics of Avant-Garde Film (1992)
+│   │   · Lord of the Flies (1954)
+│   │   · Lord of the Underworld: Jung and the Twentieth Century (1984)
+│   │   · Love in the Time of Cholera (1985)
+│   │   · Make: Analog Synthesizers (2013)
+│   │   · Mars by 1980 (2018)
+│   │   · Mating in Captivity: Reconciling the Erotic and the Domestic (2016)
+│   │   · Mazirian the Magician (1950)
+│   │   · Meetings with Remarkable Men (1963)
+│   │   · Metaphors We Live By (1980)
+│   │   · Microsound (2004)
+│   │   · More Information Than You Require (2008)
+│   │   · Moscow to the End of the Line (1969)
+│   │   · Mossflower (1988)
+│   │   · Mount Analogue (1952)
+│   │   · Mumbo Jumbo (1972)
+│   │   · Neuromancer (1984)
+│   │   · Nightside of the Long Sun (1993)
+│   │   · Norwegian Wood (1987)
+│   │   · On Blue's Waters (1999)
+│   │   · On the Beach (1957)
+│   │   · One Day in the Life of Ivan Denisovich (1962)
+│   │   · One Hundred Years of Solitude (1967)
+│   │   · One Thousand And One Life-And-Death Problems (2002)
+│   │   · Opening Theory Made Easy (1992)
+│   │   · Operation Ares (1970)
+│   │   · Oryx and Crake (2003)
+│   │   · Pandora by Holly Hollander (1990)
+│   │   · Peace (1975)
+│   │   · Permutation City (1994)
+│   │   · Pirate Freedom (2007)
+│   │   · Principles of Programming Languages: Design, Evaluation, and Implementation (1995)
+│   │   · Processing: A Programming Handbook for Visual Designers and Artists (2007)
+│   │   · Production Haskell (2023)
+│   │   · Prometheus Rising (1983)
+│   │   · Psychological Commentaries on the Teaching of Gurdjieff and Ouspensky, Vol. 1 (2012)
+│   │   · Quantum Psychology (1999)
+│   │   · RESTful Web Services (2007)
+│   │   · Racing the Beam: The Atari Video Computer System (2009)
+│   │   · Real World Haskell: Code You Can Believe In (2008)
+│   │   · Redwall (1986)
+│   │   · Rendezvous with Rama (1973)
+│   │   · Return to the Whorl (2001)
+│   │   · Rhialto the Marvellous (1984)
+│   │   · Rosencrantz and Guildenstern Are Dead (1966)
+│   │   · Sacred Economics
+│   │   · Science Fiction as Existentialism (1980)
+│   │   · Solar Labyrinth: Exploring Gene Wolfe's Book of the New Sun (2004)
+│   │   · Solaris (1961)
+│   │   · Soldier of Arete (1989)
+│   │   · Soldier of Sidon (2006)
+│   │   · Soldier of the Mist (1986)
+│   │   · Songs of the Dying Earth: Stories in Honor of Jack Vance (2009)
+│   │   · South of the Border, West of the Sun (1992)
+│   │   · Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics and Speech Recognition (2000)
+│   │   · Sphere (1987)
+│   │   · Sputnik Sweetheart (1999)
+│   │   · Starwater Strains (2004)
+│   │   · Storeys from the Old Hotel (1988)
+│   │   · Strategic Concepts of Go (1972)
+│   │   · Super Consciousness: The Quest for the Peak Experience (2009)
+│   │   · Tesuji (1976)
+│   │   · The Areas of My Expertise: An Almanac of Complete World Knowledge Compiled with Instructive Annotation and Arranged in Useful Order (2005)
+│   │   · The Atoms Of Language: The Mind's Hidden Rules Of Grammar (2001)
+│   │   · The Book of Lies (1913)
+│   │   · The Carpet Makers (1995)
+│   │   · The Castle (1926)
+│   │   · The Castle of Crossed Destinies (1969)
+│   │   · The Children of Hurin (2007)
+│   │   · The Citadel of the Autarch (1983)
+│   │   · The Claw of the Conciliator (1981)
+│   │   · The Clockwork Rocket (2011)
+│   │   · The Complete Lojban Language (1997)
+│   │   · The Csound Book: Perspectives in Software Synthesis, Sound Design, Signal Processing, and Programming (2000)
+│   │   · The Cyberiad (1965)
+│   │   · The Dark Forest (2008)
+│   │   · The Devil in a Forest (1976)
+│   │   · The Dispossessed (1974)
+│   │   · The Earth Abides (1949)
+│   │   · The Elephant Vanishes (1993)
+│   │   · The Endgame (1976)
+│   │   · The Eternal Flame (2012)
+│   │   · The Fellowship of the Ring (1954)
+│   │   · The Fifth Head of Cerberus (1972)
+│   │   · The Foundation Pit (1969)
+│   │   · The Futurological Congress (1971)
+│   │   · The General in His Labyrinth (1989)
+│   │   · The Giver (1993)
+│   │   · The Great Gatsby (1925)
+│   │   · The Handmaid's Tale (1985)
+│   │   · The Haskell School of Expression: Learning Functional Programming Through Multimedia (2000)
+│   │   · The Island of Doctor Death and Other Stories (1980)
+│   │   · The Island of the Day Before (1994)
+│   │   · The Knight (2004)
+│   │   · The Land Across (2013)
+│   │   · The Language Construction Kit (2010)
+│   │   · The Lathe of Heaven (1971)
+│   │   · The Left Hand of Darkness (1969)
+│   │   · The Little Prince (1943)
+│   │   · The Man in the High Castle (1962)
+│   │   · The Mark (1955)
+│   │   · The Master of Go (1954)
+│   │   · The Metamorphosis and Other Stories (1915)
+│   │   · The Mind Parasites (1967)
+│   │   · The Moon is a Harsh Mistress (1966)
+│   │   · The Mythical Man-Month: Essays on Software Engineering (1975)
+│   │   · The Name of the Rose (1980)
+│   │   · The Occult: A History (1971)
+│   │   · The Outsider (1956)
+│   │   · The Plague (1947)
+│   │   · The Prince of Milk (2018)
+│   │   · The Quantum Thief (2010)
+│   │   · The Reason I Jump (2007)
+│   │   · The Return of the King (1955)
+│   │   · The Road (2006)
+│   │   · The Secret Life of Salvador Dalí (1942)
+│   │   · The Shadow of the Torturer (1980)
+│   │   · The Sheep Look Up (1972)
+│   │   · The Skybreak Spatterlight (1983)
+│   │   · The Sorcerer's House (2010)
+│   │   · The Stand (1978)
+│   │   · The State of Affairs: Rethinking Infidelity (2017)
+│   │   · The Strange Life of P.D. Ouspensky (1993)
+│   │   · The Stranger (1942)
+│   │   · The Sufis (1964)
+│   │   · The Sword of the Lictor (1982)
+│   │   · The Tao of Physics (1975)
+│   │   · The Teachings of the Mystics (1960)
+│   │   · The Theory and Techniques of Electronic Music (2007)
+│   │   · The Things We Mean (2003)
+│   │   · The Trial (1925)
+│   │   · The Two Towers (1954)
+│   │   · The Urth of the New Sun (1987)
+│   │   · The War Against Sleep: The Philosophy of Gurdjieff (1980)
+│   │   · The Waste Land (1922)
+│   │   · The Way of Tarot: The Spiritual Teacher in the Cards (2009)
+│   │   · The Wind-Up Bird Chronicle (1994)
+│   │   · The Wizard (2004)
+│   │   · The Woman in the Dunes (1962)
+│   │   · The Word for World is Forest (1972)
+│   │   · There Are Doors (1988)
+│   │   · Top 10 Games You Can Play in Your Head, by Yourself (2019)
+│   │   · Tractatus Logico-Philosophicus (1921)
+│   │   · V for Vendetta (1990)
+│   │   · VALIS (1981)
+│   │   · Variations On Your Body (2019)
+│   │   · Variations sur le corps (1999)
+│   │   · Viriconium (2000)
+│   │   · Vital Points and Skillful Finesse for Sabaki (2006)
+│   │   · Waiting for Godot (1952)
+│   │   · We (1921)
+│   │   · Wittgenstein’s Mistress (1988)
+│   │   · Working Effectively with Legacy Code (2004)
+│   ├── businesses (3)
+│   │   · AeroCare
+│   │   · Lexington Salt Cave
+│   │   · Turfland Clinic Pharmacy
+│   ├── films (726)
+│   │   · 10 Cloverfield Lane (2016)
+│   │   · 10 Things I Hate About You (1999)
+│   │   · 127 Hours (2010)
+│   │   · 24 Frames (2017)
+│   │   · 28 Days Later (2002)
+│   │   · 3 Women (1977)
+│   │   · 5 Centimeters per Second (2007)
+│   │   · A Clockwork Orange (1971)
+│   │   · A Field in England (2013)
+│   │   · A Ghost Story (2017)
+│   │   · A Girl Walks Home Alone at Night (2014)
+│   │   · A Nightmare on Elm Street (1984)
+│   │   · A Pigeon Sat on a Branch Reflecting on Existence (2014)
+│   │   · A Quiet Place (2018)
+│   │   · A Star Is Born (2018)
+│   │   · A Tale of Two Sisters (2003)
+│   │   · A Wrinkle in Time (2018)
+│   │   · A.I. Artificial Intelligence (2001)
+│   │   · A.I. Rising (2018)
+│   │   · Ace Ventura: Pet Detective (1994)
+│   │   · Ad Astra (2019)
+│   │   · Airplane II: The Sequel (1982)
+│   │   · Airplane! (1980)
+│   │   · Akira (1988)
+│   │   · Aladdin (1992)
+│   │   · Alice (1988)
+│   │   · Alien (1979)
+│   │   · Aliens (1986)
+│   │   · Alive (1993)
+│   │   · Alphaville (1965)
+│   │   · Altered States (1980)
+│   │   · Amadeus (1984)
+│   │   · American Animals (2018)
+│   │   · American Beauty (1999)
+│   │   · American Hustle (2013)
+│   │   · American Pie (1999)
+│   │   · American Psycho (2000)
+│   │   · Amélie (2001)
+│   │   · Anchorman: The Legend of Ron Burgundy (2004)
+│   │   · Andrei Rublev (1966)
+│   │   · Angel's Egg (1985)
+│   │   · Annie Hall (1977)
+│   │   · Annihilation (2018)
+│   │   · Anomalisa (2015)
+│   │   · Ant-Man and the Wasp (2018)
+│   │   · Anti Matter (2016)
+│   │   · Antichrist (2009)
+│   │   · Apocalypse Now (1979)
+│   │   · Apollo 13 (1995)
+│   │   · Apples (2022)
+│   │   · Are We Not Cats (2016)
+│   │   · Argo (2012)
+│   │   · Arrietty (2010)
+│   │   · Arrival (2016)
+│   │   · Atlantic Rim (2013)
+│   │   · Audition (1999)
+│   │   · Austin Powers: International Man of Mystery (1997)
+│   │   · Austin Powers: The Spy Who Shagged Me (1999)
+│   │   · BPM (Beats per Minute) (2017)
+│   │   · Back to the Future (1985)
+│   │   · Back to the Future Part III (1990)
+│   │   · Badlands (1973)
+│   │   · Barry Lyndon (1975)
+│   │   · Barton Fink (1991)
+│   │   · Batman (1989)
+│   │   · Battle Royale (2000)
+│   │   · Beast (2017)
+│   │   · Beasts of No Nation (2015)
+│   │   · Beasts of the Southern Wild (2012)
+│   │   · Bedevilled (2010)
+│   │   · Beetlejuice (1988)
+│   │   · Behind the Green Door (1972)
+│   │   · Being John Malkovich (1999)
+│   │   · Berberian Sound Studio (2012)
+│   │   · Beyond the Black Rainbow (2010)
+│   │   · Birdman or (The Unexpected Virtue of Ignorance) (2014)
+│   │   · Black Christmas (1974)
+│   │   · Black Panther (2018)
+│   │   · Black Swan (2010)
+│   │   · Blade Runner (1982)
+│   │   · Blade Runner 2049 (2017)
+│   │   · Blazing Saddles (1974)
+│   │   · Blindspotting (2018)
+│   │   · Blockers (2018)
+│   │   · Blue Velvet (1986)
+│   │   · Bone Tomahawk (2015)
+│   │   · Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan (2006)
+│   │   · Bottle Rocket (1996)
+│   │   · Boyhood (2014)
+│   │   · Braveheart (1995)
+│   │   · Brazil (1985)
+│   │   · Bridge of Spies (2015)
+│   │   · Burn After Reading (2008)
+│   │   · Candyman (1992)
+│   │   · Capote (2005)
+│   │   · Carrie (1976)
+│   │   · Cast Away (2000)
+│   │   · Castle in the Sky (1986)
+│   │   · Charlie and the Chocolate Factory (2005)
+│   │   · Children of Men (2006)
+│   │   · Chinatown (1974)
+│   │   · Cinema Paradiso (1988)
+│   │   · Citizenfour (2014)
+│   │   · Climax (2018)
+│   │   · Close Encounters of the Third Kind (1977)
+│   │   · Closet Monster (2015)
+│   │   · Cloverfield (2008)
+│   │   · Coherence (2013)
+│   │   · Cold Fish (2010)
+│   │   · Colossal (2016)
+│   │   · Come and See (1985)
+│   │   · Contact (1997)
+│   │   · Crimes of the Future (1970)
+│   │   · Crouching Tiger, Hidden Dragon (2000)
+│   │   · Daisies (1966)
+│   │   · Dancer in the Dark (2000)
+│   │   · Dark City (1998)
+│   │   · Das Boot (1981)
+│   │   · Dawn of the Planet of the Apes (2014)
+│   │   · Day of the Locust (1975)
+│   │   · Dead Man (1995)
+│   │   · Deadpool (2016)
+│   │   · Deadpool 2 (2018)
+│   │   · Dersu Uzala (1975)
+│   │   · Destiny (1921)
+│   │   · Detroit (2017)
+│   │   · District 9 (2009)
+│   │   · Dodes'ka-den (1970)
+│   │   · DodgeBall: A True Underdog Story (2004)
+│   │   · Dogtooth (2009)
+│   │   · Don't Breathe (2016)
+│   │   · Donnie Darko (2001)
+│   │   · Dr. Strangelove (1964)
+│   │   · Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1964)
+│   │   · Dragonslayer (1981)
+│   │   · Dreams (1990)
+│   │   · Drive (2011)
+│   │   · Drunken Angel (1948)
+│   │   · Dumb and Dumber (1994)
+│   │   · Dune (1984)
+│   │   · Dune (2021)
+│   │   · Dunkirk (2017)
+│   │   · Easy Rider (1969)
+│   │   · Edge of Tomorrow (2014)
+│   │   · Eighth Grade (2018)
+│   │   · El Topo (1970)
+│   │   · Elf (2003)
+│   │   · Endless Poetry (2016)
+│   │   · Enemy (2013)
+│   │   · Enter the Void (2009)
+│   │   · Eraserhead (1977)
+│   │   · Escape from New York (1981)
+│   │   · Eternal Sunshine of the Spotless Mind (2004)
+│   │   · Event Horizon (1997)
+│   │   · Evil Dead (2013)
+│   │   · Ex Machina (2014)
+│   │   · Eyes Wide Shut (1999)
+│   │   · Eyes Without a Face (1960)
+│   │   · Fando and Lis (1968)
+│   │   · Fando y Lis (1968)
+│   │   · Fanny and Alexander (1982)
+│   │   · Fantastic Planet (1973)
+│   │   · Fargo (1996)
+│   │   · Father Frost (1964)
+│   │   · Fear and Desire (1953)
+│   │   · Fences (2016)
+│   │   · Ferris Bueller's Day Off (1986)
+│   │   · Fight Club (1999)
+│   │   · Filmworker (2017)
+│   │   · Finding Nemo (2003)
+│   │   · First Blood (1982)
+│   │   · First Man (2018)
+│   │   · First Reformed (2017)
+│   │   · Flux Gourmet (2022)
+│   │   · Forbidden Planet (1956)
+│   │   · Forrest Gump (1994)
+│   │   · Foxtrot (2017)
+│   │   · Friday the 13th (1980)
+│   │   · From Up on Poppy Hill (2011)
+│   │   · Full Metal Jacket (1987)
+│   │   · Funeral Parade of Roses (1969)
+│   │   · Galaxy Quest (1999)
+│   │   · Game Night (2018)
+│   │   · Gattaca (1997)
+│   │   · Get Out (2017)
+│   │   · Ghost Stories (2017)
+│   │   · Ghost in the Shell (1995)
+│   │   · Ghostbusters (1984)
+│   │   · Ghostbusters (2016)
+│   │   · Ghostbusters II (1989)
+│   │   · Glengarry Glen Ross (1992)
+│   │   · Godzilla (2014)
+│   │   · Good Manners (2017)
+│   │   · GoodFellas (1990)
+│   │   · Goodnight Mommy (2014)
+│   │   · Grave of the Fireflies (1988)
+│   │   · Gravity (2013)
+│   │   · Green Room (2015)
+│   │   · Groundhog Day (1993)
+│   │   · Guilty of Romance (2011)
+│   │   · Hacksaw Ridge (2016)
+│   │   · Hail, Caesar! (2016)
+│   │   · Halloween (1978)
+│   │   · Harold and Maude (1971)
+│   │   · Hearts Beat Loud (2018)
+│   │   · Hellraiser (1987)
+│   │   · Helter Skelter (2012)
+│   │   · Henry: Portrait of a Serial Killer (1986)
+│   │   · Her (2013)
+│   │   · Hereditary (2018)
+│   │   · Hidden Figures (2016)
+│   │   · High Fidelity (2000)
+│   │   · High Life (2018)
+│   │   · High and Low (1963)
+│   │   · Holy Motors (2012)
+│   │   · Home Alone (1990)
+│   │   · Home Alone 2: Lost in New York (1992)
+│   │   · Honeyland (2019)
+│   │   · Hotel Artemis (2018)
+│   │   · House (1977)
+│   │   · Howl's Moving Castle (2004)
+│   │   · Hush (2016)
+│   │   · I Am Legend (2007)
+│   │   · I Saw the Devil (2010)
+│   │   · I am Divine (2014)
+│   │   · I, Tonya (2017)
+│   │   · Icarus (2017)
+│   │   · Ikimono no kiroku (1955)
+│   │   · Ikiru (1952)
+│   │   · In Between (2016)
+│   │   · In Fabric (2018)
+│   │   · In Just the Wink of an Eye (1981)
+│   │   · In This Corner of the World (2016)
+│   │   · Inception (2010)
+│   │   · Incredibles 2 (2018)
+│   │   · Independence Day (1996)
+│   │   · Independence Day: Resurgence (2016)
+│   │   · Indiana Jones and the Kingdom of the Crystal Skull (2008)
+│   │   · Indiana Jones and the Last Crusade (1989)
+│   │   · Indiana Jones and the Temple of Doom (1984)
+│   │   · Inglourious Basterds (2009)
+│   │   · Inland Empire (2006)
+│   │   · Inside (2007)
+│   │   · Inside Llewyn Davis (2013)
+│   │   · Inside Out (2015)
+│   │   · Insidious (2010)
+│   │   · Interstellar (2014)
+│   │   · Invasion of the Body Snatchers (1978)
+│   │   · Invasion of the Neptune Men (1961)
+│   │   · Involution (2018)
+│   │   · Ip Man (2008)
+│   │   · Isle of Dogs (2018)
+│   │   · It (2017)
+│   │   · It Follows (2014)
+│   │   · It's Such a Beautiful Day (2012)
+│   │   · Ivan's Childhood (1962)
+│   │   · Jaws (1975)
+│   │   · John Mulaney: Kid Gorgeous at Radio City (2018)
+│   │   · Journey's End (2017)
+│   │   · Ju-on: The Grudge (2002)
+│   │   · Juno (2007)
+│   │   · Jurassic Park (1993)
+│   │   · Jurassic World (2015)
+│   │   · Kagemusha (1980)
+│   │   · Kiki's Delivery Service (1989)
+│   │   · Kill Bill: Vol. 1 (2003)
+│   │   · Kill List (2011)
+│   │   · Killer's Kiss (1955)
+│   │   · Knives Out (2019)
+│   │   · Kotoko (2011)
+│   │   · Kubo and the Two Strings (2016)
+│   │   · Kung Fury (2015)
+│   │   · Kuroneko (1968)
+│   │   · Kwaidan (1964)
+│   │   · La Cravate (1957)
+│   │   · La Jetée (1962)
+│   │   · Lady Bird (2017)
+│   │   · Lasagna Cat - Telephone Sex Survey Results (2017)
+│   │   · Laserblast (1978)
+│   │   · Lean on Pete (2017)
+│   │   · Leave No Trace (2018)
+│   │   · Let the Right One In (2008)
+│   │   · Life Is Beautiful (1997)
+│   │   · Life of Brian (1979)
+│   │   · Light from Light (2019)
+│   │   · Lincoln (2012)
+│   │   · Liquid Sky (1982)
+│   │   · Little Miss Sunshine (2006)
+│   │   · Logan (2017)
+│   │   · Logan's Run (1976)
+│   │   · Lolita (1962)
+│   │   · Looper (2012)
+│   │   · Lords of the Deep (1989)
+│   │   · Lost Highway (1997)
+│   │   · Lost in Translation (2003)
+│   │   · Love, Simon (2018)
+│   │   · Loveless (2017)
+│   │   · Loving Vincent (2017)
+│   │   · Lucifer Rising (1972)
+│   │   · Mac and Me (1988)
+│   │   · Mad Max (1979)
+│   │   · Mad Max 2 (1981)
+│   │   · Mad Max Beyond Thunderdome (1985)
+│   │   · Mad Max: Fury Road (2015)
+│   │   · Mala Mala (2014)
+│   │   · Mandy (2018)
+│   │   · Manos: The Hands of Fate (1966)
+│   │   · Mars Attacks! (1996)
+│   │   · Mary and the Witch's Flower (2017)
+│   │   · Mean Girls (2004)
+│   │   · Melancholia (2011)
+│   │   · Memento (2000)
+│   │   · Men in Black (1997)
+│   │   · Meshes of the Afternoon (1943)
+│   │   · Metropolis (1927)
+│   │   · Midnight Special (2016)
+│   │   · Midsommar (2019)
+│   │   · Milk (2008)
+│   │   · Milk (2018)
+│   │   · Millennium (1989)
+│   │   · Miller's Crossing (1990)
+│   │   · Mind Game (2004)
+│   │   · Minority Report (2002)
+│   │   · Mirror (1975)
+│   │   · Moneyball (2011)
+│   │   · Monty Python and the Holy Grail (1975)
+│   │   · Moon (2009)
+│   │   · Moon Zero Two (1969)
+│   │   · Moonlight (2016)
+│   │   · Moonrise Kingdom (2012)
+│   │   · Mountain (2017)
+│   │   · Mrs. Doubtfire (1993)
+│   │   · Mulholland Drive (2001)
+│   │   · My Neighbor Totoro (1988)
+│   │   · My Neighbors the Yamadas (1999)
+│   │   · My Own Private Idaho (1991)
+│   │   · Mâdadayo (1993)
+│   │   · Name (Year)
+│   │   · Napoleon Dynamite (2004)
+│   │   · Nausicaä of the Valley of the Wind (1984)
+│   │   · Neruda (2016)
+│   │   · Never Let Me Go (2010)
+│   │   · Night of the Living Dead (1968)
+│   │   · Nightcrawler (2014)
+│   │   · Nineteen Eighty-Four (1984)
+│   │   · No Country for Old Men (2007)
+│   │   · No Regrets for Our Youth (1946)
+│   │   · Nosferatu: Phantom of the Night (1979)
+│   │   · Nostalghia (1983)
+│   │   · November (2017)
+│   │   · O Brother, Where Art Thou? (2000)
+│   │   · Office Space (1999)
+│   │   · Oh Lucy! (2017)
+│   │   · Okja (2017)
+│   │   · On the Silver Globe (1988)
+│   │   · One Cut of the Dead (2017)
+│   │   · One Flew Over the Cuckoo's Nest (1975)
+│   │   · One Wonderful Sunday (1947)
+│   │   · Onibaba (1964)
+│   │   · Only God Forgives (2013)
+│   │   · Only Yesterday (1991)
+│   │   · Operation Avalanche (2016)
+│   │   · Overdrawn at the Memory Bank (1985)
+│   │   · Overlord (2018)
+│   │   · Pan's Labyrinth (2006)
+│   │   · Paprika (2006)
+│   │   · Paranormal Activity (2007)
+│   │   · Paris is Burning (1990)
+│   │   · Paths of Glory (1957)
+│   │   · Penda's Fen (1974)
+│   │   · Perfect Blue (1997)
+│   │   · Persepolis (2007)
+│   │   · Persona (1966)
+│   │   · Pet Sematary (1989)
+│   │   · Pet Sematary (2019)
+│   │   · Phantasm (1979)
+│   │   · Phantom Islands (2018)
+│   │   · Pi (1998)
+│   │   · Platoon (1986)
+│   │   · Point Blank (1967)
+│   │   · Poltergeist (1982)
+│   │   · Pom Poko (1994)
+│   │   · Ponyo (2008)
+│   │   · Porco Rosso (1992)
+│   │   · Possession (1981)
+│   │   · Possibly in Michigan (1983)
+│   │   · Predator (1987)
+│   │   · Predestination (2014)
+│   │   · Primer (2004)
+│   │   · Prince of Space (1959)
+│   │   · Princess Mononoke (1997)
+│   │   · Project Moonbase (1953)
+│   │   · Prometheus (2012)
+│   │   · Psycho (1960)
+│   │   · Pulp Fiction (1994)
+│   │   · Punch-Drunk Love (2002)
+│   │   · Pyewacket (2017)
+│   │   · RBG (2018)
+│   │   · Raiders of the Lost Ark (1981)
+│   │   · Rain Man (1988)
+│   │   · Raising Arizona (1987)
+│   │   · Ralph Breaks the Internet (2018)
+│   │   · Ran (1985)
+│   │   · Rashomon (1950)
+│   │   · Ravenous (2017)
+│   │   · Raw (2016)
+│   │   · Ready or Not (2019)
+│   │   · Red Beard (1965)
+│   │   · Repo Man (1984)
+│   │   · Repulsion (1965)
+│   │   · Requiem for a Dream (2000)
+│   │   · Reservoir Dogs (1992)
+│   │   · Return of the Jedi (1983)
+│   │   · Revenge (2017)
+│   │   · Rhapsody in August (1991)
+│   │   · Rise of the Planet of the Apes (2011)
+│   │   · RoboCop (1987)
+│   │   · Robot Holocaust (1986)
+│   │   · Robot Monster (1953)
+│   │   · Rocketship X-M (1950)
+│   │   · Rocky (1976)
+│   │   · Rogue One: A Star Wars Story (2016)
+│   │   · Rollerball (1975)
+│   │   · Romeo + Juliet (1996)
+│   │   · Room (2015)
+│   │   · Rosemary's Baby (1968)
+│   │   · Rushmore (1998)
+│   │   · Safety Not Guaranteed (2012)
+│   │   · Sanjuro (1962)
+│   │   · Sanshiro Sugata (1943)
+│   │   · Sanshiro Sugata, Part Two (1945)
+│   │   · Santa Claus Conquers the Martians (1964)
+│   │   · Santa Sangre (1989)
+│   │   · Saving Private Ryan (1998)
+│   │   · Scandal (1950)
+│   │   · Schindler's List (1993)
+│   │   · Scott Pilgrim vs. the World (2010)
+│   │   · Scream (1996)
+│   │   · Se7en (1995)
+│   │   · Serenity (2005)
+│   │   · Session 9 (2001)
+│   │   · Seven Samurai (1954)
+│   │   · Shin Godzilla (2016)
+│   │   · Shivers (1975)
+│   │   · Sicario (2015)
+│   │   · Signs (2002)
+│   │   · Silence (2016)
+│   │   · Sleep Has Her House (2017)
+│   │   · Sleep Tight (2011)
+│   │   · Slipstream (1989)
+│   │   · Slumdog Millionaire (2008)
+│   │   · Snowpiercer (2013)
+│   │   · Solaris (1972)
+│   │   · Solo: A Star Wars Story (2018)
+│   │   · Son of the White Mare (1981)
+│   │   · Sorry to Bother You (2018)
+│   │   · Soultaker (1990)
+│   │   · Source Code (2011)
+│   │   · South Park: Bigger, Longer & Uncut (1999)
+│   │   · Space Mutiny (1988)
+│   │   · Spaceballs (1987)
+│   │   · Spartacus (1960)
+│   │   · Spirited Away (2001)
+│   │   · Splice (2009)
+│   │   · Stalker (1979)
+│   │   · Stand by Me (1986)
+│   │   · Star Trek (2009)
+│   │   · Star Trek Beyond (2016)
+│   │   · Star Trek Into Darkness (2013)
+│   │   · Star Wars (1977)
+│   │   · Star Wars: Episode I - The Phantom Menace (1999)
+│   │   · Star Wars: Episode II - Attack of the Clones (2002)
+│   │   · Star Wars: Episode III - Revenge of the Sith (2005)
+│   │   · Star Wars: The Force Awakens (2015)
+│   │   · Star Wars: The Last Jedi (2017)
+│   │   · Starship Troopers (1997)
+│   │   · Stoker (2013)
+│   │   · Stray Dog (1949)
+│   │   · Submarine (2010)
+│   │   · Suicide Squad (2016)
+│   │   · Summer 1993 (2017)
+│   │   · Sunshine (2007)
+│   │   · Superbad (2007)
+│   │   · Suspiria (1977)
+│   │   · Suture (1993)
+│   │   · Sweeney Todd: The Demon Barber of Fleet Street (2007)
+│   │   · Sweet Country (2017)
+│   │   · Swiss Army Man (2016)
+│   │   · Synecdoche, New York (2008)
+│   │   · Take Shelter (2011)
+│   │   · Tales from Earthsea (2006)
+│   │   · Tampopo (1985)
+│   │   · Taxi Driver (1976)
+│   │   · Terminator 2: Judgment Day (1991)
+│   │   · The 400 Blows (1959)
+│   │   · The Abyss (1989)
+│   │   · The Babadook (2014)
+│   │   · The Bad Sleep Well (1960)
+│   │   · The Beyond (1981)
+│   │   · The Big Bad Fox and Other Tales (2017)
+│   │   · The Big Lebowski (1998)
+│   │   · The Big Short (2015)
+│   │   · The Big Sick (2017)
+│   │   · The Birds (1963)
+│   │   · The Black Scorpion (1957)
+│   │   · The Blair Witch Project (1999)
+│   │   · The Blood of Heroes (1989)
+│   │   · The Book of Eli (2010)
+│   │   · The Breakfast Club (1985)
+│   │   · The Brood (1979)
+│   │   · The Cabin in the Woods (2011)
+│   │   · The Cat Returns (2002)
+│   │   · The Congress (2013)
+│   │   · The Conjuring (2013)
+│   │   · The Corpse Vanishes (1942)
+│   │   · The Crawling Eye (1958)
+│   │   · The Crawling Hand (1962)
+│   │   · The Dance of Reality (2013)
+│   │   · The Darjeeling Limited (2007)
+│   │   · The Dark Knight (2008)
+│   │   · The Dark Knight Rises (2012)
+│   │   · The Day the Earth Stood Still (1951)
+│   │   · The Dead Zone (1983)
+│   │   · The Death of Stalin (2017)
+│   │   · The Deer Hunter (1978)
+│   │   · The Descent (2005)
+│   │   · The Devil (1972)
+│   │   · The Devil's Doorway (2018)
+│   │   · The Devils (1971)
+│   │   · The Disaster Artist (2017)
+│   │   · The Double (2013)
+│   │   · The Elephant Man (1980)
+│   │   · The Empire Strikes Back (1980)
+│   │   · The Endless (2017)
+│   │   · The Evil Dead (1981)
+│   │   · The Exorcist (1973)
+│   │   · The Eyes of My Mother (2016)
+│   │   · The Fifth Element (1997)
+│   │   · The Final Sacrifice (1990)
+│   │   · The Fly (1986)
+│   │   · The Fog (1980)
+│   │   · The Fountain (2006)
+│   │   · The Gift (2015)
+│   │   · The Girl Without Hands (2016)
+│   │   · The Godfather (1972)
+│   │   · The Godfather: Part II (1974)
+│   │   · The Goonies (1985)
+│   │   · The Graduate (1967)
+│   │   · The Grand Budapest Hotel (2014)
+│   │   · The Green Mile (1999)
+│   │   · The Hangover (2009)
+│   │   · The Haunting (1963)
+│   │   · The Hidden Fortress (1958)
+│   │   · The Hobbit: An Unexpected Journey (2012)
+│   │   · The Hobbit: The Battle of the Five Armies (2014)
+│   │   · The Hobbit: The Desolation of Smaug (2013)
+│   │   · The Hole in the Ground (2019)
+│   │   · The Holy Mountain (1973)
+│   │   · The Host (2006)
+│   │   · The House That Jack Built (2018)
+│   │   · The House of the Devil (2009)
+│   │   · The House with Laughing Windows (1976)
+│   │   · The Idiot (1951)
+│   │   · The Imitation Game (2014)
+│   │   · The Inauguration of the Pleasure Dome(1954)
+│   │   · The Incredibles (2004)
+│   │   · The Innocents (1961)
+│   │   · The Invitation (2015)
+│   │   · The Iron Giant (1999)
+│   │   · The Killing (1956)
+│   │   · The Killing of a Sacred Deer (2017)
+│   │   · The King's Speech (2010)
+│   │   · The Lego Movie (2014)
+│   │   · The Life Aquatic with Steve Zissou (2004)
+│   │   · The Lighthouse (2019)
+│   │   · The Lion King (1994)
+│   │   · The Little Hours (2017)
+│   │   · The Lobster (2015)
+│   │   · The Lodge (2019)
+│   │   · The Lord of the Rings: The Fellowship of the Ring (2001)
+│   │   · The Lord of the Rings: The Return of the King (2003)
+│   │   · The Lord of the Rings: The Two Towers (2002)
+│   │   · The Love Witch (2016)
+│   │   · The Lower Depths (1957)
+│   │   · The Mad Monster (1942)
+│   │   · The Man Who Fell to Earth (1976)
+│   │   · The Martian (2015)
+│   │   · The Mask (1994)
+│   │   · The Master (2012)
+│   │   · The Matrix (1999)
+│   │   · The Matrix Reloaded (2003)
+│   │   · The Matrix Revolutions (2003)
+│   │   · The Men Who Stare at Goats (2009)
+│   │   · The Men Who Tread on the Tiger's Tail (1945)
+│   │   · The Most Beautiful (1944)
+│   │   · The Naked Gun: From the Files of Police Squad! (1988)
+│   │   · The Neon Demon (2016)
+│   │   · The Night Eats the World (2018)
+│   │   · The Nightmare Before Christmas (1993)
+│   │   · The Nines (2007)
+│   │   · The Orphanage (2007)
+│   │   · The Party (2017)
+│   │   · The Practice of Love (1985)
+│   │   · The Prestige (2006)
+│   │   · The Princess Bride (1987)
+│   │   · The Queen (1968)
+│   │   · The Quiet Duel (1949)
+│   │   · The Rainbow Thief (1990)
+│   │   · The Red Shoes (1948)
+│   │   · The Revenant (2015)
+│   │   · The Rider (2017)
+│   │   · The Ring (2002)
+│   │   · The Road (2009)
+│   │   · The Robot vs. The Aztec Mummy (1958)
+│   │   · The Rocky Horror Picture Show (1975)
+│   │   · The Room (2003)
+│   │   · The Royal Tenenbaums (2001)
+│   │   · The Sacrifice (1986)
+│   │   · The Secret War (2019)
+│   │   · The Sentinel (1977)
+│   │   · The Seventh Continent (1989)
+│   │   · The Seventh Seal (1957)
+│   │   · The Shape of Water (2017)
+│   │   · The Shawshank Redemption (1994)
+│   │   · The Shining (1980)
+│   │   · The Sidehackers (1969)
+│   │   · The Silence of the Lambs (1991)
+│   │   · The Sixth Sense (1999)
+│   │   · The Skin I Live In (2011)
+│   │   · The Slime People (1963)
+│   │   · The Social Network (2010)
+│   │   · The Spirit of the Beehive (1973)
+│   │   · The Straight Story (1999)
+│   │   · The Strangers (2008)
+│   │   · The Survivalist (2015)
+│   │   · The Tale of the Princess Kaguya (2013)
+│   │   · The Terminator (1984)
+│   │   · The Theory of Everything (2014)
+│   │   · The Thing (1982)
+│   │   · The Third Murder (2017)
+│   │   · The Truman Show (1998)
+│   │   · The Vanishing (1988)
+│   │   · The Virgin Suicides (1999)
+│   │   · The Visit (2015)
+│   │   · The Wailing (2016)
+│   │   · The Warriors (1979)
+│   │   · The Wicker Man (1973)
+│   │   · The Wind Rises (2013)
+│   │   · The Witch (2015)
+│   │   · The Wolf of Wall Street (2013)
+│   │   · The Wrestler (2008)
+│   │   · The_Meltdown (2018)
+│   │   · There Will Be Blood (2007)
+│   │   · They Live (1988)
+│   │   · Third Kind (2018)
+│   │   · Thirst (2009)
+│   │   · This Is Spinal Tap (1984)
+│   │   · This Is the End (2013)
+│   │   · This Island Earth (1955)
+│   │   · Thoroughbreds (2017)
+│   │   · Three Billboards Outside Ebbing, Missouri (2017)
+│   │   · Three Colors: Red (1994)
+│   │   · Three Identical Strangers (2018)
+│   │   · Throne of Blood (1957)
+│   │   · Tigers Are Not Afraid (2017)
+│   │   · Timecrimes (2007)
+│   │   · Titanic (1997)
+│   │   · Total Recall (1990)
+│   │   · Train to Busan (2016)
+│   │   · Tropic Thunder (2008)
+│   │   · Tucker and Dale vs. Evil (2010)
+│   │   · Tully (2018)
+│   │   · Tumbbad (2018)
+│   │   · Turbo Kid (2015)
+│   │   · Twelve Monkeys (1995)
+│   │   · Twilight (2008)
+│   │   · Twin Peaks: Fire Walk with Me (1992)
+│   │   · Un Chien Andalou (1929)
+│   │   · Under the Shadow (2016)
+│   │   · Unsane (2018)
+│   │   · Untamed Youth (1957)
+│   │   · Up (2009)
+│   │   · Upgrade (2018)
+│   │   · Upstream Color (2013)
+│   │   · Us (2019)
+│   │   · Videodrome (1983)
+│   │   · Voyage of Time: Life's Journey (2016)
+│   │   · WALL·E (2008)
+│   │   · Wake in Fright (1971)
+│   │   · War for the Planet of the Apes (2017)
+│   │   · Watchmen (2009)
+│   │   · Wayne's World (1992)
+│   │   · We Need to Talk About Kevin (2011)
+│   │   · Werewolf (1995)
+│   │   · Western (2017)
+│   │   · Westworld (1973)
+│   │   · What Ever Happened to Baby Jane? (1962)
+│   │   · What We Do in the Shadows (2014)
+│   │   · When Marnie Was There (2014)
+│   │   · Where the Wild Things Are (2009)
+│   │   · Whisper of the Heart (1995)
+│   │   · White Chamber (2018)
+│   │   · Wigstock: The Movie (1995)
+│   │   · Wild Strawberries (1957)
+│   │   · Wild at Heart (1990)
+│   │   · Willy Wonka & the Chocolate Factory (1971)
+│   │   · Women of the Prehistoric Planet (1966)
+│   │   · Won't You Be My Neighbor? (2018)
+│   │   · Wonder Woman (2017)
+│   │   · World War Z (2013)
+│   │   · World of Tomorrow (2015)
+│   │   · World of Tomorrow Episode Two: The Burden of Other People's Thoughts (2017)
+│   │   · Yojimbo (1961)
+│   │   · You Were Never Really Here (2017)
+│   │   · You're Next (2011)
+│   │   · Young Frankenstein (1974)
+│   │   · Your Name. (2016)
+│   │   · Zabriskie Point (1970)
+│   │   · Zama (2017)
+│   │   · Zodiac (2007)
+│   │   · Zombieland (2009)
+│   │   · Zoolander (2001)
+│   │   · Zootopia (2016)
+│   │   · [REC] (2007)
+│   │   · eXistenZ (1999)
+│   │   · mother! (2017)
+│   ├── games (1)
+│   │   · Civilization VI
+│   ├── gear (64)
+│   │   └── eurorack (64)
+│   │       · ADDAC System ADDAC601 VC Fixed Filter Bank
+│   │       · ALM Busy Circuits Akemie's Castle
+│   │       · ALM Busy Circuits Pamela's NEW Workout
+│   │       · ALM Busy Circuits Pamela's PRO Workout
+│   │       · ALM Busy Circuits Pip Slope mk II
+│   │       · Bastl Instruments Ikarie
+│   │       · Befaco Kickall
+│   │       · Cosmotronic Cosmix
+│   │       · Cosmotronic Cosmix Pro
+│   │       · Cosmotronic Messor
+│   │       · Doepfer A-124 SE
+│   │       · Endorphin.es Golden Master 1U
+│   │       · Endorphin.es Milky Way 1U
+│   │       · Erica Synths Mutant Hi-Hats
+│   │       · Expert Sleepers Disting mk4
+│   │       · IJ7U Drumbox
+│   │       · IJ7U Voice Box
+│   │       · Intellijel Atlantix
+│   │       · Intellijel Buff Mult 1U
+│   │       · Intellijel CVx 1U
+│   │       · Intellijel Dual ADSR
+│   │       · Intellijel MIDI 1U
+│   │       · Intellijel Mixup
+│   │       · Intellijel Noise Tools 1U
+│   │       · Intellijel Passive LPG 1U
+│   │       · Intellijel Planar 2
+│   │       · Intellijel Polaris
+│   │       · Intellijel Quad VCA
+│   │       · Intellijel Quadratt 1U
+│   │       · Intellijel Quadrax
+│   │       · Intellijel Sealegs
+│   │       · Intellijel Stereo Line In 1U
+│   │       · Intellijel Stereo Line Out 1U
+│   │       · Intellijel µFold II
+│   │       · Jasmine & Olive Trees Traffic
+│   │       · Make Noise Brains
+│   │       · Make Noise DXG
+│   │       · Make Noise Maths
+│   │       · Make Noise Mega System
+│   │       · Make Noise Mimeophon
+│   │       · Make Noise MultiMod
+│   │       · Make Noise Pressure Points
+│   │       · Make Noise QPAS
+│   │       · Make Noise Rene Mk2
+│   │       · Make Noise Richter Wogglebug 2014
+│   │       · Make Noise Spectraphon
+│   │       · Make Noise TEMPI
+│   │       · Make Noise X-PAN
+│   │       · Mannequins THREE SISTERS
+│   │       · Michigan Synth Works µO_C micro Ornament & Crime
+│   │       · Mutable Instruments Beads
+│   │       · Mutable Instruments Clouds
+│   │       · Mutable Instruments Grids
+│   │       · Mutable Instruments Plaits
+│   │       · Mutable Instruments Rings
+│   │       · Mutable Instruments Streams
+│   │       · Mutable Instruments Warps
+│   │       · Noise Engineering Basimilus Iteritas Alter
+│   │       · Noise Engineering Lapsus Os
+│   │       · Noise Engineering Viol Ruina
+│   │       · Patching Panda COPYCAT
+│   │       · Shakmat Dual Dagger
+│   │       · Steady State Fate Entity Ultra-Kick
+│   │       · Toppobrillo Sport Modulator 2
+│   ├── habits (5)
+│   │   · Creative Time
+│   │   · Dinner
+│   │   · Lunch
+│   │   · Lunchtime Task
+│   │   · Massage Therapy
+│   ├── people (391)
+│   │   · A Tribe Called Quest
+│   │   · A.J. Ayer
+│   │   · Adam Neely
+│   │   · Adrian Tchaikovsky
+│   │   · Aigli Papantonopoulou
+│   │   · Akira Ishida
+│   │   · Akira Kurosawa
+│   │   · Al Gromer Khan
+│   │   · Alan Dundes
+│   │   · Alan Moore
+│   │   · Alan R. Perlman
+│   │   · Alan Turing
+│   │   · Alan Watts
+│   │   · Albert Camus
+│   │   · Albert Hoffman
+│   │   · Aldous Huxley
+│   │   · Aleister Crowley
+│   │   · Alejandro Jodorowsky
+│   │   · Aleksandr Solzhenitsyn
+│   │   · Alexander Bard
+│   │   · Alexandre Enkerli
+│   │   · Alyssa, Massage Therapist
+│   │   · Amish Tripathi
+│   │   · Amon Tobin
+│   │   · Andreas Eschbach
+│   │   · Andrei Platonov
+│   │   · Andrei Tarkovsky
+│   │   · Anthony Burgess
+│   │   · Antoine de Saint-Exupery
+│   │   · Antoni Gaudi
+│   │   · Aphex Twin
+│   │   · Aquinas
+│   │   · Arika Okrent
+│   │   · Aristotle
+│   │   · Arnold Böcklin
+│   │   · Arnold Robbins
+│   │   · Arthur C. Clarke
+│   │   · Avery Alder
+│   │   · Bartok
+│   │   · Bartosz Milewski
+│   │   · Beatrice Dillon
+│   │   · Ben Wheatley
+│   │   · Berio
+│   │   · Bertrand Russell
+│   │   · Blaise Pascal
+│   │   · Boards of Canada
+│   │   · Bob Ross
+│   │   · Boulez
+│   │   · Brian Eno
+│   │   · Brian Jacques
+│   │   · Brian Kernighan
+│   │   · Brooklyn Raga Massive
+│   │   · Bruce J. MacLennan
+│   │   · Bruce Schneier
+│   │   · Bruno Bettelheim
+│   │   · Bryan O'Sullivan
+│   │   · Buckminster Fuller
+│   │   · C. Robert Cargill
+│   │   · C. S. Lewis
+│   │   · Camus
+│   │   · Carl Albing
+│   │   · Carl Jung
+│   │   · Casey Reas
+│   │   · Caterina Barbieri
+│   │   · Charles Dickens
+│   │   · Chris Marker
+│   │   · Chuck Palahniuk
+│   │   · Claire Falkenstein
+│   │   · Clark Ashton Smith
+│   │   · Colin McPhee
+│   │   · Colin Odell
+│   │   · Colin Wilson
+│   │   · Cormac McCarthy
+│   │   · Curtis Roads
+│   │   · D.B.
+│   │   · Dabrowski
+│   │   · Dae Gak
+│   │   · Dan Jurafsky
+│   │   · Daniel C. Dennett
+│   │   · Daniel L. Everett
+│   │   · Danjel van Tijn
+│   │   · Danny Elfman
+│   │   · Dave Smith
+│   │   · David Bowie
+│   │   · David Byrne
+│   │   · David J. Skal
+│   │   · David Koresh
+│   │   · David Lindsay
+│   │   · David Lynch
+│   │   · David Markson
+│   │   · David Richardson
+│   │   · David Sedaris
+│   │   · David Stubbs
+│   │   · Debasish Ghosh
+│   │   · Delia Derbyshire
+│   │   · Don Buchla
+│   │   · Don Cherry
+│   │   · Don Hertzfeldt
+│   │   · Douglas R. Hofstadter
+│   │   · Duncan Trussel
+│   │   · Edwin A. Abbott
+│   │   · Eivør Pálsdóttir
+│   │   · Eliphas Levi
+│   │   · Elliott Carter
+│   │   · Emilie Gillet
+│   │   · Emmanuel Kant
+│   │   · Eric Barone
+│   │   · Erik Satie
+│   │   · Ernst Jünger
+│   │   · Eshun
+│   │   · Esther Perel
+│   │   · Eugene Thacker
+│   │   · F. Scott Fitzgerald
+│   │   · Faure
+│   │   · FinSub Chris
+│   │   · Florian Schneider
+│   │   · Frank Herbert
+│   │   · Franz Kafka
+│   │   · Frederick P. Brooks Jr.
+│   │   · Frei Otto
+│   │   · Friedrich Nietzsche
+│   │   · Fritjof Capra
+│   │   · Fritz Leiber
+│   │   · G.K. Chesterton
+│   │   · Gabriel Garcia Marquez
+│   │   · Gary Numan
+│   │   · Gene Wolfe
+│   │   · George Gamow
+│   │   · George Gurdjieff
+│   │   · George Lakoff
+│   │   · George Lucas
+│   │   · George Orwell
+│   │   · George R. Stewart
+│   │   · George R.R. Martin
+│   │   · George Skaff Elias
+│   │   · Gerald Sussman
+│   │   · Giovanni Battista Tiepolo
+│   │   · Glenn Branca
+│   │   · Greg Egan
+│   │   · Greg Lynn
+│   │   · Gregory Hill
+│   │   · GrndNtl Brands
+│   │   · H.P. Lovecraft
+│   │   · Hannu Rajaniemi
+│   │   · Hans Blumenberg
+│   │   · Hans Zimmer
+│   │   · Harold Abelson
+│   │   · Harry Harrison
+│   │   · Harry Partch
+│   │   · Haruki Murakami
+│   │   · Hazrat Inayat Khan
+│   │   · Henry Cowell
+│   │   · Henry David Thoreau
+│   │   · Herbert Wells
+│   │   · Herman Melville
+│   │   · Hilary Putnam
+│   │   · Hugh Le Caine
+│   │   · Hugo Sperger
+│   │   · Iannis Xenakis
+│   │   · Idries Shah
+│   │   · Igor Stravinsky
+│   │   · Ikuro Ishigure
+│   │   · Isao Tomita
+│   │   · Ishida Yoshio
+│   │   · Ishmael Reed
+│   │   · Italo Calvino
+│   │   · Ivan Sutherland
+│   │   · J.R.R. Tolkien
+│   │   · Jack Vance
+│   │   · Jacques Lacan
+│   │   · James  Davies
+│   │   · James Frazer
+│   │   · James L. Hein
+│   │   · James Wierzbicki
+│   │   · Jan Jelenik
+│   │   · Janice Kim
+│   │   · Jason Pargin
+│   │   · Jeff Vandermeer
+│   │   · Jenny Hval
+│   │   · Jessie Ware
+│   │   · Jesus Christ
+│   │   · Joanna Demer
+│   │   · Joanna Newsome
+│   │   · John Adams
+│   │   · John Ajvide Lindqvist
+│   │   · John Brunner
+│   │   · John Cage
+│   │   · John Chowning
+│   │   · John Crowley
+│   │   · John D. Cook
+│   │   · John Hodgman
+│   │   · John McCarthy
+│   │   · John Power
+│   │   · John Prine
+│   │   · John Woldemar Cowan
+│   │   · John of the Cross
+│   │   · Jonathan Franzen
+│   │   · Jordan Lindberg
+│   │   · Jorge Luis Borges
+│   │   · Joseph Heller
+│   │   · Josiah Gilbert Holland
+│   │   · Julie Sussman
+│   │   · K. Robert Schwarz
+│   │   · Karlheinz Stockhausen
+│   │   · Karlo Takki
+│   │   · Keith Fullerton Whitman
+│   │   · Ken Kesey
+│   │   · Ken Wilber
+│   │   · Kiyoshi Kosugi
+│   │   · Kobe Abe
+│   │   · Kraftwerk
+│   │   · Krzysztof Penderecki
+│   │   · Kurt Gödel
+│   │   · La Monte Young
+│   │   · Laetitia Sadier
+│   │   · Larry Garfield
+│   │   · Laurence Goldstein
+│   │   · Leonard Richardson
+│   │   · Lewis Caroll
+│   │   · Liu Cixin
+│   │   · Lois Lowry
+│   │   · Lord Dunsany
+│   │   · Loren Rush
+│   │   · Lou Harrison
+│   │   · Ludwig Wittgenstein
+│   │   · Lyra Pramuk
+│   │   · M. John Harrison
+│   │   · Madame Blavatsky
+│   │   · Madeleine L'Engle
+│   │   · Mahler
+│   │   · Malaclypse the Younger
+│   │   · Marco Pivetta
+│   │   · Margaret Atwood
+│   │   · Marianne Costa
+│   │   · Marice Nicoll
+│   │   · Mark Allyn Stewart
+│   │   · Mark C. Baker
+│   │   · Mark Rosenfelder
+│   │   · Martin Fowler
+│   │   · Massimiliano Fuksas
+│   │   · Mavis
+│   │   · Max Frisch
+│   │   · Meister Eckhart
+│   │   · Melinda Hale-Hautala
+│   │   · Michael
+│   │   · Michael Andre-Driussi
+│   │   · Michael C. Feathers
+│   │   · Michael Crichton
+│   │   · Michael Flynn
+│   │   · Michael Mahoney
+│   │   · Michael Nielson
+│   │   · Michael Pollan
+│   │   · Michael Sipser
+│   │   · Michael Snoyman
+│   │   · Michel Serres
+│   │   · Michelle Le Blanc
+│   │   · Milhaud
+│   │   · Miller Puckette
+│   │   · Milton Babbit
+│   │   · Mortimer Adler
+│   │   · Morton Subotnick
+│   │   · Motoko Tanaka
+│   │   · NEU!
+│   │   · Nagahara Yoshiaki
+│   │   · Naoki Higashida
+│   │   · Nate B. Jones
+│   │   · Neal Wilgus
+│   │   · Neil Gaiman
+│   │   · Neri Oxman
+│   │   · Neutral Milk Hotel
+│   │   · Nevil Shute
+│   │   · Newton
+│   │   · Nick Montfort
+│   │   · Nurse With Wound
+│   │   · Olaf Stapledon
+│   │   · Orson Scott Card
+│   │   · Orson Welles
+│   │   · Otake Hideo
+│   │   · Otto Weininger
+│   │   · P.D. Ouspensky
+│   │   · Pablo Amaringo
+│   │   · Pat Frank
+│   │   · Paul Hudak
+│   │   · Pauline Oliveros
+│   │   · Peano
+│   │   · Peter Bradshaw
+│   │   · Peter J. Carroll
+│   │   · Pharoah Sanders
+│   │   · Philip K. Dick
+│   │   · Phillip Tag
+│   │   · Polybius
+│   │   · Popol Vuh
+│   │   · Poulenc
+│   │   · Psychic TV
+│   │   · Q-Tip
+│   │   · Rafael
+│   │   · Ram Dass
+│   │   · Raney
+│   │   · Raphael
+│   │   · Raphael Bob-Waksberg
+│   │   · Raphael Finkel
+│   │   · Ray Wilson
+│   │   · Raymond Scott
+│   │   · Rengetsu
+│   │   · René Daumal
+│   │   · Richard Boulanger
+│   │   · Richard Bozulich
+│   │   · Richard P. Feynman
+│   │   · Richard Wagner
+│   │   · Robert A. Heinlein
+│   │   · Robert Anton Wilson
+│   │   · Robert Borski
+│   │   · Robert Carl
+│   │   · Robert E. Buswell, Jr.
+│   │   · Robert Erickson
+│   │   · Robert Moog
+│   │   · Robert Sedgewick
+│   │   · Rollo May
+│   │   · Ron Frangipane
+│   │   · Roy Orbison
+│   │   · Rudolph Steiner
+│   │   · Ruth Terrill
+│   │   · Sabin Balasa
+│   │   · Salvador Dali
+│   │   · Sam Delaney
+│   │   · Samael Aun Weor
+│   │   · Samuel Beckett
+│   │   · Sartre
+│   │   · Schoenberg
+│   │   · Sigmund Freud
+│   │   · Slava Tsukerman
+│   │   · Stanislaw Lem
+│   │   · Stanley Kubrick
+│   │   · Stephen King
+│   │   · Stephen Schiffer
+│   │   · Stereolab
+│   │   · Steve Reich
+│   │   · Steven Pressfield
+│   │   · Stuart Russell
+│   │   · Sun City Girls
+│   │   · Susumu Hirasawa
+│   │   · T. C. Boyle
+│   │   · T.S. Eliot
+│   │   · Tadao Kikumoto
+│   │   · Tangerine Dream
+│   │   · Terence McKenna
+│   │   · The Mountain Goats
+│   │   · The Soft Pink Truth
+│   │   · Thinking Fellers Union Local 282
+│   │   · Thomas  Holmes
+│   │   · Thomas Adès
+│   │   · Thomas Pynchon
+│   │   · Tiago Forte
+│   │   · Toh Enjoe
+│   │   · Tom Oberheim
+│   │   · Tom Stoppard
+│   │   · Tom Whitwell
+│   │   · Tomoko Ogawa
+│   │   · Tony Rolando
+│   │   · Toshiro Kageyama
+│   │   · Trythall
+│   │   · Udi Dahan
+│   │   · Umberto Eco
+│   │   · Ursula K. Le Guin
+│   │   · Valie Export
+│   │   · Vannevar Bush
+│   │   · Vaughn Vernon
+│   │   · Venedikt Erofeev
+│   │   · Venkatesh Rao
+│   │   · Vladimir Lenin
+│   │   · Vladimir Nabokov
+│   │   · Walter M. Miller Jr.
+│   │   · Walter Otto
+│   │   · Walter T. Stace
+│   │   · Wendell Berry
+│   │   · Wendy Carlos
+│   │   · Wes Wilson
+│   │   · William Basinski
+│   │   · William Blake
+│   │   · William F. Buckley
+│   │   · William Gibson
+│   │   · William Golding
+│   │   · William James
+│   │   · Wittgenstein
+│   │   · Yasunari Kawabata
+│   │   · Yevgeny Zamyatin
+│   │   · Yma Sumac
+│   │   · Yo La Tengo
+│   │   · Yoda Norimoto
+│   │   · Yoshinori Kano
+│   │   · Zachary May
+│   ├── recipes (23)
+│   │   · Banana Bread
+│   │   · Butternut Squash Chickpea Soup
+│   │   · Charred Cabbage in Spiced Tomatoes
+│   │   · Chicken Kabsa
+│   │   · Chicken Noodle Soup
+│   │   · Chickpea Lentil Curry Soup
+│   │   · Easy Creamy Chicken Casserole
+│   │   · Hummus
+│   │   · Instant Pot Red Beans and Rice
+│   │   · Japanese Chicken Curry
+│   │   · Japanese Curry Roux
+│   │   · Lemon Tahini Sauce
+│   │   · Minestrone
+│   │   · Navajo flat bread
+│   │   · Recipe Chana Masala
+│   │   · Recipe Pumpkin Pie
+│   │   · Recipe Red Beans and Rice
+│   │   · Recipe Red Lentil Curry
+│   │   · Red Lentil Tomato Soup
+│   │   · Reverse-Seared Steak
+│   │   · Stuffed Pepper Soup
+│   │   · Taco Meat Filling
+│   │   · quiche
+│   ├── relationships (54)
+│   │   · Adam Hutchinson
+│   │   · Barry Levine
+│   │   · Ben Parks
+│   │   · Blake Ellis
+│   │   · Brian Smith
+│   │   · Briana Rudolf
+│   │   · Bryan Konshak
+│   │   · Chris Horn
+│   │   · Chris Wininger
+│   │   · Corey Nichols
+│   │   · Cyrus Hettle
+│   │   · Daniela Herzog
+│   │   · Dillon Sweeney
+│   │   · Disa Brandenburg
+│   │   · Edward Fanaberia
+│   │   · Ellen Bush
+│   │   · Elliot Cleburg
+│   │   · Elodie Lander
+│   │   · Erica Sellers
+│   │   · Evan Tune
+│   │   · Geoff Wallace
+│   │   · Greg Conley
+│   │   · Gregory Koprowski
+│   │   · Gretchen Collins
+│   │   · Homer White
+│   │   · Ila Patel
+│   │   · Jaz Chahal
+│   │   · Jen Reynolds
+│   │   · Jon Reynolds
+│   │   · Kacy Johnson
+│   │   · Kenny Harris
+│   │   · Kevin Palley
+│   │   · Kim Northrip
+│   │   · Kindle Jackson
+│   │   · Levi Dunn
+│   │   · Lisa Johnson
+│   │   · Mark Kendzior
+│   │   · Matthew Gidcomb
+│   │   · Olivia Leathers
+│   │   · Primary Care Physician
+│   │   · Robert Daniels
+│   │   · Roni
+│   │   · Roq Martin
+│   │   · Ross Ewing
+│   │   · Shelby Bevins-Sullivan
+│   │   · Stephen Ryan
+│   │   · Steven Rudolf
+│   │   · SynthChatMark
+│   │   · Tim Brandenburg
+│   │   · Tina Metcalf
+│   │   · Tony Merriam
+│   │   · Tonya Merriam
+│   │   · Tyson Davis
+│   │   · Whitney Vitatoe
+│   ├── software (6)
+│   │   · Ableton CV Tools
+│   │   · Ableton Live
+│   │   · Asesprite
+│   │   · LibreChat
+│   │   · Obsidian
+│   │   · Worktree
+│   └── television (1)
+│       · Abstract: The Art of Design
+├── periodic-notes (1460)
+│   ├── daily (1456)
+│   │   · 2020-03-15
+│   │   · 2020-03-16
+│   │   · 2020-03-17
+│   │   · 2020-03-18
+│   │   · 2020-03-19
+│   │   · 2020-03-20
+│   │   · 2020-03-21
+│   │   · 2020-03-22
+│   │   · 2020-03-23
+│   │   · 2020-03-24
+│   │   · 2020-03-25
+│   │   · 2020-03-26
+│   │   · 2020-03-27
+│   │   · 2020-03-29
+│   │   · 2020-03-30
+│   │   · 2020-04-01
+│   │   · 2020-04-02
+│   │   · 2020-04-03
+│   │   · 2020-04-04
+│   │   · 2020-04-05
+│   │   · 2020-04-07
+│   │   · 2020-04-08
+│   │   · 2020-04-09
+│   │   · 2020-04-10
+│   │   · 2020-04-11
+│   │   · 2020-04-12
+│   │   · 2020-04-14
+│   │   · 2020-04-15
+│   │   · 2020-04-16
+│   │   · 2020-04-17
+│   │   · 2020-04-19
+│   │   · 2020-04-20
+│   │   · 2020-04-21
+│   │   · 2020-04-22
+│   │   · 2020-04-23
+│   │   · 2020-04-24
+│   │   · 2020-04-25
+│   │   · 2020-04-27
+│   │   · 2020-04-28
+│   │   · 2020-04-29
+│   │   · 2020-04-30
+│   │   · 2020-05-01
+│   │   · 2020-05-02
+│   │   · 2020-05-04
+│   │   · 2020-05-05
+│   │   · 2020-05-06
+│   │   · 2020-05-07
+│   │   · 2020-05-08
+│   │   · 2020-05-09
+│   │   · 2020-05-11
+│   │   · 2020-05-12
+│   │   · 2020-05-13
+│   │   · 2020-05-14
+│   │   · 2020-05-15
+│   │   · 2020-05-16
+│   │   · 2020-05-17
+│   │   · 2020-05-18
+│   │   · 2020-05-19
+│   │   · 2020-05-20
+│   │   · 2020-05-21
+│   │   · 2020-05-22
+│   │   · 2020-05-24
+│   │   · 2020-05-25
+│   │   · 2020-05-26
+│   │   · 2020-05-27
+│   │   · 2020-05-28
+│   │   · 2020-05-29
+│   │   · 2020-05-31
+│   │   · 2020-06-01
+│   │   · 2020-06-02
+│   │   · 2020-06-03
+│   │   · 2020-06-06
+│   │   · 2020-06-08
+│   │   · 2020-06-09
+│   │   · 2020-06-10
+│   │   · 2020-06-15
+│   │   · 2020-06-16
+│   │   · 2020-06-17
+│   │   · 2020-06-18
+│   │   · 2020-06-19
+│   │   · 2020-06-20
+│   │   · 2020-06-21
+│   │   · 2020-06-22
+│   │   · 2020-06-24
+│   │   · 2020-06-25
+│   │   · 2020-06-26
+│   │   · 2020-06-28
+│   │   · 2020-06-29
+│   │   · 2020-06-30
+│   │   · 2020-07-01
+│   │   · 2020-07-02
+│   │   · 2020-07-03
+│   │   · 2020-07-04
+│   │   · 2020-07-05
+│   │   · 2020-07-06
+│   │   · 2020-07-07
+│   │   · 2020-07-08
+│   │   · 2020-07-09
+│   │   · 2020-07-10
+│   │   · 2020-07-13
+│   │   · 2020-07-15
+│   │   · 2020-07-16
+│   │   · 2020-07-17
+│   │   · 2020-07-18
+│   │   · 2020-07-19
+│   │   · 2020-07-20
+│   │   · 2020-07-21
+│   │   · 2020-07-22
+│   │   · 2020-07-23
+│   │   · 2020-07-24
+│   │   · 2020-07-25
+│   │   · 2020-07-27
+│   │   · 2020-07-31
+│   │   · 2020-08-02
+│   │   · 2020-08-04
+│   │   · 2020-08-05
+│   │   · 2020-08-07
+│   │   · 2020-08-08
+│   │   · 2020-08-09
+│   │   · 2020-08-13
+│   │   · 2020-08-14
+│   │   · 2020-08-19
+│   │   · 2020-08-21
+│   │   · 2020-08-25
+│   │   · 2020-08-28
+│   │   · 2020-09-01
+│   │   · 2020-09-02
+│   │   · 2020-09-03
+│   │   · 2020-09-04
+│   │   · 2020-09-05
+│   │   · 2020-09-08
+│   │   · 2020-09-10
+│   │   · 2020-09-14
+│   │   · 2020-09-15
+│   │   · 2020-09-16
+│   │   · 2020-09-17
+│   │   · 2020-09-18
+│   │   · 2020-09-20
+│   │   · 2020-09-21
+│   │   · 2020-09-22
+│   │   · 2020-09-23
+│   │   · 2020-09-24
+│   │   · 2020-09-25
+│   │   · 2020-09-28
+│   │   · 2020-09-29
+│   │   · 2020-09-30
+│   │   · 2020-10-02
+│   │   · 2020-10-03
+│   │   · 2020-10-06
+│   │   · 2020-10-07
+│   │   · 2020-10-08
+│   │   · 2020-10-10
+│   │   · 2020-10-12
+│   │   · 2020-10-13
+│   │   · 2020-10-14
+│   │   · 2020-10-15
+│   │   · 2020-10-16
+│   │   · 2020-10-19
+│   │   · 2020-10-20
+│   │   · 2020-10-21
+│   │   · 2020-10-22
+│   │   · 2020-10-27
+│   │   · 2020-10-28
+│   │   · 2020-10-29
+│   │   · 2020-10-31
+│   │   · 2020-11-02
+│   │   · 2020-11-04
+│   │   · 2020-11-05
+│   │   · 2020-11-11
+│   │   · 2020-11-12
+│   │   · 2020-11-16
+│   │   · 2020-11-17
+│   │   · 2020-11-18
+│   │   · 2020-11-19
+│   │   · 2020-11-24
+│   │   · 2020-12-01
+│   │   · 2020-12-02
+│   │   · 2020-12-04
+│   │   · 2020-12-07
+│   │   · 2020-12-08
+│   │   · 2020-12-09
+│   │   · 2020-12-10
+│   │   · 2020-12-11
+│   │   · 2020-12-14
+│   │   · 2020-12-17
+│   │   · 2020-12-18
+│   │   · 2020-12-19
+│   │   · 2021-01-04
+│   │   · 2021-01-05
+│   │   · 2021-01-08
+│   │   · 2021-01-11
+│   │   · 2021-01-12
+│   │   · 2021-01-14
+│   │   · 2021-01-20
+│   │   · 2021-01-21
+│   │   · 2021-01-22
+│   │   · 2021-01-25
+│   │   · 2021-01-26
+│   │   · 2021-01-27
+│   │   · 2021-01-28
+│   │   · 2021-01-29
+│   │   · 2021-02-01
+│   │   · 2021-02-02
+│   │   · 2021-02-03
+│   │   · 2021-02-04
+│   │   · 2021-02-05
+│   │   · 2021-02-08
+│   │   · 2021-02-09
+│   │   · 2021-02-15
+│   │   · 2021-02-16
+│   │   · 2021-02-18
+│   │   · 2021-02-22
+│   │   · 2021-02-23
+│   │   · 2021-02-26
+│   │   · 2021-03-01
+│   │   · 2021-03-04
+│   │   · 2021-03-07
+│   │   · 2021-03-08
+│   │   · 2021-03-11
+│   │   · 2021-03-17
+│   │   · 2021-03-18
+│   │   · 2021-03-19
+│   │   · 2021-03-22
+│   │   · 2021-03-24
+│   │   · 2021-03-26
+│   │   · 2021-03-28
+│   │   · 2021-03-29
+│   │   · 2021-04-01
+│   │   · 2021-04-02
+│   │   · 2021-04-05
+│   │   · 2021-04-07
+│   │   · 2021-04-08
+│   │   · 2021-04-12
+│   │   · 2021-04-13
+│   │   · 2021-04-14
+│   │   · 2021-04-16
+│   │   · 2021-04-19
+│   │   · 2021-04-20
+│   │   · 2021-04-24
+│   │   · 2021-04-27
+│   │   · 2021-04-28
+│   │   · 2021-05-05
+│   │   · 2021-05-06
+│   │   · 2021-05-08
+│   │   · 2021-05-09
+│   │   · 2021-05-11
+│   │   · 2021-05-19
+│   │   · 2021-05-20
+│   │   · 2021-05-21
+│   │   · 2021-05-25
+│   │   · 2021-05-26
+│   │   · 2021-05-27
+│   │   · 2021-05-29
+│   │   · 2021-06-03
+│   │   · 2021-06-04
+│   │   · 2021-06-05
+│   │   · 2021-06-07
+│   │   · 2021-06-09
+│   │   · 2021-06-10
+│   │   · 2021-06-11
+│   │   · 2021-06-14
+│   │   · 2021-06-18
+│   │   · 2021-06-21
+│   │   · 2021-06-28
+│   │   · 2021-06-30
+│   │   · 2021-07-06
+│   │   · 2021-07-07
+│   │   · 2021-07-08
+│   │   · 2021-07-09
+│   │   · 2021-07-12
+│   │   · 2021-07-13
+│   │   · 2021-07-14
+│   │   · 2021-07-15
+│   │   · 2021-07-16
+│   │   · 2021-07-19
+│   │   · 2021-07-20
+│   │   · 2021-07-21
+│   │   · 2021-07-22
+│   │   · 2021-07-23
+│   │   · 2021-07-26
+│   │   · 2021-07-27
+│   │   · 2021-07-28
+│   │   · 2021-07-29
+│   │   · 2021-08-02
+│   │   · 2021-08-03
+│   │   · 2021-08-04
+│   │   · 2021-08-09
+│   │   · 2021-08-10
+│   │   · 2021-08-11
+│   │   · 2021-08-12
+│   │   · 2021-08-13
+│   │   · 2021-08-16
+│   │   · 2021-08-17
+│   │   · 2021-08-18
+│   │   · 2021-08-19
+│   │   · 2021-08-20
+│   │   · 2021-08-23
+│   │   · 2021-08-24
+│   │   · 2021-08-30
+│   │   · 2021-08-31
+│   │   · 2021-09-03
+│   │   · 2021-09-07
+│   │   · 2021-09-09
+│   │   · 2021-09-10
+│   │   · 2021-09-13
+│   │   · 2021-09-14
+│   │   · 2021-09-15
+│   │   · 2021-09-17
+│   │   · 2021-09-20
+│   │   · 2021-09-22
+│   │   · 2021-09-23
+│   │   · 2021-09-27
+│   │   · 2021-09-29
+│   │   · 2021-09-30
+│   │   · 2021-10-01
+│   │   · 2021-10-04
+│   │   · 2021-10-05
+│   │   · 2021-10-06
+│   │   · 2021-10-07
+│   │   · 2021-10-08
+│   │   · 2021-10-09
+│   │   · 2021-10-10
+│   │   · 2021-10-11
+│   │   · 2021-10-12
+│   │   · 2021-10-13
+│   │   · 2021-10-14
+│   │   · 2021-10-15
+│   │   · 2021-10-16
+│   │   · 2021-10-17
+│   │   · 2021-10-18
+│   │   · 2021-10-19
+│   │   · 2021-10-20
+│   │   · 2021-10-21
+│   │   · 2021-10-22
+│   │   · 2021-10-31
+│   │   · 2021-11-06
+│   │   · 2022-03-12
+│   │   · 2022-03-21
+│   │   · 2022-03-23
+│   │   · 2022-03-30
+│   │   · 2022-03-31
+│   │   · 2022-04-03
+│   │   · 2022-04-04
+│   │   · 2022-04-06
+│   │   · 2022-04-07
+│   │   · 2022-04-08
+│   │   · 2022-04-09
+│   │   · 2022-04-14
+│   │   · 2022-04-15
+│   │   · 2022-04-18
+│   │   · 2022-04-25
+│   │   · 2022-04-26
+│   │   · 2022-04-27
+│   │   · 2022-04-28
+│   │   · 2022-04-29
+│   │   · 2022-04-30
+│   │   · 2022-05-02
+│   │   · 2022-05-06
+│   │   · 2022-05-10
+│   │   · 2022-05-11
+│   │   · 2022-05-13
+│   │   · 2022-05-17
+│   │   · 2022-05-23
+│   │   · 2022-05-26
+│   │   · 2022-05-31
+│   │   · 2022-06-02
+│   │   · 2022-06-03
+│   │   · 2022-06-06
+│   │   · 2022-06-08
+│   │   · 2022-06-09
+│   │   · 2022-06-10
+│   │   · 2022-06-12
+│   │   · 2022-06-13
+│   │   · 2022-06-18
+│   │   · 2022-06-22
+│   │   · 2022-06-23
+│   │   · 2022-06-24
+│   │   · 2022-06-27
+│   │   · 2022-06-28
+│   │   · 2022-06-29
+│   │   · 2022-07-01
+│   │   · 2022-07-02
+│   │   · 2022-07-03
+│   │   · 2022-07-05
+│   │   · 2022-07-07
+│   │   · 2022-07-11
+│   │   · 2022-07-12
+│   │   · 2022-07-13
+│   │   · 2022-07-15
+│   │   · 2022-07-19
+│   │   · 2022-07-20
+│   │   · 2022-07-22
+│   │   · 2022-07-23
+│   │   · 2022-07-26
+│   │   · 2022-07-28
+│   │   · 2022-08-01
+│   │   · 2022-08-03
+│   │   · 2022-08-04
+│   │   · 2022-08-09
+│   │   · 2022-08-25
+│   │   · 2022-08-26
+│   │   · 2022-08-29
+│   │   · 2022-08-30
+│   │   · 2022-09-26
+│   │   · 2024-02-27
+│   │   · 2024-02-29
+│   │   · 2024-03-01
+│   │   · 2024-03-04
+│   │   · 2024-03-05
+│   │   · 2024-03-06
+│   │   · 2024-03-07
+│   │   · 2024-03-08
+│   │   · 2024-03-10
+│   │   · 2024-03-11
+│   │   · 2024-03-12
+│   │   · 2024-03-13
+│   │   · 2024-03-14
+│   │   · 2024-03-18
+│   │   · 2024-03-19
+│   │   · 2024-03-21
+│   │   · 2024-03-22
+│   │   · 2024-03-25
+│   │   · 2024-03-28
+│   │   · 2024-03-29
+│   │   · 2024-04-01
+│   │   · 2024-04-02
+│   │   · 2024-04-08
+│   │   · 2024-04-09
+│   │   · 2024-04-10
+│   │   · 2024-04-11
+│   │   · 2024-04-12
+│   │   · 2024-04-15
+│   │   · 2024-04-16
+│   │   · 2024-04-17
+│   │   · 2024-04-18
+│   │   · 2024-04-19
+│   │   · 2024-04-22
+│   │   · 2024-04-23
+│   │   · 2024-04-24
+│   │   · 2024-04-26
+│   │   · 2024-04-29
+│   │   · 2024-04-30
+│   │   · 2024-05-01
+│   │   · 2024-05-02
+│   │   · 2024-05-03
+│   │   · 2024-05-13
+│   │   · 2024-05-14
+│   │   · 2024-05-15
+│   │   · 2024-05-16
+│   │   · 2024-05-17
+│   │   · 2024-05-20
+│   │   · 2024-05-21
+│   │   · 2024-05-22
+│   │   · 2024-05-23
+│   │   · 2024-05-24
+│   │   · 2024-05-28
+│   │   · 2024-05-29
+│   │   · 2024-05-30
+│   │   · 2024-05-31
+│   │   · 2024-06-02
+│   │   · 2024-06-03
+│   │   · 2024-06-04
+│   │   · 2024-06-05
+│   │   · 2024-06-06
+│   │   · 2024-06-07
+│   │   · 2024-06-11
+│   │   · 2024-06-14
+│   │   · 2024-06-17
+│   │   · 2024-06-18
+│   │   · 2024-06-19
+│   │   · 2024-06-20
+│   │   · 2024-06-21
+│   │   · 2024-06-24
+│   │   · 2024-06-25
+│   │   · 2024-06-26
+│   │   · 2024-06-27
+│   │   · 2024-06-28
+│   │   · 2024-07-01
+│   │   · 2024-07-02
+│   │   · 2024-07-03
+│   │   · 2024-07-08
+│   │   · 2024-07-09
+│   │   · 2024-07-10
+│   │   · 2024-07-11
+│   │   · 2024-07-12
+│   │   · 2024-07-14
+│   │   · 2024-07-16
+│   │   · 2024-07-17
+│   │   · 2024-07-18
+│   │   · 2024-07-19
+│   │   · 2024-07-22
+│   │   · 2024-07-23
+│   │   · 2024-07-25
+│   │   · 2024-07-26
+│   │   · 2024-08-05
+│   │   · 2024-08-06
+│   │   · 2024-08-07
+│   │   · 2024-08-08
+│   │   · 2024-08-09
+│   │   · 2024-08-12
+│   │   · 2024-08-13
+│   │   · 2024-08-14
+│   │   · 2024-08-15
+│   │   · 2024-08-16
+│   │   · 2024-08-19
+│   │   · 2024-08-20
+│   │   · 2024-08-21
+│   │   · 2024-08-22
+│   │   · 2024-08-23
+│   │   · 2024-08-26
+│   │   · 2024-08-27
+│   │   · 2024-08-28
+│   │   · 2024-08-29
+│   │   · 2024-08-30
+│   │   · 2024-09-03
+│   │   · 2024-09-04
+│   │   · 2024-09-06
+│   │   · 2024-09-09
+│   │   · 2024-09-10
+│   │   · 2024-09-11
+│   │   · 2024-09-12
+│   │   · 2024-09-13
+│   │   · 2024-10-14
+│   │   · 2024-10-15
+│   │   · 2024-10-16
+│   │   · 2024-10-17
+│   │   · 2024-10-18
+│   │   · 2024-10-21
+│   │   · 2024-10-22
+│   │   · 2024-10-23
+│   │   · 2024-10-24
+│   │   · 2024-10-25
+│   │   · 2024-10-27
+│   │   · 2024-10-28
+│   │   · 2024-10-29
+│   │   · 2024-10-30
+│   │   · 2024-10-31
+│   │   · 2024-11-04
+│   │   · 2024-11-06
+│   │   · 2024-11-07
+│   │   · 2024-11-08
+│   │   · 2024-11-11
+│   │   · 2024-11-12
+│   │   · 2024-11-13
+│   │   · 2024-11-14
+│   │   · 2024-11-15
+│   │   · 2024-11-18
+│   │   · 2024-11-19
+│   │   · 2024-11-20
+│   │   · 2024-11-21
+│   │   · 2024-11-22
+│   │   · 2024-11-24
+│   │   · 2024-11-25
+│   │   · 2024-11-26
+│   │   · 2024-11-27
+│   │   · 2024-11-28
+│   │   · 2024-12-02
+│   │   · 2024-12-03
+│   │   · 2024-12-04
+│   │   · 2024-12-05
+│   │   · 2024-12-06
+│   │   · 2024-12-08
+│   │   · 2024-12-09
+│   │   · 2024-12-10
+│   │   · 2024-12-11
+│   │   · 2024-12-12
+│   │   · 2024-12-13
+│   │   · 2024-12-16
+│   │   · 2024-12-17
+│   │   · 2024-12-18
+│   │   · 2024-12-19
+│   │   · 2024-12-20
+│   │   · 2024-12-23
+│   │   · 2024-12-24
+│   │   · 2025-01-02
+│   │   · 2025-01-03
+│   │   · 2025-01-05
+│   │   · 2025-01-08
+│   │   · 2025-01-09
+│   │   · 2025-01-10
+│   │   · 2025-01-13
+│   │   · 2025-01-14
+│   │   · 2025-01-15
+│   │   · 2025-01-16
+│   │   · 2025-01-17
+│   │   · 2025-01-19
+│   │   · 2025-01-20
+│   │   · 2025-01-21
+│   │   · 2025-01-22
+│   │   · 2025-01-23
+│   │   · 2025-01-24
+│   │   · 2025-01-27
+│   │   · 2025-01-28
+│   │   · 2025-01-29
+│   │   · 2025-01-30
+│   │   · 2025-01-31
+│   │   · 2025-02-03
+│   │   · 2025-02-04
+│   │   · 2025-02-05
+│   │   · 2025-02-06
+│   │   · 2025-02-07
+│   │   · 2025-02-10
+│   │   · 2025-02-11
+│   │   · 2025-02-12
+│   │   · 2025-02-13
+│   │   · 2025-02-14
+│   │   · 2025-02-19
+│   │   · 2025-02-20
+│   │   · 2025-02-21
+│   │   · 2025-02-24
+│   │   · 2025-02-25
+│   │   · 2025-02-26
+│   │   · 2025-02-27
+│   │   · 2025-02-28
+│   │   · 2025-03-03
+│   │   · 2025-03-04
+│   │   · 2025-03-05
+│   │   · 2025-03-06
+│   │   · 2025-03-07
+│   │   · 2025-03-10
+│   │   · 2025-03-11
+│   │   · 2025-03-12
+│   │   · 2025-03-17
+│   │   · 2025-03-18
+│   │   · 2025-03-19
+│   │   · 2025-03-20
+│   │   · 2025-03-21
+│   │   · 2025-03-24
+│   │   · 2025-03-25
+│   │   · 2025-03-26
+│   │   · 2025-03-27
+│   │   · 2025-03-28
+│   │   · 2025-03-31
+│   │   · 2025-04-02
+│   │   · 2025-04-03
+│   │   · 2025-04-04
+│   │   · 2025-04-07
+│   │   · 2025-04-08
+│   │   · 2025-04-09
+│   │   · 2025-04-10
+│   │   · 2025-04-11
+│   │   · 2025-04-14
+│   │   · 2025-04-15
+│   │   · 2025-04-16
+│   │   · 2025-04-17
+│   │   · 2025-04-18
+│   │   · 2025-04-21
+│   │   · 2025-04-22
+│   │   · 2025-04-23
+│   │   · 2025-04-24
+│   │   · 2025-04-25
+│   │   · 2025-04-26
+│   │   · 2025-04-28
+│   │   · 2025-04-29
+│   │   · 2025-04-30
+│   │   · 2025-05-01
+│   │   · 2025-05-02
+│   │   · 2025-05-05
+│   │   · 2025-05-06
+│   │   · 2025-05-07
+│   │   · 2025-05-08
+│   │   · 2025-05-13
+│   │   · 2025-05-14
+│   │   · 2025-05-15
+│   │   · 2025-05-16
+│   │   · 2025-05-17
+│   │   · 2025-05-19
+│   │   · 2025-05-20
+│   │   · 2025-05-21
+│   │   · 2025-05-22
+│   │   · 2025-05-23
+│   │   · 2025-05-27
+│   │   · 2025-05-28
+│   │   · 2025-05-29
+│   │   · 2025-05-30
+│   │   · 2025-06-03
+│   │   · 2025-06-04
+│   │   · 2025-06-05
+│   │   · 2025-06-06
+│   │   · 2025-06-09
+│   │   · 2025-06-10
+│   │   · 2025-06-11
+│   │   · 2025-06-12
+│   │   · 2025-06-13
+│   │   · 2025-06-16
+│   │   · 2025-06-17
+│   │   · 2025-06-18
+│   │   · 2025-06-19
+│   │   · 2025-06-20
+│   │   · 2025-06-21
+│   │   · 2025-06-23
+│   │   · 2025-06-24
+│   │   · 2025-06-25
+│   │   · 2025-06-26
+│   │   · 2025-06-27
+│   │   · 2025-06-30
+│   │   · 2025-07-01
+│   │   · 2025-07-02
+│   │   · 2025-07-03
+│   │   · 2025-07-08
+│   │   · 2025-07-09
+│   │   · 2025-07-10
+│   │   · 2025-07-11
+│   │   · 2025-07-14
+│   │   · 2025-07-15
+│   │   · 2025-07-16
+│   │   · 2025-07-17
+│   │   · 2025-07-18
+│   │   · 2025-07-21
+│   │   · 2025-07-22
+│   │   · 2025-07-24
+│   │   · 2025-07-25
+│   │   · 2025-07-28
+│   │   · 2025-07-29
+│   │   · 2025-07-30
+│   │   · 2025-07-31
+│   │   · 2025-08-01
+│   │   · 2025-08-04
+│   │   · 2025-08-05
+│   │   · 2025-08-06
+│   │   · 2025-08-07
+│   │   · 2025-08-12
+│   │   · 2025-08-13
+│   │   · 2025-08-14
+│   │   · 2025-08-15
+│   │   · 2025-08-18
+│   │   · 2025-08-19
+│   │   · 2025-08-20
+│   │   · 2025-08-21
+│   │   · 2025-08-22
+│   │   · 2025-08-26
+│   │   · 2025-08-27
+│   │   · 2025-08-28
+│   │   · 2025-08-29
+│   │   · 2025-09-02
+│   │   · 2025-09-03
+│   │   · 2025-09-04
+│   │   · 2025-09-05
+│   │   · 2025-09-08
+│   │   · 2025-09-09
+│   │   · 2025-09-10
+│   │   · 2025-09-11
+│   │   · 2025-09-12
+│   │   · 2025-09-15
+│   │   · 2025-09-16
+│   │   · 2025-09-17
+│   │   · 2025-09-18
+│   │   · 2025-09-23
+│   │   · 2025-09-24
+│   │   · 2025-09-25
+│   │   · 2025-09-26
+│   │   · 2025-09-29
+│   │   · 2025-09-30
+│   │   · 2025-10-01
+│   │   · 2025-10-02
+│   │   · 2025-10-03
+│   │   · 2025-10-06
+│   │   · 2025-10-07
+│   │   · 2025-10-08
+│   │   · 2025-10-09
+│   │   · 2025-10-10
+│   │   · 2025-10-12
+│   │   · 2025-10-14
+│   │   · 2025-10-15
+│   │   · 2025-10-16
+│   │   · 2025-10-17
+│   │   · 2025-10-20
+│   │   · 2025-10-21
+│   │   · 2025-10-22
+│   │   · 2025-10-23
+│   │   · 2025-10-24
+│   │   · 2025-10-26
+│   │   · 2025-10-27
+│   │   · 2025-10-28
+│   │   · 2025-11-06
+│   │   · 2025-11-07
+│   │   · 2025-11-09
+│   │   · 2025-11-10
+│   │   · 2025-11-11
+│   │   · 2025-11-12
+│   │   · 2025-11-13
+│   │   · 2025-11-17
+│   │   · 2025-11-18
+│   │   · 2025-11-19
+│   │   · 2025-11-20
+│   │   · 2025-11-21
+│   │   · 2025-11-24
+│   │   · 2025-11-25
+│   │   · 2025-11-26
+│   │   · 2025-11-28
+│   │   · 2025-12-01
+│   │   · 2025-12-02
+│   │   · 2025-12-03
+│   │   · 2025-12-04
+│   │   · 2025-12-05
+│   │   · 2025-12-08
+│   │   · 2025-12-09
+│   │   · 2025-12-10
+│   │   · 2025-12-11
+│   │   · 2025-12-12
+│   │   · 2025-12-16
+│   │   · 2025-12-17
+│   │   · 2025-12-18
+│   │   · 2025-12-19
+│   │   · 2025-12-21
+│   │   · 2025-12-22
+│   │   · 2025-12-23
+│   │   · 2025-12-30
+│   │   · 2026-01-05
+│   │   · 2026-01-06
+│   │   · 2026-01-07
+│   │   · 2026-01-08
+│   │   · 2026-01-09
+│   │   · 2026-01-12
+│   │   · 2026-01-13
+│   │   · 2026-01-14
+│   │   · 2026-01-15
+│   │   · 2026-01-16
+│   │   · 2026-01-19
+│   │   · 2026-01-20
+│   │   · 2026-01-21
+│   │   · 2026-01-22
+│   │   · 2026-01-23
+│   │   · 2026-01-27
+│   │   · 2026-01-28
+│   │   · 2026-01-29
+│   │   · 2026-01-30
+│   │   · 2026-02-02
+│   │   · 2026-02-03
+│   │   · 2026-02-04
+│   │   · 2026-02-05
+│   │   · 2026-02-06
+│   │   · 2026-02-09
+│   │   · 2026-02-10
+│   │   · 2026-02-11
+│   │   · 2026-02-12
+│   │   · 2026-02-13
+│   │   · 2026-02-23
+│   │   · 2026-02-24
+│   │   · 2026-02-25
+│   │   · 2026-02-26
+│   │   · 2026-02-27
+│   │   · 2026-02-28
+│   │   · 2026-03-02
+│   │   · 2026-03-03
+│   │   · 2026-03-04
+│   │   · 2026-03-05
+│   │   · 2026-03-06
+│   │   · 2026-03-08
+│   │   · 2026-03-10
+│   │   · 2026-03-11
+│   │   · 2026-03-12
+│   │   · 2026-03-13
+│   │   · 2026-03-14
+│   │   · 2026-03-16
+│   │   · 2026-03-17
+│   │   · 2026-03-18
+│   │   · 2026-03-19
+│   │   · 2026-03-20
+│   │   · 2026-03-23
+│   │   · 2026-03-24
+│   │   · 2026-03-25
+│   │   · 2026-03-26
+│   │   · 2026-03-27
+│   │   · 2026-03-30
+│   │   · 2026-03-31
+│   │   · 2026-04-01
+│   │   · 2026-04-02
+│   │   · 2026-04-03
+│   │   · 2026-04-06
+│   │   · 2026-04-07
+│   │   · 2026-04-08
+│   │   · 2026-04-09
+│   │   · 2026-04-10
+│   │   · 2026-04-13
+│   │   · 2026-04-14
+│   │   · 2026-04-15
+│   │   · 2026-04-16
+│   │   · 2026-04-17
+│   │   · April 10th, 2021
+│   │   · April 10th, 2023
+│   │   · April 11th, 2021
+│   │   · April 12th, 2022
+│   │   · April 12th, 2025
+│   │   · April 13th, 2022
+│   │   · April 13th, 2024
+│   │   · April 13th, 2025
+│   │   · April 14th, 2023
+│   │   · April 14th, 2024
+│   │   · April 15th, 2021
+│   │   · April 16th, 2022
+│   │   · April 17th, 2021
+│   │   · April 17th, 2022
+│   │   · April 18th, 2020
+│   │   · April 18th, 2021
+│   │   · April 19th, 2022
+│   │   · April 19th, 2025
+│   │   · April 1st, 2022
+│   │   · April 1st, 2025
+│   │   · April 20th, 2022
+│   │   · April 20th, 2025
+│   │   · April 21st, 2021
+│   │   · April 21st, 2022
+│   │   · April 22nd, 2021
+│   │   · April 22nd, 2022
+│   │   · April 23rd, 2021
+│   │   · April 23rd, 2022
+│   │   · April 24th, 2022
+│   │   · April 25th, 2021
+│   │   · April 25th, 2024
+│   │   · April 26th, 2020
+│   │   · April 26th, 2021
+│   │   · April 27th, 2024
+│   │   · April 27th, 2025
+│   │   · April 28th, 2024
+│   │   · April 29th, 2021
+│   │   · April 2nd, 2022
+│   │   · April 30th, 2021
+│   │   · April 3rd, 2021
+│   │   · April 3rd, 2024
+│   │   · April 4th, 2021
+│   │   · April 4th, 2023
+│   │   · April 4th, 2024
+│   │   · April 5th, 2022
+│   │   · April 5th, 2024
+│   │   · April 5th, 2025
+│   │   · April 6th, 2020
+│   │   · April 6th, 2021
+│   │   · April 6th, 2024
+│   │   · April 6th, 2025
+│   │   · April 7th, 2024
+│   │   · April 9th, 2021
+│   │   · August 10th, 2020
+│   │   · August 10th, 2022
+│   │   · August 10th, 2024
+│   │   · August 10th, 2025
+│   │   · August 11th, 2020
+│   │   · August 11th, 2024
+│   │   · August 11th, 2025
+│   │   · August 12th, 2020
+│   │   · August 12th, 2022
+│   │   · August 14th, 2021
+│   │   · August 15th, 2020
+│   │   · August 15th, 2021
+│   │   · August 15th, 2022
+│   │   · August 16th, 2020
+│   │   · August 16th, 2022
+│   │   · August 16th, 2023
+│   │   · August 16th, 2025
+│   │   · August 17th, 2020
+│   │   · August 17th, 2024
+│   │   · August 17th, 2025
+│   │   · August 18th, 2020
+│   │   · August 18th, 2024
+│   │   · August 19th, 2022
+│   │   · August 1st, 2020
+│   │   · August 1st, 2021
+│   │   · August 20th, 2020
+│   │   · August 20th, 2022
+│   │   · August 21st, 2021
+│   │   · August 21st, 2022
+│   │   · August 22nd, 2020
+│   │   · August 22nd, 2021
+│   │   · August 22nd, 2022
+│   │   · August 23rd, 2020
+│   │   · August 23rd, 2022
+│   │   · August 23rd, 2025
+│   │   · August 24th, 2020
+│   │   · August 24th, 2022
+│   │   · August 24th, 2025
+│   │   · August 25th, 2021
+│   │   · August 25th, 2025
+│   │   · August 26th, 2021
+│   │   · August 27th, 2021
+│   │   · August 28th, 2021
+│   │   · August 29th, 2020
+│   │   · August 29th, 2021
+│   │   · August 2nd, 2022
+│   │   · August 2nd, 2025
+│   │   · August 30th, 2020
+│   │   · August 30th, 2025
+│   │   · August 31st, 2020
+│   │   · August 31st, 2022
+│   │   · August 31st, 2024
+│   │   · August 31st, 2025
+│   │   · August 3rd, 2020
+│   │   · August 3rd, 2025
+│   │   · August 5th, 2021
+│   │   · August 5th, 2022
+│   │   · August 6th, 2020
+│   │   · August 6th, 2021
+│   │   · August 7th, 2021
+│   │   · August 7th, 2022
+│   │   · August 8th, 2021
+│   │   · August 8th, 2022
+│   │   · August 8th, 2025
+│   │   · August 9th, 2025
+│   │   · December 12th, 2020
+│   │   · December 13th, 2020
+│   │   · December 13th, 2025
+│   │   · December 14th, 2025
+│   │   · December 15th, 2020
+│   │   · December 15th, 2025
+│   │   · December 16th, 2020
+│   │   · December 1st, 2024
+│   │   · December 20th, 2020
+│   │   · December 20th, 2025
+│   │   · December 21st, 2020
+│   │   · December 21st, 2024
+│   │   · December 22nd, 2020
+│   │   · December 22nd, 2024
+│   │   · December 23rd, 2020
+│   │   · December 24th, 2020
+│   │   · December 24th, 2025
+│   │   · December 25th, 2020
+│   │   · December 25th, 2024
+│   │   · December 25th, 2025
+│   │   · December 26th, 2020
+│   │   · December 26th, 2024
+│   │   · December 26th, 2025
+│   │   · December 27th, 2020
+│   │   · December 27th, 2024
+│   │   · December 27th, 2025
+│   │   · December 28th, 2020
+│   │   · December 28th, 2024
+│   │   · December 28th, 2025
+│   │   · December 29th, 2020
+│   │   · December 29th, 2024
+│   │   · December 29th, 2025
+│   │   · December 2nd, 2022
+│   │   · December 30th, 2020
+│   │   · December 30th, 2024
+│   │   · December 31st, 2020
+│   │   · December 31st, 2024
+│   │   · December 31st, 2025
+│   │   · December 3rd, 2020
+│   │   · December 5th, 2020
+│   │   · December 6th, 2020
+│   │   · December 6th, 2025
+│   │   · December 7th, 2024
+│   │   · December 7th, 2025
+│   │   · February 10th, 2021
+│   │   · February 11th, 2021
+│   │   · February 15th, 2025
+│   │   · February 16th, 2025
+│   │   · February 17th, 2021
+│   │   · February 17th, 2025
+│   │   · February 18th, 2025
+│   │   · February 19th, 2021
+│   │   · February 1st, 2023
+│   │   · February 1st, 2025
+│   │   · February 1st, 2026
+│   │   · February 20th, 2021
+│   │   · February 21st, 2021
+│   │   · February 22nd, 2025
+│   │   · February 23rd, 2025
+│   │   · February 24th, 2021
+│   │   · February 25th, 2021
+│   │   · February 27th, 2021
+│   │   · February 28th, 2021
+│   │   · February 28th, 2024
+│   │   · February 2nd, 2025
+│   │   · February 6th, 2021
+│   │   · February 7th, 2023
+│   │   · February 8th, 2025
+│   │   · February 9th, 2025
+│   │   · January 10th, 2021
+│   │   · January 10th, 2023
+│   │   · January 10th, 2026
+│   │   · January 11th, 2025
+│   │   · January 11th, 2026
+│   │   · January 12th, 2025
+│   │   · January 13th, 2021
+│   │   · January 14th, 2024
+│   │   · January 15th, 2021
+│   │   · January 17th, 2026
+│   │   · January 18th, 2021
+│   │   · January 18th, 2025
+│   │   · January 18th, 2026
+│   │   · January 19th, 2021
+│   │   · January 1st, 2021
+│   │   · January 1st, 2025
+│   │   · January 1st, 2026
+│   │   · January 23rd, 2021
+│   │   · January 24th, 2026
+│   │   · January 25th, 2025
+│   │   · January 25th, 2026
+│   │   · January 26th, 2022
+│   │   · January 26th, 2023
+│   │   · January 26th, 2025
+│   │   · January 26th, 2026
+│   │   · January 2nd, 2021
+│   │   · January 2nd, 2026
+│   │   · January 30th, 2021
+│   │   · January 31st, 2021
+│   │   · January 31st, 2026
+│   │   · January 3rd, 2021
+│   │   · January 3rd, 2026
+│   │   · January 4th, 2025
+│   │   · January 4th, 2026
+│   │   · January 6th, 2021
+│   │   · January 6th, 2023
+│   │   · January 6th, 2025
+│   │   · January 7th, 2021
+│   │   · January 7th, 2025
+│   │   · January 9th, 2021
+│   │   · July 11th, 2020
+│   │   · July 12th, 2020
+│   │   · July 12th, 2025
+│   │   · July 13th, 2024
+│   │   · July 13th, 2025
+│   │   · July 14th, 2020
+│   │   · July 14th, 2022
+│   │   · July 15th, 2024
+│   │   · July 19th, 2025
+│   │   · July 1st, 2021
+│   │   · July 20th, 2025
+│   │   · July 21st, 2022
+│   │   · July 24th, 2021
+│   │   · July 24th, 2022
+│   │   · July 24th, 2024
+│   │   · July 25th, 2021
+│   │   · July 25th, 2022
+│   │   · July 26th, 2020
+│   │   · July 26th, 2025
+│   │   · July 27th, 2022
+│   │   · July 27th, 2025
+│   │   · July 28th, 2020
+│   │   · July 29th, 2020
+│   │   · July 29th, 2022
+│   │   · July 30th, 2020
+│   │   · July 30th, 2021
+│   │   · July 30th, 2022
+│   │   · July 31st, 2021
+│   │   · July 31st, 2022
+│   │   · July 4th, 2021
+│   │   · July 4th, 2024
+│   │   · July 5th, 2021
+│   │   · July 5th, 2024
+│   │   · July 6th, 2022
+│   │   · July 6th, 2024
+│   │   · July 7th, 2024
+│   │   · July 7th, 2025
+│   │   · July 8th, 2022
+│   │   · June 11th, 2020
+│   │   · June 11th, 2022
+│   │   · June 12th, 2020
+│   │   · June 12th, 2021
+│   │   · June 12th, 2024
+│   │   · June 13th, 2020
+│   │   · June 13th, 2021
+│   │   · June 13th, 2024
+│   │   · June 14th, 2022
+│   │   · June 14th, 2023
+│   │   · June 14th, 2025
+│   │   · June 15th, 2021
+│   │   · June 15th, 2022
+│   │   · June 15th, 2024
+│   │   · June 15th, 2025
+│   │   · June 16th, 2021
+│   │   · June 16th, 2024
+│   │   · June 17th, 2021
+│   │   · June 17th, 2022
+│   │   · June 19th, 2021
+│   │   · June 19th, 2022
+│   │   · June 1st, 2021
+│   │   · June 1st, 2022
+│   │   · June 1st, 2024
+│   │   · June 1st, 2025
+│   │   · June 20th, 2021
+│   │   · June 20th, 2022
+│   │   · June 21st, 2022
+│   │   · June 22nd, 2021
+│   │   · June 22nd, 2024
+│   │   · June 22nd, 2025
+│   │   · June 23rd, 2021
+│   │   · June 24th, 2021
+│   │   · June 25th, 2022
+│   │   · June 26th, 2021
+│   │   · June 26th, 2022
+│   │   · June 27th, 2020
+│   │   · June 2nd, 2021
+│   │   · June 2nd, 2025
+│   │   · June 30th, 2022
+│   │   · June 4th, 2020
+│   │   · June 4th, 2022
+│   │   · June 5th, 2020
+│   │   · June 5th, 2022
+│   │   · June 5th, 2023
+│   │   · June 6th, 2021
+│   │   · June 7th, 2025
+│   │   · June 8th, 2021
+│   │   · June 8th, 2025
+│   │   · March 13th, 2022
+│   │   · March 13th, 2025
+│   │   · March 14th, 2021
+│   │   · March 14th, 2022
+│   │   · March 14th, 2025
+│   │   · March 15th, 2021
+│   │   · March 15th, 2025
+│   │   · March 16th, 2021
+│   │   · March 16th, 2022
+│   │   · March 16th, 2025
+│   │   · March 17th, 2023
+│   │   · March 18th, 2022
+│   │   · March 19th, 2022
+│   │   · March 1st, 2023
+│   │   · March 1st, 2025
+│   │   · March 20th, 2023
+│   │   · March 20th, 2024
+│   │   · March 22nd, 2022
+│   │   · March 22nd, 2025
+│   │   · March 23rd, 2021
+│   │   · March 23rd, 2024
+│   │   · March 23rd, 2025
+│   │   · March 24th, 2022
+│   │   · March 24th, 2023
+│   │   · March 24th, 2024
+│   │   · March 25th, 2021
+│   │   · March 25th, 2022
+│   │   · March 26th, 2022
+│   │   · March 26th, 2024
+│   │   · March 27th, 2021
+│   │   · March 27th, 2022
+│   │   · March 27th, 2024
+│   │   · March 28th, 2020
+│   │   · March 28th, 2022
+│   │   · March 28th, 2026
+│   │   · March 29th, 2022
+│   │   · March 29th, 2025
+│   │   · March 2nd, 2021
+│   │   · March 2nd, 2025
+│   │   · March 30th, 2021
+│   │   · March 30th, 2024
+│   │   · March 30th, 2025
+│   │   · March 31st, 2020
+│   │   · March 31st, 2021
+│   │   · March 31st, 2024
+│   │   · March 3rd, 2021
+│   │   · March 3rd, 2023
+│   │   · March 5th, 2021
+│   │   · March 6th, 2021
+│   │   · March 8th, 2025
+│   │   · March 9th, 2021
+│   │   · March 9th, 2024
+│   │   · March 9th, 2025
+│   │   · May 10th, 2020
+│   │   · May 10th, 2021
+│   │   · May 10th, 2024
+│   │   · May 10th, 2025
+│   │   · May 11th, 2024
+│   │   · May 11th, 2025
+│   │   · May 12th, 2021
+│   │   · May 12th, 2022
+│   │   · May 12th, 2024
+│   │   · May 12th, 2025
+│   │   · May 13th, 2021
+│   │   · May 14th, 2021
+│   │   · May 14th, 2022
+│   │   · May 15th, 2021
+│   │   · May 15th, 2022
+│   │   · May 16th, 2021
+│   │   · May 16th, 2022
+│   │   · May 17th, 2021
+│   │   · May 18th, 2021
+│   │   · May 18th, 2022
+│   │   · May 18th, 2024
+│   │   · May 18th, 2025
+│   │   · May 19th, 2024
+│   │   · May 1st, 2021
+│   │   · May 1st, 2022
+│   │   · May 22nd, 2021
+│   │   · May 23rd, 2020
+│   │   · May 23rd, 2021
+│   │   · May 23rd, 2023
+│   │   · May 24th, 2021
+│   │   · May 24th, 2022
+│   │   · May 24th, 2025
+│   │   · May 25th, 2022
+│   │   · May 25th, 2023
+│   │   · May 25th, 2024
+│   │   · May 25th, 2025
+│   │   · May 26th, 2024
+│   │   · May 26th, 2025
+│   │   · May 27th, 2024
+│   │   · May 28th, 2021
+│   │   · May 2nd, 2021
+│   │   · May 30th, 2020
+│   │   · May 30th, 2021
+│   │   · May 31st, 2021
+│   │   · May 31st, 2025
+│   │   · May 3rd, 2021
+│   │   · May 3rd, 2022
+│   │   · May 3rd, 2025
+│   │   · May 4th, 2021
+│   │   · May 4th, 2022
+│   │   · May 4th, 2024
+│   │   · May 4th, 2025
+│   │   · May 5th, 2022
+│   │   · May 5th, 2024
+│   │   · May 6th, 2024
+│   │   · May 7th, 2021
+│   │   · May 7th, 2022
+│   │   · May 7th, 2024
+│   │   · May 8th, 2022
+│   │   · May 8th, 2024
+│   │   · May 9th, 2024
+│   │   · May 9th, 2025
+│   │   · November 10th, 2021
+│   │   · November 10th, 2024
+│   │   · November 11th, 2021
+│   │   · November 12th, 2021
+│   │   · November 13th, 2020
+│   │   · November 14th, 2020
+│   │   · November 14th, 2025
+│   │   · November 15th, 2020
+│   │   · November 15th, 2023
+│   │   · November 15th, 2025
+│   │   · November 16th, 2024
+│   │   · November 16th, 2025
+│   │   · November 17th, 2024
+│   │   · November 1st, 2021
+│   │   · November 1st, 2024
+│   │   · November 1st, 2025
+│   │   · November 20th, 2020
+│   │   · November 21st, 2020
+│   │   · November 22nd, 2025
+│   │   · November 23rd, 2020
+│   │   · November 23rd, 2024
+│   │   · November 23rd, 2025
+│   │   · November 25th, 2020
+│   │   · November 27th, 2025
+│   │   · November 28th, 2020
+│   │   · November 29th, 2024
+│   │   · November 29th, 2025
+│   │   · November 2nd, 2021
+│   │   · November 2nd, 2023
+│   │   · November 2nd, 2024
+│   │   · November 2nd, 2025
+│   │   · November 30th, 2024
+│   │   · November 30th, 2025
+│   │   · November 3rd, 2021
+│   │   · November 3rd, 2024
+│   │   · November 3rd, 2025
+│   │   · November 4th, 2021
+│   │   · November 4th, 2025
+│   │   · November 5th, 2021
+│   │   · November 5th, 2024
+│   │   · November 5th, 2025
+│   │   · November 7th, 2021
+│   │   · November 8th, 2021
+│   │   · November 8th, 2025
+│   │   · November 9th, 2020
+│   │   · November 9th, 2021
+│   │   · November 9th, 2024
+│   │   · October 10th, 2024
+│   │   · October 11th, 2020
+│   │   · October 11th, 2024
+│   │   · October 11th, 2025
+│   │   · October 12th, 2024
+│   │   · October 13th, 2024
+│   │   · October 13th, 2025
+│   │   · October 14th, 2022
+│   │   · October 17th, 2020
+│   │   · October 18th, 2020
+│   │   · October 18th, 2025
+│   │   · October 19th, 2024
+│   │   · October 19th, 2025
+│   │   · October 1st, 2020
+│   │   · October 20th, 2024
+│   │   · October 23rd, 2020
+│   │   · October 23rd, 2021
+│   │   · October 24th, 2020
+│   │   · October 24th, 2021
+│   │   · October 25th, 2020
+│   │   · October 25th, 2021
+│   │   · October 25th, 2025
+│   │   · October 26th, 2020
+│   │   · October 26th, 2021
+│   │   · October 26th, 2024
+│   │   · October 27th, 2021
+│   │   · October 28th, 2021
+│   │   · October 28th, 2023
+│   │   · October 29th, 2021
+│   │   · October 29th, 2025
+│   │   · October 2nd, 2021
+│   │   · October 2nd, 2024
+│   │   · October 30th, 2020
+│   │   · October 30th, 2021
+│   │   · October 30th, 2025
+│   │   · October 31st, 2025
+│   │   · October 3rd, 2021
+│   │   · October 3rd, 2024
+│   │   · October 4th, 2020
+│   │   · October 4th, 2024
+│   │   · October 4th, 2025
+│   │   · October 5th, 2020
+│   │   · October 5th, 2024
+│   │   · October 5th, 2025
+│   │   · October 6th, 2024
+│   │   · October 7th, 2024
+│   │   · October 8th, 2024
+│   │   · October 9th, 2020
+│   │   · October 9th, 2024
+│   │   · September 11th, 2021
+│   │   · September 12th, 2021
+│   │   · September 12th, 2023
+│   │   · September 13th, 2025
+│   │   · September 14th, 2024
+│   │   · September 14th, 2025
+│   │   · September 15th, 2024
+│   │   · September 16th, 2021
+│   │   · September 16th, 2024
+│   │   · September 18th, 2021
+│   │   · September 19th, 2020
+│   │   · September 19th, 2021
+│   │   · September 19th, 2025
+│   │   · September 1st, 2021
+│   │   · September 1st, 2022
+│   │   · September 1st, 2024
+│   │   · September 1st, 2025
+│   │   · September 20th, 2024
+│   │   · September 20th, 2025
+│   │   · September 21st, 2021
+│   │   · September 21st, 2023
+│   │   · September 21st, 2024
+│   │   · September 21st, 2025
+│   │   · September 22nd, 2024
+│   │   · September 22nd, 2025
+│   │   · September 23rd, 2024
+│   │   · September 24th, 2021
+│   │   · September 24th, 2024
+│   │   · September 25th, 2023
+│   │   · September 25th, 2024
+│   │   · September 26th, 2020
+│   │   · September 26th, 2024
+│   │   · September 27th, 2020
+│   │   · September 27th, 2024
+│   │   · September 27th, 2025
+│   │   · September 28th, 2021
+│   │   · September 28th, 2024
+│   │   · September 28th, 2025
+│   │   · September 29th, 2024
+│   │   · September 2nd, 2021
+│   │   · September 2nd, 2024
+│   │   · September 4th, 2021
+│   │   · September 4th, 2022
+│   │   · September 5th, 2021
+│   │   · September 5th, 2024
+│   │   · September 6th, 2021
+│   │   · September 6th, 2025
+│   │   · September 7th, 2024
+│   │   · September 7th, 2025
+│   │   · September 8th, 2021
+│   │   · September 8th, 2024
+│   │   · September 9th, 2020
+│   └── weekly (4)
+│       · Week of 2026-03-23
+│       · Week of 2026-03-30
+│       · Week of 2026-04-06
+│       · Week of 2026-04-13
+├── projects (154 total, 26 direct)
+│   · MtG Cube
+│   · Obsidian Exocortex Setup
+│   · Product - AI Loremaster
+│   · Project Enter Wonderland (DIY a Frequency Central Wonderland)
+│   · Project Mushroom Cultivation
+│   · Project Oyakata - Sumo Simulator
+│   · Project Parallax - Roguelite Vertical Shooter
+│   · Project Shit Sell-off
+│   · Project The Plague Album
+│   · Project Western Trails
+│   · Project: Backyard Soaking Tub
+│   · Project: Better Computing Experience
+│   · Project: Clean up Electronicsmithing Space
+│   · Project: Divorce and House Refinance
+│   · Project: Home Theater PC Build
+│   · Project: Living Area Re-Paint
+│   · Project: Morning Glory Cultivation
+│   · Project: Personal Finance
+│   · Project: Sitting Tub
+│   · Project: Solar Roof
+│   · Project: Solresol Esolang
+│   · Project: Synology NAS
+│   · Project: VPN Switch
+│   · Project: VQGAN Tarot
+│   · Project: Write an
+│   · Self-Hosted Music Library
+│   ├── adulting (114)
+│   │   · AT&T Wireless
+│   │   · Adulting Plan
+│   │   · American Express Card
+│   │   · Ashley Furniture Card
+│   │   · Barclay's Card
+│   │   · COVID
+│   │   · Chase Amazon Card
+│   │   · Chiropractor
+│   │   · Christmas Shopping List
+│   │   · Citi Card
+│   │   · Credence Resource Management
+│   │   · Daily Education
+│   │   · Daily Exercise
+│   │   · Daily Journal
+│   │   · Daily Questions
+│   │   · Daily Time Log
+│   │   · Developing Good Habits
+│   │   · Domestic Priorities
+│   │   · Environment Notes
+│   │   · Evening Questions
+│   │   · Exercise: Neck and Shoulders
+│   │   · Exercise: Walk
+│   │   · Exercise: qi gong
+│   │   · Exercise: yoga
+│   │   · EyeBuyDirect
+│   │   · Fireside Project
+│   │   · Flea Fog Project
+│   │   · Free Writing
+│   │   · Geek Therapy
+│   │   · Gift List
+│   │   · Goals
+│   │   · Hawaiian Shirts
+│   │   · Home Warranty
+│   │   · Honey-Dos
+│   │   · House: Central Air - Change Filter
+│   │   · Household Tasks Board
+│   │   · Inbox Zero
+│   │   · Instant Pot
+│   │   · Kentucky-American Water
+│   │   · LSD
+│   │   · Laundry
+│   │   · List: Home Improvement
+│   │   · Metronet
+│   │   · Monthly Bills
+│   │   · Morning Meditation
+│   │   · Morning Pages
+│   │   · Morning Qigong
+│   │   · Mortgage
+│   │   · My Anonamouse
+│   │   · My Resume
+│   │   · Nightly Review
+│   │   · Open Ideas
+│   │   · Open Questions
+│   │   · Personal Budget
+│   │   · Personal Information Display
+│   │   · Physical Therapy Exercises
+│   │   · Positive Affirmations
+│   │   · Positive Disintegration
+│   │   · Qigong
+│   │   · Reach Out
+│   │   · Regular Home Maintenance Tasks
+│   │   · Research Autism
+│   │   · Restaurants
+│   │   · Shopping List
+│   │   · Sketchpad
+│   │   · Sleep Log
+│   │   · Subscription Services and Donations
+│   │   · Supplies
+│   │   · TODO
+│   │   · Taxes
+│   │   · Template Bills
+│   │   · The Kentucky Theatre
+│   │   · The United States
+│   │   · Therapist
+│   │   · This Week
+│   │   · This Week's Shit
+│   │   · Three Daily Goals
+│   │   · Ticket
+│   │   · Trintellix
+│   │   · Trip: Spring 2024 Solo Cabin Excursion
+│   │   · Trip: Summer 2024 Florida Trip
+│   │   · UK Physical Therapy
+│   │   · University of Kentucky Sleep Disorder Center
+│   │   · Upcoming Tasks
+│   │   · Upcoming Week
+│   │   · Vitacost
+│   │   · Week of July 12th, 2021
+│   │   · Wii Jailbreak
+│   │   · Work and Hand Problems
+│   │   · Writing Pitches
+│   │   · Yoga with Adriene
+│   │   · addiction
+│   │   · bills
+│   │   · cannabis
+│   │   · canning jar
+│   │   · canning jars
+│   │   · college
+│   │   · craft-room
+│   │   · doors and windows loan
+│   │   · dopamine cleanse
+│   │   · enamel pins
+│   │   · measuring cups
+│   │   · microdosing
+│   │   · mixing bowl
+│   │   · morning exercise
+│   │   · morning-page
+│   │   · organic food
+│   │   · piano repairman
+│   │   · retirement
+│   │   · screen printing
+│   │   · shopping-list
+│   │   · strength training
+│   │   · vacation trip
+│   │   · weekend
+│   ├── building-your-first-light-saber (1)
+│   │   └── sessions (1)
+│   │       · Session 001
+│   ├── lzc (3)
+│   │   · LZC
+│   │   · Lexington Zen Center
+│   │   · Lexington Zen Center: Abbot Notes
+│   └── mushroom-cultivation (10)
+│       · Psilocybe Cubensis
+│       · Psylocybe Fanaticus
+│       · Sprouts
+│       · brown rice flour
+│       · fungus
+│       · spore syringe
+│       · spores
+│       · sterility
+│       · sterilization
+│       · vermiculite
+├── studio (6 total, 5 direct)
+│   · List Band Names
+│   · Live Setup
+│   · Music Production Project Priorities
+│   · Recent New Music
+│   · song-titles
+│   └── productions (1)
+│       · Hippasus
+├── work (218 total, 4 direct)
+│   · Acima: DTO Log
+│   · Acima: Organization Notes
+│   · Acima: Tech Debt Notes
+│   · Retrospective Notes
+│   ├── admin (1)
+│   │   · Acima: FMLA Leave of Absence Fall 2024
+│   ├── environments (2)
+│   │   · Acima: Magento Non-Prod Environment
+│   │   · Acima: WooCommerce Non-Prod Environment
+│   ├── initiatives (1)
+│   │   · Acima: Brownbag
+│   ├── people (23)
+│   │   · Acima: Aaron Wilson
+│   │   · Acima: Adam Lauper
+│   │   · Acima: Bill Rampey
+│   │   · Acima: Bob Lasch
+│   │   · Acima: Brian Parry
+│   │   · Acima: Caroline Korst
+│   │   · Acima: Chris Power
+│   │   · Acima: Daniel Chavez
+│   │   · Acima: Diane Nguyen
+│   │   · Acima: Enrique Vargas
+│   │   · Acima: Jackson Porter
+│   │   · Acima: Jason Carroll
+│   │   · Acima: Josh Carroll
+│   │   · Acima: Josh Close
+│   │   · Acima: Justin Saunders
+│   │   · Acima: Matt Hansen
+│   │   · Acima: Matt Hardy
+│   │   · Acima: Ramses Bateman
+│   │   · Acima: Ryan Nguyen
+│   │   · Acima: Sushena Baghwankumar
+│   │   · Acima: Syed Jafri
+│   │   · Gonzalo Ricco
+│   │   · Guillermo Barera
+│   ├── projects (129 total, 2 direct)
+│   │   · AMC - NAAT Implementation Refactor
+│   │   · Acima Mexico Milestone 2
+│   │   ├── archive (118 total, 115 direct)
+│   │   │   · Acima - CA-2448: ecom-auth DB cleanup
+│   │   │   · Acima - CA-3770: Enhance Auth Code Error Handling
+│   │   │   · Acima - CA-3829: Asterisk next to approval amount
+│   │   │   · Acima - LZC-1547 - Hold Steady Screen for Intellicheck Correction
+│   │   │   · Acima - LZC-1548 - Wire Up Intellicheck Correction Type and Poll Until Satisfied
+│   │   │   · Acima: Add Lambda to Notary Public Rollbars
+│   │   │   · Acima: CA-3710 - M2M UX Experience
+│   │   │   · Acima: CA-3712 - Customer Centric Checkout
+│   │   │   · Acima: CA-3856: Ecom-portal Plugin Configuration Screen
+│   │   │   · Acima: CA-3915 - Wayfair Window Message Parsing Error
+│   │   │   · Acima: CA-3960: Store Config in ecom-merchant Database
+│   │   │   · Acima: CA-3963 - Wire Up ecom config endpoint with ecom-orc
+│   │   │   · Acima: CA-3982 - ecom-portal Duplicate Store Identifier Error Message
+│   │   │   · Acima: CA-4051: Investigate CCS Idempotency Key
+│   │   │   · Acima: CA-4097 - Missing Time on Confirm Delivery
+│   │   │   · Acima: CA-4099: Marketing Modal Z-Index
+│   │   │   · Acima: CA-4111 - Append Public Key to TrustEV Session ID
+│   │   │   · Acima: CA-4119: Implement CCS Idempotency Flag
+│   │   │   · Acima: CA-4171 - Append Public Key to TrustEV Session ID
+│   │   │   · Acima: CA-4203 - Updates to ecom-portal plugin configuration
+│   │   │   · Acima: CA-4210 - Switch over to NP's new Lease Agreement Screen
+│   │   │   · Acima: CA-4239 - Match AMC Padding and Grid System
+│   │   │   · Acima: CA-4293 - Update CCS JS to 2.4.0
+│   │   │   · Acima: CA-4294 - Allow Zip+4
+│   │   │   · Acima: CA-4320 - Make Order Creation Configurable
+│   │   │   · Acima: CA-4367 - BigComm LocationId_Not_Found
+│   │   │   · Acima: CA-4383 - New Optional Services Prefunding Condition
+│   │   │   · Acima: CA-4384 - Confirm that Notary Public Docusign integration works for current Ecom Implementation
+│   │   │   · Acima: CA-4385 - Support Optional Services Condition in Ecom
+│   │   │   · Acima: CA-4386 - Wayfair Optional Services Agreement Condition
+│   │   │   · Acima: CA-4483 - Mexico Checkout Epic
+│   │   │   · Acima: CA-4532 - NP Signing Experience Feature Flag
+│   │   │   · Acima: CA-4558 - Updates to Use Dynamic Initial Payment Amounts
+│   │   │   · Acima: CA-4559 - Dynamic Initial Payment Client
+│   │   │   · Acima: CA-4599 - Update E2E for Docusign
+│   │   │   · Acima: CA-4601 - Living Spaces Line Item Field
+│   │   │   · Acima: CA-4616 - Docusign Follow-up Work
+│   │   │   · Acima: CA-4665 - NP Lease Agreement Style Tweaks
+│   │   │   · Acima: CA-4683 - Shepherd Syed's Tickets through QA
+│   │   │   · Acima: CA-4706 - Disable Close Button with isSuccessCallback
+│   │   │   · Acima: CA-4716 - Investigate Wayfair Failures
+│   │   │   · Acima: CA-4719 - Living Spaces Front-end
+│   │   │   · Acima: CA-4749 - Ecom-Calculator Initial Payment Amount
+│   │   │   · Acima: CA-4754 - Remove old invoice creation endpoint
+│   │   │   · Acima: CA-4810 - Investigate Wayfair Initialization Failures
+│   │   │   · Acima: CA-4811 - Remove NeuroID DB Layer
+│   │   │   · Acima: CA-4812 - NeuroID Contracts
+│   │   │   · Acima: CA-4813 - NeuroID Updates
+│   │   │   · Acima: CA-4824 - Kipper Flag to Prevent Address Edit
+│   │   │   · Acima: CA-4851 - Various Dependabot PRs
+│   │   │   · Acima: CA-4883 - E2E Tweaks
+│   │   │   · Acima: CA-4884 - API Layer Phone Validation for Wayfair
+│   │   │   · Acima: CA-4998 - Early Request to Generate Lease Summary
+│   │   │   · Acima: CA-4999 - Check Status on Lease Agreement
+│   │   │   · Acima: CA-4999 - Refactor early lease agreement fetch
+│   │   │   · Acima: CA-5058 - Address Edit Data Integrity
+│   │   │   · Acima: CA-5121 - Update Lease Summary Including Credit Summary
+│   │   │   · Acima: CA-5150 - Initial Payment Screen Updates
+│   │   │   · Acima: CA-5152 - Congrats Screen Styling
+│   │   │   · Acima: CA-5257 - Optional Payment Tooltips
+│   │   │   · Acima: CA-5262 - Duplicate Session Key Error
+│   │   │   · Acima: CA-5318 - Lease Summary Line Items
+│   │   │   · Acima: CA-5373 - Bronze Security Certification
+│   │   │   · Acima: CA-5388 - Update Initial payment and Auto-payment language for MX
+│   │   │   · Acima: CA-5391 - Update Lease Summary Wording
+│   │   │   · Acima: CA-5392 - IP Copy Changes
+│   │   │   · Acima: CA-5393 - Update Add a Card Button
+│   │   │   · Acima: CA-5394 - Due Today Copy
+│   │   │   · Acima: CA-5395 - Optional Services Copy Changes
+│   │   │   · Acima: CA-5396 - Flow Videos
+│   │   │   · Acima: CA-5416 - Mock references
+│   │   │   · Acima: CA-5445 - Endpoint for MX Autofill
+│   │   │   · Acima: CA-5569 - B+ Auto Displaying as Regular B+
+│   │   │   · Acima: CA-5571 - Ecom Redis Integration
+│   │   │   · Acima: CA-5595 - Update Prod Access
+│   │   │   · Acima: CA-5608 - Migrate ecom-merchants DB to ecom-orc
+│   │   │   · Acima: CA-5613 - Calculator Fails to Open Application
+│   │   │   · Acima: CA-5621 - MX Logo
+│   │   │   · Acima: CA-5655 - MX Support Phone
+│   │   │   · Acima: CA-5667, et al. - MX UI Updates
+│   │   │   · Acima: CA-5668 - Optional Services Button MX
+│   │   │   · Acima: CA-5676 - 204 Handling
+│   │   │   · Acima: CA-5720 - NAAT Liveness Check Spike
+│   │   │   · Acima: CA-5726 - Awaiting VOD Bug
+│   │   │   · Acima: CA-5794 - NAAT Liveness Check Front-end
+│   │   │   · Acima: CA-5796 - Liveness Check Integrate with IDV.js
+│   │   │   · Acima: CA-58
+│   │   │   · Acima: CA-5874 - Liveness Check IDV.js Part 2
+│   │   │   · Acima: ENS-1397 - ZIP+4 Handling
+│   │   │   · Acima: Investigate Lease Signature Errors
+│   │   │   · Acima: Invoice 422 Bug in Preflight
+│   │   │   · Acima: LZC-1025
+│   │   │   · Acima: LZC-1291
+│   │   │   · Acima: LZC-1292 - Customer Order Endpoint Transition
+│   │   │   · Acima: LZC-1308 - FEPO Label Improvements
+│   │   │   · Acima: LZC-1311 - Quantum Metrics Spike
+│   │   │   · Acima: LZC-1317 - Ecom AMC Integration for Private Credit
+│   │   │   · Acima: LZC-1321 - Lease Session DB Table
+│   │   │   · Acima: LZC-1323 - Invoice via Session Data
+│   │   │   · Acima: LZC-1329 - CC Auth Response Server-Side Check
+│   │   │   · Acima: LZC-1349 - UW Program ID and Customer Order Endpoint
+│   │   │   · Acima: LZC-1373 - Line Item Adjustments
+│   │   │   · Acima: LZC-1405 - Autodeploy on Merge into Master
+│   │   │   · Acima: LZC-1444
+│   │   │   · Acima: LZC-1444 - Populate Lease Session Table
+│   │   │   · Acima: LZC-1530 - AMC Events for Contract Status Change
+│   │   │   · Acima: Magento Plugin Improvements
+│   │   │   · Acima: Maintenance - Plugin Config API Credential Audience and Cognito Credentials
+│   │   │   · Acima: Project - U25-6A672
+│   │   │   · Acima: Project A24-2A466 - Mexico
+│   │   │   · Acima: Project A25-1B807
+│   │   │   · Acima: Project A25-1B808
+│   │   │   · Acima: Project A25-4B590
+│   │   │   · Acima: Project A25-5B623
+│   │   │   · Acima: Project U25-6A678
+│   │   │   ├── ca-5147 - back (1)
+│   │   │   │   · Acima: CA-5147 - Back/Continue Button Changes
+│   │   │   ├── ca-5272 - lease summary (1)
+│   │   │   │   · Acima: CA-5272 - Lease Summary/Optional Services Glitch
+│   │   │   └── ca-5385 - ldw (1)
+│   │   │       · Acima: CA-5385 - LDW/Neutral Toggle
+│   │   └── ca-5198 - naat identity verification (9)
+│   │       · CA-5795 - Satisfy Liveness Check
+│   │       · CA-5796 - IDV.js Integration, Part 1
+│   │       · CA-5835 - Trigger Manual Review
+│   │       · CA-5874 - IDV.js Integration, Part 2
+│   │       · CA-5917 - Liveness Check Feature Flag
+│   │       · CA-5959 - SessionStore for Liveness Check Result
+│   │       · CA-6027 - Update Mexico Checkout Copy, Part 1
+│   │       · CA-6061 - MX UX Cleanup
+│   │       · Epic - CA-5198 - NAAT Identity Verification
+│   ├── services (1)
+│   │   · AMC
+│   ├── teams (3)
+│   │   · Acima: Customer Experience Team
+│   │   · Acima: Zuul
+│   │   · Nano
+│   └── unfiled (54)
+│       · CA-2111 - Intellicheck Holdsteady
+│       · CA-2734 - Move client-herald to ecom-orc
+│       · Financial Disclosure Form Integration
+│       · Freshdesk Tickets
+│       · Helm Migration
+│       · Inventory Software Installation
+│       · Job Application: Ivanti
+│       · Job Hunt 2022
+│       · LZC-1470: Investigating Invoice Submission 422 When Over Approved Amount
+│       · LexServ
+│       · PHP 8 Migration
+│       · PRs
+│       · Permissions Model
+│       · Pitch Certificates
+│       · Pitch: AWS Reserved Instancing
+│       · Pitch: Competencies
+│       · Pitch: Email Infrastructure
+│       · Pitch: Finance System Integration
+│       · Pitch: Monitoring
+│       · Pitch: PJC Transaction Management Tools
+│       · Pitch: Permissions Model
+│       · Pitch: Permissions UX
+│       · Pitch: SCORM Cloud Integration
+│       · Pitch: System-Generated Front Matter
+│       · Places to Apply for Jobs
+│       · Problem Description
+│       · Project Certificates
+│       · Project Code
+│       · Project: AWS Reserved Instancing
+│       · Project: JA-PARS Report
+│       · Project: Job Hunt
+│       · Project: LZC Food Service
+│       · Project: New Job Transition
+│       · Project: New Platform Finance Module
+│       · Project: Obsidian Transition
+│       · Project: Project Management
+│       · Prooph Roadmap
+│       · Pull Request
+│       · Pull Requests
+│       · Qualtrics
+│       · Return of SCORM
+│       · Scrum
+│       · Scrum Notes
+│       · Sector42.net Domain
+│       · Slim Update to v4
+│       · Software Demo
+│       · Sprint Planning
+│       · Stories to Tell at Scrum
+│       · System-Generated Front Matter
+│       · Ticket 5940: Change of Address
+│       · Work Phone List
+│       · certificate template context model
+│       · ecom-orc
+│       · ecom-services
+└── writing (120)
+    ├── ultan (17)
+    │   · Ashhark
+    │   · Beelzebub notes
+    │   · Channeling Sessions Ultan Characters
+    │   · Djinn
+    │   · Looisos
+    │   · New Sun Units of Measure
+    │   · Parable of the Choir
+    │   · The Trick
+    │   · Theomertmalogos
+    │   · Trogoautoegocrat (painting)
+    │   · UFoillan
+    │   · UHarharkh
+    │   · UKarnak
+    │   · UNight
+    │   · UTheia
+    │   · UUltan
+    │   · Ultan Sequel Ideas
+    ├── unfiled (23)
+    │   · Journal: April 5, 2020
+    │   · Meditative Writing 1: Zero, One, Infinity
+    │   · Meditative Writing 2: An Outline
+    │   · Meditative Writing 3
+    │   · Meditative Writing 4
+    │   · Meditative Writing: Tractatus Nihilo-Theurgica
+    │   · Therapy Journal
+    │   · Ultan Novel: Master Outline
+    │   · Week of July 5th, 2021
+    │   · Week of June 14th, 2021
+    │   · Week of June 21st, 2021
+    │   · Week of June 28th, 2021
+    │   · Week of June 7th, 2021
+    │   · Writing: Into the Tower
+    │   · Writing: On Theurgy
+    │   · Writing: Raphael's Hand
+    │   · Writing: Shit Transformation Into Gold
+    │   · Writing: The Disappearance of Ultan
+    │   · Writing: The Encounter on the Mountain
+    │   · Writing: The Trick
+    │   · Writing: code sutra
+    │   · meditative writing
+    │   · plague doctors of the 2020 Pandemic
+    └── ziusudra (80 total, 3 direct)
+        · Ideas From Older Notes
+        · PROJECT-CONTEXT
+        · README
+        ├── characters (25)
+        │   · Adapa
+        │   · Amar-Enki
+        │   · Anu
+        │   · Beelzebub (Working Label)
+        │   · Enheduanna
+        │   · Enki
+        │   · Enkidu
+        │   · Enlil
+        │   · Ezen-banda
+        │   · Geshtinanna (provisional)
+        │   · Humbaba
+        │   · Inanna
+        │   · Lu-egal
+        │   · Namtar
+        │   · Neti
+        │   · Nin-kalag
+        │   · Nin-tur
+        │   · Ninhursag
+        │   · README
+        │   · Siduri
+        │   · The Monolith Lady
+        │   · Ur-Ereshkigal
+        │   · Ur-gal
+        │   · Uranus Companion
+        │   · Ziasudra
+        ├── drafts (4 total, 1 direct)
+        │   · README
+        │   └── outlines (3)
+        │       · Book One Chapters
+        │       · Book One Structure
+        │       · Series Overview
+        ├── factions (2)
+        │   · README
+        │   · The Apkallu
+        ├── locations (7)
+        │   · Dilmun
+        │   · Dur-an-ki
+        │   · Eridu
+        │   · README
+        │   · The Holy Mountain
+        │   · The Pantheon Bar
+        │   · The Shrine
+        ├── lore (8)
+        │   · Metaphysics
+        │   · Pantheon
+        │   · README
+        │   · Solar System
+        │   · Technology Tiers
+        │   · The Me-Field
+        │   · The Wormhole — Adapa's Suite and the Holy Mountain
+        │   · Ziasudra Core Myth
+        ├── process (15)
+        │   · Book 1 — Plot Beats
+        │   · Character Map
+        │   · Design Principles
+        │   · Inspirations
+        │   · README
+        │   · Session 001
+        │   · Session 002
+        │   · Session 003 — Ziusudra's Inciting Incident, Beelzebub, The Seven Companions
+        │   · Session 004 — Lu-egal, Beelzebub Naming, Metaphysics, Technology Tiers, Adapa's Origin
+        │   · Session 005 — Utnapishtim Timeline, The Mountain as Relic, Flood Myth Research
+        │   · Session 006 — Law of Seven, Entrainment, Adapa's Full Arc, Book Two Spine
+        │   · Session 007 — Adapa Recognizes Ziasudra, The Initiation Sequence, The Parasite
+        │   · Session 008
+        │   · Session 009 — Underworld, Ur-Ereshkigal, the Shrine
+        │   · Session 010 — Three-Act Structure and Full Plot Beats
+        ├── research (14)
+        │   · Abzu Biosphere
+        │   · Arcologies
+        │   · Deucalion — The Greek Flood Hero
+        │   · Enki
+        │   · Key Deities
+        │   · Language in Eridu
+        │   · Manu: The Hindu Flood Hero and Progenitor of Humanity
+        │   · Matrioshka Brains
+        │   · Noah — The Hebrew Flood Hero
+        │   · README
+        │   · Smart Matter and Programmable Matter
+        │   · Sumerian Onomastics
+        │   · The Holy Mountain (1973) — Research Notes
+        │   · Xisuthros (Xisouthros): The Flood Hero of Berossus
+        └── texts (2)
+            · Eridu Genesis Arcology
+            · README

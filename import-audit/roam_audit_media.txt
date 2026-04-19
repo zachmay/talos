@@ -1,0 +1,221 @@
+[game] Aggro Cube
+[game] AI Dungeon
+[game] AI Dungeon Prompts
+[game] aikuchi ga ii
+[game] aikuchi ga warui
+[game] aka-tai
+[media] Albion's Isles
+[book] Analogy as the Core of Cognition
+[game] ani-deshi
+[game] ashihakobi
+[game] atari
+[media] Audiobooks to Download
+[tv] Avatar: The Last Airbender
+[game] azorius
+[game] banzen
+[tv] Ben Stiller Show
+[game] bintsuke
+[book] Book of the Long Sun
+[book] Book of the New Sun
+[book] Book of the Short Sun
+[game] boros
+[game] buchikamashi
+[book] Cage of Souls
+[game] Caves of Qud
+[game] Caves of Qud Screenshots
+[game] chanko-cho
+[media] Character Resonances
+[book] Children of Time
+[book] Constructive Psychotherapy
+[media] CoSM Podcast
+[media] Crystal College
+[game] Cube Sell-Off
+[media] Cursed Princess Club
+[media] David Lynch Decoded
+[book] Der Wille zur Macht
+[game] dimir
+[game] do-beya
+[game] dokisei
+[film] Dream Caused by the Flight of a Bee around a Pomegranate
+[film] Early Summer
+[book] Engine Summer
+[book] Etudes Traditionnelles
+[media] Future Thinkers Podcast
+[game] Game Ideas
+[game] Game Pitch: Procedural RPG Dynasty Mode Sports Game
+[game] Game: Sumo Sim
+[film] Gantz:0
+[game] Generative Qud Art
+[game] golgari
+[game] gruul
+[media] Hierodules
+[book] Horror of Philosophy
+[book] How to Read a Book (1940)
+[book] I'm Starting to Worry About This Black Box of Doom
+[book] Illuminatus!
+[media] Inire
+[book] Initiation and Spiritual Realisation
+[book] Insights into Islamic Esoterism & Taoism
+[book] Introduction to the Study of the Hindu Doctrines
+[game] izzet
+[game] List: Favorite Video Games
+[book] Lord of the World
+[game] Ludum
+[game] Magic: the Gathering
+[book] Man and His Becoming according to the Vedanta
+[media] Movie Download List
+[tv] Mystery Science Theater 3000
+[media] Orbis Tertius
+[game] Oregon Trail
+[book] Oriental Metaphysics
+[game] orzhov
+[game] Oyakata: Rikishi Effect - aikuchi ga ii
+[game] Oyakata: Rikishi Effect - aikuchi ga warui
+[game] Oyakata: Rikishi Effect - aka-tai
+[game] Oyakata: Rikishi Effect - ashihakobi
+[game] Oyakata: Rikishi Effect - atari
+[game] Oyakata: Rikishi Effect - banzen
+[game] Oyakata: Rikishi Effect - dokisei
+[book] Perspectives on Initiation
+[book] Philosophical Investigations (19XX)
+[media] Photon
+[media] Photonic Order
+[book] Principles and Practices of Electronic Music
+[game] Project: Learning Unity
+[tv] Project: MST3K Watch-through
+[game] Project: Pac-Rogue
+[game] Project: Proxy Cube
+[game] Project: Selling Magic Cards
+[book] Quicksilver
+[game] rakdos
+[media] Randall Flagg
+[book] Rathana Sutta
+[media] RenderDoc
+[tv] Scarfolk Council
+[book] Sea of Rust
+[game] selesnya
+[media] Severian
+[media] SF Authors of Color
+[media] Shapeshifter Aesthetic
+[book] Shiva Trilogy
+[film] Short Bus
+[book] Siddhartha
+[game] simic
+[media] Sirius
+[book] Someone Who Will Love You In All Your Damaged Glory
+[game] Sprite Art
+[tv] Stargate SG-1
+[game] Streets of Rogue
+[media] Successor
+[book] Symbols of Sacred Science
+[game] tegatana o kiru
+[media] testimony of Ultan
+[game] Tetris
+[tv] That Mitchell and Webb Look
+[tv] The Adventures of Pete and Pete
+[book] The Alchemist
+[book] The Alchemists
+[media] The Angriest Dog in the World
+[media] The Autarch
+[media] The Bee
+[book] The Calculus
+[book] The City of the Singing Flame
+[book] The Crying of Lot 49
+[media] The Crystal College
+[book] The Dark Tower
+[book] The Dwarf
+[book] The Einstein Intersection
+[book] The Elements of Programming Style
+[book] The Esoterism of Dante
+[book] The Four Zoas
+[book] The Futurica Trilogy
+[book] The Gateless Gate
+[book] The Great Triad
+[book] The Grimoire
+[book] The Harder They Come (2015)
+[film] The Holy Mountain
+[media] The Honey Goddess
+[book] The Hyperion Cantos
+[book] The Illuminoids
+[media] The Increate
+[book] The Jargon File (2003)
+[book] The LIbrary of Dune
+[media] The Lord of Bridges
+[book] The Lord of the Rings
+[media] The Mathematicians
+[media] The Mendicant Order
+[book] The Metaphysical Principles of the Infinitesimal Calculus
+[book] The Monster Show: A Cultural History of Horror
+[book] The Multiple States of Being
+[media] The Mythopoeic Society
+[media] The Pole-Star
+[media] The Prosecutor
+[media] The Raven Man
+[media] The Scroll of All Process
+[media] the Sentra
+[tv] The Simpsons
+[book] The Solar Cycle
+[book] The Symbolism of the Cross
+[media] The Tanuki
+[book] The Twelve-Factor App
+[book] The Way of Zen (1957)
+[tv] The X-Files
+[book] Tibetan Book of the Dead
+[book] Tlön, Uqbar, Orbis Tertius
+[book] Tracing Back the Radiance: Chinul's Korean Way of Zen (1991)
+[book] Traditional Forms & Cosmic Cycles
+[game] Trip World (1992)
+[book] True Hallucinations (1993)
+[tv] Twin Peaks (1990-1991, 2017)
+[media] Two Stones
+[media] Two-Stones
+[media] Two-Stones' Rival
+[media] Typhon
+[media] U: Saint Jupiter
+[media] U:Anulios
+[media] U:Beelzebub
+[media] U:Cathedral
+[media] U:Dog-Star
+[media] U:Earth
+[media] U:Eightfold Order
+[media] U:Episcopeion
+[media] U:Harold
+[media] U:Inner Gate
+[media] U:Isidore
+[media] U:Joachim
+[media] U:Logos
+[media] U:lotus position
+[media] U:Moon
+[media] U:Old Headmaster
+[media] U:Olivia
+[media] U:Ors
+[media] U:Pole Star Planet
+[media] U:Saint Mars
+[media] U:Saint Neptune
+[media] U:Saint Uranus
+[media] U:Samlios
+[media] U:semuta music
+[media] U:solra
+[media] U:sutra
+[media] U:symbolic space
+[media] U:symbolic structure
+[media] U:Tater
+[media] U:The Dwarf
+[media] U:The Protocols
+[media] U:Unseen University
+[media] U:Western Gate
+[media] U:Yodo
+[media] Ultan the Master
+[media] Ultan the Student
+[media] Ultan's
+[media] Ultan's Holy Mountain
+[game] Unity Game Development
+[game] Unity: Important Packages and Assets
+[media] Unseen University
+[game] Video Game Development in Unity
+[game] Video Game Ideas
+[media] Wittgenstein the Elder
+[media] Wittgenstein the Younger
+[media] Wonderland
+[game] X-Com
+[media] Yodo's Beast
