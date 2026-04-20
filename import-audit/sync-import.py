@@ -131,8 +131,8 @@ def delete_entry(session_id, guid, req_id=1):
 # --- Direct DB query ---
 
 def fetch_db_obsidian():
-    """Return {original_source: {id, title, content, updated}} for all obsidian DB entries,
-    excluding Roam (frozen archive — sync doesn't apply)."""
+    """Return {original_source: {id, title, content, updated, metadata}} for all obsidian DB
+    entries, excluding Roam (frozen archive — sync doesn't apply)."""
     sql = (
         "SET app.agent_id = 'default-agent'; "
         "SELECT json_build_object("
@@ -140,7 +140,8 @@ def fetch_db_obsidian():
         "'original_source', metadata->'_import'->>'original', "
         "'title', title, "
         "'content', content, "
-        "'updated', metadata->>'updated') "
+        "'updated', metadata->>'updated', "
+        "'metadata', metadata) "
         "FROM entries WHERE metadata->'_import'->>'source' = 'obsidian' "
         "  AND (metadata->'_import'->>'original') NOT LIKE '/Roam/%';"
     )
@@ -182,6 +183,16 @@ def parse_time(s):
 
 # --- Diff vault vs DB ---
 
+# Metadata keys excluded from the user-metadata diff:
+# _import is Talos-owned provenance; created/updated are timestamp signals handled separately.
+META_DIFF_IGNORE = {"_import", "created", "updated"}
+
+
+def user_meta(m):
+    """Return metadata dict with non-user keys stripped, for diffing."""
+    return {k: v for k, v in (m or {}).items() if k not in META_DIFF_IGNORE}
+
+
 def diff(manifest, db_by_source):
     new = []
     changed = []
@@ -197,11 +208,12 @@ def diff(manifest, db_by_source):
         file_time = parse_time(entry["metadata"].get("updated"))
         db_time = parse_time(db_row.get("updated"))
         time_changed = file_time and db_time and file_time > db_time
-        # Detect title or content mismatch independent of timestamps
-        # (catches changes made without bumping the 'updated' frontmatter field)
+        # Detect title/content/metadata mismatch independent of timestamps
+        # (catches edits made without bumping the 'updated' frontmatter field)
         title_changed = entry.get("title") != db_row.get("title")
         content_changed = entry.get("content", "") != (db_row.get("content") or "")
-        if time_changed or title_changed or content_changed:
+        meta_changed = user_meta(entry.get("metadata")) != user_meta(db_row.get("metadata"))
+        if time_changed or title_changed or content_changed or meta_changed:
             changed.append((db_row["id"], entry))
         else:
             unchanged.append(entry)
