@@ -22,6 +22,13 @@ async function getClient(ctx: vscode.ExtensionContext): Promise<McpClient | unde
   return client;
 }
 
+// vscode://talos.talos-vscode/entry/<uuid> opens that entry in the viewer.
+// Other URI shapes (by path, by title, with query params) intentionally
+// unsupported — paths aren't unique and titles require a round trip to
+// resolve. UUID is the stable identifier; Claude (or any caller) can
+// always search first to obtain one.
+const ENTRY_URI_RE = /^\/entry\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$/;
+
 export function activate(ctx: vscode.ExtensionContext): void {
   const entriesProvider = new EntriesTreeProvider(() => getClient(ctx));
   const entriesView = vscode.window.createTreeView("talos.entries", {
@@ -29,6 +36,21 @@ export function activate(ctx: vscode.ExtensionContext): void {
     showCollapseAll: true,
   });
   ctx.subscriptions.push(entriesView);
+
+  ctx.subscriptions.push(
+    vscode.window.registerUriHandler({
+      handleUri(uri: vscode.Uri): void {
+        const match = ENTRY_URI_RE.exec(uri.path);
+        if (!match) {
+          vscode.window.showWarningMessage(
+            `Talos: unrecognized URI (${uri.path}). Expected /entry/<uuid>.`,
+          );
+          return;
+        }
+        vscode.commands.executeCommand("talos.openEntry", match[1]);
+      },
+    }),
+  );
 
   ctx.subscriptions.push(
     vscode.commands.registerCommand("talos.refresh", () => entriesProvider.refresh()),

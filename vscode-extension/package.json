@@ -9,7 +9,7 @@
     "vscode": "^1.85.0"
   },
   "main": "./dist/extension.js",
-  "activationEvents": [],
+  "activationEvents": ["onUri"],
   "contributes": {
     "viewsContainers": {
       "activitybar": [
