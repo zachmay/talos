@@ -1,11 +1,18 @@
 import type { FunctionComponent } from "react";
 import type { Entry } from "../types";
 
+export interface EditOptions {
+  // When true, this edit is a rapid autosave — host should skip derived
+  // work (embedding, link rescan) and write content only. When false /
+  // absent, it's a flush and the host performs the full update pipeline.
+  defer?: boolean;
+}
+
 export interface ViewerProps {
   entry: Entry;
   // Called by editable viewers when the user changes content. Viewers that
   // are read-only (or for non-text content) simply ignore this prop.
-  onEdit?: (content: string) => void;
+  onEdit?: (content: string, options?: EditOptions) => void;
   // Fire-and-forget invocation of an allowlisted VS Code command. Used by
   // viewers whose UI contains clickable elements (wikilinks, tags) that the
   // editor swallows before command-URI navigation can fire.

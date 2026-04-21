@@ -30,10 +30,16 @@ interface UpdateParams {
   chunk_size?: number;
   chunk_overlap?: number;
   verbose?: boolean;
+  // When true + content is provided: skip the expensive derived work
+  // (chunking, embedding, link rescanning). Content is still written to the
+  // entries row; chunks stay at their prior (now stale) embedding. Intended
+  // for autosave; the client should issue a non-defer update on blur,
+  // navigate-away, or panel close to catch the embeddings up.
+  defer_embedding?: boolean;
 }
 
 export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
-  const { agentId, id, content, title, type, mime_type, metadata, verbose } = params;
+  const { agentId, id, content, title, type, mime_type, metadata, verbose, defer_embedding } = params;
 
   // Validate: at least one updatable field
   if (
@@ -71,6 +77,41 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
   const returningCols = verbose
     ? "id, title, type, mime_type, content, path, metadata, updated_at"
     : "id, title, type, mime_type, content, path";
+
+  // Deferred path: write content only, no chunking/embedding, no link rescan.
+  // Chunks remain stale until a non-defer update runs. See UpdateParams docs.
+  if (content !== undefined && defer_embedding) {
+    let row: any;
+    try {
+      row = await withAgent(agentId, async (client) => {
+        const result = await client.query(
+          `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}`,
+          values
+        );
+        if (result.rowCount === 0) throw new Error("NOT_FOUND");
+        return result.rows[0];
+      });
+    } catch (err) {
+      if (err instanceof Error && err.message === "NOT_FOUND") {
+        return toolError("NOT_FOUND", "Entry not found or access denied");
+      }
+      throw err;
+    }
+    const response: Record<string, unknown> = {
+      id: row.id,
+      title: row.title,
+      type: row.type,
+      mime_type: row.mime_type,
+      content: row.content,
+      path: row.path,
+      deferred: true,
+    };
+    if (verbose) {
+      response.metadata = row.metadata;
+      response.updated_at = row.updated_at;
+    }
+    return { content: [{ type: "text" as const, text: JSON.stringify(response) }] };
+  }
 
   // Content update path: chunk + embed BEFORE transaction
   if (content !== undefined) {
@@ -196,12 +237,13 @@ const updateSchema = {
   chunk_size: z.number().int().positive().optional(),
   chunk_overlap: z.number().int().min(0).optional(),
   verbose: z.boolean().optional(),
+  defer_embedding: z.boolean().optional(),
 };
 
 export function registerUpdateTool(server: McpServer, agentId: string): void {
   server.tool(
     "update",
-    "Update an entry's content (with re-embedding), title, type, mime_type, or metadata",
+    "Update an entry's content (with re-embedding), title, type, mime_type, or metadata. Pass defer_embedding=true on autosaves to skip chunking/embedding/link-rescan; flush with a non-defer update on blur or navigate-away.",
     updateSchema,
     async (params) => {
       return handleUpdate({ agentId, ...params });

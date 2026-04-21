@@ -15,6 +15,7 @@ type WebviewMessage =
       path: string[];
       content: string;
       metadata: Record<string, unknown> | null;
+      defer: boolean;
     }
   | { type: "invoke-command"; command: string; arg: string };
 
@@ -138,6 +139,7 @@ export class EntryPanel {
       });
       return;
     }
+    const t0 = Date.now();
     try {
       // Per decision: always send the full mutable surface (title, path,
       // mime_type, metadata) even when only content changed. Keeps the
@@ -149,9 +151,14 @@ export class EntryPanel {
         mime_type: msg.mime_type,
         content: msg.content,
         metadata: msg.metadata,
+        defer_embedding: msg.defer,
       });
+      console.log(
+        `[talos] update ${msg.id} defer=${msg.defer} bytes=${msg.content.length} ${Date.now() - t0}ms`,
+      );
     } catch (err: unknown) {
       const errMsg = err instanceof Error ? err.message : String(err);
+      console.error(`[talos] update ${msg.id} failed: ${errMsg}`);
       vscode.window.showErrorMessage(`Talos: save failed: ${errMsg}`);
     }
   }

@@ -67,6 +67,7 @@ export interface UpdateArgs {
   type?: string;
   mime_type?: string;
   metadata?: Record<string, unknown> | null;
+  defer_embedding?: boolean;
 }
 
 export async function update(client: McpClient, args: UpdateArgs): Promise<{ id: string }> {

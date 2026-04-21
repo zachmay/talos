@@ -34,5 +34,6 @@ export type WebviewMessage =
       path: string[];
       content: string;
       metadata: Record<string, unknown> | null;
+      defer: boolean;
     }
   | { type: "invoke-command"; command: string; arg: string };

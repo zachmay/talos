@@ -47,8 +47,8 @@ export function App({ bridge }: AppProps): JSX.Element {
   // Hooks must run unconditionally every render — declare callbacks before
   // any early returns, using a guard for the pre-entry state.
   const onEdit = useCallback(
-    (content: string) => {
-      if (entry) bridge.updateEntry(entry, content);
+    (content: string, options?: { defer?: boolean }) => {
+      if (entry) bridge.updateEntry(entry, content, options?.defer ?? false);
     },
     [bridge, entry],
   );

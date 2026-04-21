@@ -17,13 +17,15 @@ import type { ViewerProps } from "./registry";
 
 const AUTOSAVE_DEBOUNCE_MS = 2000;
 
+type EditCallback = (md: string, options?: { defer?: boolean }) => void;
+
 function EditorHost({
   initialContent,
   onEdit,
   onInvoke,
 }: {
   initialContent: string;
-  onEdit?: (md: string) => void;
+  onEdit?: EditCallback;
   onInvoke?: InvokeCommand;
 }) {
   // Ref wrappers so useEditor's closure always reads the current callbacks /
@@ -35,19 +37,27 @@ function EditorHost({
 
   const timeoutRef = useRef<number | undefined>(undefined);
   const latestRef = useRef<string | undefined>(undefined);
+  // Last content we flushed (defer=false). Used to dedupe blur+unmount:
+  // both fire on navigate-away, but only the first has real work to do.
+  const lastFlushedRef = useRef<string | undefined>(undefined);
+
+  const flush = () => {
+    if (timeoutRef.current !== undefined) {
+      window.clearTimeout(timeoutRef.current);
+      timeoutRef.current = undefined;
+    }
+    if (latestRef.current === undefined) return;
+    if (latestRef.current === lastFlushedRef.current) return;
+    lastFlushedRef.current = latestRef.current;
+    onEditRef.current?.(latestRef.current, { defer: false });
+  };
 
   useEffect(() => {
-    // Flush any pending debounced save when the component unmounts so entry
-    // switches / panel close don't discard in-flight edits.
-    return () => {
-      if (timeoutRef.current !== undefined) {
-        window.clearTimeout(timeoutRef.current);
-        timeoutRef.current = undefined;
-        if (latestRef.current !== undefined) {
-          onEditRef.current?.(latestRef.current);
-        }
-      }
-    };
+    // On unmount (entry switch, panel close), flush any pending edits with
+    // a full update so chunks and links catch up.
+    return flush;
+    // Intentionally no deps — we want the latest `flush` closure via refs.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEditor((root) =>
@@ -63,18 +73,15 @@ function EditorHost({
           }
           timeoutRef.current = window.setTimeout(() => {
             timeoutRef.current = undefined;
-            onEditRef.current?.(markdown);
+            if (latestRef.current === lastFlushedRef.current) return;
+            // Autosave: defer embedding & link rescan. Embedding stays
+            // stale until a blur/unmount flush.
+            onEditRef.current?.(latestRef.current!, { defer: true });
           }, AUTOSAVE_DEBOUNCE_MS);
         });
         ctx.get(listenerCtx).blur(() => {
-          // Flush immediately on blur — don't strand a pending save if the
-          // user alt-tabs away mid-edit.
-          if (timeoutRef.current === undefined) return;
-          window.clearTimeout(timeoutRef.current);
-          timeoutRef.current = undefined;
-          if (latestRef.current !== undefined) {
-            onEditRef.current?.(latestRef.current);
-          }
+          // Blur signals the user's editing attention has left; flush.
+          flush();
         });
       })
       .use(commonmark)
