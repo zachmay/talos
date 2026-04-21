@@ -1,0 +1,67 @@
+{
+  "name": "talos-vscode",
+  "displayName": "Talos",
+  "description": "View, edit, and navigate your Talos exocortex from VS Code.",
+  "version": "0.1.0",
+  "private": true,
+  "publisher": "talos",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "talos",
+          "title": "Talos",
+          "icon": "$(database)"
+        }
+      ]
+    },
+    "views": {
+      "talos": [
+        {
+          "id": "talos.entries",
+          "name": "Entries"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "talos.setApiKey",
+        "title": "Talos: Set API Key"
+      },
+      {
+        "command": "talos.clearApiKey",
+        "title": "Talos: Clear API Key"
+      },
+      {
+        "command": "talos.ping",
+        "title": "Talos: Ping Server"
+      }
+    ],
+    "configuration": {
+      "title": "Talos",
+      "properties": {
+        "talos.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:3001/mcp",
+          "description": "URL of the Talos MCP server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  }
+}
