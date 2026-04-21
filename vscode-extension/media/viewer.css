@@ -1,0 +1,154 @@
+/* Talos webview styles. Uses VS Code theme variables so light/dark flow through.
+ *
+ * Values named --vscode-* come from the current VS Code theme at runtime — we
+ * don't ship a palette ourselves.
+ */
+
+:root {
+  color-scheme: light dark;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--vscode-editor-background);
+  color: var(--vscode-foreground);
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  line-height: 1.6;
+}
+
+.talos-app {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+}
+
+.talos-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--vscode-editorWidget-border, rgba(127, 127, 127, 0.2));
+}
+
+.talos-header h1 {
+  margin: 0 0 8px;
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.talos-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85em;
+  color: var(--vscode-descriptionForeground);
+}
+
+.talos-path {
+  font-family: var(--vscode-editor-font-family, monospace);
+}
+
+.talos-type {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.talos-markdown h1,
+.talos-markdown h2,
+.talos-markdown h3,
+.talos-markdown h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.talos-markdown h1 { font-size: 1.4em; }
+.talos-markdown h2 { font-size: 1.25em; }
+.talos-markdown h3 { font-size: 1.1em; }
+
+.talos-markdown p {
+  margin: 0 0 1em;
+}
+
+.talos-markdown code {
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.9em;
+  padding: 2px 5px;
+  background: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.1));
+  border-radius: 3px;
+}
+
+.talos-markdown pre {
+  background: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.1));
+  padding: 12px 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.talos-markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.talos-markdown blockquote {
+  border-left: 3px solid var(--vscode-textBlockQuote-border, var(--vscode-descriptionForeground));
+  padding-left: 16px;
+  margin: 1em 0;
+  color: var(--vscode-descriptionForeground);
+}
+
+.talos-markdown a {
+  color: var(--vscode-textLink-foreground);
+  text-decoration: none;
+}
+.talos-markdown a:hover {
+  text-decoration: underline;
+}
+
+.talos-markdown table {
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.talos-markdown th,
+.talos-markdown td {
+  border: 1px solid var(--vscode-editorWidget-border, rgba(127, 127, 127, 0.2));
+  padding: 6px 12px;
+}
+
+.talos-markdown ul,
+.talos-markdown ol {
+  padding-left: 1.5em;
+}
+
+.talos-markdown input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.talos-loading,
+.talos-error,
+.talos-fallback {
+  padding: 24px 32px;
+}
+
+.talos-error {
+  color: var(--vscode-errorForeground);
+}
+
+.talos-fallback code {
+  font-family: var(--vscode-editor-font-family, monospace);
+  background: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.1));
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.talos-fallback pre {
+  background: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.1));
+  padding: 12px;
+  max-height: 400px;
+  overflow: auto;
+  font-size: 0.85em;
+}

@@ -74,7 +74,7 @@
   "scripts": {
     "build": "node esbuild.js",
     "watch": "node esbuild.js --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.webview.json"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

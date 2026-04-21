@@ -3,6 +3,7 @@ import { clearApiKey, ensureApiKey, getServerUrl, setApiKey } from "./config.js"
 import { McpClient } from "./mcp/client.js";
 import { listChildren } from "./mcp/tools.js";
 import { EntriesTreeProvider } from "./views/entries.js";
+import { EntryPanel } from "./panel.js";
 
 // Lazy-initialized MCP client. Created on first tool use so the extension
 // doesn't prompt for an API key on activation alone.
@@ -32,9 +33,7 @@ export function activate(ctx: vscode.ExtensionContext): void {
   ctx.subscriptions.push(
     vscode.commands.registerCommand("talos.refresh", () => entriesProvider.refresh()),
     vscode.commands.registerCommand("talos.openEntry", (id: string) => {
-      // Phase 4a fills in the webview; for now, surface the id to confirm the
-      // click path is wired up.
-      vscode.window.showInformationMessage(`Talos: openEntry ${id}`);
+      EntryPanel.show(ctx, () => getClient(ctx), id);
     }),
     vscode.commands.registerCommand("talos.setApiKey", async () => {
       const input = await vscode.window.showInputBox({
