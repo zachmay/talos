@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { McpClient, McpError } from "./mcp/client.js";
-import { get as getEntry, update as updateEntry } from "./mcp/tools.js";
+import { backlinks as fetchBacklinks, get as getEntry, update as updateEntry } from "./mcp/tools.js";
 
 // Shape of messages from the webview. Kept in sync with src/webview/types.ts.
 type WebviewMessage =
@@ -37,6 +37,16 @@ const WEBVIEW_INVOKABLE_COMMANDS = new Set([
 // mutating the stack.
 export class EntryPanel {
   private static current: EntryPanel | undefined;
+
+  // Fires whenever the active entry changes: the UUID being shown, or
+  // undefined when the panel closes. Sidebar views (Backlinks) subscribe
+  // to this so they re-render when the user navigates.
+  private static readonly _onActiveChanged = new vscode.EventEmitter<string | undefined>();
+  static readonly onActiveChanged: vscode.Event<string | undefined> = EntryPanel._onActiveChanged.event;
+
+  static get activeId(): string | undefined {
+    return EntryPanel.current?.history[EntryPanel.current.cursor];
+  }
 
   static show(ctx: vscode.ExtensionContext, getClient: () => Promise<McpClient | undefined>, id: string): void {
     if (EntryPanel.current) {
@@ -96,6 +106,7 @@ export class EntryPanel {
     this.history.push(id);
     this.cursor = this.history.length - 1;
     this.syncNavContext();
+    EntryPanel._onActiveChanged.fire(id);
     if (this.readyReceived) this.fetchAndSend(id);
   }
 
@@ -103,6 +114,7 @@ export class EntryPanel {
     if (this.cursor <= 0) return;
     this.cursor--;
     this.syncNavContext();
+    EntryPanel._onActiveChanged.fire(this.history[this.cursor]);
     this.fetchAndSend(this.history[this.cursor]);
   }
 
@@ -110,6 +122,7 @@ export class EntryPanel {
     if (this.cursor >= this.history.length - 1) return;
     this.cursor++;
     this.syncNavContext();
+    EntryPanel._onActiveChanged.fire(this.history[this.cursor]);
     this.fetchAndSend(this.history[this.cursor]);
   }
 
@@ -233,9 +246,18 @@ export class EntryPanel {
       return;
     }
     try {
-      const entry = await getEntry(client, id);
+      // Fetch entry + backlinks in parallel. Backlinks failure isn't fatal —
+      // we show the entry with an empty backlinks section if the call errors.
+      const [entry, backlinksRes] = await Promise.all([
+        getEntry(client, id),
+        fetchBacklinks(client, id).catch(() => ({ id, backlinks: [] })),
+      ]);
       this.panel.title = entry.title || "Talos";
-      this.panel.webview.postMessage({ type: "entry-loaded", entry });
+      this.panel.webview.postMessage({
+        type: "entry-loaded",
+        entry,
+        backlinks: backlinksRes.backlinks,
+      });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       this.panel.webview.postMessage({ type: "entry-error", id, error: msg });
@@ -270,6 +292,7 @@ export class EntryPanel {
 
   private dispose(): void {
     EntryPanel.current = undefined;
+    EntryPanel._onActiveChanged.fire(undefined);
     vscode.commands.executeCommand("setContext", "talos.canNavigateBack", false);
     vscode.commands.executeCommand("setContext", "talos.canNavigateForward", false);
     for (const d of this.disposables) d.dispose();

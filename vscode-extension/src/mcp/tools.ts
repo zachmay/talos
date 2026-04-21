@@ -110,3 +110,17 @@ export interface SearchArgs {
 export async function search(client: McpClient, args: SearchArgs): Promise<SearchHit[]> {
   return client.callTool<SearchHit[]>("search", args as Record<string, unknown>);
 }
+
+export interface RecentHit {
+  id: string;
+  title: string;
+  type: string;
+  mime_type: string;
+  path: string[];
+  updated_at: string;
+  etag: string;
+}
+
+export async function recent(client: McpClient, limit = 50): Promise<RecentHit[]> {
+  return client.callTool<RecentHit[]>("recent", { limit });
+}

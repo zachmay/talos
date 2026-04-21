@@ -25,6 +25,14 @@
         {
           "id": "talos.entries",
           "name": "Entries"
+        },
+        {
+          "id": "talos.backlinks",
+          "name": "Backlinks"
+        },
+        {
+          "id": "talos.recent",
+          "name": "Recent"
         }
       ]
     },
@@ -61,13 +69,33 @@
         "title": "Talos: Forward",
         "icon": "$(arrow-right)",
         "enablement": "talos.canNavigateForward"
+      },
+      {
+        "command": "talos.search",
+        "title": "Talos: Search",
+        "icon": "$(search)"
+      },
+      {
+        "command": "talos.refreshRecent",
+        "title": "Talos: Refresh Recent",
+        "icon": "$(refresh)"
       }
     ],
     "menus": {
       "view/title": [
         {
+          "command": "talos.search",
+          "when": "view == talos.entries",
+          "group": "navigation@1"
+        },
+        {
           "command": "talos.refresh",
           "when": "view == talos.entries",
+          "group": "navigation@2"
+        },
+        {
+          "command": "talos.refreshRecent",
+          "when": "view == talos.recent",
           "group": "navigation"
         }
       ],

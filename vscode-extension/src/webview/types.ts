@@ -19,9 +19,18 @@ export interface Entry {
   etag: string;
 }
 
+export interface Backlink {
+  source_id: string;
+  source_title: string;
+  source_path: string[];
+  source_type: string;
+  link_type: "wikilink" | "tag" | "embed" | "mention";
+  link_text: string;
+}
+
 // Messages from extension host → webview
 export type HostMessage =
-  | { type: "entry-loaded"; entry: Entry }
+  | { type: "entry-loaded"; entry: Entry; backlinks: Backlink[] }
   // Sent after a successful update — lets the webview advance its stored
   // etag so the next update uses a fresh one. Content is unchanged; no
   // editor remount.

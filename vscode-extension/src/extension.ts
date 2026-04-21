@@ -3,6 +3,8 @@ import { clearApiKey, ensureApiKey, getServerUrl, setApiKey } from "./config.js"
 import { McpClient } from "./mcp/client.js";
 import { listChildren, search } from "./mcp/tools.js";
 import { EntriesTreeProvider } from "./views/entries.js";
+import { BacklinksTreeProvider } from "./views/backlinks.js";
+import { RecentTreeProvider } from "./views/recent.js";
 import { EntryPanel } from "./panel.js";
 
 // Lazy-initialized MCP client. Created on first tool use so the extension
@@ -22,6 +24,10 @@ async function getClient(ctx: vscode.ExtensionContext): Promise<McpClient | unde
   return client;
 }
 
+interface SearchPickItem extends vscode.QuickPickItem {
+  id: string;
+}
+
 // vscode://talos.talos-vscode/entry/<uuid> opens that entry in the viewer.
 // Other URI shapes (by path, by title, with query params) intentionally
 // unsupported — paths aren't unique and titles require a round trip to
@@ -36,6 +42,18 @@ export function activate(ctx: vscode.ExtensionContext): void {
     showCollapseAll: true,
   });
   ctx.subscriptions.push(entriesView);
+
+  const backlinksProvider = new BacklinksTreeProvider(() => getClient(ctx), EntryPanel.onActiveChanged);
+  const backlinksView = vscode.window.createTreeView("talos.backlinks", {
+    treeDataProvider: backlinksProvider,
+  });
+  ctx.subscriptions.push(backlinksView);
+
+  const recentProvider = new RecentTreeProvider(() => getClient(ctx));
+  const recentView = vscode.window.createTreeView("talos.recent", {
+    treeDataProvider: recentProvider,
+  });
+  ctx.subscriptions.push(recentView);
 
   ctx.subscriptions.push(
     vscode.window.registerUriHandler({
@@ -53,7 +71,52 @@ export function activate(ctx: vscode.ExtensionContext): void {
   );
 
   ctx.subscriptions.push(
-    vscode.commands.registerCommand("talos.refresh", () => entriesProvider.refresh()),
+    vscode.commands.registerCommand("talos.refresh", () => {
+      entriesProvider.refresh();
+      recentProvider.refresh();
+    }),
+    vscode.commands.registerCommand("talos.refreshRecent", () => recentProvider.refresh()),
+    vscode.commands.registerCommand("talos.search", async () => {
+      const c = await getClient(ctx);
+      if (!c) return;
+      const qp = vscode.window.createQuickPick<SearchPickItem>();
+      qp.placeholder = "Search Talos (semantic). Type and hit enter.";
+      qp.matchOnDescription = true;
+      qp.matchOnDetail = true;
+      let seq = 0;
+      qp.onDidChangeValue(async (value) => {
+        const query = value.trim();
+        if (query.length < 2) {
+          qp.items = [];
+          qp.busy = false;
+          return;
+        }
+        const mine = ++seq;
+        qp.busy = true;
+        try {
+          const hits = await search(c, { query, threshold: 0.4, count: 20 });
+          if (mine !== seq) return; // stale response
+          qp.items = hits.map((h) => ({
+            label: h.title,
+            description: `/${h.path.join("/")}`,
+            detail: `${h.type}${h.similarity !== undefined ? ` — ${Math.round(h.similarity * 100)}%` : ""}`,
+            id: h.id,
+          }));
+        } catch (err) {
+          if (mine !== seq) return;
+          qp.items = [];
+        } finally {
+          if (mine === seq) qp.busy = false;
+        }
+      });
+      qp.onDidAccept(() => {
+        const pick = qp.selectedItems[0];
+        if (pick) EntryPanel.show(ctx, () => getClient(ctx), pick.id);
+        qp.hide();
+      });
+      qp.onDidHide(() => qp.dispose());
+      qp.show();
+    }),
     vscode.commands.registerCommand("talos.openEntry", (id: string) => {
       EntryPanel.show(ctx, () => getClient(ctx), id);
     }),

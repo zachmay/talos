@@ -1,7 +1,8 @@
 import type { JSX } from "react";
 import { useCallback, useEffect, useState } from "react";
+import { BacklinksSection } from "./backlinks-section";
 import type { HostBridge } from "./host-bridge";
-import type { Entry, HostMessage } from "./types";
+import type { Backlink, Entry, HostMessage } from "./types";
 import { FallbackViewer } from "./viewers/fallback";
 import { registerViewer, selectViewer } from "./viewers/registry";
 import { MilkdownViewer } from "./viewers/milkdown";
@@ -28,6 +29,7 @@ interface AppProps {
 
 export function App({ bridge }: AppProps): JSX.Element {
   const [entry, setEntry] = useState<Entry | undefined>();
+  const [backlinks, setBacklinks] = useState<Backlink[]>([]);
   const [error, setError] = useState<string | undefined>();
   // Bumped on entry-loaded so the viewer remounts even when loading the
   // same id (happens on conflict "Reload" — same entry, fresh content).
@@ -37,6 +39,7 @@ export function App({ bridge }: AppProps): JSX.Element {
     const off = bridge.onMessage((msg: HostMessage) => {
       if (msg.type === "entry-loaded") {
         setEntry(msg.entry);
+        setBacklinks(msg.backlinks);
         setError(undefined);
         setLoadVersion((v) => v + 1);
       } else if (msg.type === "entry-updated") {
@@ -90,6 +93,7 @@ export function App({ bridge }: AppProps): JSX.Element {
           in-editor state. entry-updated bumps only the etag and preserves
           the key, keeping cursor/selection intact during autosave. */}
       <Viewer key={`${entry.id}:${loadVersion}`} entry={entry} onEdit={onEdit} onInvoke={onInvoke} />
+      <BacklinksSection backlinks={backlinks} onInvoke={onInvoke} />
     </div>
   );
 }

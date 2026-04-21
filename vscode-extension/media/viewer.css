@@ -199,3 +199,64 @@ body {
   overflow: auto;
   font-size: 0.85em;
 }
+
+.talos-backlinks-section {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--vscode-editorWidget-border, rgba(127, 127, 127, 0.2));
+}
+
+.talos-backlinks-section h2 {
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vscode-descriptionForeground);
+  margin: 0 0 12px;
+}
+
+.talos-backlinks-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.talos-backlink-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.talos-backlink-link {
+  color: var(--vscode-textLink-foreground);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+.talos-backlink-link:hover {
+  text-decoration: underline;
+}
+
+.talos-backlink-path {
+  color: var(--vscode-descriptionForeground);
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.85em;
+}
+
+.talos-backlink-via {
+  color: var(--vscode-descriptionForeground);
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.talos-backlink-via code {
+  font-family: var(--vscode-editor-font-family, monospace);
+  padding: 0 3px;
+  background: rgba(127, 127, 127, 0.1);
+  border-radius: 2px;
+}

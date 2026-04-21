@@ -7,6 +7,7 @@ import { registerFetchTool } from "./tools/fetch.js";
 import { registerGetTool } from "./tools/get.js";
 import { registerListChildrenTool } from "./tools/list_children.js";
 import { registerBacklinksTool } from "./tools/backlinks.js";
+import { registerRecentTool } from "./tools/recent.js";
 import { registerPathOperationsPrompt } from "./prompts/path-operations.js";
 import { registerAdvancedSearchPrompt } from "./prompts/advanced-search.js";
 import { registerBulkOperationsPrompt } from "./prompts/bulk-operations.js";
@@ -17,7 +18,7 @@ export function createServer(agentId: string): McpServer {
     version: "1.0.0",
     instructions: `Talos MCP provides semantic memory backed by PostgreSQL + pgvector.
 
-Tools: insert, search, update, delete, fetch, get, list_children, backlinks.
+Tools: insert, search, update, delete, fetch, get, list_children, backlinks, recent.
 
 Search uses cosine similarity with a threshold (default 0.7). If a search returns no results:
 - Try lowering the threshold (e.g. 0.3 or 0.4) for broader matching
@@ -36,6 +37,7 @@ Data is organized by path (array of strings) and optional metadata (JSON). Use p
   registerGetTool(server, agentId);
   registerListChildrenTool(server, agentId);
   registerBacklinksTool(server, agentId);
+  registerRecentTool(server, agentId);
 
   registerPathOperationsPrompt(server);
   registerAdvancedSearchPrompt(server);
