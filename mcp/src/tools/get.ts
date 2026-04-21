@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { withAgent } from "../db.js";
+import { computeEtag } from "../etag.js";
 
 interface ToolResult {
   [key: string]: unknown;
@@ -29,6 +30,13 @@ export async function _handleGet(id: string, agentId: string): Promise<ToolResul
     return toolError("NOT_FOUND", "Entry not found or access denied");
   }
 
+  const etag = computeEtag({
+    title: row.title,
+    path: row.path,
+    content: row.content,
+    metadata: row.metadata,
+  });
+
   return {
     content: [{ type: "text" as const, text: JSON.stringify({
       id: row.id,
@@ -40,6 +48,7 @@ export async function _handleGet(id: string, agentId: string): Promise<ToolResul
       metadata: row.metadata,
       created_at: row.created_at,
       updated_at: row.updated_at,
+      etag,
     }) }],
   };
 }

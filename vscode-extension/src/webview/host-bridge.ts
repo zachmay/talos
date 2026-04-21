@@ -74,6 +74,7 @@ export class VsCodeBridge implements HostBridge {
     this.post({
       type: "update-entry",
       id: entry.id,
+      if_match: entry.etag,
       title: entry.title,
       type_: entry.type,
       mime_type: entry.mime_type,

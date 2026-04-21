@@ -110,8 +110,16 @@ def insert_entry(session_id, entry, req_id=1):
 
 
 def update_entry(session_id, guid, entry, req_id=1):
+    # MCP update requires if_match — fetch the current etag first. Adds one
+    # round trip per update; acceptable for a batch operation. If another
+    # writer races between our get and our update, the server will reject
+    # and we surface the conflict.
+    current = parse_result(call_tool(session_id, "get", {"id": guid}, req_id=req_id * 2 + 1))
+    if not current or "etag" not in current:
+        return {"error": "NO_ETAG", "message": f"could not fetch etag for {guid}"}
     args = {
         "id": guid,
+        "if_match": current["etag"],
         "title": entry["title"],
         "type": entry["type"],
         "mime_type": entry.get("mime_type", "text/markdown"),
@@ -121,7 +129,7 @@ def update_entry(session_id, guid, entry, req_id=1):
     # Only include content if non-empty (update tool rejects empty)
     if entry["content"]:
         args["content"] = entry["content"]
-    return parse_result(call_tool(session_id, "update", args, req_id=req_id))
+    return parse_result(call_tool(session_id, "update", args, req_id=req_id * 2))
 
 
 def delete_entry(session_id, guid, req_id=1):

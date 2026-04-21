@@ -15,6 +15,7 @@ export interface Entry {
   metadata: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
+  etag: string;
 }
 
 export interface ListChildrenResult {
@@ -62,6 +63,7 @@ export async function get(client: McpClient, id: string): Promise<Entry> {
 
 export interface UpdateArgs {
   id: string;
+  if_match: string;
   content?: string;
   title?: string;
   type?: string;
@@ -70,11 +72,22 @@ export interface UpdateArgs {
   defer_embedding?: boolean;
 }
 
-export async function update(client: McpClient, args: UpdateArgs): Promise<{ id: string }> {
+export interface UpdateResult {
+  id: string;
+  title: string;
+  type: string;
+  mime_type: string;
+  content: string | null;
+  path: string[];
+  etag: string;
+  deferred?: boolean;
+}
+
+export async function update(client: McpClient, args: UpdateArgs): Promise<UpdateResult> {
   // MCP update rejects `null` for metadata — we send an empty object instead.
   const payload: Record<string, unknown> = { ...args };
   if (payload.metadata === null) payload.metadata = {};
-  return client.callTool<{ id: string }>("update", payload);
+  return client.callTool<UpdateResult>("update", payload);
 }
 
 export async function listChildren(client: McpClient, path: string[]): Promise<ListChildrenResult> {

@@ -14,11 +14,18 @@ export interface Entry {
   metadata: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
+  // Content-hash of (title, path, content, metadata-minus-_import). Sent back
+  // as if_match on subsequent updates; server rejects stale writes.
+  etag: string;
 }
 
 // Messages from extension host → webview
 export type HostMessage =
   | { type: "entry-loaded"; entry: Entry }
+  // Sent after a successful update — lets the webview advance its stored
+  // etag so the next update uses a fresh one. Content is unchanged; no
+  // editor remount.
+  | { type: "entry-updated"; id: string; etag: string }
   | { type: "entry-error"; id: string; error: string };
 
 // Messages from webview → extension host
@@ -28,6 +35,7 @@ export type WebviewMessage =
   | {
       type: "update-entry";
       id: string;
+      if_match: string;
       title: string;
       type_: string;
       mime_type: string;

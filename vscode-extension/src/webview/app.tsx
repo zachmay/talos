@@ -29,12 +29,19 @@ interface AppProps {
 export function App({ bridge }: AppProps): JSX.Element {
   const [entry, setEntry] = useState<Entry | undefined>();
   const [error, setError] = useState<string | undefined>();
+  // Bumped on entry-loaded so the viewer remounts even when loading the
+  // same id (happens on conflict "Reload" — same entry, fresh content).
+  const [loadVersion, setLoadVersion] = useState(0);
 
   useEffect(() => {
     const off = bridge.onMessage((msg: HostMessage) => {
       if (msg.type === "entry-loaded") {
         setEntry(msg.entry);
         setError(undefined);
+        setLoadVersion((v) => v + 1);
+      } else if (msg.type === "entry-updated") {
+        // Merge the new etag into current entry state — no remount.
+        setEntry((prev) => (prev && prev.id === msg.id ? { ...prev, etag: msg.etag } : prev));
       } else if (msg.type === "entry-error") {
         setEntry(undefined);
         setError(msg.error);
@@ -78,7 +85,11 @@ export function App({ bridge }: AppProps): JSX.Element {
           <span className="talos-type">{entry.type}</span>
         </div>
       </header>
-      <Viewer entry={entry} onEdit={onEdit} onInvoke={onInvoke} />
+      {/* Key includes loadVersion so an entry-loaded for the *same* id
+          (conflict "Reload") still remounts the viewer and drops any
+          in-editor state. entry-updated bumps only the etag and preserves
+          the key, keeping cursor/selection intact during autosave. */}
+      <Viewer key={`${entry.id}:${loadVersion}`} entry={entry} onEdit={onEdit} onInvoke={onInvoke} />
     </div>
   );
 }

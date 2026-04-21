@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { McpClient } from "./mcp/client.js";
+import { McpClient, McpError } from "./mcp/client.js";
 import { get as getEntry, update as updateEntry } from "./mcp/tools.js";
 
 // Shape of messages from the webview. Kept in sync with src/webview/types.ts.
@@ -9,6 +9,7 @@ type WebviewMessage =
   | {
       type: "update-entry";
       id: string;
+      if_match: string;
       title: string;
       type_: string;
       mime_type: string;
@@ -68,6 +69,11 @@ export class EntryPanel {
   private readonly history: string[] = [];
   private cursor = -1;
   private readyReceived = false;
+  // When a save is rejected PRECONDITION_FAILED we flip this until the user
+  // resolves (reload or overwrite). Further update-entry messages that arrive
+  // while conflicting are silently dropped — prevents a modal-per-keystroke
+  // storm while editors keep firing autosaves.
+  private conflicting = false;
   private readonly disposables: vscode.Disposable[] = [];
 
   private constructor(
@@ -130,6 +136,10 @@ export class EntryPanel {
   }
 
   private async handleUpdate(msg: Extract<WebviewMessage, { type: "update-entry" }>): Promise<void> {
+    // Silently drop further update attempts while a conflict is unresolved —
+    // otherwise every 2s autosave during typing raises another modal.
+    if (this.conflicting) return;
+
     const client = await this.getClient();
     if (!client) {
       this.panel.webview.postMessage({
@@ -144,8 +154,9 @@ export class EntryPanel {
       // Per decision: always send the full mutable surface (title, path,
       // mime_type, metadata) even when only content changed. Keeps the
       // update path uniform regardless of which field the UI exposed.
-      await updateEntry(client, {
+      const result = await updateEntry(client, {
         id: msg.id,
+        if_match: msg.if_match,
         title: msg.title,
         type: msg.type_,
         mime_type: msg.mime_type,
@@ -153,13 +164,65 @@ export class EntryPanel {
         metadata: msg.metadata,
         defer_embedding: msg.defer,
       });
+      // Echo the new etag so the webview's next update uses it.
+      this.panel.webview.postMessage({ type: "entry-updated", id: msg.id, etag: result.etag });
       console.log(
         `[talos] update ${msg.id} defer=${msg.defer} bytes=${msg.content.length} ${Date.now() - t0}ms`,
       );
     } catch (err: unknown) {
+      if (err instanceof McpError && err.code === "PRECONDITION_FAILED") {
+        await this.handleConflict(msg);
+        return;
+      }
       const errMsg = err instanceof Error ? err.message : String(err);
       console.error(`[talos] update ${msg.id} failed: ${errMsg}`);
       vscode.window.showErrorMessage(`Talos: save failed: ${errMsg}`);
+    }
+  }
+
+  private async handleConflict(msg: Extract<WebviewMessage, { type: "update-entry" }>): Promise<void> {
+    this.conflicting = true;
+    try {
+      const pick = await vscode.window.showInformationMessage(
+        `"${msg.title}" was updated elsewhere while you were editing.`,
+        {
+          modal: true,
+          detail: "Reload discards your changes and shows the latest. Overwrite replaces the other writer's changes with yours.",
+        },
+        "Reload",
+        "Overwrite",
+      );
+      if (pick === "Reload") {
+        await this.fetchAndSend(msg.id);
+      } else if (pick === "Overwrite") {
+        await this.forceOverwrite(msg);
+      }
+      // Dismissed: leave editor in its current state; next edit triggers
+      // another modal. User has to pick eventually.
+    } finally {
+      this.conflicting = false;
+    }
+  }
+
+  private async forceOverwrite(msg: Extract<WebviewMessage, { type: "update-entry" }>): Promise<void> {
+    const client = await this.getClient();
+    if (!client) return;
+    try {
+      const fresh = await getEntry(client, msg.id);
+      const result = await updateEntry(client, {
+        id: msg.id,
+        if_match: fresh.etag,
+        title: msg.title,
+        type: msg.type_,
+        mime_type: msg.mime_type,
+        content: msg.content,
+        metadata: msg.metadata,
+        defer_embedding: false, // overwrite is a meaningful save — flush.
+      });
+      this.panel.webview.postMessage({ type: "entry-updated", id: msg.id, etag: result.etag });
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      vscode.window.showErrorMessage(`Talos: overwrite failed: ${errMsg}`);
     }
   }
 

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { withAgent } from "../db.js";
+import { computeEtag } from "../etag.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 
 interface SearchInput {
@@ -122,8 +123,15 @@ export async function _handleSearch(input: SearchInput, agentId: string): Promis
     duration_ms: durationMs,
   }));
 
-  // Build response
+  // Build response — etag is always included so clients can chain updates
+  // without a separate get round-trip.
   const results = rows.map((row: any) => {
+    const etag = computeEtag({
+      title: row.title,
+      path: row.path,
+      content: row.content,
+      metadata: row.metadata,
+    });
     const base: Record<string, unknown> = {
       id: row.id,
       title: row.title,
@@ -131,6 +139,7 @@ export async function _handleSearch(input: SearchInput, agentId: string): Promis
       mime_type: row.mime_type,
       content: row.content,
       path: row.path ?? [],
+      etag,
     };
 
     if (verbose) {

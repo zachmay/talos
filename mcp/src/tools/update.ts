@@ -2,6 +2,7 @@ import { z } from "zod";
 import { withAgent } from "../db.js";
 
 import { chunkText } from "../chunker.js";
+import { computeEtag } from "../etag.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 import { scanAndStoreLinks, DanglingLinkError, AmbiguousLinkError } from "../links.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -22,6 +23,12 @@ function toolError(code: string, message: string): ToolResult {
 interface UpdateParams {
   agentId: string;
   id: string;
+  // if_match is the etag the client most recently read for this entry.
+  // The server recomputes the current etag inside the update transaction;
+  // on mismatch we abort with PRECONDITION_FAILED so the caller can decide
+  // whether to reload or force-write with a fresh etag. Required — there is
+  // no bypass, since any blind update risks clobbering a concurrent edit.
+  if_match: string;
   content?: string;
   title?: string;
   type?: string;
@@ -38,8 +45,30 @@ interface UpdateParams {
   defer_embedding?: boolean;
 }
 
+// Helper: fetches a row by id, computes its current etag, and returns both.
+// Raises NOT_FOUND / PRECONDITION_FAILED as appropriate.
+async function checkIfMatch(
+  client: import("pg").PoolClient,
+  id: string,
+  ifMatch: string,
+): Promise<void> {
+  const result = await client.query(
+    "SELECT title, path, content, metadata FROM entries WHERE id = $1",
+    [id],
+  );
+  if (result.rowCount === 0) throw new Error("NOT_FOUND");
+  const row = result.rows[0];
+  const current = computeEtag({
+    title: row.title,
+    path: row.path,
+    content: row.content,
+    metadata: row.metadata,
+  });
+  if (current !== ifMatch) throw new Error("PRECONDITION_FAILED");
+}
+
 export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
-  const { agentId, id, content, title, type, mime_type, metadata, verbose, defer_embedding } = params;
+  const { agentId, id, if_match, content, title, type, mime_type, metadata, verbose, defer_embedding } = params;
 
   // Validate: at least one updatable field
   if (
@@ -84,8 +113,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     let row: any;
     try {
       row = await withAgent(agentId, async (client) => {
+        await checkIfMatch(client, id, if_match);
         const result = await client.query(
-          `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}`,
+          `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}, content, metadata, path`,
           values
         );
         if (result.rowCount === 0) throw new Error("NOT_FOUND");
@@ -95,8 +125,17 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       if (err instanceof Error && err.message === "NOT_FOUND") {
         return toolError("NOT_FOUND", "Entry not found or access denied");
       }
+      if (err instanceof Error && err.message === "PRECONDITION_FAILED") {
+        return toolError("PRECONDITION_FAILED", "if_match does not match current etag");
+      }
       throw err;
     }
+    const etag = computeEtag({
+      title: row.title,
+      path: row.path,
+      content: row.content,
+      metadata: row.metadata,
+    });
     const response: Record<string, unknown> = {
       id: row.id,
       title: row.title,
@@ -105,6 +144,7 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       content: row.content,
       path: row.path,
       deferred: true,
+      etag,
     };
     if (verbose) {
       response.metadata = row.metadata;
@@ -129,10 +169,11 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     let row: any;
     try {
       row = await withAgent(agentId, async (client) => {
+        await checkIfMatch(client, id, if_match);
         await client.query("DELETE FROM chunks WHERE entry_id = $1", [id]);
 
         const updateResult = await client.query(
-          `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}`,
+          `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}, content, metadata, path`,
           values
         );
 
@@ -161,6 +202,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       if (err instanceof Error && err.message === "NOT_FOUND") {
         return toolError("NOT_FOUND", "Entry not found or access denied");
       }
+      if (err instanceof Error && err.message === "PRECONDITION_FAILED") {
+        return toolError("PRECONDITION_FAILED", "if_match does not match current etag");
+      }
       if (err instanceof DanglingLinkError) {
         return toolError("DANGLING_LINK", err.message);
       }
@@ -170,6 +214,12 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       throw err;
     }
 
+    const etag = computeEtag({
+      title: row.title,
+      path: row.path,
+      content: row.content,
+      metadata: row.metadata,
+    });
     const response: Record<string, unknown> = {
       id: row.id,
       title: row.title,
@@ -177,6 +227,7 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       mime_type: row.mime_type,
       content: row.content,
       path: row.path,
+      etag,
     };
     if (verbose) {
       response.metadata = row.metadata;
@@ -193,8 +244,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
   let row: any;
   try {
     row = await withAgent(agentId, async (client) => {
+      await checkIfMatch(client, id, if_match);
       const result = await client.query(
-        `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}`,
+        `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}, content, metadata, path`,
         values
       );
       if (result.rowCount === 0) {
@@ -206,9 +258,18 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     if (err instanceof Error && err.message === "NOT_FOUND") {
       return toolError("NOT_FOUND", "Entry not found or access denied");
     }
+    if (err instanceof Error && err.message === "PRECONDITION_FAILED") {
+      return toolError("PRECONDITION_FAILED", "if_match does not match current etag");
+    }
     throw err;
   }
 
+  const etag = computeEtag({
+    title: row.title,
+    path: row.path,
+    content: row.content,
+    metadata: row.metadata,
+  });
   const response: Record<string, unknown> = {
     id: row.id,
     title: row.title,
@@ -216,6 +277,7 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     mime_type: row.mime_type,
     content: row.content,
     path: row.path,
+    etag,
   };
   if (verbose) {
     response.metadata = row.metadata;
@@ -229,6 +291,7 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
 
 const updateSchema = {
   id: z.string().uuid("Entry ID must be a valid UUID"),
+  if_match: z.string().min(1, "if_match is required — pass the etag returned by get/search/update"),
   content: z.string().optional(),
   title: z.string().min(1).optional(),
   type: z.string().min(1).optional(),
@@ -243,7 +306,7 @@ const updateSchema = {
 export function registerUpdateTool(server: McpServer, agentId: string): void {
   server.tool(
     "update",
-    "Update an entry's content (with re-embedding), title, type, mime_type, or metadata. Pass defer_embedding=true on autosaves to skip chunking/embedding/link-rescan; flush with a non-defer update on blur or navigate-away.",
+    "Update an entry. Requires if_match (etag from the most recent get/search/update); on mismatch returns PRECONDITION_FAILED so the caller can reload or force with a fresh etag. Pass defer_embedding=true on autosaves to skip chunking/embedding/link-rescan; flush with a non-defer update on blur or navigate-away.",
     updateSchema,
     async (params) => {
       return handleUpdate({ agentId, ...params });
