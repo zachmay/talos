@@ -40,8 +40,26 @@
       {
         "command": "talos.ping",
         "title": "Talos: Ping Server"
+      },
+      {
+        "command": "talos.refresh",
+        "title": "Talos: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "talos.openEntry",
+        "title": "Talos: Open Entry"
       }
     ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "talos.refresh",
+          "when": "view == talos.entries",
+          "group": "navigation"
+        }
+      ]
+    },
     "configuration": {
       "title": "Talos",
       "properties": {

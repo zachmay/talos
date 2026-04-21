@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { clearApiKey, ensureApiKey, getServerUrl, setApiKey } from "./config.js";
 import { McpClient } from "./mcp/client.js";
 import { listChildren } from "./mcp/tools.js";
+import { EntriesTreeProvider } from "./views/entries.js";
 
 // Lazy-initialized MCP client. Created on first tool use so the extension
 // doesn't prompt for an API key on activation alone.
@@ -21,7 +22,20 @@ async function getClient(ctx: vscode.ExtensionContext): Promise<McpClient | unde
 }
 
 export function activate(ctx: vscode.ExtensionContext): void {
+  const entriesProvider = new EntriesTreeProvider(() => getClient(ctx));
+  const entriesView = vscode.window.createTreeView("talos.entries", {
+    treeDataProvider: entriesProvider,
+    showCollapseAll: true,
+  });
+  ctx.subscriptions.push(entriesView);
+
   ctx.subscriptions.push(
+    vscode.commands.registerCommand("talos.refresh", () => entriesProvider.refresh()),
+    vscode.commands.registerCommand("talos.openEntry", (id: string) => {
+      // Phase 4a fills in the webview; for now, surface the id to confirm the
+      // click path is wired up.
+      vscode.window.showInformationMessage(`Talos: openEntry ${id}`);
+    }),
     vscode.commands.registerCommand("talos.setApiKey", async () => {
       const input = await vscode.window.showInputBox({
         title: "Talos API Key",
@@ -32,12 +46,14 @@ export function activate(ctx: vscode.ExtensionContext): void {
       if (input) {
         await setApiKey(ctx, input);
         client = undefined;
+        entriesProvider.refresh();
         vscode.window.showInformationMessage("Talos: API key stored.");
       }
     }),
     vscode.commands.registerCommand("talos.clearApiKey", async () => {
       await clearApiKey(ctx);
       client = undefined;
+      entriesProvider.refresh();
       vscode.window.showInformationMessage("Talos: API key cleared.");
     }),
     vscode.commands.registerCommand("talos.ping", async () => {
