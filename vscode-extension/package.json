@@ -49,6 +49,18 @@
       {
         "command": "talos.openEntry",
         "title": "Talos: Open Entry"
+      },
+      {
+        "command": "talos.navigateBack",
+        "title": "Talos: Back",
+        "icon": "$(arrow-left)",
+        "enablement": "talos.canNavigateBack"
+      },
+      {
+        "command": "talos.navigateForward",
+        "title": "Talos: Forward",
+        "icon": "$(arrow-right)",
+        "enablement": "talos.canNavigateForward"
       }
     ],
     "menus": {
@@ -58,8 +70,32 @@
           "when": "view == talos.entries",
           "group": "navigation"
         }
+      ],
+      "editor/title": [
+        {
+          "command": "talos.navigateBack",
+          "when": "activeWebviewPanelId == talos.entry",
+          "group": "navigation@1"
+        },
+        {
+          "command": "talos.navigateForward",
+          "when": "activeWebviewPanelId == talos.entry",
+          "group": "navigation@2"
+        }
       ]
     },
+    "keybindings": [
+      {
+        "command": "talos.navigateBack",
+        "key": "alt+left",
+        "when": "activeWebviewPanelId == talos.entry"
+      },
+      {
+        "command": "talos.navigateForward",
+        "key": "alt+right",
+        "when": "activeWebviewPanelId == talos.entry"
+      }
+    ],
     "configuration": {
       "title": "Talos",
       "properties": {

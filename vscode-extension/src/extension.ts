@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { clearApiKey, ensureApiKey, getServerUrl, setApiKey } from "./config.js";
 import { McpClient } from "./mcp/client.js";
-import { listChildren } from "./mcp/tools.js";
+import { listChildren, search } from "./mcp/tools.js";
 import { EntriesTreeProvider } from "./views/entries.js";
 import { EntryPanel } from "./panel.js";
 
@@ -34,6 +34,55 @@ export function activate(ctx: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("talos.refresh", () => entriesProvider.refresh()),
     vscode.commands.registerCommand("talos.openEntry", (id: string) => {
       EntryPanel.show(ctx, () => getClient(ctx), id);
+    }),
+    vscode.commands.registerCommand("talos.navigateBack", () => EntryPanel.instance?.navigateBack()),
+    vscode.commands.registerCommand("talos.navigateForward", () => EntryPanel.instance?.navigateForward()),
+    vscode.commands.registerCommand("talos.openWikilink", async (target: string) => {
+      const c = await getClient(ctx);
+      if (!c) return;
+      let hits;
+      try {
+        // Path-only search with a title column filter — avoids a semantic
+        // pass, gives us every entry whose title matches exactly.
+        hits = await search(c, { path: [], filter: { title: target }, count: 5 });
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        vscode.window.showErrorMessage(`Talos: search failed: ${msg}`);
+        return;
+      }
+      if (hits.length === 0) {
+        vscode.window.showInformationMessage(`Talos: no entry titled "${target}"`);
+        return;
+      }
+      if (hits.length === 1) {
+        EntryPanel.show(ctx, () => getClient(ctx), hits[0].id);
+        return;
+      }
+      const pick = await vscode.window.showQuickPick(
+        hits.map((h) => ({
+          label: h.title,
+          description: `/${h.path.join("/")}`,
+          detail: h.type,
+          id: h.id,
+        })),
+        { placeHolder: `Multiple entries titled "${target}"` },
+      );
+      if (pick) EntryPanel.show(ctx, () => getClient(ctx), pick.id);
+    }),
+    vscode.commands.registerCommand("talos.openTag", async (name: string) => {
+      const c = await getClient(ctx);
+      if (!c) return;
+      try {
+        const hits = await search(c, { path: ["tags", name], count: 1 });
+        if (hits[0]) {
+          EntryPanel.show(ctx, () => getClient(ctx), hits[0].id);
+        } else {
+          vscode.window.showInformationMessage(`Talos: no tag stub "${name}"`);
+        }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        vscode.window.showErrorMessage(`Talos: search failed: ${msg}`);
+      }
     }),
     vscode.commands.registerCommand("talos.setApiKey", async () => {
       const input = await vscode.window.showInputBox({

@@ -108,6 +108,25 @@ body {
   text-decoration: underline;
 }
 
+.talos-markdown a.talos-openWikilink {
+  color: var(--vscode-textLink-foreground);
+  background: var(--vscode-editorHoverWidget-background, rgba(127, 127, 127, 0.08));
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.talos-markdown a.talos-openWikilink::before { content: "\00AB"; opacity: 0.55; margin-right: 2px; }
+.talos-markdown a.talos-openWikilink::after  { content: "\00BB"; opacity: 0.55; margin-left: 2px; }
+
+.talos-markdown a.talos-openTag {
+  color: var(--vscode-charts-blue, var(--vscode-textLink-foreground));
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.9em;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(127, 127, 127, 0.08);
+}
+
 .talos-markdown table {
   border-collapse: collapse;
   margin: 1em 0;

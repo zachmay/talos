@@ -8,13 +8,17 @@ type WebviewMessage = { type: "ready" } | { type: "get-entry"; id: string };
 // Manages a single "Entry Viewer" webview panel. The panel is reused across
 // talos.openEntry invocations — we reveal it and send a new open-entry message
 // rather than spawning a fresh panel each time.
+//
+// Navigation history follows browser semantics: navigating to a new entry
+// truncates any forward history; back/forward move the cursor without
+// mutating the stack.
 export class EntryPanel {
   private static current: EntryPanel | undefined;
 
   static show(ctx: vscode.ExtensionContext, getClient: () => Promise<McpClient | undefined>, id: string): void {
     if (EntryPanel.current) {
       EntryPanel.current.panel.reveal(vscode.ViewColumn.Beside);
-      EntryPanel.current.openEntry(id);
+      EntryPanel.current.navigateTo(id);
       return;
     }
     const panel = vscode.window.createWebviewPanel(
@@ -23,6 +27,7 @@ export class EntryPanel {
       { viewColumn: vscode.ViewColumn.Beside, preserveFocus: false },
       {
         enableScripts: true,
+        enableCommandUris: ["talos.openEntry", "talos.openWikilink", "talos.openTag"],
         retainContextWhenHidden: true,
         localResourceRoots: [
           vscode.Uri.joinPath(ctx.extensionUri, "dist", "webview"),
@@ -31,10 +36,15 @@ export class EntryPanel {
       },
     );
     EntryPanel.current = new EntryPanel(ctx, panel, getClient);
-    EntryPanel.current.openEntry(id);
+    EntryPanel.current.navigateTo(id);
   }
 
-  private pendingId: string | undefined;
+  static get instance(): EntryPanel | undefined {
+    return EntryPanel.current;
+  }
+
+  private readonly history: string[] = [];
+  private cursor = -1;
   private readyReceived = false;
   private readonly disposables: vscode.Disposable[] = [];
 
@@ -50,17 +60,42 @@ export class EntryPanel {
     );
   }
 
-  openEntry(id: string): void {
-    this.pendingId = id;
-    if (this.readyReceived) {
-      this.fetchAndSend(id);
-    }
+  navigateTo(id: string): void {
+    // No-op if navigating to the currently displayed entry.
+    if (this.history[this.cursor] === id) return;
+    // Truncate forward history — classic browser semantics.
+    this.history.length = this.cursor + 1;
+    this.history.push(id);
+    this.cursor = this.history.length - 1;
+    this.syncNavContext();
+    if (this.readyReceived) this.fetchAndSend(id);
+  }
+
+  navigateBack(): void {
+    if (this.cursor <= 0) return;
+    this.cursor--;
+    this.syncNavContext();
+    this.fetchAndSend(this.history[this.cursor]);
+  }
+
+  navigateForward(): void {
+    if (this.cursor >= this.history.length - 1) return;
+    this.cursor++;
+    this.syncNavContext();
+    this.fetchAndSend(this.history[this.cursor]);
+  }
+
+  private syncNavContext(): void {
+    // Context keys let package.json gate the back/forward buttons' enablement.
+    vscode.commands.executeCommand("setContext", "talos.canNavigateBack", this.cursor > 0);
+    vscode.commands.executeCommand("setContext", "talos.canNavigateForward", this.cursor < this.history.length - 1);
   }
 
   private async onMessage(msg: WebviewMessage): Promise<void> {
     if (msg.type === "ready") {
       this.readyReceived = true;
-      if (this.pendingId) this.fetchAndSend(this.pendingId);
+      const current = this.history[this.cursor];
+      if (current) this.fetchAndSend(current);
     } else if (msg.type === "get-entry") {
       this.fetchAndSend(msg.id);
     }
@@ -110,6 +145,8 @@ export class EntryPanel {
 
   private dispose(): void {
     EntryPanel.current = undefined;
+    vscode.commands.executeCommand("setContext", "talos.canNavigateBack", false);
+    vscode.commands.executeCommand("setContext", "talos.canNavigateForward", false);
     for (const d of this.disposables) d.dispose();
   }
 }

@@ -3,15 +3,21 @@ import taskLists from "markdown-it-task-lists";
 import type { JSX } from "react";
 import { useMemo } from "react";
 import type { ViewerProps } from "./registry";
+import { tagPlugin, wikilinkPlugin } from "./wikilink-plugin";
 
 // markdown-it with GFM-ish config: linkify bare URLs, convert \n to <br>,
 // enable typographic replacements, and render GitHub-style task lists.
+// Wikilink + tag plugins emit command-URI anchors — VS Code intercepts
+// clicks on `command:talos.*` hrefs as long as the webview opts into them.
 const md = new MarkdownIt({
   html: false,
   linkify: true,
   breaks: false,
   typographer: true,
-}).use(taskLists, { enabled: false, label: true });
+})
+  .use(taskLists, { enabled: false, label: true })
+  .use(wikilinkPlugin)
+  .use(tagPlugin);
 
 export function MarkdownViewer({ entry }: ViewerProps): JSX.Element {
   const html = useMemo(() => md.render(entry.content ?? ""), [entry.content]);
