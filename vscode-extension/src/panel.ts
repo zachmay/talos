@@ -1,9 +1,30 @@
 import * as vscode from "vscode";
 import { McpClient } from "./mcp/client.js";
-import { get as getEntry } from "./mcp/tools.js";
+import { get as getEntry, update as updateEntry } from "./mcp/tools.js";
 
 // Shape of messages from the webview. Kept in sync with src/webview/types.ts.
-type WebviewMessage = { type: "ready" } | { type: "get-entry"; id: string };
+type WebviewMessage =
+  | { type: "ready" }
+  | { type: "get-entry"; id: string }
+  | {
+      type: "update-entry";
+      id: string;
+      title: string;
+      type_: string;
+      mime_type: string;
+      path: string[];
+      content: string;
+      metadata: Record<string, unknown> | null;
+    }
+  | { type: "invoke-command"; command: string; arg: string };
+
+// Commands the webview is allowed to invoke via the bridge. Allowlisted so
+// the webview can't trigger arbitrary extension commands.
+const WEBVIEW_INVOKABLE_COMMANDS = new Set([
+  "talos.openEntry",
+  "talos.openWikilink",
+  "talos.openTag",
+]);
 
 // Manages a single "Entry Viewer" webview panel. The panel is reused across
 // talos.openEntry invocations — we reveal it and send a new open-entry message
@@ -98,6 +119,40 @@ export class EntryPanel {
       if (current) this.fetchAndSend(current);
     } else if (msg.type === "get-entry") {
       this.fetchAndSend(msg.id);
+    } else if (msg.type === "update-entry") {
+      this.handleUpdate(msg);
+    } else if (msg.type === "invoke-command") {
+      if (WEBVIEW_INVOKABLE_COMMANDS.has(msg.command)) {
+        vscode.commands.executeCommand(msg.command, msg.arg);
+      }
+    }
+  }
+
+  private async handleUpdate(msg: Extract<WebviewMessage, { type: "update-entry" }>): Promise<void> {
+    const client = await this.getClient();
+    if (!client) {
+      this.panel.webview.postMessage({
+        type: "entry-error",
+        id: msg.id,
+        error: "No API key configured",
+      });
+      return;
+    }
+    try {
+      // Per decision: always send the full mutable surface (title, path,
+      // mime_type, metadata) even when only content changed. Keeps the
+      // update path uniform regardless of which field the UI exposed.
+      await updateEntry(client, {
+        id: msg.id,
+        title: msg.title,
+        type: msg.type_,
+        mime_type: msg.mime_type,
+        content: msg.content,
+        metadata: msg.metadata,
+      });
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      vscode.window.showErrorMessage(`Talos: save failed: ${errMsg}`);
     }
   }
 

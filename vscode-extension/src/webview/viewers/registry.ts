@@ -3,6 +3,13 @@ import type { Entry } from "../types";
 
 export interface ViewerProps {
   entry: Entry;
+  // Called by editable viewers when the user changes content. Viewers that
+  // are read-only (or for non-text content) simply ignore this prop.
+  onEdit?: (content: string) => void;
+  // Fire-and-forget invocation of an allowlisted VS Code command. Used by
+  // viewers whose UI contains clickable elements (wikilinks, tags) that the
+  // editor swallows before command-URI navigation can fire.
+  onInvoke?: (command: string, arg: string) => void;
 }
 
 export interface Viewer {

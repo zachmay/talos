@@ -56,10 +56,28 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* Milkdown editor container — rendered content is under .milkdown .ProseMirror.
+ * Styling targets both so the rules apply whether we render live or read-only. */
+
+.talos-milkdown .milkdown {
+  outline: none;
+}
+.talos-milkdown .ProseMirror {
+  outline: none;
+  min-height: 200px;
+}
+.talos-milkdown .ProseMirror:focus {
+  outline: none;
+}
+
 .talos-markdown h1,
 .talos-markdown h2,
 .talos-markdown h3,
-.talos-markdown h4 {
+.talos-markdown h4,
+.talos-milkdown h1,
+.talos-milkdown h2,
+.talos-milkdown h3,
+.talos-milkdown h4 {
   margin-top: 1.5em;
   margin-bottom: 0.5em;
   font-weight: 600;
@@ -108,23 +126,33 @@ body {
   text-decoration: underline;
 }
 
-.talos-markdown a.talos-openWikilink {
+.talos-markdown a.talos-openWikilink,
+.talos-milkdown .talos-openWikilink {
   color: var(--vscode-textLink-foreground);
   background: var(--vscode-editorHoverWidget-background, rgba(127, 127, 127, 0.08));
   padding: 1px 4px;
   border-radius: 3px;
   font-weight: 500;
+  cursor: pointer;
+}
+.talos-milkdown .talos-openWikilink:hover {
+  text-decoration: underline;
 }
 .talos-markdown a.talos-openWikilink::before { content: "\00AB"; opacity: 0.55; margin-right: 2px; }
 .talos-markdown a.talos-openWikilink::after  { content: "\00BB"; opacity: 0.55; margin-left: 2px; }
 
-.talos-markdown a.talos-openTag {
+.talos-markdown a.talos-openTag,
+.talos-milkdown .talos-openTag {
   color: var(--vscode-charts-blue, var(--vscode-textLink-foreground));
   font-family: var(--vscode-editor-font-family, monospace);
   font-size: 0.9em;
   padding: 1px 4px;
   border-radius: 3px;
   background: rgba(127, 127, 127, 0.08);
+  cursor: pointer;
+}
+.talos-milkdown .talos-openTag:hover {
+  text-decoration: underline;
 }
 
 .talos-markdown table {

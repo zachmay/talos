@@ -10,6 +10,12 @@ import type { Entry, HostMessage, WebviewMessage } from "./types";
 
 export interface HostBridge {
   getEntry(id: string): Promise<Entry>;
+  // Fire-and-forget update. The extension host replies with a fresh
+  // entry-loaded event if the update succeeds, or entry-error otherwise.
+  updateEntry(entry: Entry, newContent: string): void;
+  // Fire-and-forget invocation of a VS Code command from inside the webview
+  // (used when ProseMirror swallows the click on an anchor's command URI).
+  invokeCommand(command: string, arg: string): void;
   onMessage(handler: (msg: HostMessage) => void): () => void;
   notifyReady(): void;
 }
@@ -62,6 +68,23 @@ export class VsCodeBridge implements HostBridge {
 
   notifyReady(): void {
     this.post({ type: "ready" });
+  }
+
+  updateEntry(entry: Entry, newContent: string): void {
+    this.post({
+      type: "update-entry",
+      id: entry.id,
+      title: entry.title,
+      type_: entry.type,
+      mime_type: entry.mime_type,
+      path: entry.path,
+      content: newContent,
+      metadata: entry.metadata,
+    });
+  }
+
+  invokeCommand(command: string, arg: string): void {
+    this.post({ type: "invoke-command", command, arg });
   }
 
   private post(msg: WebviewMessage): void {

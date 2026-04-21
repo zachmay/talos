@@ -60,6 +60,22 @@ export async function get(client: McpClient, id: string): Promise<Entry> {
   return client.callTool<Entry>("get", { id });
 }
 
+export interface UpdateArgs {
+  id: string;
+  content?: string;
+  title?: string;
+  type?: string;
+  mime_type?: string;
+  metadata?: Record<string, unknown> | null;
+}
+
+export async function update(client: McpClient, args: UpdateArgs): Promise<{ id: string }> {
+  // MCP update rejects `null` for metadata — we send an empty object instead.
+  const payload: Record<string, unknown> = { ...args };
+  if (payload.metadata === null) payload.metadata = {};
+  return client.callTool<{ id: string }>("update", payload);
+}
+
 export async function listChildren(client: McpClient, path: string[]): Promise<ListChildrenResult> {
   return client.callTool<ListChildrenResult>("list_children", { path });
 }

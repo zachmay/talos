@@ -1,15 +1,18 @@
 import type { JSX } from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { HostBridge } from "./host-bridge";
 import type { Entry, HostMessage } from "./types";
 import { FallbackViewer } from "./viewers/fallback";
 import { registerViewer, selectViewer } from "./viewers/registry";
-import { MarkdownViewer } from "./viewers/markdown";
+import { MilkdownViewer } from "./viewers/milkdown";
 
+// Milkdown is the primary markdown viewer (priority 10). The read-only
+// markdown-it viewer still lives in viewers/markdown.tsx and could be
+// re-registered at a lower priority if we want a source-mode toggle later.
 registerViewer({
-  id: "markdown",
+  id: "markdown-milkdown",
   mimeTypes: ["text/markdown", "text/x-markdown"],
-  component: MarkdownViewer,
+  component: MilkdownViewer,
   priority: 10,
 });
 registerViewer({
@@ -41,6 +44,21 @@ export function App({ bridge }: AppProps): JSX.Element {
     return off;
   }, [bridge]);
 
+  // Hooks must run unconditionally every render — declare callbacks before
+  // any early returns, using a guard for the pre-entry state.
+  const onEdit = useCallback(
+    (content: string) => {
+      if (entry) bridge.updateEntry(entry, content);
+    },
+    [bridge, entry],
+  );
+  const onInvoke = useCallback(
+    (command: string, arg: string) => {
+      bridge.invokeCommand(command, arg);
+    },
+    [bridge],
+  );
+
   if (error) {
     return <div className="talos-error">Error: {error}</div>;
   }
@@ -60,7 +78,7 @@ export function App({ bridge }: AppProps): JSX.Element {
           <span className="talos-type">{entry.type}</span>
         </div>
       </header>
-      <Viewer entry={entry} />
+      <Viewer entry={entry} onEdit={onEdit} onInvoke={onInvoke} />
     </div>
   );
 }

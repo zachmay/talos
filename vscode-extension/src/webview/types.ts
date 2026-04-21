@@ -24,4 +24,15 @@ export type HostMessage =
 // Messages from webview → extension host
 export type WebviewMessage =
   | { type: "ready" }
-  | { type: "get-entry"; id: string };
+  | { type: "get-entry"; id: string }
+  | {
+      type: "update-entry";
+      id: string;
+      title: string;
+      type_: string;
+      mime_type: string;
+      path: string[];
+      content: string;
+      metadata: Record<string, unknown> | null;
+    }
+  | { type: "invoke-command"; command: string; arg: string };
