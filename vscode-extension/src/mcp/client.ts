@@ -12,8 +12,42 @@ export interface McpClientOptions {
   apiKey: string;
 }
 
+// All error codes the MCP server and this client surface. Union keeps
+// call-site comparisons typo-safe and documents the full failure surface in
+// one place. Server-side sources:
+//   - tool validation: VALIDATION_ERROR
+//   - identity / access: NOT_FOUND
+//   - concurrency: PRECONDITION_FAILED (if_match mismatch)
+//   - content rules: DANGLING_LINK, AMBIGUOUS_LINK, COLLISION
+//   - derived work: EMBEDDING_FAILED
+//   - generic: TOOL_ERROR (tool returned isError without a recognized code)
+//   - transport: HTTP_ERROR, NO_RESPONSE, NO_RESULT, NO_CONTENT, PARSE_ERROR,
+//     INIT_FAILED, RPC_ERROR
+// New codes MUST be added here before being thrown in code so the compiler
+// flags every consumer that should handle them.
+export type McpErrorCode =
+  | "VALIDATION_ERROR"
+  | "NOT_FOUND"
+  | "PRECONDITION_FAILED"
+  | "DANGLING_LINK"
+  | "AMBIGUOUS_LINK"
+  | "COLLISION"
+  | "EMBEDDING_FAILED"
+  | "TOOL_ERROR"
+  | "HTTP_ERROR"
+  | "NO_RESPONSE"
+  | "NO_RESULT"
+  | "NO_CONTENT"
+  | "PARSE_ERROR"
+  | "INIT_FAILED"
+  | "RPC_ERROR";
+
 export class McpError extends Error {
-  constructor(public code: string, message: string) {
+  // data carries the full parsed error payload from the tool (including
+  // type-specific extras like `conflicts` on COLLISION). Callers cast when
+  // they need specifics — discriminated-union typing on data is deliberately
+  // deferred until there's a second consumer beyond the extension.
+  constructor(public code: McpErrorCode, message: string, public data?: unknown) {
     super(message);
     this.name = "McpError";
   }
@@ -72,7 +106,14 @@ export class McpClient {
     }
     if (result.isError) {
       const err = parsed as { error?: string; message?: string };
-      throw new McpError(err.error ?? "TOOL_ERROR", err.message ?? "Tool returned an error");
+      // Pass the full parsed payload along as `data` so call sites can read
+      // type-specific extras (e.g. `conflicts` on COLLISION) without
+      // re-parsing.
+      throw new McpError(
+        (err.error as McpErrorCode) ?? "TOOL_ERROR",
+        err.message ?? "Tool returned an error",
+        parsed,
+      );
     }
     return parsed as T;
   }

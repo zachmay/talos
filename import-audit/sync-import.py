@@ -105,6 +105,9 @@ def insert_entry(session_id, entry, req_id=1):
         "path": entry["path"],
         "metadata": entry["metadata"],
         "verbose": True,
+        # Legacy vault has pre-existing (path, title) duplicates that are
+        # authoritatively the vault's state; bypass the collision check.
+        "allow_collision": True,
     }
     return parse_result(call_tool(session_id, "insert", args, req_id=req_id))
 
@@ -125,6 +128,9 @@ def update_entry(session_id, guid, entry, req_id=1):
         "mime_type": entry.get("mime_type", "text/markdown"),
         "metadata": entry["metadata"],
         "verbose": True,
+        # Legacy vault has pre-existing (path, title) duplicates we imported
+        # authoritatively; bypass the collision check on bulk resync.
+        "allow_collision": True,
     }
     # Only include content if non-empty (update tool rejects empty)
     if entry["content"]:

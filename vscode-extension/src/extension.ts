@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { clearApiKey, ensureApiKey, getServerUrl, setApiKey } from "./config.js";
-import { McpClient } from "./mcp/client.js";
+import { McpClient, McpError } from "./mcp/client.js";
 import { insert, listChildren, search } from "./mcp/tools.js";
 import { EntriesTreeProvider } from "./views/entries.js";
 import { BacklinksTreeProvider } from "./views/backlinks.js";
@@ -34,6 +34,57 @@ function parsePath(input: string): string[] {
     .split("/")
     .map((s) => s.trim())
     .filter((s) => s.length > 0);
+}
+
+// Attempt a new-note insert; on COLLISION, offer Open Existing / Rename /
+// Cancel. Rename loops back into itself with a fresh title prompt.
+async function tryCreateNote(
+  ctx: vscode.ExtensionContext,
+  client: McpClient,
+  title: string,
+  path: string[],
+  entriesProvider: EntriesTreeProvider,
+  recentProvider: RecentTreeProvider,
+): Promise<void> {
+  try {
+    const res = await insert(client, {
+      title,
+      type: "note",
+      content: "",
+      path,
+      mime_type: "text/markdown",
+    });
+    entriesProvider.refresh();
+    recentProvider.refresh();
+    EntryPanel.show(ctx, () => getClient(ctx), res.id);
+  } catch (err: unknown) {
+    if (err instanceof McpError && err.code === "COLLISION") {
+      const data = err.data as { conflicts?: string[] } | undefined;
+      const existingId = data?.conflicts?.[0];
+      const pick = await vscode.window.showInformationMessage(
+        `A note titled "${title}" already exists at /${path.join("/")}.`,
+        { modal: true },
+        "Open Existing",
+        "Choose Different Title",
+      );
+      if (pick === "Open Existing" && existingId) {
+        EntryPanel.show(ctx, () => getClient(ctx), existingId);
+      } else if (pick === "Choose Different Title") {
+        const newTitle = await vscode.window.showInputBox({
+          title: "New Talos Note — Choose Title",
+          prompt: `A note titled "${title}" exists at /${path.join("/")}. Pick a different title.`,
+          value: title,
+          ignoreFocusOut: true,
+        });
+        if (newTitle && newTitle.trim() && newTitle.trim() !== title) {
+          await tryCreateNote(ctx, client, newTitle.trim(), path, entriesProvider, recentProvider);
+        }
+      }
+      return;
+    }
+    const msg = err instanceof Error ? err.message : String(err);
+    vscode.window.showErrorMessage(`Talos: create failed: ${msg}`);
+  }
 }
 
 // vscode://talos.talos-vscode/entry/<uuid> opens that entry in the viewer.
@@ -114,21 +165,7 @@ export function activate(ctx: vscode.ExtensionContext): void {
         if (!pathInput) return;
         path = parsePath(pathInput);
       }
-      try {
-        const res = await insert(c, {
-          title: title.trim(),
-          type: "note",
-          content: "",
-          path,
-          mime_type: "text/markdown",
-        });
-        entriesProvider.refresh();
-        recentProvider.refresh();
-        EntryPanel.show(ctx, () => getClient(ctx), res.id);
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err);
-        vscode.window.showErrorMessage(`Talos: create failed: ${msg}`);
-      }
+      await tryCreateNote(ctx, c, title.trim(), path, entriesProvider, recentProvider);
     }),
     vscode.commands.registerCommand("talos.refreshRecent", () => recentProvider.refresh()),
     vscode.commands.registerCommand("talos.search", async () => {

@@ -4,7 +4,15 @@ import { withAgent } from "../db.js";
 
 import { createEmbeddingProvider } from "../providers/interface.js";
 import { chunkText } from "../chunker.js";
+import { findCollisions } from "../collisions.js";
 import { scanAndStoreLinks, DanglingLinkError, AmbiguousLinkError } from "../links.js";
+
+class CollisionError extends Error {
+  constructor(public conflicts: string[]) {
+    super(`COLLISION: ${conflicts.length} conflicting entr${conflicts.length === 1 ? "y" : "ies"}`);
+    this.name = "CollisionError";
+  }
+}
 
 
 interface InsertInput {
@@ -17,6 +25,11 @@ interface InsertInput {
   chunk_size?: number;
   chunk_overlap?: number;
   verbose?: boolean;
+  // When true, skips the (path, title) collision check. Intended for bulk
+  // import paths where duplicates in the source are expected and authoritative
+  // (e.g., sync-import from a vault with pre-existing dupes). Interactive
+  // writes (extension, triage, Claude-as-editor) should leave this false.
+  allow_collision?: boolean;
 }
 
 interface ToolResult {
@@ -25,15 +38,15 @@ interface ToolResult {
   isError?: true;
 }
 
-function toolError(code: string, message: string): ToolResult {
+function toolError(code: string, message: string, extra?: Record<string, unknown>): ToolResult {
   return {
-    content: [{ type: "text" as const, text: JSON.stringify({ error: code, message }) }],
+    content: [{ type: "text" as const, text: JSON.stringify({ error: code, message, ...(extra ?? {}) }) }],
     isError: true,
   };
 }
 
 export async function _handleInsert(input: InsertInput, agentId: string): Promise<ToolResult> {
-  const { content, title, type, path, mime_type, metadata, chunk_size, chunk_overlap, verbose } = input;
+  const { content, title, type, path, mime_type, metadata, chunk_size, chunk_overlap, verbose, allow_collision } = input;
 
   // Chunk config
   const chunkSize = chunk_size ?? parseInt(process.env.CHUNK_SIZE ?? "2000", 10);
@@ -55,6 +68,12 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
   let row: any;
   try {
     row = await withAgent(agentId, async (client) => {
+      if (!allow_collision) {
+        const conflicts = await findCollisions(client, path ?? [], title);
+        if (conflicts.length > 0) {
+          throw new CollisionError(conflicts);
+        }
+      }
       // Insert entry first to get ID for audit trail
       const entryResult = await client.query(
         `INSERT INTO entries (agent_id, content, path, title, type, mime_type, metadata)
@@ -94,6 +113,13 @@ export async function _handleInsert(input: InsertInput, agentId: string): Promis
       return entry;
     });
   } catch (err: any) {
+    if (err instanceof CollisionError) {
+      return toolError(
+        "COLLISION",
+        `entry "${title}" already exists at /${(path ?? []).join("/")}`,
+        { conflicts: err.conflicts },
+      );
+    }
     if (err instanceof DanglingLinkError) {
       return toolError("DANGLING_LINK", err.message);
     }
@@ -152,6 +178,7 @@ export function registerInsertTool(server: McpServer, agentId: string): void {
         chunk_size: z.number().int().positive().optional().describe("Override default chunk size in chars"),
         chunk_overlap: z.number().int().min(0).optional().describe("Override default chunk overlap in chars"),
         verbose: z.boolean().optional().describe("Return full metadata in response"),
+        allow_collision: z.boolean().optional().describe("Skip the (path, title) collision check. For bulk imports with authoritative duplicates; interactive writes should leave this false so COLLISION errors surface."),
       },
     },
     async (input) => {

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { withAgent } from "../db.js";
 
 import { chunkText } from "../chunker.js";
+import { findCollisions } from "../collisions.js";
 import { computeEtag } from "../etag.js";
 import { createEmbeddingProvider } from "../providers/interface.js";
 import { scanAndStoreLinks, DanglingLinkError, AmbiguousLinkError } from "../links.js";
@@ -13,9 +14,9 @@ interface ToolResult {
   isError?: true;
 }
 
-function toolError(code: string, message: string): ToolResult {
+function toolError(code: string, message: string, extra?: Record<string, unknown>): ToolResult {
   return {
-    content: [{ type: "text" as const, text: JSON.stringify({ error: code, message }) }],
+    content: [{ type: "text" as const, text: JSON.stringify({ error: code, message, ...(extra ?? {}) }) }],
     isError: true,
   };
 }
@@ -33,6 +34,7 @@ interface UpdateParams {
   title?: string;
   type?: string;
   mime_type?: string;
+  path?: string[];
   metadata?: Record<string, unknown>;
   chunk_size?: number;
   chunk_overlap?: number;
@@ -43,6 +45,47 @@ interface UpdateParams {
   // for autosave; the client should issue a non-defer update on blur,
   // navigate-away, or panel close to catch the embeddings up.
   defer_embedding?: boolean;
+  // When true, skip the (path, title) collision check. See UpdateParams.
+  allow_collision?: boolean;
+}
+
+// Raised inside the update transaction when a path/title change would
+// produce a (path, title) pair already used by some other entry. Bubbled
+// out of each path-specific try/catch so we can respond with COLLISION +
+// conflicting ids.
+class UpdateCollisionError extends Error {
+  constructor(public conflicts: string[]) {
+    super("COLLISION");
+    this.name = "UpdateCollisionError";
+  }
+}
+
+// Called inside the update transaction after the if_match check. Only
+// rejects when the update would NEWLY create a collision — edits that leave
+// (path, title) unchanged never trigger, and an existing duplicate that
+// predates the write doesn't count against an in-place update.
+async function checkCollision(
+  client: import("pg").PoolClient,
+  id: string,
+  newPath: string[] | null,
+  newTitle: string | null,
+): Promise<void> {
+  // Fetch the current (path, title) so we can determine whether this update
+  // actually changes the pair, and what the post-update pair would be.
+  const currentResult = await client.query(
+    "SELECT path, title FROM entries WHERE id = $1",
+    [id],
+  );
+  if (currentResult.rowCount === 0) return;
+  const current = currentResult.rows[0];
+  const effectivePath = newPath ?? current.path ?? [];
+  const effectiveTitle = newTitle ?? current.title;
+  // No-op if neither changed.
+  const pathChanged = newPath !== null && JSON.stringify(newPath) !== JSON.stringify(current.path);
+  const titleChanged = newTitle !== null && newTitle !== current.title;
+  if (!pathChanged && !titleChanged) return;
+  const conflicts = await findCollisions(client, effectivePath, effectiveTitle, id);
+  if (conflicts.length > 0) throw new UpdateCollisionError(conflicts);
 }
 
 // Helper: fetches a row by id, computes its current etag, and returns both.
@@ -68,7 +111,7 @@ async function checkIfMatch(
 }
 
 export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
-  const { agentId, id, if_match, content, title, type, mime_type, metadata, verbose, defer_embedding } = params;
+  const { agentId, id, if_match, content, title, type, mime_type, path, metadata, verbose, defer_embedding, allow_collision } = params;
 
   // Validate: at least one updatable field
   if (
@@ -76,11 +119,12 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     title === undefined &&
     type === undefined &&
     mime_type === undefined &&
+    path === undefined &&
     metadata === undefined
   ) {
     return toolError(
       "VALIDATION_ERROR",
-      "At least one of content, title, type, mime_type, or metadata must be provided"
+      "At least one of content, title, type, mime_type, path, or metadata must be provided"
     );
   }
 
@@ -100,6 +144,7 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
   if (title !== undefined) { setClauses.push(`title = $${p++}`); values.push(title); }
   if (type !== undefined) { setClauses.push(`type = $${p++}`); values.push(type); }
   if (mime_type !== undefined) { setClauses.push(`mime_type = $${p++}`); values.push(mime_type); }
+  if (path !== undefined) { setClauses.push(`path = $${p++}::text[]`); values.push(path); }
   if (metadata !== undefined) { setClauses.push(`metadata = $${p++}`); values.push(JSON.stringify(metadata)); }
   setClauses.push(`updated_at = NOW()`);
 
@@ -114,6 +159,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     try {
       row = await withAgent(agentId, async (client) => {
         await checkIfMatch(client, id, if_match);
+        if (!allow_collision) {
+          await checkCollision(client, id, path ?? null, title ?? null);
+        }
         const result = await client.query(
           `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}, content, metadata, path`,
           values
@@ -127,6 +175,13 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       }
       if (err instanceof Error && err.message === "PRECONDITION_FAILED") {
         return toolError("PRECONDITION_FAILED", "if_match does not match current etag");
+      }
+      if (err instanceof UpdateCollisionError) {
+        return toolError(
+          "COLLISION",
+          "another entry already exists at the target (path, title)",
+          { conflicts: err.conflicts },
+        );
       }
       throw err;
     }
@@ -170,6 +225,9 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     try {
       row = await withAgent(agentId, async (client) => {
         await checkIfMatch(client, id, if_match);
+        if (!allow_collision) {
+          await checkCollision(client, id, path ?? null, title ?? null);
+        }
         await client.query("DELETE FROM chunks WHERE entry_id = $1", [id]);
 
         const updateResult = await client.query(
@@ -204,6 +262,13 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
       }
       if (err instanceof Error && err.message === "PRECONDITION_FAILED") {
         return toolError("PRECONDITION_FAILED", "if_match does not match current etag");
+      }
+      if (err instanceof UpdateCollisionError) {
+        return toolError(
+          "COLLISION",
+          "another entry already exists at the target (path, title)",
+          { conflicts: err.conflicts },
+        );
       }
       if (err instanceof DanglingLinkError) {
         return toolError("DANGLING_LINK", err.message);
@@ -240,11 +305,14 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     };
   }
 
-  // Non-content update path (metadata/title/type/mime_type only)
+  // Non-content update path (metadata/title/type/mime_type/path only)
   let row: any;
   try {
     row = await withAgent(agentId, async (client) => {
       await checkIfMatch(client, id, if_match);
+      if (!allow_collision) {
+        await checkCollision(client, id, path ?? null, title ?? null);
+      }
       const result = await client.query(
         `UPDATE entries SET ${setClauses.join(", ")} WHERE id = $1 RETURNING ${returningCols}, content, metadata, path`,
         values
@@ -260,6 +328,13 @@ export async function handleUpdate(params: UpdateParams): Promise<ToolResult> {
     }
     if (err instanceof Error && err.message === "PRECONDITION_FAILED") {
       return toolError("PRECONDITION_FAILED", "if_match does not match current etag");
+    }
+    if (err instanceof UpdateCollisionError) {
+      return toolError(
+        "COLLISION",
+        "another entry already exists at the target (path, title)",
+        { conflicts: err.conflicts },
+      );
     }
     throw err;
   }
@@ -296,17 +371,19 @@ const updateSchema = {
   title: z.string().min(1).optional(),
   type: z.string().min(1).optional(),
   mime_type: z.string().optional(),
+  path: z.array(z.string()).optional(),
   metadata: z.record(z.unknown()).optional(),
   chunk_size: z.number().int().positive().optional(),
   chunk_overlap: z.number().int().min(0).optional(),
   verbose: z.boolean().optional(),
   defer_embedding: z.boolean().optional(),
+  allow_collision: z.boolean().optional(),
 };
 
 export function registerUpdateTool(server: McpServer, agentId: string): void {
   server.tool(
     "update",
-    "Update an entry. Requires if_match (etag from the most recent get/search/update); on mismatch returns PRECONDITION_FAILED so the caller can reload or force with a fresh etag. Pass defer_embedding=true on autosaves to skip chunking/embedding/link-rescan; flush with a non-defer update on blur or navigate-away.",
+    "Update an entry. Requires if_match (etag from the most recent get/search/update); on mismatch returns PRECONDITION_FAILED. Changing path and/or title runs a (path, title) collision check; pass allow_collision=true to bypass (intended for bulk imports). Pass defer_embedding=true on autosaves to skip chunking/embedding/link-rescan; flush with a non-defer update on blur or navigate-away.",
     updateSchema,
     async (params) => {
       return handleUpdate({ agentId, ...params });
