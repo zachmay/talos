@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { clearApiKey, ensureApiKey, getServerUrl, setApiKey } from "./config.js";
 import { McpClient } from "./mcp/client.js";
-import { listChildren, search } from "./mcp/tools.js";
+import { insert, listChildren, search } from "./mcp/tools.js";
 import { EntriesTreeProvider } from "./views/entries.js";
 import { BacklinksTreeProvider } from "./views/backlinks.js";
 import { RecentTreeProvider } from "./views/recent.js";
@@ -26,6 +26,14 @@ async function getClient(ctx: vscode.ExtensionContext): Promise<McpClient | unde
 
 interface SearchPickItem extends vscode.QuickPickItem {
   id: string;
+}
+
+// Parses "/foo/bar" or "foo/bar" into ["foo", "bar"]; drops empty segments.
+function parsePath(input: string): string[] {
+  return input
+    .split("/")
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
 }
 
 // vscode://talos.talos-vscode/entry/<uuid> opens that entry in the viewer.
@@ -74,6 +82,53 @@ export function activate(ctx: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("talos.refresh", () => {
       entriesProvider.refresh();
       recentProvider.refresh();
+    }),
+    vscode.commands.registerCommand("talos.newNote", async (context?: { path?: string[] }) => {
+      const c = await getClient(ctx);
+      if (!c) return;
+      // Folder-context invocation fixes the path; title-bar invocation lets
+      // the user edit it (defaulting to /inbox per CLAUDE.md's "unsorted
+      // captures" convention).
+      const fixedPath = context?.path && context.path.length > 0 ? context.path : undefined;
+      const title = await vscode.window.showInputBox({
+        title: "New Talos Note",
+        prompt: fixedPath ? `Title for new note in /${fixedPath.join("/")}` : "Title for new note",
+        ignoreFocusOut: true,
+      });
+      if (!title) return;
+
+      let path: string[];
+      if (fixedPath) {
+        path = fixedPath;
+      } else {
+        const pathInput = await vscode.window.showInputBox({
+          title: "New Talos Note — Path",
+          prompt: "Target path (segments separated by /)",
+          value: "/inbox",
+          ignoreFocusOut: true,
+          validateInput: (v) => {
+            const segs = parsePath(v);
+            return segs.length > 0 ? undefined : "Path must have at least one segment";
+          },
+        });
+        if (!pathInput) return;
+        path = parsePath(pathInput);
+      }
+      try {
+        const res = await insert(c, {
+          title: title.trim(),
+          type: "note",
+          content: "",
+          path,
+          mime_type: "text/markdown",
+        });
+        entriesProvider.refresh();
+        recentProvider.refresh();
+        EntryPanel.show(ctx, () => getClient(ctx), res.id);
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        vscode.window.showErrorMessage(`Talos: create failed: ${msg}`);
+      }
     }),
     vscode.commands.registerCommand("talos.refreshRecent", () => recentProvider.refresh()),
     vscode.commands.registerCommand("talos.search", async () => {

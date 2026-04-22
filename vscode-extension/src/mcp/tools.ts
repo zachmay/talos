@@ -61,6 +61,28 @@ export async function get(client: McpClient, id: string): Promise<Entry> {
   return client.callTool<Entry>("get", { id });
 }
 
+export interface InsertArgs {
+  title: string;
+  type: string;
+  content: string;
+  path?: string[];
+  mime_type?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface InsertResult {
+  id: string;
+  title: string;
+  type: string;
+  mime_type: string;
+  content: string | null;
+  path: string[];
+}
+
+export async function insert(client: McpClient, args: InsertArgs): Promise<InsertResult> {
+  return client.callTool<InsertResult>("insert", { ...args });
+}
+
 export interface UpdateArgs {
   id: string;
   if_match: string;

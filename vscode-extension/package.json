@@ -79,24 +79,41 @@
         "command": "talos.refreshRecent",
         "title": "Talos: Refresh Recent",
         "icon": "$(refresh)"
+      },
+      {
+        "command": "talos.newNote",
+        "title": "Talos: New Note",
+        "icon": "$(new-file)"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "talos.search",
+          "command": "talos.newNote",
           "when": "view == talos.entries",
           "group": "navigation@1"
         },
         {
-          "command": "talos.refresh",
+          "command": "talos.search",
           "when": "view == talos.entries",
           "group": "navigation@2"
+        },
+        {
+          "command": "talos.refresh",
+          "when": "view == talos.entries",
+          "group": "navigation@3"
         },
         {
           "command": "talos.refreshRecent",
           "when": "view == talos.recent",
           "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "talos.newNote",
+          "when": "view == talos.entries && viewItem == talos.folder",
+          "group": "inline"
         }
       ],
       "editor/title": [
