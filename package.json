@@ -1,0 +1,26 @@
+{
+  "name": "talos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-hosted agentic AI platform with semantic memory and a VS Code editor.",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "mcp:build": "pnpm --filter talos-mcp test",
+    "mcp:test": "pnpm --filter talos-mcp test",
+    "ext:build": "pnpm --filter talos-vscode build",
+    "ext:typecheck": "pnpm --filter talos-vscode typecheck",
+    "ext:watch": "pnpm --filter talos-vscode watch",
+    "typecheck": "pnpm --recursive --if-present typecheck",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  }
+}

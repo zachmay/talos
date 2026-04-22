@@ -32,7 +32,8 @@ services:
 
   mcp:
     build:
-      context: ./mcp
+      context: .
+      dockerfile: packages/mcp/Dockerfile
     restart: unless-stopped
     networks:
       - backend
