@@ -2,7 +2,7 @@
 
 A self-hosted agentic AI platform: semantic memory (PostgreSQL + pgvector) behind a Model Context Protocol (MCP) server, a VS Code editor for browsing/writing notes, and LibreChat as the default conversational interface. Built to run on your own hardware with your own keys.
 
-**Status:** alpha. Single-user focus. See [ROADMAP](.planning/ROADMAP.md) for what's shipped, in flight, and in backlog.
+**Status:** alpha, not yet published. Single-user focus. See [LICENSE](LICENSE) (proprietary, all rights reserved) and [ROADMAP](.planning/ROADMAP.md) for what's shipped, in flight, and in backlog.
 
 ## What's in the box
 
@@ -30,20 +30,16 @@ Architecture, threat model, and posture details: [SECURITY.md](SECURITY.md). Ope
 ## First-time setup
 
 ```bash
-# 1. Clone
-git clone https://github.com/your-fork/talos.git
-cd talos
-
-# 2. Generate secrets (db passwords, agent bearer, LibreChat JWT, etc.)
+# 1. Generate secrets (db passwords, agent bearer, LibreChat JWT, etc.)
 ./talos setup
 
-# 3. Populate the embedding key (OpenRouter by default)
+# 2. Populate the embedding key (OpenRouter by default)
 # Edit secrets/embedding_api_key.txt and replace the placeholder
 
-# 4. Install workspace dependencies for local dev
+# 3. Install workspace dependencies for local dev
 pnpm install
 
-# 5. Start services
+# 4. Start services
 docker compose up -d
 ./talos health        # smoke-test the stack
 ```

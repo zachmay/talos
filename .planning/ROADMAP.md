@@ -1,5 +1,7 @@
 # Roadmap: Talos
 
+> **Note on scope:** the VS Code editor (`packages/vscode-extension`) and several MCP additions that support it shipped outside this GSD phase structure — see the **Backlog** section below and `git log` for details. The formal phases below (1–7) track the original 2026-Q1 roadmap for the core platform (DB, MCP, agent, ops, compliance, TUI, subagents). If you're picking up new work, promote a Backlog item to a proper phase via `/gsd:add-phase`.
+
 ## Overview
 
 Talos delivers a self-hosted agentic AI platform in five phases: first a secure Postgres foundation with pgvector and Docker networking, then the MCP server that makes semantic CRUD possible, then the sandboxed agent harness, then operational tooling (backup, audit, portability), and finally explicit privacy and security documentation compliance. Each phase delivers a coherent, testable capability that the next phase depends on.
@@ -180,6 +182,12 @@ proper phase via `/gsd:add-phase` when work starts.
 - [ ] **Generalized Obsidian importer** — YAML-configurable folder→path routing, replaces the vault-specific scripts in `import-audit/`.
 - [ ] **`./talos sync` CLI wrapper** — one-command invocation of sync-import.py; was deferred until the generalized importer.
 - [ ] **CLAUDE.md sync workflow docs** — deferred with the CLI wrapper; describes when and how to run sync.
+
+### Test debt
+
+- [ ] **Rehab MCP test suite for post-4c/8 tool contracts** — `tests/tools/insert.test.ts` and `tests/tools/update.test.ts` currently fail (~11 tests). The mocks predate title/type promotion, `if_match` enforcement, and collision checks. 8 other test files pass. Needs fresh mocks + updated expectations + tests for the new error codes (COLLISION, PRECONDITION_FAILED).
+- [ ] **Extension has no tests at all** — `packages/vscode-extension` ships zero unit/integration tests. Viewer registry and autocomplete trigger detection are good candidates for pure-unit tests.
+- [ ] **No CI** — typecheck/build/test not enforced. A simple GitHub Actions workflow running `pnpm typecheck && pnpm mcp:test` would catch regressions.
 
 ### Editor niceties (further polish)
 
