@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import type { HostBridge } from "../host-bridge";
 import type { Entry } from "../types";
 
 export interface EditOptions {
@@ -17,6 +18,9 @@ export interface ViewerProps {
   // viewers whose UI contains clickable elements (wikilinks, tags) that the
   // editor swallows before command-URI navigation can fire.
   onInvoke?: (command: string, arg: string) => void;
+  // Optional full bridge reference — viewers that need richer host calls
+  // (e.g. title-substring search for autocomplete) accept it.
+  bridge?: HostBridge;
 }
 
 export interface Viewer {

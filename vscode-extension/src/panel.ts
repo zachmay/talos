@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { McpClient, McpError } from "./mcp/client.js";
-import { backlinks as fetchBacklinks, get as getEntry, update as updateEntry } from "./mcp/tools.js";
+import { backlinks as fetchBacklinks, get as getEntry, searchTitles, update as updateEntry } from "./mcp/tools.js";
 
 // Shape of messages from the webview. Kept in sync with src/webview/types.ts.
 type WebviewMessage =
@@ -18,7 +18,12 @@ type WebviewMessage =
       metadata: Record<string, unknown> | null;
       defer: boolean;
     }
-  | { type: "invoke-command"; command: string; arg: string };
+  | { type: "invoke-command"; command: string; arg: string }
+  | {
+      type: "search-titles";
+      request_id: number;
+      args: { query: string; limit?: number; path_prefix?: string[]; type?: string };
+    };
 
 // Commands the webview is allowed to invoke via the bridge. Allowlisted so
 // the webview can't trigger arbitrary extension commands.
@@ -145,6 +150,35 @@ export class EntryPanel {
       if (WEBVIEW_INVOKABLE_COMMANDS.has(msg.command)) {
         vscode.commands.executeCommand(msg.command, msg.arg);
       }
+    } else if (msg.type === "search-titles") {
+      this.handleSearchTitles(msg);
+    }
+  }
+
+  private async handleSearchTitles(msg: Extract<WebviewMessage, { type: "search-titles" }>): Promise<void> {
+    const client = await this.getClient();
+    if (!client) {
+      this.panel.webview.postMessage({
+        type: "search-titles-error",
+        request_id: msg.request_id,
+        error: "No API key configured",
+      });
+      return;
+    }
+    try {
+      const hits = await searchTitles(client, msg.args);
+      this.panel.webview.postMessage({
+        type: "search-titles-result",
+        request_id: msg.request_id,
+        hits,
+      });
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      this.panel.webview.postMessage({
+        type: "search-titles-error",
+        request_id: msg.request_id,
+        error: errMsg,
+      });
     }
   }
 

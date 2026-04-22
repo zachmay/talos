@@ -28,6 +28,20 @@ export interface Backlink {
   link_text: string;
 }
 
+export interface TitleHit {
+  id: string;
+  title: string;
+  type: string;
+  path: string[];
+}
+
+export interface SearchTitlesArgs {
+  query: string;
+  limit?: number;
+  path_prefix?: string[];
+  type?: string;
+}
+
 // Messages from extension host → webview
 export type HostMessage =
   | { type: "entry-loaded"; entry: Entry; backlinks: Backlink[] }
@@ -35,7 +49,9 @@ export type HostMessage =
   // etag so the next update uses a fresh one. Content is unchanged; no
   // editor remount.
   | { type: "entry-updated"; id: string; etag: string }
-  | { type: "entry-error"; id: string; error: string };
+  | { type: "entry-error"; id: string; error: string }
+  | { type: "search-titles-result"; request_id: number; hits: TitleHit[] }
+  | { type: "search-titles-error"; request_id: number; error: string };
 
 // Messages from webview → extension host
 export type WebviewMessage =
@@ -53,4 +69,5 @@ export type WebviewMessage =
       metadata: Record<string, unknown> | null;
       defer: boolean;
     }
-  | { type: "invoke-command"; command: string; arg: string };
+  | { type: "invoke-command"; command: string; arg: string }
+  | { type: "search-titles"; request_id: number; args: SearchTitlesArgs };

@@ -260,3 +260,78 @@ body {
   background: rgba(127, 127, 127, 0.1);
   border-radius: 2px;
 }
+
+/* Autocomplete popup — floats at the cursor when [[ or #<letter> is typed. */
+.talos-autocomplete {
+  z-index: 10000;
+  min-width: 240px;
+  max-width: 400px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--vscode-editorWidget-background, var(--vscode-editor-background));
+  color: var(--vscode-editorWidget-foreground, var(--vscode-foreground));
+  border: 1px solid var(--vscode-editorWidget-border, rgba(127, 127, 127, 0.3));
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  font-size: 0.85em;
+}
+
+.talos-autocomplete-header {
+  padding: 4px 10px;
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.8em;
+  color: var(--vscode-descriptionForeground);
+  border-bottom: 1px solid var(--vscode-editorWidget-border, rgba(127, 127, 127, 0.2));
+}
+
+.talos-autocomplete-empty {
+  padding: 8px 10px;
+  color: var(--vscode-descriptionForeground);
+  font-style: italic;
+}
+
+.talos-autocomplete ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.talos-autocomplete-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.talos-autocomplete-row-selected,
+.talos-autocomplete-row:hover {
+  background: var(--vscode-list-activeSelectionBackground, rgba(127, 127, 127, 0.2));
+  color: var(--vscode-list-activeSelectionForeground, inherit);
+}
+
+.talos-autocomplete-title {
+  flex: 0 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.talos-autocomplete-path {
+  flex: 1 1 auto;
+  color: var(--vscode-descriptionForeground);
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.85em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.talos-autocomplete-type {
+  flex: 0 0 auto;
+  font-size: 0.75em;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

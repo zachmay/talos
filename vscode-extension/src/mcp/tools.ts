@@ -146,3 +146,21 @@ export interface RecentHit {
 export async function recent(client: McpClient, limit = 50): Promise<RecentHit[]> {
   return client.callTool<RecentHit[]>("recent", { limit });
 }
+
+export interface TitleHit {
+  id: string;
+  title: string;
+  type: string;
+  path: string[];
+}
+
+export interface SearchTitlesArgs {
+  query: string;
+  limit?: number;
+  path_prefix?: string[];
+  type?: string;
+}
+
+export async function searchTitles(client: McpClient, args: SearchTitlesArgs): Promise<TitleHit[]> {
+  return client.callTool<TitleHit[]>("search_titles", { ...args });
+}

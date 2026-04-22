@@ -11,7 +11,15 @@ import { commonmark } from "@milkdown/preset-commonmark";
 import { gfm } from "@milkdown/preset-gfm";
 import { Milkdown, MilkdownProvider, useEditor } from "@milkdown/react";
 import type { JSX } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { HostBridge } from "../host-bridge";
+import {
+  autocompletePlugin,
+  type AutocompleteController,
+  type NavAction,
+  type Trigger,
+} from "./autocomplete-plugin";
+import { AutocompletePopup } from "./autocomplete-popup";
 import { talosDecorationsPlugin, type InvokeCommand } from "./milkdown-decorations";
 import type { ViewerProps } from "./registry";
 
@@ -23,10 +31,12 @@ function EditorHost({
   initialContent,
   onEdit,
   onInvoke,
+  bridge,
 }: {
   initialContent: string;
   onEdit?: EditCallback;
   onInvoke?: InvokeCommand;
+  bridge?: HostBridge;
 }) {
   // Ref wrappers so useEditor's closure always reads the current callbacks /
   // debounce handle without re-running on every render.
@@ -40,6 +50,14 @@ function EditorHost({
   // Last content we flushed (defer=false). Used to dedupe blur+unmount:
   // both fire on navigate-away, but only the first has real work to do.
   const lastFlushedRef = useRef<string | undefined>(undefined);
+
+  // Autocomplete state. Trigger is owned by the PM plugin and mirrored into
+  // React for popup rendering. Controller lets the popup dispatch the final
+  // insertion transaction; navHandlerRef is how PM keydown events (arrow /
+  // enter / escape) reach the popup without stealing focus from the editor.
+  const [trigger, setTrigger] = useState<Trigger | null>(null);
+  const controllerRef = useRef<AutocompleteController | null>(null);
+  const navHandlerRef = useRef<((action: NavAction) => void) | null>(null);
 
   const flush = () => {
     if (timeoutRef.current !== undefined) {
@@ -91,13 +109,37 @@ function EditorHost({
         talosDecorationsPlugin((command, arg) => {
           onInvokeRef.current?.(command, arg);
         }),
+      )
+      .use(
+        autocompletePlugin(
+          {
+            onTriggerChange: (t) => setTrigger(t),
+            onNav: (action) => navHandlerRef.current?.(action),
+          },
+          (c) => {
+            controllerRef.current = c;
+          },
+        ),
       ),
   );
 
-  return <Milkdown />;
+  return (
+    <>
+      <Milkdown />
+      {trigger && bridge && (
+        <AutocompletePopup
+          trigger={trigger}
+          bridge={bridge}
+          controller={controllerRef.current}
+          navHandlerRef={navHandlerRef}
+          onDismiss={() => setTrigger(null)}
+        />
+      )}
+    </>
+  );
 }
 
-export function MilkdownViewer({ entry, onEdit, onInvoke }: ViewerProps): JSX.Element {
+export function MilkdownViewer({ entry, onEdit, onInvoke, bridge }: ViewerProps): JSX.Element {
   return (
     <div className="talos-milkdown">
       <MilkdownProvider>
@@ -107,6 +149,7 @@ export function MilkdownViewer({ entry, onEdit, onInvoke }: ViewerProps): JSX.El
           initialContent={entry.content ?? ""}
           onEdit={onEdit}
           onInvoke={onInvoke}
+          bridge={bridge}
         />
       </MilkdownProvider>
     </div>

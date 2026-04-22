@@ -6,7 +6,7 @@
 // The UI depends only on the interface — swapping transports is a one-line
 // change in main.tsx.
 
-import type { Entry, HostMessage, WebviewMessage } from "./types";
+import type { Entry, HostMessage, SearchTitlesArgs, TitleHit, WebviewMessage } from "./types";
 
 export interface HostBridge {
   getEntry(id: string): Promise<Entry>;
@@ -16,6 +16,8 @@ export interface HostBridge {
   // Fire-and-forget invocation of a VS Code command from inside the webview
   // (used when ProseMirror swallows the click on an anchor's command URI).
   invokeCommand(command: string, arg: string): void;
+  // Async title-substring search — used by the autocomplete popup.
+  searchTitles(args: SearchTitlesArgs): Promise<TitleHit[]>;
   onMessage(handler: (msg: HostMessage) => void): () => void;
   notifyReady(): void;
 }
@@ -32,7 +34,9 @@ declare function acquireVsCodeApi(): VsCodeApi;
 export class VsCodeBridge implements HostBridge {
   private readonly vscode: VsCodeApi = acquireVsCodeApi();
   private readonly pending = new Map<string, { resolve: (e: Entry) => void; reject: (err: Error) => void }>();
+  private readonly searchPending = new Map<number, { resolve: (hits: TitleHit[]) => void; reject: (err: Error) => void }>();
   private readonly handlers = new Set<(msg: HostMessage) => void>();
+  private nextSearchId = 1;
 
   constructor() {
     window.addEventListener("message", (event) => {
@@ -48,6 +52,18 @@ export class VsCodeBridge implements HostBridge {
         if (pending) {
           this.pending.delete(msg.id);
           pending.reject(new Error(msg.error));
+        }
+      } else if (msg.type === "search-titles-result") {
+        const p = this.searchPending.get(msg.request_id);
+        if (p) {
+          this.searchPending.delete(msg.request_id);
+          p.resolve(msg.hits);
+        }
+      } else if (msg.type === "search-titles-error") {
+        const p = this.searchPending.get(msg.request_id);
+        if (p) {
+          this.searchPending.delete(msg.request_id);
+          p.reject(new Error(msg.error));
         }
       }
       for (const h of this.handlers) h(msg);
@@ -87,6 +103,14 @@ export class VsCodeBridge implements HostBridge {
 
   invokeCommand(command: string, arg: string): void {
     this.post({ type: "invoke-command", command, arg });
+  }
+
+  searchTitles(args: SearchTitlesArgs): Promise<TitleHit[]> {
+    return new Promise((resolve, reject) => {
+      const id = this.nextSearchId++;
+      this.searchPending.set(id, { resolve, reject });
+      this.post({ type: "search-titles", request_id: id, args });
+    });
   }
 
   private post(msg: WebviewMessage): void {

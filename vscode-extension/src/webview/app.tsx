@@ -92,7 +92,13 @@ export function App({ bridge }: AppProps): JSX.Element {
           (conflict "Reload") still remounts the viewer and drops any
           in-editor state. entry-updated bumps only the etag and preserves
           the key, keeping cursor/selection intact during autosave. */}
-      <Viewer key={`${entry.id}:${loadVersion}`} entry={entry} onEdit={onEdit} onInvoke={onInvoke} />
+      <Viewer
+        key={`${entry.id}:${loadVersion}`}
+        entry={entry}
+        onEdit={onEdit}
+        onInvoke={onInvoke}
+        bridge={bridge}
+      />
       <BacklinksSection backlinks={backlinks} onInvoke={onInvoke} />
     </div>
   );
