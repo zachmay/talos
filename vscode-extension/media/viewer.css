@@ -38,6 +38,7 @@ body {
   margin: 0 0 8px;
   font-size: 1.6em;
   font-weight: 600;
+  color: var(--vscode-charts-blue, var(--vscode-foreground));
 }
 
 .talos-meta {
@@ -45,6 +46,7 @@ body {
   gap: 16px;
   font-size: 0.85em;
   color: var(--vscode-descriptionForeground);
+  align-items: center;
 }
 
 .talos-path {
@@ -54,7 +56,22 @@ body {
 .talos-type {
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.85em;
+  color: var(--vscode-badge-foreground, var(--vscode-foreground));
+  background: var(--vscode-badge-background, rgba(127, 127, 127, 0.2));
 }
+
+/* Per-type badge color — uses a theme-wide chart color so it adapts on
+ * theme switches. [data-type="..."] is set by the App wrapper. */
+.talos-type[data-type="note"]       { background: color-mix(in srgb, var(--vscode-charts-blue)   25%, transparent); color: var(--vscode-charts-blue); }
+.talos-type[data-type="reference"]  { background: color-mix(in srgb, var(--vscode-charts-green)  25%, transparent); color: var(--vscode-charts-green); }
+.talos-type[data-type="concept"]    { background: color-mix(in srgb, var(--vscode-charts-purple) 25%, transparent); color: var(--vscode-charts-purple); }
+.talos-type[data-type="tag"]        { background: color-mix(in srgb, var(--vscode-charts-orange) 25%, transparent); color: var(--vscode-charts-orange); }
+.talos-type[data-type="agent-def"]  { background: color-mix(in srgb, var(--vscode-charts-red)    25%, transparent); color: var(--vscode-charts-red); }
+.talos-type[data-type="task"]       { background: color-mix(in srgb, var(--vscode-charts-yellow) 25%, transparent); color: var(--vscode-charts-yellow); }
+.talos-type[data-type="log"]        { background: color-mix(in srgb, var(--vscode-descriptionForeground) 25%, transparent); }
 
 /* Milkdown editor container — rendered content is under .milkdown .ProseMirror.
  * Styling targets both so the rules apply whether we render live or read-only. */
@@ -70,22 +87,21 @@ body {
   outline: none;
 }
 
-.talos-markdown h1,
-.talos-markdown h2,
-.talos-markdown h3,
-.talos-markdown h4,
-.talos-milkdown h1,
-.talos-milkdown h2,
-.talos-milkdown h3,
-.talos-milkdown h4 {
+.talos-markdown h1, .talos-markdown h2, .talos-markdown h3,
+.talos-markdown h4, .talos-markdown h5, .talos-markdown h6,
+.talos-milkdown h1, .talos-milkdown h2, .talos-milkdown h3,
+.talos-milkdown h4, .talos-milkdown h5, .talos-milkdown h6 {
   margin-top: 1.5em;
   margin-bottom: 0.5em;
-  font-weight: 600;
+  color: var(--vscode-charts-purple, var(--vscode-foreground));
 }
 
-.talos-markdown h1 { font-size: 1.4em; }
-.talos-markdown h2 { font-size: 1.25em; }
-.talos-markdown h3 { font-size: 1.1em; }
+.talos-markdown h1, .talos-milkdown h1 { font-size: 1.5em;  font-weight: 700; }
+.talos-markdown h2, .talos-milkdown h2 { font-size: 1.3em;  font-weight: 600; }
+.talos-markdown h3, .talos-milkdown h3 { font-size: 1.15em; font-weight: 600; }
+.talos-markdown h4, .talos-milkdown h4 { font-size: 1.05em; font-weight: 600; }
+.talos-markdown h5, .talos-milkdown h5 { font-size: 1em;    font-weight: 600; }
+.talos-markdown h6, .talos-milkdown h6 { font-size: 0.95em; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
 
 .talos-markdown p {
   margin: 0 0 1em;
@@ -143,12 +159,12 @@ body {
 
 .talos-markdown a.talos-openTag,
 .talos-milkdown .talos-openTag {
-  color: var(--vscode-charts-blue, var(--vscode-textLink-foreground));
+  color: var(--vscode-charts-orange, var(--vscode-textLink-foreground));
   font-family: var(--vscode-editor-font-family, monospace);
   font-size: 0.9em;
   padding: 1px 4px;
   border-radius: 3px;
-  background: rgba(127, 127, 127, 0.08);
+  background: color-mix(in srgb, var(--vscode-charts-orange) 12%, transparent);
   cursor: pointer;
 }
 .talos-milkdown .talos-openTag:hover {
@@ -233,7 +249,7 @@ body {
 }
 
 .talos-backlink-link {
-  color: var(--vscode-textLink-foreground);
+  color: var(--vscode-charts-blue, var(--vscode-textLink-foreground));
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;

@@ -85,7 +85,7 @@ export function App({ bridge }: AppProps): JSX.Element {
         <h1>{entry.title}</h1>
         <div className="talos-meta">
           <span className="talos-path">/{entry.path.join("/")}</span>
-          <span className="talos-type">{entry.type}</span>
+          <span className="talos-type" data-type={entry.type}>{entry.type}</span>
         </div>
       </header>
       {/* Key includes loadVersion so an entry-loaded for the *same* id
