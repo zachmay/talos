@@ -179,8 +179,8 @@ Set `EMBEDDING_PROVIDER=ollama` and configure `OLLAMA_BASE_URL` to point to a lo
 
 These are unresolved assumptions. Deploy at your own risk until each is addressed. Resolved items are removed from this section.
 
-**[BLOCKING] 1. DB port exposure**
-The `docker-compose.yml` ports mapping `"${DB_PORT:-5432}:5432"` binds Postgres to `0.0.0.0` by default. Any host on the network can connect to the database if no firewall is in place. Recommend binding to `127.0.0.1:${DB_PORT:-5432}:5432` for production deployments.
+**[RESOLVED] 1. DB port exposure** *(2026-04-22)*
+Postgres is now bound to `127.0.0.1:${DB_PORT:-5432}:5432` in `docker-compose.yml` and `docker-compose.override.yml`. Other hosts on the LAN can no longer reach the database. The same treatment is applied to LibreChat (3080) in `docker-compose.yml` and MCP (3001) in `docker-compose.dev.yml`. Operators who need multi-machine access must change the binding explicitly and deploy behind a firewall / VPN.
 
 **[BLOCKING] 2. Seccomp profile strength**
 The seccomp profile (`agent/seccomp-standard.json`) is described as the Docker default v28.0.1 profile but has not been independently verified against a hardened or minimal profile. An audit comparing the allowed syscalls against actual agent requirements is needed.
@@ -199,3 +199,34 @@ Communication between the agent and MCP containers uses plain HTTP on the fronte
 
 **[BLOCKING] 7. DB authentication state**
 The `pg_hba.conf` configuration uses trust authentication for local connections. The exact final state of `pg_hba.conf` after all init scripts run has not been fully audited. An explicit audit of the authentication configuration is needed to confirm no unintended access paths exist.
+
+---
+
+## 6. Dev-only and Bypass Flags
+
+Environment variables that intentionally weaken the posture for specific scenarios. Setting any of them in production widens the attack surface. The MCP server logs a `warn`-level line at startup when any of these flags is active, so the posture can be spot-checked in service logs.
+
+**`MCP_SKIP_AUTH=true`** — bypasses bearer authentication for all requests. Bound to `docker-compose.dev.yml`. Intended only for local development where `0.0.0.0` host exposure is already prevented by the loopback port binding. Never set in production.
+
+**`MCP_SKIP_AUTH_INTERNAL=true`** — set in `docker-compose.yml` for the MCP service. Allows requests that carry no `Authorization` header to be treated as `default-agent`. Relies on the `backend` Docker network being reachable only by co-located services (LibreChat). If MCP is ever exposed beyond that network, this flag creates an unauthenticated write surface. See the TODO in `mcp/src/auth.ts` — to be replaced with OAuth or mTLS before any external exposure.
+
+**`ALLOW_ALL_DOMAINS=true`** — disables the fetch-tool domain allowlist. The fetch tool is an agent-callable capability; with the allowlist off, a compromised or runaway agent can be used as an SSRF probe or exfiltration channel. Use `ALLOWED_DOMAINS` (comma-separated) in production.
+
+## 7. Other Documented Postures
+
+These are intentional trade-offs documented here so they don't become surprises.
+
+**VS Code webview CSP permits `style-src 'unsafe-inline'`.**
+The viewer panel's Content-Security-Policy allows inline `<style>` blocks (required by React's `style={{...}}` prop and by Milkdown's inline style injection). `script-src` is nonce-only, `default-src` is `'none'`, and `connect-src` is not granted — so even if an attacker could inject inline styles, they could not exfiltrate. The blast radius is limited to visual disruption of the webview UI.
+
+**VS Code webview → extension-host command invocation is allowlisted.**
+The panel enables command URIs only for `talos.openEntry`, `talos.openWikilink`, and `talos.openTag`. The `invoke-command` bridge message on the extension host side enforces the same allowlist server-side — a compromised webview cannot dispatch arbitrary extension commands.
+
+**Error messages are verbose.**
+Tool responses include internal exception text (PRECONDITION_FAILED details, schema validation errors, etc.) to aid debugging. This is acceptable for a single-user system; a multi-tenant deployment would want to sanitize.
+
+**No rate limiting on MCP.**
+Any authenticated agent can issue unlimited request volume. A runaway or compromised agent can drive embedding-provider cost and DB load. Not a publication blocker for a single-user self-host; tracked in the roadmap backlog as a future ops-hardening phase.
+
+**No outbound network restriction on agents.**
+See [BLOCKING] 5 above. Agent containers can reach arbitrary internet hosts. A compromised agent is an exfiltration vector. Mitigate with host-level firewall rules or a network policy.

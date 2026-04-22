@@ -154,3 +154,36 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 5. Privacy and Compliance | 1/3 | In Progress|  |
 | 6. Text UI Client | 5/6 | In Progress|  |
 | 7. Subagent Capability | 0/7 | Not started | - |
+
+## Backlog
+
+Ad-hoc items captured outside formal GSD phase structure. Promote to a
+proper phase via `/gsd:add-phase` when work starts.
+
+### VS Code extension (phases 1–9 shipped; see git history)
+
+- [ ] **Mime viewers** — HTML (sandboxed iframe), JSON (collapsible tree), plain text (preformatted). Registry already supports it. ~1d.
+- [ ] **Drag-to-reparent in tree** — uses the `path` update from Phase 8. ~0.5d.
+- [ ] **Capture selection command** — `Talos: Capture` grabs selected text from any VS Code editor into a new note. ~30min.
+- [ ] **SSE live refresh** — when an entry is edited externally while open, the viewer auto-updates. Needs server push infra. ~1d.
+- [ ] **Graph view** — force-directed visualization of the link structure, filterable by path prefix. ~1d.
+
+### Operator-superset extension views
+
+- [ ] **Import/sync trigger** — button that invokes the vault sync pipeline (interactive or headless).
+- [ ] **Audit log viewer** — paged query against the audit_log table; needs an MCP audit tool.
+- [ ] **Agent inspection + invocation** — browse `/system/agents/<name>`, view schemas, invoke a subagent.
+- [ ] **MCP server health controls** — docker compose status + restart from the activity bar.
+
+### Vault / import productization
+
+- [ ] **Generalized Obsidian importer** — YAML-configurable folder→path routing, replaces the vault-specific scripts in `import-audit/`.
+- [ ] **`./talos sync` CLI wrapper** — one-command invocation of sync-import.py; was deferred until the generalized importer.
+- [ ] **CLAUDE.md sync workflow docs** — deferred with the CLI wrapper; describes when and how to run sync.
+
+### Editor niceties (further polish)
+
+- [ ] **Note type picker** on create (default `note`; pick `reference` / `log` / etc).
+- [ ] **Cursor-aware wikilink bracket hiding** — hide `[[` `]]` when cursor is outside; Obsidian-style live preview (Phase 4a bracket-visibility was explicitly deferred).
+- [ ] **Milkdown custom node for wikilinks/tags** — replace the decoration overlay with proper inline atomic nodes so cursor doesn't step through brackets (Approach B from the original decoration/node tradeoff).
+- [ ] **Discriminated-union typing on `McpError.data`** — per-code typed extras (e.g., `conflicts` on COLLISION) validated by Zod (Phase 8 shipped the minimum; this is the "maximum" version).

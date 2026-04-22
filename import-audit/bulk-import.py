@@ -2,6 +2,7 @@
 """Bulk import entries into Talos via MCP HTTP API."""
 
 import json
+import os
 import sys
 import time
 import urllib.request
@@ -9,8 +10,34 @@ import urllib.error
 from pathlib import Path
 
 AUDIT = Path(__file__).parent
-MCP_URL = "http://localhost:3001/mcp"
-API_KEY = "xXK3iCr/MBOhsJ72ONFEoA8mHAxwK20oHJQvDFh7OIM="
+REPO = AUDIT.parent
+MCP_URL = os.environ.get("TALOS_MCP_URL", "http://localhost:3001/mcp")
+
+
+def _load_api_key() -> str:
+    """Return a bearer token for MCP.
+
+    Precedence: TALOS_API_KEY env var, then the first key found in
+    secrets/agent_keys.json (the canonical server-side key registry).
+    Raises SystemExit with a helpful message if neither is available.
+    """
+    env = os.environ.get("TALOS_API_KEY")
+    if env:
+        return env.strip()
+    keys_file = REPO / "secrets" / "agent_keys.json"
+    if keys_file.exists():
+        try:
+            keys = json.loads(keys_file.read_text())
+            if isinstance(keys, dict) and keys:
+                return next(iter(keys))
+        except (OSError, json.JSONDecodeError) as err:
+            raise SystemExit(f"Could not read {keys_file}: {err}") from err
+    raise SystemExit(
+        "No MCP bearer available. Set TALOS_API_KEY or populate secrets/agent_keys.json."
+    )
+
+
+API_KEY = _load_api_key()
 GUID_INDEX = AUDIT / "title-guid-index.json"
 MANIFEST = AUDIT / "roam-manifest.json"
 

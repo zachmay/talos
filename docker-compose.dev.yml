@@ -1,6 +1,10 @@
 services:
   mcp:
     ports:
-      - "3001:3000"
+      # Loopback-only. Dev-only overlay; do not include in production.
+      - "127.0.0.1:3001:3000"
     environment:
+      # Bypass bearer auth for convenience during dev. DO NOT set this in
+      # production — the MCP server becomes an unauthenticated write
+      # surface for anything that can reach it. See SECURITY.md.
       MCP_SKIP_AUTH: "true"

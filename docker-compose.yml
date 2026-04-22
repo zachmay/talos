@@ -14,7 +14,10 @@ services:
       - db_password
       - mcp_password
     ports:
-      - "${DB_PORT:-5432}:5432"
+      # Bound to loopback only — other machines on the network can't reach
+      # Postgres. For multi-machine access, replace 127.0.0.1 with 0.0.0.0
+      # and deploy behind a firewall / VPN.
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
     networks:
       - backend
     volumes:
@@ -72,7 +75,8 @@ services:
   librechat:
     image: ghcr.io/danny-avila/librechat:latest
     ports:
-      - "${LIBRECHAT_PORT:-3080}:3080"
+      # Loopback-only by default. See note on the db service.
+      - "127.0.0.1:${LIBRECHAT_PORT:-3080}:3080"
     networks:
       - frontend
       - backend

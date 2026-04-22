@@ -16,6 +16,7 @@ Usage:
 import argparse
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import time
@@ -24,9 +25,34 @@ from datetime import datetime
 from pathlib import Path
 
 AUDIT = Path(__file__).parent
+REPO = AUDIT.parent
 VAULT = Path.home() / "Documents" / "Exocortex"
-MCP_URL = "http://localhost:3001/mcp"
-API_KEY = "xXK3iCr/MBOhsJ72ONFEoA8mHAxwK20oHJQvDFh7OIM="
+MCP_URL = os.environ.get("TALOS_MCP_URL", "http://localhost:3001/mcp")
+
+
+def _load_api_key() -> str:
+    """Return a bearer token for MCP.
+
+    Precedence: TALOS_API_KEY env var, then the first key found in
+    secrets/agent_keys.json (the canonical server-side key registry).
+    """
+    env = os.environ.get("TALOS_API_KEY")
+    if env:
+        return env.strip()
+    keys_file = REPO / "secrets" / "agent_keys.json"
+    if keys_file.exists():
+        try:
+            keys = json.loads(keys_file.read_text())
+            if isinstance(keys, dict) and keys:
+                return next(iter(keys))
+        except (OSError, json.JSONDecodeError) as err:
+            raise SystemExit(f"Could not read {keys_file}: {err}") from err
+    raise SystemExit(
+        "No MCP bearer available. Set TALOS_API_KEY or populate secrets/agent_keys.json."
+    )
+
+
+API_KEY = _load_api_key()
 GUID_INDEX = AUDIT / "title-guid-index.json"
 
 # --- Load build-full-manifest.py as a module ---

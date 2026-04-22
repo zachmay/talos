@@ -149,4 +149,15 @@ app.listen(port, () => {
     port,
     embedding_provider: process.env.EMBEDDING_PROVIDER ?? "openrouter",
   });
+  // Surface insecure-flag postures at startup so they can't silently persist
+  // into a production deploy. See SECURITY.md.
+  if (process.env.MCP_SKIP_AUTH === "true") {
+    log("warn", "MCP_SKIP_AUTH=true — bearer auth BYPASSED for all requests. Dev only.");
+  }
+  if (process.env.MCP_SKIP_AUTH_INTERNAL === "true") {
+    log("warn", "MCP_SKIP_AUTH_INTERNAL=true — unauthenticated requests accepted as default-agent.");
+  }
+  if (process.env.ALLOW_ALL_DOMAINS === "true") {
+    log("warn", "ALLOW_ALL_DOMAINS=true — fetch tool domain allowlist BYPASSED (SSRF surface widened).");
+  }
 });
