@@ -8,8 +8,7 @@ node_modules/
 dist/
 .test-tmp/
 .DS_Store
-backups/*.dump
-backups/*.archive
+backups/
 
 # Claude Code settings (user-specific paths, personal permissions)
 .claude/
